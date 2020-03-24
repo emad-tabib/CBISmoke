@@ -3,10 +3,8 @@ package com.generic.tests.GH.checkout;
 import java.text.MessageFormat;
 import java.util.LinkedHashMap;
 import java.util.NoSuchElementException;
-
 import com.generic.page.CheckOut;
 import com.generic.page.Registration;
-import com.generic.page.Login;
 import com.generic.setup.ExceptionMsg;
 import com.generic.setup.GlobalVariables;
 import com.generic.setup.LoggingMsg;
@@ -45,7 +43,8 @@ public class RegisteredCheckoutSingleAddress extends SelTestCase {
 			// Clicking begin secure checkout
 			CheckOut.clickBeginSecureCheckoutButton();
 			
-
+			Thread.sleep(4000);
+			
 			if (!CheckOut.checkIfInStepTwo()) {
 				// Proceed to step 2
 				CheckOut.proceedToStepTwo();
@@ -63,6 +62,14 @@ public class RegisteredCheckoutSingleAddress extends SelTestCase {
 			CheckOut.proceedToStepFour();
 			
 			Thread.sleep(3500);
+			
+			// Current PWA issue
+			if (!CheckOut.checkIfinStepFour()) {
+				CheckOut.proceedToStepFour();
+
+			}
+			
+			Thread.sleep(3500);
 
 			// Fill payment details in the last step
 			CheckOut.fillPayment(paymentDetails);
@@ -77,6 +84,19 @@ public class RegisteredCheckoutSingleAddress extends SelTestCase {
 			Thread.sleep(1500);
 
 			CheckOut.placeOrder();
+			
+			Thread.sleep(3000);
+			
+			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
+
+				// Fill payment details in the last step
+				CheckOut.fillPayment(paymentDetails);
+
+				// Click place order button
+				CheckOut.placeOrder();
+
+			}
+
 			
 			Thread.sleep(1500);
 			

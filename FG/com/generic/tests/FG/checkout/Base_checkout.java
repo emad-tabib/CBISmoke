@@ -8,7 +8,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.xml.XmlTest;
 import java.util.LinkedHashMap;
-
 import com.generic.setup.Common;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
@@ -20,9 +19,7 @@ public class Base_checkout extends SelTestCase {
 
 	// user types
 	public static final String guestUser = "guest";
-	public static final String freshUserMultipleAddresses = "fresh-multiple"; // Needs to be updated in the excel sheet
-																				// to fresh-multiple-2 where 2 is the
-																				// number of products
+	public static final String freshUserMultipleAddresses = "fresh-multiple"; 																	
 	public static final String freshUserSingleAddress = "fresh-single";
 	public static final String registeredUserMultipleAddresses = "registered-multiple";
 	public static final String registeredUserSingleAddress = "registered-single";

@@ -56,13 +56,7 @@ public class PLP_Base extends SelTestCase {
 
 			if (Proprties.contains(plpTest)) {
 				
-				if (!isiPad()) {
 					PLP.navigateToRandomPLPRY();
-				}
-				else {
-					getDriver().get("https://stagewcs.ryllace.com/store/plus-size-sweaters");
-					Thread.sleep(12000);
-				}
 //				PDP.closeSignUpModalIfDisplayed();
 				sassert().assertTrue(PLP.VerifyPLP(), "PLP Validation failed");
 			}

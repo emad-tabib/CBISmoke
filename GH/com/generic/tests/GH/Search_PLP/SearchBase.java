@@ -1,4 +1,3 @@
-
 package com.generic.tests.GH.Search_PLP;
 
 import java.text.MessageFormat;
@@ -8,8 +7,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.xml.XmlTest;
-
-
 import com.generic.page.PLP;
 import com.generic.setup.Common;
 import com.generic.setup.LoggingMsg;
@@ -60,9 +57,7 @@ public class SearchBase extends SelTestCase {
 		try {
 
 			Common.refreshBrowser();
-
-//			PDP.closeSignUpModalIfDisplayed();
-
+			
 			// validate the suggested items only on mobile and desktop, as iPad view doesn't
 			// have suggested items
 			if (proprties.contains(RecommendedProductsCase) && !isiPad())

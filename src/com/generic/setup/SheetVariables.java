@@ -24,6 +24,7 @@ public class SheetVariables {
 	public static final String orderHistorySheet = "OrderHistoryRegression";
 	public static final String cartSheet = "CartRegression";
 	public static final String PDPSheet = "PDPRegression";
+	public static final String PDPSheet_BD = "PDPRegression_BD";
 	public static final String GRSheet = "GiftRegistryRegression";
 	public static final String testCasesSheet = "Test Cases";
 	public static final String AddressBookSheet = "AddressBookRegression";

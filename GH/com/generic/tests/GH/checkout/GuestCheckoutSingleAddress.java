@@ -40,8 +40,12 @@ public class GuestCheckoutSingleAddress extends SelTestCase {
 			// Add addresses for each product and save them
 			CheckOut.fillCheckoutFirstStepAndSave(addressDetails);
 
+			Thread.sleep(4000);
+
 			// Proceed to step 2
 			CheckOut.proceedToStepTwo();
+			
+			Thread.sleep(3000);
 
 			// Check number of products in step 2
 			sassert().assertTrue(CheckOut.checkProductsinStepTwo() == productsCount, "Some products are missing in step 2 ");
@@ -51,9 +55,19 @@ public class GuestCheckoutSingleAddress extends SelTestCase {
 
 			// Fill email field and proceed to step 4
 			CheckOut.fillEmailBillingAddress();
+		
+			Thread.sleep(3000);
 
 			// Proceed to step 4
 			CheckOut.proceedToStepFour();
+			
+			Thread.sleep(3500);
+
+			// Current PWA issue
+			if (!CheckOut.checkIfinStepFour()) {
+				CheckOut.proceedToStepFour();
+
+			}
 			
 			Thread.sleep(3500);
 
@@ -71,6 +85,19 @@ public class GuestCheckoutSingleAddress extends SelTestCase {
 
 			// Click place order button
 			CheckOut.placeOrder();
+			
+			Thread.sleep(3000);
+			
+			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
+
+				// Fill payment details in the last step
+				CheckOut.fillPayment(paymentDetails);
+
+				// Click place order button
+				CheckOut.placeOrder();
+
+			}
+
 
 			Thread.sleep(2000);
 

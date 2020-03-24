@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
-
 import org.openqa.selenium.WebElement;
 import com.generic.selector.CLPSelectors;
 import com.generic.selector.HomePageSelectors;
@@ -14,18 +13,17 @@ import com.generic.setup.SelTestCase;
 import com.generic.setup.cselector;
 import com.generic.util.SelectorUtil;
 
-/**
- * The Class HomePage.
- */
+
 public class CLP extends SelTestCase {
 
 	public static boolean validateMobileIpadCLP() throws Exception {
 		try {
 			getCurrentFunctionName(true);
 			boolean isValid = true;
-			// HomePage.openNavigationMenu();
+
 			if (!isGH() || (isGH() && isMobile()))
 				HomePage.openNavigationMenu();
+			
 			String pageUrl = SelectorUtil.getCurrentPageUrl();// to validate iPad
 			List<WebElement> menueItems = new ArrayList<WebElement>();
 			menueItems = menueWithoutWhatsNew();
@@ -40,6 +38,7 @@ public class CLP extends SelTestCase {
 				index = index + 1;
 				final cselector leafItem = new cselector("css,li:nth-child(" + index + ")  li > a");
 				leafMenuItems = SelectorUtil.getAllElements(leafItem.get());
+				
 		}else if(isBD()){
 			 randomMenuElement =  SelectorUtil.getRandomWebElement(menueItems);
 				SelectorUtil.clickOnWebElement(randomMenuElement);

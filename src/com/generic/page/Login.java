@@ -3,7 +3,6 @@ package com.generic.page;
 import java.net.URI;
 import java.text.MessageFormat;
 import java.util.NoSuchElementException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import com.generic.selector.LoginSelectors;
@@ -17,7 +16,7 @@ public class Login extends SelTestCase {
 
 	public static String logoffhref = "/Logoff";
 	public static String myAccountPageLink = "AccountOverView";
-
+	public static String RegistrationPageProperty = "RegistrationPage";
 	// done-ocm
 	public static void logIn(String userName, String Password) throws Exception {
 		try {
@@ -48,8 +47,8 @@ public class Login extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			logs.debug(MessageFormat.format(LoggingMsg.GETTING_TEXT,
-					"Navigating to registration page..." + getCONFIG().getProperty("RegistrationPage")));
-			getDriver().get(new URI(getDriver().getCurrentUrl()).resolve(getCONFIG().getProperty("RegistrationPage"))
+					"Navigating to registration page..." + getCONFIG().getProperty(RegistrationPageProperty)));
+			getDriver().get(new URI(getDriver().getCurrentUrl()).resolve(getCONFIG().getProperty(RegistrationPageProperty))
 					.toString());
 			typeEmail(email);
 			typePassword(Password);

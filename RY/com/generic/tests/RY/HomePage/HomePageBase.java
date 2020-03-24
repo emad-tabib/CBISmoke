@@ -2,19 +2,16 @@ package com.generic.tests.RY.HomePage;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
-import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.xml.XmlTest;
-
 import com.generic.setup.Common;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
 import com.generic.setup.SheetVariables;
 import com.generic.tests.RY.HomePage.LogoValidation;
-import com.generic.util.ReportUtil;
 import com.generic.util.SASLogger;
 import com.generic.util.dataProviderUtils;
 
@@ -30,7 +27,6 @@ public class HomePageBase extends SelTestCase {
 	public static final String footer = "footer";
 	public static final String body = "body";
 	public static final String YMALCarousels = "YMAL Carousels Verification";
-
 	public static final String menu = "menu";
 	public static final String signIn = "SignIn validation";
 	public static final String AccountMenu = "Account menu validation";
@@ -71,24 +67,28 @@ public class HomePageBase extends SelTestCase {
 
 		try {
 
-			if (proprties.contains(this.Logo)) {
+			if (proprties.contains(Logo)) {
 				LogoValidation.validate();
     
-			} else if (proprties.contains(this.miniCart)) {
+			} else if (proprties.contains(miniCart)) {
 				MiniCartValidation.validate();
 
-			} else if (proprties.contains(this.espots)) {
+			} else if (proprties.contains(espots)) {
 				HomePageValidation.validateCaroselAndEspot();
 
-			} else if (proprties.contains(this.search)) {
+			} else if (proprties.contains(search)) {
 				HomePageValidation.validateSearch();
-			} else if (proprties.equals(this.menu)) {
+			
+			} else if (proprties.equals(menu)) {
 				// Check the Navigation menu.
 				sassert().assertTrue(MenuValidation.validate(), "Menu validation has some problems");
-			} else if (proprties.contains(this.AccountMenu)) {
+			
+			} else if (proprties.contains(AccountMenu)) {
 	            sassert().assertTrue(AccountMenuValidation.validate(), "My Account menu validation has some problems");
-			} else if (proprties.contains(this.GlobalFooter)) {
+			
+			} else if (proprties.contains(GlobalFooter)) {
 				sassert().assertTrue(GlobalFooterValidation.validate(), "Global footer validation has some problems");
+			
 			} else {
 				Testlogs.get().debug("please check proprties provided in excel sheet");
 			}

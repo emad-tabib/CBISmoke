@@ -1,7 +1,7 @@
 package com.generic.tests.GR.HomePage;
 
 import com.generic.page.HomePage;
-import com.generic.page.PDP;
+import com.generic.page.PDP.*;
 import com.generic.setup.GlobalVariables;
 import com.generic.setup.SelTestCase;
 
@@ -11,6 +11,7 @@ public class MiniCartValidation extends SelTestCase {
 
 		getCurrentFunctionName(true);
 		HomePage.clickOnMiniCart();
+		Thread.sleep(2000);
 		String emptyCartText = HomePage.getMiniCartText();
 		if (SelTestCase.getBrowserName().contains(GlobalVariables.browsers.iPhone)) {
 			sassert().assertTrue(emptyCartText.contains("Empty"), "<font color=#f442cb>expected text is: "
@@ -27,9 +28,9 @@ public class MiniCartValidation extends SelTestCase {
 			sassert().assertTrue(HomePage.validateMiniCartIsClosed(), "Mini cart modal is not closed");
 		}
 		PDP.NavigateToPDP();
-		PDP.addProductsToCart();
+		PDP_cart.addProductsToCart();
 		if (!isMobile()) {
-			PDP.clickAddToCartCloseBtn();
+			PDP_cart.clickAddToCartCloseBtn();
 		}
 
 		// Mini cart in iPAd cannot be validated as it redirects to cart page.

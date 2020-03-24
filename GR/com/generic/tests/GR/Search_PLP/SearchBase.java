@@ -27,6 +27,8 @@ public class SearchBase extends SelTestCase {
 
 	private String RecommendedProductsCase = "Recommended products";
 	private String fullSearchCase = "full search";
+	public static String firstSearchTerm = "glass";
+	public static String secondSearchTerm = "mat";
 
 	@BeforeTest
 	public static void initialSetUp(XmlTest test) throws Exception {
@@ -59,11 +61,11 @@ public class SearchBase extends SelTestCase {
 
 			// validate the suggested items
 			if (proprties.contains(RecommendedProductsCase))
-				sassert().assertTrue(PLP.searchAndVerifyResults("glass", true), "Serach validation failed");
+				sassert().assertTrue(PLP.searchAndVerifyResults(firstSearchTerm, true), "Serach validation failed");
 
 //			//Validate the direct search
 			if (proprties.contains(fullSearchCase))
-				sassert().assertTrue(PLP.searchAndVerifyResults("mat", false), "Serach validation failed");
+				sassert().assertTrue(PLP.searchAndVerifyResults(secondSearchTerm, false), "Serach validation failed");
 
 			sassert().assertAll();
 

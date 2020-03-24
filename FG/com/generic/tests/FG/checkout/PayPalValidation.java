@@ -1,7 +1,6 @@
 package com.generic.tests.FG.checkout;
 
 import java.util.LinkedHashMap;
-
 import com.generic.page.Cart;
 import com.generic.page.CheckOut;
 import com.generic.page.HomePage;

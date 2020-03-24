@@ -73,13 +73,16 @@ public class HomePageBase extends SelTestCase {
 
 			} else if (proprties.contains(search)) {
 				HomePageValidation.validateSearch();
+			
 			} else if (proprties.equals(menu)) {
 				// Check the Navigation menu.
 				sassert().assertTrue(MenuValidation.validate(), "Menu validation has some problems");
 			} else if (proprties.contains(AccountMenu)) {
 				sassert().assertTrue(AccountMenuValidation.validate(), "My Account menu validation has some problems");
+			
 			} else if (proprties.contains(GlobalFooter)) {
 				sassert().assertTrue(GlobalFooterValidation.validate(), "Global footer validation has some problems");
+			
 			} else if (proprties.contains(YMALCarousels)) {
 				YMALCarouselsVerification.validate();
 			} else {

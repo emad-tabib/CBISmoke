@@ -1,4 +1,3 @@
-
 package com.generic.tests.GH.Search_PLP;
 
 import java.text.MessageFormat;
@@ -65,7 +64,6 @@ public class PLP_Base extends SelTestCase {
 					PLP.navigateToRandomPLPDesktop();
 				
 				Thread.sleep(2500);
-//				PDP.closeSignUpModalIfDisplayed();
 				sassert().assertTrue(PLP.VerifyPLP(), "PLP Validation failed");
 			}
 			sassert().assertAll();

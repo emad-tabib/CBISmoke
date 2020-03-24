@@ -16,7 +16,6 @@ import com.generic.tests.RY.e2e.Cart_e2e;
 import com.generic.tests.RY.e2e.Checkout_e2e;
 import com.generic.tests.RY.e2e.HomePage_e2e;
 import com.generic.tests.RY.e2e.PDP_e2e;
-import com.generic.tests.RY.e2e.Registeration_e2e;
 import com.generic.tests.RY.e2e.Search_PLP_e2e;
 import com.generic.util.dataProviderUtils;
 import com.generic.util.SASLogger;
@@ -28,7 +27,10 @@ public class SmokeTest_Registered_e2e extends SelTestCase {
 	private static XmlTest testObject;
 	private static ThreadLocal<SASLogger> Testlogs = new ThreadLocal<SASLogger>();
 	public static boolean external = false; // change this value will pass through logging
+	public static String emailKey ="mail";
+	public static String passwordKey ="password";
 
+	
 	@BeforeTest
 	public static void initialSetUp(XmlTest test) throws Exception {
 		Testlogs.set(new SASLogger("checkout_setup"));
@@ -65,7 +67,9 @@ public class SmokeTest_Registered_e2e extends SelTestCase {
 		int productsCount = Integer.parseInt(productsNumber);
 
 		try {
-
+			
+			Common.refreshBrowser();
+			//Login_e2e.Validate(userdetails.get(emailKey),userdetails.get(passwordKey));
 			Registeration_e2e.Validate();
 			HomePage_e2e.Validate();
 			Search_PLP_e2e.Validate();

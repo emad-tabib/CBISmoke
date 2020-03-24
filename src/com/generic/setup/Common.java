@@ -45,6 +45,7 @@ public class Common extends SelTestCase {
 
 				System.setProperty("webdriver.chrome.driver", PagesURLs.getDriversPath(browser));
 				ChromeOptions co = new ChromeOptions();
+				co.addArguments("--ignore-certificate-errors");
 				driverInstance = new ChromeDriver(co);
 				driverInstance.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 				driverInstance.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -65,6 +66,7 @@ public class Common extends SelTestCase {
 				chromeOptions.put("mobileEmulation", mobileEmulation);
 
 				ChromeOptions options = new ChromeOptions();
+				options.addArguments("--ignore-certificate-errors");
 
 				if (getCONFIG().getProperty("chached_chrome").equalsIgnoreCase("yes")) {
 					options.addArguments("user-data-dir=" + System.getProperty("user.home")
@@ -289,9 +291,10 @@ public class Common extends SelTestCase {
 		int title = 3;
 		int addressLine = 4;
 		int city = 5;
-		int postal = 6;
-		int countery = 7;
-		int phone = 8;
+		int state = 6;
+		int postal = 7;
+		int countery = 8;
+		int phone = 9;
 
 		for (int row = 1; row < data.length; row++) {
 			LinkedHashMap<String, Object> address = new LinkedHashMap<>();
@@ -300,6 +303,7 @@ public class Common extends SelTestCase {
 			address.put((String) data[header][title], data[row][title]);
 			address.put((String) data[header][addressLine], data[row][addressLine]);
 			address.put((String) data[header][city], data[row][city]);
+			address.put((String) data[header][state], data[row][state]);
 			address.put((String) data[header][postal], data[row][postal]);
 			address.put((String) data[header][countery], data[row][countery]);
 			address.put((String) data[header][phone], data[row][phone]);
@@ -314,9 +318,9 @@ public class Common extends SelTestCase {
 		/*
 		 * Output example [ { P1={
 		 * url=/yacceleratorstorefront/en/Categories/Bags%2BBoardbags/Bags/Seizure-
-		 * Satchel/p/300613490, color=black, size=SizeUni,£34.792 1, qty=1 }, P2={
+		 * Satchel/p/300613490, color=black, size=SizeUni,ï¿½34.792 1, qty=1 }, P2={
 		 * url=/yacceleratorstorefront/en/Categories/Bags%2BBoardbags/Bags/Seizure-Bag/p
-		 * /300441924, color=claycourt, size=SizeUni, £24.26 4, qty=1 } } ]
+		 * /300441924, color=claycourt, size=SizeUni, ï¿½24.26 4, qty=1 } } ]
 		 */
 		LinkedHashMap<String, Object> products = new LinkedHashMap<>();
 		ArrayList<String> FGproducts = new ArrayList<String>();

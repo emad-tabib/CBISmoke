@@ -1,7 +1,6 @@
 package com.generic.tests.GH.CLP;
 import com.generic.page.CLP;
 import com.generic.setup.Common;
-import com.generic.setup.GlobalVariables;
 
 import com.generic.setup.SelTestCase;
 

@@ -11,6 +11,7 @@ public class PLPSelectors {
  
 	public static final cselector GHsearchClose = new cselector("css,button.pw-search__close");
 	public static final cselector searchBox = new cselector("css,#searchBox input#headerBox","css,form>div>div>input");
+	public static final cselector BDsearchBox = new cselector("css,#searchBox input#headerBox","css,form>div>div>input");
 	public static final cselector recommendedOption =new cselector("css,li.unbxd-as-popular-product.unbxd-as-popular-product-grid .unbxd-as-popular-product-info","css,.c-arrange.u-flexbox.c--align-middle.u-align-center");
 
 	public static final cselector BDrecommendedOption =new cselector("css,li.unbxd-as-popular-product.unbxd-as-popular-product-grid .unbxd-as-popular-product-info","css,li.unbxd-as-keysuggestion","css,.c-arrange.u-flexbox.c--align-middle.u-align-center");
@@ -112,6 +113,7 @@ public class PLPSelectors {
 
 	
 	public static final cselector navigatetoPLPBD = new cselector(
+			"css,div.gwt-product-image-horizontal-panel > a",
 			"css,.gwt-sub-category-image",
 			"css,.t-category-list__category a > img" );
 
@@ -135,7 +137,7 @@ public class PLPSelectors {
 			"css,#mainContent > div.genericESpot > div.container.no-padding.grid-subcategories > div > div:nth-child(1) > div > a > img",
 			"css,#app-main > div > div:nth-child(1) > div.u-flexbox.u-direction-row.u-flex-wrap > div:nth-child(1) > a > div.c-lazy-image.u-width-full > div > img");
 	
-	public static final cselector GHRecommendedOption =new cselector("css,.unbxd-as-popular-product-info","css,.c--align-middle a.pw-link.c-arrange.u-flexbox.c--align-middle.u-align-center", "css,.c-search-suggestions-products__product");
+	public static final cselector GHRecommendedOption =new cselector("css,.unbxd-as-popular-product-info","css,.c--align-middle a.pw-link.c-arrange.u-flexbox.c--align-middle.u-align-center", "css,div.pw-sheet__wrapper > div > div.pw-sheet__content > div > div > div:nth-child(2) > ul div > a");
 	public static final cselector GHSearchButton = new cselector("css,#searchButton");
 	public static final cselector PLPPageSelector = new cselector("css,.view-UnbxdBodyView");
 }

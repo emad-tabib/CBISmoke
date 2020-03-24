@@ -5,7 +5,9 @@ import com.generic.setup.cselector;
 public class CheckOutSelectors
 {
 	public static final cselector GHConfirmationTotal=new cselector("css,.estimated-total > div>span:nth-child(2)");
+	public static final cselector BDConfirmationTotal=new cselector("css,.estimated-total > div>span:nth-child(2)","css,div:nth-child(1) > div.estimated-total.u-padding-md.u-padding-top-0.u-padding-bottom-lg.u-text-size-medium.u-flexbox.u-justify-between.u-bg-color-alto > span:nth-child(2)");
 	public static final cselector GHPaypalSubmitConfermationMessage=new cselector("css,p.t-checkout-confirmation__header-confirm-message:last-child");
+	public static final cselector BDPaypalSubmitConfermationMessage=new cselector("css,p.t-checkout-confirmation__header-confirm-message:last-child","css,p.t-checkout-confirmation__header-confirm-message");
 	//Done CBI
 	//Navigation
 	public static final cselector beginSecureCheckoutButton = new cselector("css,.secure-checkout-button","css,.c-checkout-buttons__checkout .pw--primary");
@@ -14,7 +16,7 @@ public class CheckOutSelectors
 	
 	//Step 1 Multiple Addresses
 	public static final cselector multipleAddressesTab = new cselector( "css,.shipping-address .gwt-TabBarItem .gwt-HTML","css,.t-checkout-step1__tabs .pw-tabs__tab a");
-	public static final cselector addAddressButton = new cselector( "css,.order-item-shipping-panel .button","css,.t-cart__product-list .add-address-button:nth-child(odd)");
+	public static final cselector addAddressButton = new cselector( "css,.order-item-shipping-panel .button","css,.t-cart__product-list .add-address-button");
 	public static final cselector saveAddressButton = new cselector("css,.okCancelPanel .button.primary","css,.m-address_widget_modal button.pw--primary");
 	public static final cselector firstStepNextButton = new cselector( "css,.next-botton-panel .primary-button","css,.c-checkout-accordion__next-cancel-panel .pw--primary");
 	public static final cselector firstName =new cselector( "css,.add-address-dialog .AddrFNameSpot input","css,.m-address_widget_modal .c-custom-input-fname input");
@@ -55,11 +57,10 @@ public class CheckOutSelectors
 	public static final cselector creditCardField = new cselector("css,#accountcc", "css,#accountcc"); 
 	public static final cselector monthField = new cselector("css,#exp-month", "css,.t-checkout-payment__card-month .c-custom-select");  
 	public static final cselector yearField = new cselector("css,#exp-year", "css,.t-checkout-payment__card-year .c-custom-select"); 
-	public static final cselector cvv = new cselector("css,#cvv", "css,#cvv","css,html body.cvv-provider-body div.animated-label-textbox-panel input#cvv");
+	public static final cselector cvv = new cselector("css,#security-id", "css,#security-id","css,#security-id");
+	public static final cselector cvv2 = new cselector("css,#cvv", "css,#cvv","css,#cvv");
 	public static final cselector cvvGH = new cselector("css,#security-id", "css,#security-id","css,#security-id");
 
-
-	//public static final cselector cvv = new cselector("css,#security-id", "css,#cvv","css,html body.cvv-provider-body div.animated-label-textbox-panel input#cvv"); 
 	public static final cselector placeSecureOrderButton = new cselector("css,.place-order-panel .primary-button","css,.t-checkout-footer .pw--primary");
 	
 	//Confirmation Page
@@ -74,7 +75,7 @@ public class CheckOutSelectors
     public static final cselector paymentPagePayPalSubmitBtn=new cselector("css,.place-order-panel > button:nth-child(1)","css,div.c-checkout-buttons__checkout > button");
     public static final cselector paymentSubmitPopUpClose=new cselector("css,#extole-6763275864515365558 > div > div.extole-js-widget-wrapper.extole-widget-wrapper > a","css,#extole-6763275864515365558 > div > div.extole-js-widget-wrapper.extole-widget-wrapper > a");
     public static final cselector paymentPayPalSubmitRegistrationCloseBtn=new cselector("css,td > div > button.secondary");
-    public static final cselector paypalSubmitConfermationMessage=new cselector("css,div.header-panel > div.brand-confirm-message-panel > div","css, p.t-checkout-confirmation__header-confirm-message");
+    public static final cselector paypalSubmitConfermationMessage=new cselector("css,div.header-panel > div.brand-confirm-message-panel > div","css,p.t-checkout-confirmation__header-confirm-message");
     public static final cselector paypalConfermationPageAllProduct=new cselector("css,div.ship-method-and-gift-container-panel","css,div.t-checkout-order-details-and-shipping > div > div > div:nth-child(2) > div> div > div");
     public static final cselector orderNumber=new cselector("css,div.header-panel > div.order-number-panel > div:nth-child(2)","css,div.order-number");
     public static final cselector email=new cselector("css,div.header-panel > div.email-address-panel > div:nth-child(2)","css,div.email-address"); 
@@ -84,6 +85,7 @@ public class CheckOutSelectors
     public static final cselector confirmationPageSubtotal=new cselector("css,h4.subtotal-value","css,.t-cart__summary-subtotal > td.pw-ledger__value");
     public static final cselector confirmationShipping=new cselector("css,div.additional-charges-value.shipping > span","css,.t-cart__summary-shipping-charges > td.pw-ledger__value");
     public static final cselector confirmationPageTax=new cselector("css,div.additional-charges-value.tax> span","css,div:nth-child(3) > div > div > table > tbody > tr:nth-child(2) > td.pw-ledger__value");
+    public static final cselector BDconfirmationPageTax=new cselector("css,div.additional-charges-value.tax> span","css,div:nth-child(1) > div.t-checkout-footer__inner.u-bg-color-alto > div > div.t-cart__summary > div > div:nth-child(3) > div > div > table > tbody > tr:nth-child(3) > td.pw-ledger__value");
     public static final cselector confirmationTotal=new cselector("css,div.estimated-total-value.right","css,.estimated-total > span:nth-child(2)");
 
 }

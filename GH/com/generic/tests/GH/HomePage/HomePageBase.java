@@ -2,13 +2,11 @@ package com.generic.tests.GH.HomePage;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
-import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.xml.XmlTest;
-
 import com.generic.setup.Common;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
@@ -18,7 +16,6 @@ import com.generic.tests.GH.HomePage.HomePageValidation;
 import com.generic.tests.GH.HomePage.LogoValidation;
 import com.generic.tests.GH.HomePage.MenuValidation;
 import com.generic.tests.GH.HomePage.MiniCartValidation;
-import com.generic.util.ReportUtil;
 import com.generic.util.SASLogger;
 import com.generic.util.dataProviderUtils;
 
@@ -79,10 +76,12 @@ public class HomePageBase extends SelTestCase {
 
 			} else if (proprties.contains(search)) {
 				HomePageValidation.validateSearch();
+			
 			} else if (proprties.equals(menu)) {
 				// Check the Navigation menu.
 				sassert().assertTrue(MenuValidation.validate(), "Menu validation has some problems");
-			} else if (proprties.contains(this.GlobalFooter)) {
+			
+			} else if (proprties.contains(GlobalFooter)) {
 				sassert().assertTrue(GlobalFooterValidation.validate(), "Global footer validation has some problems");
 
 			} else {

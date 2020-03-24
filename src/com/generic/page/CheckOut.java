@@ -2,7 +2,6 @@ package com.generic.page;
 
 import java.net.URI;
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -14,7 +13,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 import com.generic.selector.CartSelectors;
 import com.generic.selector.CheckOutSelectors;
-import com.generic.selector.PayPalSelectors;
 import com.generic.setup.ExceptionMsg;
 import com.generic.setup.GlobalVariables;
 import com.generic.setup.LoggingMsg;
@@ -22,7 +20,7 @@ import com.generic.setup.PDPs;
 import com.generic.setup.SelTestCase;
 import com.generic.util.RandomUtilities;
 import com.generic.util.SelectorUtil;
-import com.generic.page.PayPal;
+import com.generic.page.PDP.*;
 
 public class CheckOut extends SelTestCase {
 
@@ -36,6 +34,7 @@ public class CheckOut extends SelTestCase {
 			public static final String firstName = "firstName";
 			public static final String adddressLine = "adddressLine";
 			public static final String city = "city";
+			public static final String state = "state";
 			public static final String zipcode = "postal";
 			public static final String phone = "phone";
 		}
@@ -104,6 +103,7 @@ public class CheckOut extends SelTestCase {
 		public static void typeCity(String city) throws Exception {
 			try {
 				getCurrentFunctionName(true);
+				if(!SelectorUtil.isNotDisplayed(CheckOutSelectors.city.get()))
 				SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.city.get(), city);
 				getCurrentFunctionName(false);
 			} catch (NoSuchElementException e) {
@@ -160,6 +160,7 @@ public class CheckOut extends SelTestCase {
 		public static void selectState(String state) throws Exception {
 			try {
 				getCurrentFunctionName(true);
+				if(!SelectorUtil.isNotDisplayed(CheckOutSelectors.state.get()))
 				SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.state.get(), state);
 				getCurrentFunctionName(false);
 			} catch (NoSuchElementException e) {
@@ -208,12 +209,17 @@ public class CheckOut extends SelTestCase {
 				Thread.sleep(1000);
 				Set<String> winIds = getDriver().getWindowHandles();
 				Iterator<String> iter = winIds.iterator();
+				
 				logs.debug("number of windows:" + winIds.size());
+				
 				String main = iter.next();
 				logs.debug("main window " + main);
+				
 				String paypal = iter.next();
 				logs.debug("paypal window " + paypal);
+				
 				getDriver().switchTo().window(paypal);
+				
 				getCurrentFunctionName(false);
 				return main;
 			} catch (NoSuchElementException e) {
@@ -229,7 +235,8 @@ public class CheckOut extends SelTestCase {
 		public static void typeCVV(String CVV) throws Exception {
 			try {
 				getCurrentFunctionName(true);				
-				if (isFG() || isGR()) {
+			/*	
+				if (isGR()) {
 					// Switch to cvv iframe
 					Thread.sleep(2800);
 
@@ -237,18 +244,27 @@ public class CheckOut extends SelTestCase {
 					waitforCvvFrame();
 
 					getDriver().switchTo().frame(GlobalVariables.CVV_Iframe_ID);
-					SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvv.get(), CVV);
+					SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvv2.get(), CVV);
+
+					Thread.sleep(2000);
+
+					// Switch to default frame
+					getDriver().switchTo().defaultContent();
+					
+				} 
+ */
+				
+				if (isFG() || isBD() || isGR()) {
+						
+				SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvv.get(), CVV);
 
 
 				} else if(isGH() || isRY()) {
 					SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvvGH.get(), CVV);
 
 				}
-				Thread.sleep(2000);
-
-				// Switch to default frame
-				getDriver().switchTo().defaultContent();
-
+				
+				
 				getCurrentFunctionName(false);
 			} catch (NoSuchElementException e) {
 				logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed + "CVV typing failed", new Object() {
@@ -368,7 +384,7 @@ public class CheckOut extends SelTestCase {
 				}
 				
 				Thread.sleep(2000);
-				PDP.addProductsToCart();
+				PDP_cart.addProductsToCart();
 
 				URI url = new URI(getURL());
 				getDriver().get("https://" + url.getHost());
@@ -488,7 +504,8 @@ public class CheckOut extends SelTestCase {
 				shippingAddress.typeStreetAddress(RandomUtilities.getRandomName(), false);
 				shippingAddress.typeZipCode(addressDetalis.get(CheckOut.shippingAddress.keys.zipcode), false);
 				shippingAddress.typePhone(RandomUtilities.getRandomPhone(), false);
-
+				shippingAddress.selectState(addressDetalis.get(CheckOut.shippingAddress.keys.state));
+				shippingAddress.typeCity(addressDetalis.get(CheckOut.shippingAddress.keys.city));
 				// Save address button
 				SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.saveAddressButton.get(), "");
 			}
@@ -561,7 +578,7 @@ public class CheckOut extends SelTestCase {
 			boolean state = false;
 			Thread.sleep(1000);
 
-			if (isFG()) {
+			if (isFG() || isBD()) {
 				state = SelectorUtil.isDisplayed(CheckOutSelectors.stepTwoIdentifier.get());
 			} else if (isGR()) {
 				state = SelectorUtil.isDisplayed(CheckOutSelectors.stepTwoIdentifierGR.get());
@@ -707,16 +724,20 @@ public class CheckOut extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			int taxIndex = 1;
+			int expectedElementstoBeFound =8;
+			int RYMobileTaxIndex =1;
+			int MobileTaxIndex =2;
+			
 			List<WebElement> elements =SelectorUtil.getAllElements(CheckOutSelectors.shippingAndTaxCost.get()); 
 			
 			if (isRY() && !isMobile()) {
-				taxIndex = 1 + grTaxIndex;
+				taxIndex = RYMobileTaxIndex + grTaxIndex;
 			}
 			
 			if (isMobile()) {
-				taxIndex = 2 + grTaxIndex;
+				taxIndex = MobileTaxIndex + grTaxIndex;
 				
-				if(elements.size()==8 && isFG())
+				if(elements.size()==expectedElementstoBeFound && isFG())
 					taxIndex++;
 			}
 			
@@ -801,7 +822,8 @@ public class CheckOut extends SelTestCase {
 	public static void placeOrder() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.placeSecureOrderButton.get());
+			SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.placeSecureOrderButton.get(),
+					"ForceAction,click");
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(
@@ -958,9 +980,10 @@ public class CheckOut extends SelTestCase {
 			getCurrentFunctionName(true);
 
 			for (int count = 0; count < prodCount; count++) {
+				Thread.sleep(3000);
 				PDPs.navigateToRandomPDP();
-				Thread.sleep(3500);
-				PDP.clickAddToCartButtonNoBundle();
+				Thread.sleep(3000);
+				PDP_cart.clickAddToCartButtonNoBundle();
 				Thread.sleep(3500);
 			}
 			getCurrentFunctionName(false);
@@ -1030,6 +1053,54 @@ public class CheckOut extends SelTestCase {
 
 	}
 	
+	
+	public static boolean checkIfOrderPlaced() throws Exception {
+		getCurrentFunctionName(true);
 
+		try {
+			boolean state = true;
+			try {
+				if (SelectorUtil.isDisplayed(CheckOutSelectors.placeSecureOrderButton.get())) {
+					state = false;
+					logs.debug("button is still displayed");
+				}
+				
+			} catch (Exception e) {
+				state = true;
+			}
+
+			getCurrentFunctionName(false);
+			logs.debug("Order state is" +state);
+			return state;
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+	
+	public static boolean checkIfinStepFour() throws Exception {
+		getCurrentFunctionName(true);
+
+		try {
+			boolean state = false;
+			try {
+				if (SelectorUtil.isDisplayed(CheckOutSelectors.creditCardField.get())) {
+					state = true;
+					logs.debug("Now in Step 4");
+				}
+				
+			} catch (Exception e) {
+				state = false;
+			}
+
+			getCurrentFunctionName(false);
+			return state;
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
 
 }

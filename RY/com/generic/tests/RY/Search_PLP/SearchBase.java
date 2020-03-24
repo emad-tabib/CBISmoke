@@ -2,20 +2,16 @@ package com.generic.tests.RY.Search_PLP;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
-import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.xml.XmlTest;
-import com.generic.page.PDP;
 import com.generic.page.PLP;
 import com.generic.setup.Common;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
 import com.generic.setup.SheetVariables;
-import com.generic.util.ReportUtil;
 import com.generic.util.SASLogger;
 import com.generic.util.dataProviderUtils;
 
@@ -27,8 +23,7 @@ public class SearchBase extends SelTestCase {
 	private static XmlTest testObject;
 
 	private static ThreadLocal<SASLogger> Testlogs = new ThreadLocal<SASLogger>();
-	private static LinkedHashMap<String, Object> users;
-	
+	private String searchTerm = "dress";
 	private String RecommendedProductsCase = "Recommended products";
 	private String fullSearchCase = "full search";
 
@@ -66,11 +61,11 @@ public class SearchBase extends SelTestCase {
 
 			// validate the suggested items
 			if (proprties.contains(RecommendedProductsCase) && !isiPad())
-				sassert().assertTrue(PLP.searchAndVerifyResults("dress", true), "Serach validation failed");
+				sassert().assertTrue(PLP.searchAndVerifyResults(searchTerm, true), "Serach validation failed");
 
 			if (proprties.contains(fullSearchCase))
 				// Validate the direct search
-				sassert().assertTrue(PLP.searchAndVerifyResults("dress", false), "Serach validation failed");
+				sassert().assertTrue(PLP.searchAndVerifyResults(searchTerm, false), "Serach validation failed");
 
 			sassert().assertAll();
 			Common.testPass(CaseDescription);

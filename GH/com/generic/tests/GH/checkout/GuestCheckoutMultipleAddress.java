@@ -42,10 +42,12 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 			// Add addresses for each product and save them
 			CheckOut.fillCheckoutFirstStepAndSave(productsCount, addressDetails);
 			
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 
 			// Proceed to step 2
 			CheckOut.proceedToStepTwo();
+			
+			Thread.sleep(3000);
 
 			// Check number of products in step 2
 			sassert().assertTrue(CheckOut.checkProductsinStepTwo() >= productsCount, "Some products are missing in step 2 ,in step 2"+ CheckOut.checkProductsinStepTwo()+" ,But added "+productsCount);
@@ -55,9 +57,18 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 
 			// Fill email field and proceed to step 4
 			CheckOut.fillEmailBillingAddress();
+			Thread.sleep(3000);
 
 			// Proceed to step 4
 			CheckOut.proceedToStepFour();
+			
+			Thread.sleep(3500);
+			
+			// Current PWA issue
+			if (!CheckOut.checkIfinStepFour()) {
+				CheckOut.proceedToStepFour();
+
+			}
 
 			Thread.sleep(2500);
 			// Fill payment details in the last step
@@ -74,6 +85,19 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 			
 			// Click place order button
 			CheckOut.placeOrder();
+			
+			Thread.sleep(3000);
+			
+			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
+
+				// Fill payment details in the last step
+				CheckOut.fillPayment(paymentDetails);
+
+				// Click place order button
+				CheckOut.placeOrder();
+
+			}
+
 
 			Thread.sleep(2000);
 

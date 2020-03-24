@@ -7,8 +7,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.xml.XmlTest;
-
-import com.generic.page.PDP;
+import com.generic.page.PDP.*;
 import com.generic.setup.Common;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
@@ -68,7 +67,7 @@ public class PDPBase extends SelTestCase {
 
 			if (proprties.contains(singlePDP)) {
 				PDP.NavigateToPDP(singlePDPSearchTerm);
-				Thread.sleep(10000);
+				Thread.sleep(1000);
 				PDPValidation.validate(false);
 			}
 			if (proprties.contains(bundlePDP)) {

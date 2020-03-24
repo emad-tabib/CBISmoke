@@ -1,16 +1,10 @@
 package com.generic.tests.GH.checkout;
 
-import static org.junit.Assert.assertTrue;
-
 import java.util.LinkedHashMap;
-
 import com.generic.page.Cart;
 import com.generic.page.CheckOut;
-import com.generic.page.HomePage;
-import com.generic.page.Login;
 import com.generic.page.PayPal;
 import com.generic.page.Registration;
-import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
 import com.generic.util.RandomUtilities;
 

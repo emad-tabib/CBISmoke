@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import com.generic.page.PDP.*;
 import com.generic.selector.HomePageSelectors;
 import com.generic.setup.SelTestCase;
 import com.generic.util.SelectorUtil;
@@ -15,15 +16,14 @@ import com.generic.setup.ExceptionMsg;
 import com.generic.setup.LoggingMsg;
 import com.generic.util.SelectorUtil.commands.actions;
 
-/**
- * The Class HomePage.
- */
 public class HomePage extends SelTestCase {
 	public static int homePageMenuLevelTestItems = Integer
 			.parseInt(getCONFIG().getProperty("homePageMenuLevelTestItems"));
 
 	public final static String searchPlacholder = "Search - Keyword or Item #";
 	public final static String pwaLinkClassNameIdentifier = "pw-link";
+	public final static String searchURLProperty = "searchURL";
+	public final static String monetateStatusProperty = "monetateStatus";
 
 	public static boolean validateLogodisplayed() throws Exception {
 		try {
@@ -50,7 +50,7 @@ public class HomePage extends SelTestCase {
 	public static void NavigateAwayFromHomePage() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			getDriver().get(getURL() + getCONFIG().getProperty("searchURL"));
+			getDriver().get(getURL() + getCONFIG().getProperty(searchURLProperty));
 			getCurrentFunctionName(false);
 		} catch (Exception e) {
 			logs.debug(MessageFormat.format(
@@ -65,7 +65,7 @@ public class HomePage extends SelTestCase {
 	public static void updateMmonetate() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			getDriver().get(getURL() + "/?monetate=" + getCONFIG().getProperty("monetateStatus"));
+			getDriver().get(getURL() + "/?monetate=" + getCONFIG().getProperty(monetateStatusProperty));
 			getCurrentFunctionName(false);
 		} catch (Exception e) {
 			logs.debug(
@@ -122,12 +122,11 @@ public class HomePage extends SelTestCase {
 			getCurrentFunctionName(true);
 			boolean isDisplayed;
 			logs.debug("Validate if YMAL carousels exist");
-			if (isBD()){
-		isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.YMALCarouselsBD.get());
-		}
-		else {
-		isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.YMALCarousels.get());
-		}
+			if (isBD()) {
+				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.YMALCarouselsBD.get());
+			} else {
+				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.YMALCarousels.get());
+			}
 			getCurrentFunctionName(false);
 			return isDisplayed;
 		} catch (NoSuchElementException e) {
@@ -163,8 +162,8 @@ public class HomePage extends SelTestCase {
 			boolean isDisplayed;
 			logs.debug("Validate if Account menu exist");
 			if (isBD()) {
-			isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.accountMenuBD.get());
-		} else if (isRY()) {
+				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.accountMenuBD.get());
+			} else if (isRY()) {
 				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.RYaccountMenu.get());
 			} else {
 				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.accountMenu.get());
@@ -184,21 +183,21 @@ public class HomePage extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			logs.debug("Clicking on Account menu");
-if(isBD()){
-					if (withHover) {
-						SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.accountMenuBD.get(), actions.hover);
-					} else {
-						SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.accountMenuBD.get());
-					}
-					}
-			
-				if(!(isBD())){
-			if (withHover) {
-				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.accountMenu.get(), actions.hover);
-			} else {
-				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.accountMenu.get());
+			if (isBD()) {
+				if (withHover) {
+					SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.accountMenuBD.get(), actions.hover);
+				} else {
+					SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.accountMenuBD.get());
+				}
 			}
-}
+
+			if (!(isBD())) {
+				if (withHover) {
+					SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.accountMenu.get(), actions.hover);
+				} else {
+					SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.accountMenu.get());
+				}
+			}
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat
@@ -212,12 +211,11 @@ if(isBD()){
 		try {
 			getCurrentFunctionName(true);
 			logs.debug("Clicking on Close Button");
-		if(isBD()){
-			SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.navIconBD.get());
-		}
-		else{
-			SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.navIcon.get());
-		}
+			if (isBD()) {
+				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.BDcloseAccountMenu.get());
+			} else {
+				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.navIcon.get());
+			}
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(
@@ -250,12 +248,11 @@ if(isBD()){
 			getCurrentFunctionName(true);
 			logs.debug("Get the account menu items.");
 			List<WebElement> menuItems = new ArrayList<WebElement>();
-			if(isBD()){
-			menuItems = SelectorUtil.getAllElements(HomePageSelectors.accountMenuItemsBD.get());
-		}
-		else{
-		menuItems = SelectorUtil.getAllElements(HomePageSelectors.accountMenuItems.get());	
-		}
+			if (isBD()) {
+				menuItems = SelectorUtil.getAllElements(HomePageSelectors.accountMenuItemsBD.get());
+			} else {
+				menuItems = SelectorUtil.getAllElements(HomePageSelectors.accountMenuItems.get());
+			}
 			getCurrentFunctionName(false);
 			return menuItems;
 		} catch (NoSuchElementException e) {
@@ -272,7 +269,7 @@ if(isBD()){
 			getCurrentFunctionName(true);
 			List<WebElement> accountMenuElements = getAccountMenuItems();
 			logs.debug("Validate account menu links." + accountMenuElements);
-			boolean isDisplayed = true;
+			boolean isDisplayed = false;
 			for (WebElement element : accountMenuElements) {
 				isDisplayed = element.isDisplayed();
 			}
@@ -293,9 +290,9 @@ if(isBD()){
 			boolean isDisplayed;
 			logs.debug("Validate if country selector  exist");
 			if (isBD()) {
-			isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.countrySelectorBD.get());
-		} else
-			isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.countrySelector.get());
+				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.countrySelectorBD.get());
+			} else
+				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.countrySelector.get());
 			getCurrentFunctionName(false);
 			return isDisplayed;
 		} catch (NoSuchElementException e) {
@@ -312,18 +309,18 @@ if(isBD()){
 			boolean isDisplayed = true;
 			logs.debug("Validate if global footer  exist");
 			List<WebElement> footerItems = new ArrayList<WebElement>();
-			if(isBD()){
-			isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.globalFooterBD.get());
-			footerItems = SelectorUtil.getAllElements(HomePageSelectors.accordionHeaderBD.get());
+			if (isBD()) {
+				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.globalFooterBD.get());
+				footerItems = SelectorUtil.getAllElements(HomePageSelectors.accordionHeaderBD.get());
 			}
 
-		else if(isGH() || isRY()) {
-			isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.GHglobalFooter.get());
-			footerItems = SelectorUtil.getAllElements(HomePageSelectors.GHaccordionHeader.get());
-		}else {
-			isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.globalFooter.get());
-			footerItems = SelectorUtil.getAllElements(HomePageSelectors.accordionHeader.get());
-		}
+			else if (isGH() || isRY()) {
+				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.GHglobalFooter.get());
+				footerItems = SelectorUtil.getAllElements(HomePageSelectors.GHaccordionHeader.get());
+			} else {
+				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.globalFooter.get());
+				footerItems = SelectorUtil.getAllElements(HomePageSelectors.accordionHeader.get());
+			}
 			for (WebElement element : footerItems) {
 				isDisplayed = element.isDisplayed();
 			}
@@ -347,7 +344,7 @@ if(isBD()){
 				SelectorUtil.initializeSelectorsAndDoActions(subStrArr);
 			} else {
 				logs.debug("Hovering on Mini Cart");
-				PDP.hoverMiniCart();
+				PDP_cart.hoverMiniCart();
 			}
 
 			getCurrentFunctionName(false);
@@ -362,16 +359,15 @@ if(isBD()){
 	public static String getMiniCartText() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			if(isBD()){
-		SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.miniCartTextBD.get());
-		}
-		else if(isGH()) {
-			SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.GHminiCartText.get());
-		}else if(isRY()) {
-			SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.RYminiCartText.get());
-		}else {
-			SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.miniCartText.get());
-		}
+			if (isBD()) {
+				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.miniCartTextBD.get());
+			} else if (isGH()) {
+				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.GHminiCartText.get());
+			} else if (isRY()) {
+				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.RYminiCartText.get());
+			} else {
+				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.miniCartText.get());
+			}
 			String cartText = SelectorUtil.textValue.get();
 			logs.debug("The cart text is:" + cartText);
 			getCurrentFunctionName(false);
@@ -397,10 +393,13 @@ if(isBD()){
 			WebElement element = SelectorUtil.getElement(HomePageSelectors.GHminiCartClose.get());
 			Actions actions = new Actions(SelTestCase.getDriver());
 			actions.moveToElement(element).click().perform();
-		}else {
+		}
+		else if(isFG()) {
+			SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.miniCartCloseFG.get());
+		}
+		else {
 			SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.miniCartClose.get());
 		}
-
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(
@@ -477,6 +476,9 @@ if(isBD()){
 			if (isRY()) {
 				logs.debug(MessageFormat.format(LoggingMsg.CLICKING_SEL, HomePageSelectors.searchIconOpenRY));
 				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.searchIconOpenRY.get());
+			} else if (isBD()) {
+				logs.debug(MessageFormat.format(LoggingMsg.CLICKING_SEL, HomePageSelectors.BDsearchIconOpen));
+				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.BDsearchIconOpen.get());
 			} else {
 				logs.debug(MessageFormat.format(LoggingMsg.CLICKING_SEL, HomePageSelectors.searchIconOpen));
 				WebElement element = SelectorUtil.getElement(HomePageSelectors.searchIconOpen.get());
@@ -512,22 +514,16 @@ if(isBD()){
 	public static boolean validateSearchIconFieldOpend() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			boolean isDisplayed;
-			logs.debug("Validate if logo exist");
-			if(isBD()){
-				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.BDsearchIconField.get());
-		}
-		else{
-				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.searchIconField.get());
-		}
 			
+			boolean isDisplayed;
+			logs.debug("Validate if search icon field opened");
+			isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.searchIconField.get());
+
 			getCurrentFunctionName(false);
 			return isDisplayed;
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(
-					ExceptionMsg.PageFunctionFailed
-							+ "Create a new gift registrey has failed, a selector is not found by selelnium ",
-					new Object() {
+					ExceptionMsg.PageFunctionFailed + "Search icon selector is not found by selelnium ", new Object() {
 					}.getClass().getEnclosingMethod().getName()));
 			throw e;
 		}
@@ -537,14 +533,13 @@ if(isBD()){
 		try {
 			getCurrentFunctionName(true);
 			boolean isNotDisplayed;
-			logs.debug("Validate if logo exist");
-			if(isBD()){
-			isNotDisplayed = SelectorUtil.isNotDisplayed(HomePageSelectors.BDsearchIconField.get());
-		}
-		else{
-		isNotDisplayed = SelectorUtil.isNotDisplayed(HomePageSelectors.searchIconField.get());
-		}
-		
+			logs.debug("Validate if search icon field closed");
+			if (isBD()) {
+				isNotDisplayed = SelectorUtil.isNotDisplayed(HomePageSelectors.BDsearchIconField.get());
+			} else {
+				isNotDisplayed = SelectorUtil.isNotDisplayed(HomePageSelectors.searchIconField.get());
+			}
+
 			if (isNotDisplayed == false)
 				if (!SelectorUtil.isDisplayed(HomePageSelectors.searchIconField.get()))
 					isNotDisplayed = true;
@@ -561,15 +556,12 @@ if(isBD()){
 	public static String readSearchFieldPlaceHolderText() throws Exception {
 		try {
 			getCurrentFunctionName(true);
+			
 			List<String> subStrArr = new ArrayList<String>();
 			String valuesArr = "placeholder";
-			if(isBD()){
-			subStrArr.add(HomePageSelectors.BDsearchIconField.get());
-		}
-		else{
-		subStrArr.add(HomePageSelectors.searchIconField.get());
-		}
+			subStrArr.add(HomePageSelectors.searchIconField.get());
 			String placeHolderText = SelectorUtil.getAttr(subStrArr, valuesArr);
+			
 			getCurrentFunctionName(false);
 			return placeHolderText;
 		} catch (NoSuchElementException e) {
@@ -595,12 +587,11 @@ if(isBD()){
 			boolean isDisplayed;
 			List<String> subStrArr = new ArrayList<String>();
 			logs.debug("Validate if logo exist");
-			if(SelTestCase.isBD()){
-			subStrArr.add(HomePageSelectors.moduleHeroImgBD);
-		}
-		else{
-			subStrArr.add(HomePageSelectors.moduleHeroImg);
-		}
+			if (SelTestCase.isBD()) {
+				subStrArr.add(HomePageSelectors.moduleHeroImgBD);
+			} else {
+				subStrArr.add(HomePageSelectors.moduleHeroImg);
+			}
 			isDisplayed = SelectorUtil.isDisplayed(subStrArr);
 			getCurrentFunctionName(false);
 			return isDisplayed;
@@ -615,13 +606,12 @@ if(isBD()){
 	public static boolean isLoadedModuleHeroImg() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			boolean loaded = SelectorUtil.isImgLoaded(HomePageSelectors.moduleHeroImg);
-			if(isBD() ){
-			loaded = SelectorUtil.isImgLoaded(HomePageSelectors.moduleHeroImgBD);
+			boolean loaded = false;
+			if (isBD()) {
+				loaded = SelectorUtil.isImgLoaded(HomePageSelectors.moduleHeroImgBD);
+			} else {
+				loaded = SelectorUtil.isImgLoaded(HomePageSelectors.moduleHeroImg);
 			}
-		else {
-			loaded = SelectorUtil.isImgLoaded(HomePageSelectors.moduleHeroImg);
-		}
 			getCurrentFunctionName(false);
 			return loaded;
 		} catch (NoSuchElementException e) {
@@ -636,12 +626,11 @@ if(isBD()){
 		try {
 			getCurrentFunctionName(true);
 			List<String> subStrArr = new ArrayList<String>();
-			if(isBD()){
-			subStrArr.add(HomePageSelectors.carusalsBD.get());
-		}
-		else{
-		subStrArr.add(HomePageSelectors.carusals.get());
-		}
+			if (isBD()) {
+				subStrArr.add(HomePageSelectors.carusalsBD.get());
+			} else {
+				subStrArr.add(HomePageSelectors.carusals.get());
+			}
 			List<WebElement> carusals = SelectorUtil.getAllElements(subStrArr);
 			getCurrentFunctionName(false);
 			return carusals;
@@ -657,17 +646,19 @@ if(isBD()){
 		try {
 			getCurrentFunctionName(true);
 			boolean loaded = true;
-			for (int i = 0; i < elements.size(); i++) {	
+			for (int i = 0; i < elements.size(); i++) {
 				JavascriptExecutor jse = (JavascriptExecutor) getDriver();
 				jse.executeScript("arguments[0].scrollIntoView(false)", elements.get(i));
-				if (!elements.get(i).isDisplayed())
+				if (!elements.get(i).isDisplayed()) {
 					loaded = false;
+
+				}
 			}
 			getCurrentFunctionName(false);
 			return loaded;
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed
-					+ "List validation has failed, a selector cant be found bu selenium", new Object() {
+					+ "List validation has failed, a selector cant be found by selenium", new Object() {
 					}.getClass().getEnclosingMethod().getName()));
 			throw e;
 		}
@@ -722,14 +713,14 @@ if(isBD()){
 			getCurrentFunctionName(true);
 			List<WebElement> espots = new ArrayList<WebElement>();
 			if (isBD()) {
-			espots = SelectorUtil.getAllElements(HomePageSelectors.espotsBD.get());
-		} else if (isGH()) {
-			espots = SelectorUtil.getAllElements(HomePageSelectors.GHespots.get());
-		} else if (isRY()) {
-			espots = SelectorUtil.getAllElements(HomePageSelectors.RYespots.get());
-		} else {
-			espots = SelectorUtil.getAllElements(HomePageSelectors.espots.get());
-		}
+				espots = SelectorUtil.getAllElements(HomePageSelectors.espotsBD.get());
+			} else if (isGH()) {
+				espots = SelectorUtil.getAllElements(HomePageSelectors.GHespots.get());
+			} else if (isRY()) {
+				espots = SelectorUtil.getAllElements(HomePageSelectors.RYespots.get());
+			} else {
+				espots = SelectorUtil.getAllElements(HomePageSelectors.espots.get());
+			}
 
 			getCurrentFunctionName(false);
 			return espots;
@@ -844,10 +835,6 @@ if(isBD()){
 					validateSubMenuNavigation = false;
 				}
 
-				if (isGH()) {
-					Thread.sleep(3000);
-				}
-
 			}
 			getCurrentFunctionName(false);
 			return validateSubMenuNavigation;
@@ -876,16 +863,15 @@ if(isBD()){
 
 			// Get the menu items list.
 			if (isBD()) {
-			menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.menuItemsBD.get());
-		} else if (isGH()) {
-			menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.GHmenuItems.get());
-		} else if (isRY()) {
-			menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.RYmenuItems.get());
-		} else {
-			menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.menuItems.get());
-		}
+				menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.menuItemsBD.get());
+			} else if (isGH()) {
+				menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.GHmenuItems.get());
+			} else if (isRY()) {
+				menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.RYmenuItems.get());
+			} else {
+				menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.menuItems.get());
+			}
 			getCurrentFunctionName(false);
-
 
 			return menuFirstLevelElements;
 		} catch (NoSuchElementException e) {
@@ -907,13 +893,13 @@ if(isBD()){
 			getCurrentFunctionName(true);
 			logs.debug("Open navigation menu");
 			// Click on navigation menu icon and Navigate to an item in the menu.
-				if (isBD()) {
-			SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.navIconBD.get());
-		} else if (isGH()) {
-			SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.GHnavigationIcon.get());
-		} else {
-			SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.navIcon.get());
-		}
+			if (isBD()) {
+				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.navIconBD.get());
+			} else if (isGH()) {
+				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.GHnavigationIcon.get());
+			} else {
+				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.navIcon.get());
+			}
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(
@@ -965,15 +951,15 @@ if(isBD()){
 
 				// Get the sub menu header text.
 				WebElement selectedMenuHeader;
-			if (isBD()) {
-				selectedMenuHeader = SelectorUtil.getElement(HomePageSelectors.selectedMenuHeaderBD.get());
-			}
+				if (isBD()) {
+					selectedMenuHeader = SelectorUtil.getElement(HomePageSelectors.selectedMenuHeaderBD.get());
+				}
 
-			else if (isGH() || isRY()) {
-				selectedMenuHeader = SelectorUtil.getElement(HomePageSelectors.GHselectedMenuHeader.get());
-			} else {
-				selectedMenuHeader = SelectorUtil.getElement(HomePageSelectors.selectedMenuHeader.get());
-			}
+				else if (isGH() || isRY()) {
+					selectedMenuHeader = SelectorUtil.getElement(HomePageSelectors.GHselectedMenuHeader.get());
+				} else {
+					selectedMenuHeader = SelectorUtil.getElement(HomePageSelectors.selectedMenuHeader.get());
+				}
 				String selectedMenuHeaderText = selectedMenuHeader.getText().toLowerCase();
 
 				// Get the current page URL.
@@ -986,13 +972,12 @@ if(isBD()){
 					SelectorUtil.waitGWTLoadedEventPWA();
 
 					List<WebElement> leafMenuItems;
-				// Select the list of leaf items in the menu.
-				if(isBD()){
-				leafMenuItems = SelectorUtil.getAllElements(HomePageSelectors.leafMenuItemsBD.get());
-				}
-				else{
-				leafMenuItems = SelectorUtil.getAllElements(HomePageSelectors.leafMenuItems.get());
-				}
+					// Select the list of leaf items in the menu.
+					if (isBD()) {
+						leafMenuItems = SelectorUtil.getAllElements(HomePageSelectors.leafMenuItemsBD.get());
+					} else {
+						leafMenuItems = SelectorUtil.getAllElements(HomePageSelectors.leafMenuItems.get());
+					}
 
 					// Select a random item from the leaf items list.
 					Random rand = new Random();
@@ -1009,7 +994,8 @@ if(isBD()){
 					SelectorUtil.clickOnWebElement(randomElement);
 
 					Thread.sleep(1000);
-					SelectorUtil.waitGWTLoadedEventPWA();
+					if (!isBD())
+						SelectorUtil.waitGWTLoadedEventPWA();
 					String currentPageUrl = SelectorUtil.getCurrentPageUrl();
 					// Get the current page URL.
 					logs.debug("Navigated random page path: " + currentPageUrl + "    " + href);

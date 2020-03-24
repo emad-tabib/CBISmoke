@@ -1,7 +1,7 @@
 package com.generic.tests.RY.HomePage;
 
 import com.generic.page.HomePage;
-import com.generic.page.PDP;
+import com.generic.page.PDP.*;
 import com.generic.setup.Common;
 import com.generic.setup.GlobalVariables;
 import com.generic.setup.SelTestCase;
@@ -20,9 +20,9 @@ public class MiniCartValidation extends SelTestCase {
 		//The mini cart close button is only available on Mobile. there is no close button on Desktop.
 		
 		PDP.NavigateToPDP();
-		PDP.addProductsToCart();
+		PDP_cart.addProductsToCart();
 		if (!SelTestCase.getBrowserName().contains(GlobalVariables.browsers.iPhone)) {
-			PDP.clickAddToCartCloseBtn();
+			PDP_cart.clickAddToCartCloseBtn();
 		}
 		
 		//Mini cart in iPAd cannot be validated as it redirects to cart page.

@@ -1,7 +1,6 @@
 package com.generic.tests.BD.CLP;
 
 import com.generic.page.CLP;
-
 import com.generic.setup.SelTestCase;
 
 public class CLPValidation extends SelTestCase {

@@ -3,14 +3,11 @@ package com.generic.tests.GH.login;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
-
-import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.xml.XmlTest;
-
 import com.generic.page.Registration;
 import com.generic.page.Login;
 import com.generic.setup.Common;
@@ -18,7 +15,6 @@ import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
 import com.generic.setup.SheetVariables;
 import com.generic.util.RandomUtilities;
-import com.generic.util.ReportUtil;
 import com.generic.util.SASLogger;
 import com.generic.util.dataProviderUtils;
 
@@ -29,6 +25,12 @@ public class LoginBase extends SelTestCase {
 	private static XmlTest testObject;
 	private static ThreadLocal<SASLogger> Testlogs = new ThreadLocal<SASLogger>();
 
+	public static String successLogin = "Success login";
+	public static String myAccountLink = "myAccountLink";
+	public static String emptyData = "emptyData";
+	public static String wrongPassword = "wrongUserPassword";
+	public static String InvalidEmail = "invalidUserEmail";
+	
 	@BeforeTest
 	public static void initialSetUp(XmlTest test) throws Exception {
 		Testlogs.set(new SASLogger(test.getName() + test.getIndex()));
@@ -76,7 +78,7 @@ public class LoginBase extends SelTestCase {
 
 		try {
 			
-			if ((proprties.equals("Success login") || proprties.equals("myAccountLink")) && email.equals("")) {
+			if ((proprties.equals(successLogin) || proprties.equals(myAccountLink)) && email.equals("")) {
 				Testlogs.get().debug("Run the registration test case before sign in.");
 				//Prepare registration data.
 				userMail = RandomUtilities.getRandomEmail();
@@ -84,12 +86,13 @@ public class LoginBase extends SelTestCase {
 				Login.registerNewUser(userMail, userPassword, true);
 			}
 
-			if (proprties.equals("Success login")) {
+			if (proprties.equals(successLogin)) {
 				Testlogs.get().debug("Validate Success login");
 				Login.fillLoginFormAndClickSubmit(userMail, (String) userPassword);
+				Thread.sleep(2000);
 				sassert().assertTrue(Login.checkUserAccount(), LoggingMsg.USER_IS_NOT_LOGGED_IN_SUCCESSFULLY);
 			}
-			if (proprties.equals("emptyData")) {
+			if (proprties.equals(emptyData)) {
 				Login.fillLoginFormAndClickSubmit("", "");
 				String emailMessage = Login.getMailErrorMsg();
 				String passwordMessage = Login.getPasswrdErrorMsg();
@@ -102,7 +105,7 @@ public class LoginBase extends SelTestCase {
 				sassert().assertTrue(!Login.checkUserAccount(), LoggingMsg.USER_IS_LOGGED_IN);
 			}
 
-			if (proprties.equals("invalidUserEmail")) {
+			if (proprties.equals(InvalidEmail)) {
 				Testlogs.get().debug("Validate invalid User Email login");
 				Login.fillLoginFormAndClickSubmit(userMail.replace("@", ""), userPassword);
 				String alertMessage = Login.getMailErrorMsg().toLowerCase();
@@ -111,7 +114,7 @@ public class LoginBase extends SelTestCase {
 				sassert().assertTrue(!Login.checkUserAccount(), LoggingMsg.USER_IS_LOGGED_IN);
 			}
 
-			if (proprties.equals("wrongUserPassword")) {
+			if (proprties.equals(wrongPassword)) {
 
 				Testlogs.get().debug("Validate wrong User Password Message");
 				Login.fillLoginFormAndClickSubmit(userMail, userPassword + "123");
@@ -122,7 +125,7 @@ public class LoginBase extends SelTestCase {
 				sassert().assertTrue(!Login.checkUserAccount(), LoggingMsg.USER_IS_LOGGED_IN);
 			}
 
-			if (proprties.equals("myAccountLink")) {
+			if (proprties.equals(myAccountLink)) {
 
 				Testlogs.get().debug("Validate existence of my account link");
 				Login.fillLoginFormAndClickSubmit(userMail, userPassword);

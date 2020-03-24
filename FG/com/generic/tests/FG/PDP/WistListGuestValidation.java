@@ -1,7 +1,7 @@
 package com.generic.tests.FG.PDP;
 
 import com.generic.page.CheckOut;
-import com.generic.page.PDP;
+import com.generic.page.PDP.*;
 import com.generic.setup.SelTestCase;
 
 public class WistListGuestValidation extends SelTestCase {
@@ -10,46 +10,46 @@ public class WistListGuestValidation extends SelTestCase {
 
 		String selectedProductName = PDP.NavigateToPDP("mirror");
 
-		PDP.selectSwatches();
+		PDP_selectSwatches.selectSwatches();
 
-		PDP.clickAddToWLGR();
+		PDP_WL.clickAddToWLGR();
 
-		sassert().assertTrue(PDP.validateSelectRegistryOrWishListModalIsDisplayed(),
+		sassert().assertTrue(PDP_WL.validateSelectRegistryOrWishListModalIsDisplayed(),
 				" Select A Registry Or Wish list modal is not dispayed");
 
-		PDP.clickOnCreateNewWL();
+		PDP_WL.clickOnCreateNewWL();
 
-		sassert().assertTrue(PDP.validateNameYourNewWLModalIsDisplayed(),
+		sassert().assertTrue(PDP_WL.validateNameYourNewWLModalIsDisplayed(),
 				"Name your new wish list modal is not dispayed");
 
-		String WLName = PDP.getWishListName();
+		String WLName = PDP_WL.getWishListName();
 
-		PDP.createNewWL(WLName);
+		PDP_WL.createNewWL(WLName);
 
-		sassert().assertTrue(PDP.validateSelectRegistryOrWishListModalIsDisplayed(),
+		sassert().assertTrue(PDP_WL.validateSelectRegistryOrWishListModalIsDisplayed(),
 				" Select A Registry Or Wish list modal is not dispayed after created a new one");
 
-		sassert().assertTrue(PDP.validateCreatedWLisSelectedByDefault(WLName),
+		sassert().assertTrue(PDP_WL.validateCreatedWLisSelectedByDefault(WLName),
 				"created wish list is not selected by default");
 
-		PDP.clickOnCreateNewWLConfirmationBtn();
+		PDP_WL.clickOnCreateNewWLConfirmationBtn();
 
-		sassert().assertTrue(PDP.validateConfirmationModalWithCorrectProductIsDisplayed(selectedProductName),
+		sassert().assertTrue(PDP_WL.validateConfirmationModalWithCorrectProductIsDisplayed(selectedProductName),
 				" Confirmation Modal is not dispayed");
 		logs.debug("selectedProductName" + selectedProductName);
 
 		// validate if selected product displayed in the WL and click on add to cart
 		// button
-		sassert().assertTrue(PDP.addedProductIsDisplayedInTheWL(selectedProductName),
+		sassert().assertTrue(PDP_WL.addedProductIsDisplayedInTheWL(selectedProductName),
 				"Added product is not displayed in the Wish list");
 
 		if (!isMobile()) {
-			sassert().assertTrue(PDP.validateAddToCartModalIsDisplayed(),
+			sassert().assertTrue(PDP_cart.validateAddToCartModalIsDisplayed(),
 					"Add to cart confirmation modal not displayed.");
 		}
 
 		CheckOut.navigatetoCart();
-		sassert().assertTrue(PDP.addedProductIsDisplayedInShoppingCart(selectedProductName),
+		sassert().assertTrue(PDP_cart.addedProductIsDisplayedInShoppingCart(selectedProductName),
 				"Product not added to the cart.");
 
 		getCurrentFunctionName(false);

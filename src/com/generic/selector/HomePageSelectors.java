@@ -6,21 +6,23 @@ public class HomePageSelectors
 {
   	public static final cselector accountMenu = new cselector ("css,.gwt-MenuItem > a#accountMenu","css,#pwa-shop-nav-button > button > div");																									    
 	// adding this
-  	public static final cselector accountMenuBD = new cselector ("css,#myAccount > a","css,div#pwa-shop-nav-button .pw-button");
+  	public static final cselector accountMenuBD = new cselector ("css,#myAccount > a","css,#pwa-my-account-button > button > div");
   	public static final cselector accountMenuItems = new cselector ("css,.gwt-MenuItem > div > a","css,div.pw-list-tile > a"); 	
   	// adding this
-  	public static final cselector accountMenuItemsBD = new cselector ("css,#gwt-top-navigation > div > div","css,#app-wrap");
+  	public static final cselector accountMenuItemsBD = new cselector ("css,div.topline > div.right > div > a","css,.my-account-controls-modal_class > div > div");
   	public static final cselector navIcon = new cselector("css,.nav-toggle", "css,div#pwa-shop-nav-button .pw-button");
   	// adding this
+	public static final cselector BDcloseAccountMenu = new cselector("css,.nav-toggle","css,div.pw-header-bar__actions > button .c-custom-sheet__header-close-icon");
+
 	public static final cselector navIconBD = new cselector("css,.nav-toggle", "css,div#pwa-shop-nav-button .pw-button", "css,div#pwa-shop-nav-button .pw-button");
 	public static final cselector countrySelector = new cselector("css,#gwt_country_changer", "css,button.t-footer__selected-country");
 	// adding this
 	public static final cselector countrySelectorBD = new cselector("css,#gwt_country_changer","css,#app-footer > footer > div.u-bg-color-neutral-00.u-margin-top-lg.u-margin-bottom-lg.u-padding-start-lg.u-padding-end-lg > div > button");
 	// adding this
-	public static final cselector accordionHeaderBD =  new cselector("css,#footer > div.line2 > div.footerLinks > div.section.footer-links-list > div:nth-child(1) > div.header","css,#app-footer > footer > div.c-custom-accordion.u-margin-start-lg.u-margin-end-lg > div");
+	public static final cselector accordionHeaderBD =  new cselector("css,#footer > div.line2 > div.footerLinks > div.section.footer-links-list > div > div.header","css,div.pw-accordion > div.pw-accordion__item");
 	public static final cselector accordionHeader =  new cselector("css,div.footerInner > div > div > div > h3","css,div.pw-accordion > div.pw-accordion__item"); 
 	// adding this
-	public static final cselector globalFooterBD = new cselector("css,#footer > div.line2 > div.footerLinks > div.section.footer-links-list","css,#app-footer > footer > div.t-footer__phone.u-margin-bottom-lg.u-text-size-medium.u-flex-none");
+	public static final cselector globalFooterBD = new cselector("css,#footer > div.line2 > div.footerLinks > div.section.footer-links-list","css,footer > div.c-custom-accordion");
 	public static final cselector globalFooter =  new cselector("css,div.footerInner","css,footer > div.c-custom-accordion"); 
 	// adding this
 	public static final cselector YMALCarousels = new cselector("body gray-disabled-arrows" ,"css,#gwt_recommendations_home_1 > div > div > div > div.body > div > div","css,#home_rr_PWA > div > div > div > div > div > div");
@@ -40,10 +42,12 @@ public class HomePageSelectors
 	public static final cselector miniCartBtn = new cselector("css,#gwt_minicart_div>table>tbody>tr>td>div","css,#cartAnchor","css,.pw-header-bar__actions.t-header-bar__cart > button");
 	public static final cselector miniCartText = new cselector("css,.empty-cart-sign-in-container > .gwt-HTML.inst-copy","css,.m-mini-cart__empty-content.u-text-align-center>h2");
 	// adding this
-	public static final cselector miniCartTextBD = new cselector("css,#pw-sheet-0 > div.pw-sheet__wrapper > div > div.pw-sheet__content > div > div > div > div");
-	public static final cselector miniCartClose = new cselector("css,.pw-button__inner>#nav-icon");
+	public static final cselector miniCartTextBD = new cselector("css,.empty-cart-sign-in-container > .gwt-HTML.inst-copy","css,#pw-sheet-0 > div.pw-sheet__wrapper > div > div.pw-sheet__content > div > div > div > div");
+	public static final cselector miniCartClose = new cselector("css,button.pw-button.c-icon-label-button");
+	public static final cselector miniCartCloseFG = new cselector("css,button.pw-button.c-icon-label-button","css,button.pw-button");
+	//#pwa-shop-nav-button
 	// adding this
-	public static final cselector miniCartCloseBD = new cselector("css,#sheet__header-0 > div > div.pw-header-bar__actions > button");
+	public static final cselector miniCartCloseBD = new cselector("css,button.pw-button.c-icon-label-button");
 	public static final cselector miniCartProductContainer = new cselector("css,.mini-cart-items-container","css,.m-mini-cart__content-products");
 	public static final cselector GHminiCartText = new cselector("css,.empty-cart-sign-in-container > .gwt-HTML.inst-copy","css,.m-mini-cart__empty-content.u-text-align-center div.m-mini-cart__empty-header");
 	public static final cselector GHminiCartClose = new cselector("css,#headerBox > div.t-header__bar > div > div:nth-child(1) > div.pw-header-bar__actions.t-header-bar__cart.u-margin-end-6");
@@ -52,7 +56,7 @@ public class HomePageSelectors
 	public static final cselector miniCartCheckoutBtn = new cselector("css,.mini-cart-product-panel-btn","pw-button pw--primary u-width-full");		
 	public static final cselector RYminiCartCheckoutBtn = new cselector("css,.mini-cart-product-panel-btn","css,div.c-checkout-buttons__checkout > button");		
 	public static final cselector searchIconOpenRY = new cselector("","css,div.t-header__search-button > button");
-	public static final cselector searchIconOpen = new cselector("css,#uNavTop >.searchboxAsButton","css,.t-header__search");
+	public static final cselector searchIconOpen = new cselector("css,#uNavTop >.searchboxAsButton","css,div#searchBox","css,.t-header__search");
 	public static final cselector searchIconClose = new cselector("css,#search-popup > .search-popup-close-icon","css,.left-container>.leftSideNav>button","css,.c-search-action  > div> button.pw-button");
 	public static final cselector searchIconField = new cselector("css,#searchBox>#headerBox","css,#search-0");
 	// adding this
@@ -67,7 +71,10 @@ public class HomePageSelectors
 	public static final cselector carusalsBD =new cselector( "css,#module6 > div > div.row.gutter-4.masonry-blocks");
 	public static final cselector espots = new cselector("css,.genericESpot>div>div>div>a>img","css,.pw-responsive-html>div>#mainContent>div>div>div>.genericESpot>div>.col-xs-12>div>a>img");
 	//adding this
-	public static final cselector espotsBD = new cselector("css,.genericESpot>div>div>div>a>img","css,.pw-responsive-html>div>#mainContent>div>div>div>.genericESpot>div>.col-xs-12>div>a>img","css,#module1 > div:nth-child(2) > div > a > img");
+	
+	//public static final cselector espotsBD = new cselector("css,.genericESpot>div>div>div>a>img","css,.pw-responsive-html>div>#mainContent>div>div>div>.genericESpot>div>.col-xs-12>div>a>img","css,#module1 > div:nth-child(2) > div > a > img");
+
+	public static final cselector espotsBD = new cselector("css,.genericESpot>div>div>div>a>img","css,div.container-fluid > div > div > a  img");
 	public static final cselector GHespots = new cselector("css,div.genericESpot section>div>div>div>a>img","css,div.responsive-content > div > div > #mobify-homepage > div > a");
 	public static final cselector RYespots = new cselector("css,div.genericESpot section>div>div>div>a>img","css,div.container-fluid > div > div.col-sm-12 > a > img");
 	public static final String HomePageSearchbutton = "toggle-mobile-menu";
@@ -114,6 +121,7 @@ public class HomePageSelectors
 	public static final cselector welcomeMessage = new cselector("css,#welcome");
 	public static final cselector accountMenuIcon = new cselector("css,#gwt_dropdownmenu_my_account", "css,.t-header__my-account");
 	public static final String accountMenuList = "css,.my-account-controls-modal_class .pw-link";
+	public static final cselector BDsearchIconOpen = new cselector("css,div#searchBox","css,div:nth-child(2)> button.pw-button");
 
     public static final cselector product =  new cselector("css,div.unbxd-products-dispaly-container > div > div > div > a","css,footer > div.c-custom-accordion"); 
     public static final cselector productContainer =  new cselector("css,div.unbxd-products-display-panel","css,footer > div.c-custom-accordion"); 

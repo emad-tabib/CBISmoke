@@ -4,18 +4,14 @@ import java.text.MessageFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
-
 import org.openqa.selenium.WebElement;
-
 import com.generic.selector.RegistrationSelectors;
-import com.generic.setup.Common;
 import com.generic.setup.ExceptionMsg;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
 import com.generic.util.RandomUtilities;
 import com.generic.util.SelectorUtil;
 import com.generic.util.SelectorUtil.commands.actions;
-
 import java.net.URI;
 
 public class Registration extends SelTestCase {
@@ -36,26 +32,45 @@ public class Registration extends SelTestCase {
 			public static final String firstName = "firstName";
 			public static final String adddressLine = "adddressLine";
 			public static final String city = "city";
+			public static final String state = "state";
 			public static final String zipcode = "postal";
 			public static final String phone = "phone";
 		}
 	}
+	
+	public static int RYGHFirstNameIndex =0;
+	public static int RYGHLastNameIndex =2;
+	public static int RYGHEmailAddressIndex =0;
+	public static int RYGHPasswordIndex =2;
+	public static int RYGHConfirmPasswordIndex =3;
+	public static int RYGHAddressLineIndex =4;
+	public static int RYGHCityIndex =6;
+	public static int RYGHZIPCodeIndex =7;
+	public static int RYGHPhoneIndex =8;
+	
 
+	
+	
 	// Done CBI Smoke
 	public static void typeFirstName(String firstName) throws Exception {
 		try {
 			getCurrentFunctionName(true);
 			logs.debug(MessageFormat.format(LoggingMsg.TYPING_ELEMENT_VALUE, "firstname ", firstName));
-			if (isGH() || isRY()) {
+			
+			if (isGH() || isRY() || isBD() || isGR()) {
 				if (isMobile()) {
 					List<WebElement> fields = SelectorUtil.getAllElements(RegistrationSelectors.firstNameGH.get());
-					SelectorUtil.writeToFieldPWA(fields.get(0),firstName);
+					SelectorUtil.writeToFieldPWA(fields.get(RYGHFirstNameIndex),firstName);
 				} else
 					SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.firstNameGH.get(), firstName);
 			}
 
-			else
+			else if(isBD() && isMobile()) {
+				SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.firstNameBD.get(), firstName);
+			}
+			else {
 				SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.firstName.get(), firstName);
+			}
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(
@@ -72,15 +87,16 @@ public class Registration extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			logs.debug(MessageFormat.format(LoggingMsg.TYPING_ELEMENT_VALUE, "lastname ", lastName));
-			if (isGH() || isRY()) {
+			
+			if (isGH() || isRY() || isBD()) {
 				if (isMobile()) {
 					List<WebElement> fields = SelectorUtil.getAllElements(RegistrationSelectors.lastNameGH.get());
-					SelectorUtil.writeToFieldPWA(fields.get(2),lastName);
+					SelectorUtil.writeToFieldPWA(fields.get(RYGHLastNameIndex),lastName);
 				} else
 					SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.lastNameGH.get(), lastName);
 
-			} else
-				SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.lastName.get(), lastName);
+			} 
+			else SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.lastName.get(), lastName);
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(
@@ -97,10 +113,11 @@ public class Registration extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			logs.debug(MessageFormat.format(LoggingMsg.TYPING_ELEMENT_VALUE, "emailAddress ", address));
+			
 			if(isGH()|| isRY()) {
 				if(isMobile()) {
 					List <WebElement> fields = SelectorUtil.getAllElements(RegistrationSelectors.emailAddressGH.get());
-					SelectorUtil.writeToFieldPWA(fields.get(0),address);
+					SelectorUtil.writeToFieldPWA(fields.get(RYGHEmailAddressIndex),address);
 				}
 				else
 				SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.emailAddressGH.get(), address);
@@ -126,7 +143,7 @@ public class Registration extends SelTestCase {
 
 				if (isMobile()) {
 					List<WebElement> fields = SelectorUtil.getAllElements(RegistrationSelectors.passwordGH.get());
-					SelectorUtil.writeToFieldPWA(fields.get(2),password);
+					SelectorUtil.writeToFieldPWA(fields.get(RYGHPasswordIndex),password);
 				} else
 					SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.passwordGH.get(), password);
 
@@ -151,7 +168,7 @@ public class Registration extends SelTestCase {
 				if (isMobile()) {
 					List<WebElement> fields = SelectorUtil
 							.getAllElements(RegistrationSelectors.confirmPasswordGH.get());
-					SelectorUtil.writeToFieldPWA(fields.get(3),confPassword);
+					SelectorUtil.writeToFieldPWA(fields.get(RYGHConfirmPasswordIndex),confPassword);
 				} else
 					SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.confirmPasswordGH.get(),
 							confPassword);
@@ -174,7 +191,7 @@ public class Registration extends SelTestCase {
 			getCurrentFunctionName(true);
 			if (!isRY()) {
 				logs.debug(MessageFormat.format(LoggingMsg.TYPING_ELEMENT_VALUE, "companyName", comapnyName));
-				if (isGH()) {
+				if (isGH() || isBD()) {
 					if (isMobile()) {
 						List<WebElement> fields = SelectorUtil
 								.getAllElements(RegistrationSelectors.companyNameGH.get());
@@ -199,7 +216,8 @@ public class Registration extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			logs.debug(MessageFormat.format(LoggingMsg.CLICKING_SEL, "Register btn"));
-			SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.registerBtn.get());
+			SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.registerBtn.get(),
+					"ForceAction,click");
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(
@@ -262,8 +280,8 @@ public class Registration extends SelTestCase {
 			if (!"".equals(addressDetails.get(shippingAddress.keys.city)))
 				typeCity(addressDetails.get(shippingAddress.keys.city));
 
-			if (!"".equals(addressDetails.get(shippingAddress.keys.city)))
-				typeState(addressDetails.get(shippingAddress.keys.city));
+			if (!"".equals(addressDetails.get(shippingAddress.keys.state)))
+				typeState(addressDetails.get(shippingAddress.keys.state));
 
 			if (!"".equals(addressDetails.get(shippingAddress.keys.zipcode)))
 				typeZipcode(addressDetails.get(shippingAddress.keys.zipcode));
@@ -302,14 +320,17 @@ public class Registration extends SelTestCase {
 	private static void typePhone(String phone) throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			if (isGH() || isRY()) {
+			if (isGH() || isRY() || isBD()) {
 				if (isMobile()) {
 					List<WebElement> fields = SelectorUtil.getAllElements(RegistrationSelectors.phoneGH.get());
-					SelectorUtil.writeToFieldPWA(fields.get(8), phone);
+					SelectorUtil.writeToFieldPWA(fields.get(RYGHPhoneIndex), phone);
 				} else
 					SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.phoneGH.get(), phone);
 
-			} else if (isGR() || isFG() || isBD()) {
+			} else if (isBD() && isMobile()) {
+				SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.phoneBD.get(), phone);
+			}
+			else {
 				SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.phone.get(), phone);
 			}
 			getCurrentFunctionName(false);
@@ -351,10 +372,10 @@ public class Registration extends SelTestCase {
 	private static void typeAddressLine1(String address) throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			if (isGH() || isRY()) {
+			if (isGH() || isRY() || isBD()) {
 				if (isMobile()) {
 					List<WebElement> fields = SelectorUtil.getAllElements(RegistrationSelectors.AddressLine1GH.get());
-					SelectorUtil.writeToFieldPWA(fields.get(4),address);
+					SelectorUtil.writeToFieldPWA(fields.get(RYGHAddressLineIndex),address);
 				} else
 					SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.AddressLine1GH.get(), address);
 
@@ -374,10 +395,10 @@ public class Registration extends SelTestCase {
 	private static void typeCity(String city) throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			if (isGH() || isRY()) {
+			if (isGH() || isRY() || isBD()) {
 				if (isMobile()) {
 					List<WebElement> fields = SelectorUtil.getAllElements(RegistrationSelectors.cityGH.get());
-					SelectorUtil.writeToFieldPWA(fields.get(6),city);
+					SelectorUtil.writeToFieldPWA(fields.get(RYGHCityIndex),city);
 				} else
 					SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.cityGH.get(), city);
 			} else
@@ -396,7 +417,7 @@ public class Registration extends SelTestCase {
 	private static void typeState(String state) throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			if (isGH() || isRY()) {
+			if (isGH() || isRY()|| isBD()) {
 				SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.stateGH.get(), state);
 			} else
 				SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.state.get(), state);
@@ -415,10 +436,10 @@ public class Registration extends SelTestCase {
 	private static void typeZipcode(String zipcode) throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			if (isGH() || isRY()) {
+			if (isGH() || isRY()|| isBD()) {
 				if (isMobile()) {
 					List<WebElement> fields = SelectorUtil.getAllElements(RegistrationSelectors.ZipcodeGH.get());
-					SelectorUtil.writeToFieldPWA(fields.get(7),zipcode);
+					SelectorUtil.writeToFieldPWA(fields.get(RYGHZIPCodeIndex),zipcode);
 				} else
 					SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.ZipcodeGH.get(), zipcode);
 
@@ -868,7 +889,7 @@ public class Registration extends SelTestCase {
 		// register new user and validate the results
 		Registration.fillRegistrationFirstStep(email, email, password, password);
 
-		Thread.sleep(1500);
+		Thread.sleep(6500);
 		Registration.fillRegistrationSecondStep(firstName, lastName, companyName, addressDetails);
 
 		// Success message needs to be updated on excel to (Welcome to your account at )

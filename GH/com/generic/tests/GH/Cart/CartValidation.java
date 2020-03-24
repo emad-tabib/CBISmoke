@@ -4,7 +4,7 @@ import java.util.List;
 import com.generic.page.Cart;
 import com.generic.page.CheckOut;
 import com.generic.setup.SelTestCase;
-import com.generic.page.PDP;
+import com.generic.page.PDP.*;
 
 public class CartValidation extends SelTestCase {
 
@@ -14,9 +14,9 @@ public class CartValidation extends SelTestCase {
 		if (PDP.bundleProduct())
 		PDP.clickBundleItems();
 
-		PDP.addProductsToCart();
+		PDP_cart.addProductsToCart();
 		Thread.sleep(3000);
-     	PDP.clickAddToCartCloseBtn();
+     	PDP_cart.clickAddToCartCloseBtn();
 		
 	}
 
@@ -62,17 +62,17 @@ public class CartValidation extends SelTestCase {
 		Cart.clickMoveToWishListBtnForSavedItem();
 
 	    Thread.sleep(3000);
-	    String WLName = PDP.getWishListName();
+	    String WLName = PDP_WL.getWishListName();
 	    if(isMobile()) {
 			Cart.createNewWL(WLName);
 			Thread.sleep(1000);
 			Cart.clickOnSelectWLConfirmationBtn();
 	    }else {
-			sassert().assertTrue(PDP.validateNameYourNewWLModalIsDisplayed(), "Name your new wish list modal is not dispayed");
+			sassert().assertTrue(PDP_WL.validateNameYourNewWLModalIsDisplayed(), "Name your new wish list modal is not dispayed");
 			Cart.createNewWL(WLName);
 			Cart.validateSelectWishListModalIsDisplayed();
-			sassert().assertTrue(PDP.validateCreatedWLisSelectedByDefault(WLName), "created wish list is not selected by default");
-			PDP.clickOnCreateNewWLConfirmationBtn();
+			sassert().assertTrue(PDP_WL.validateCreatedWLisSelectedByDefault(WLName), "created wish list is not selected by default");
+			PDP_WL.clickOnCreateNewWLConfirmationBtn();
 	    }
 	    
 		Thread.sleep(3000);

@@ -6,19 +6,19 @@
 	<test name="Registration Test_chrome">
 		<parameter name="browserName" value="chrome"></parameter>
 		<parameter name="Env" value="prod"></parameter>
-        <parameter name="Brand" value="FG"></parameter>
+        <parameter name="Brand" value="BD"></parameter>
 		
 		<classes>
-			<class name="com.generic.tests.FG.Registration.RegistrationBase" />
+			<class name="com.generic.tests.BD.Registration.RegistrationBase" />
 		</classes>
 	</test> 
 		
 	<test name="Registration Tests_mobile_ipad">
 		<parameter name="browserName" value="mobile_iPad"></parameter>
 		<parameter name="Env" value="prod"></parameter>
-        <parameter name="Brand" value="FG"></parameter>
+        <parameter name="Brand" value="BD"></parameter>
 		<classes>
-			<class name="com.generic.tests.FG.Registration.RegistrationBase" />
+			<class name="com.generic.tests.BD.Registration.RegistrationBase" />
 		</classes>
 	</test> 
       
@@ -26,9 +26,9 @@
 	<test name="Registration test_iPhone">
 		<parameter name="browserName" value="mobile_iPhone X"></parameter>
 		<parameter name="Env" value="prod"></parameter>
-        <parameter name="Brand" value="FG"></parameter>
+        <parameter name="Brand" value="BD"></parameter>
 		<classes>
-			<class name="com.generic.tests.FG.Registration.RegistrationBase" />
+			<class name="com.generic.tests.BD.Registration.RegistrationBase" />
 		</classes>
 	</test><!-- Test -->
 	

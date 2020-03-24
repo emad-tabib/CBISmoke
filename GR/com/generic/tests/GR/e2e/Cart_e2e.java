@@ -4,6 +4,7 @@ import java.text.MessageFormat;
 import java.util.NoSuchElementException;
 import com.generic.page.Cart;
 import com.generic.page.CheckOut;
+import com.generic.setup.Common;
 import com.generic.setup.ExceptionMsg;
 import com.generic.setup.SelTestCase;
 
@@ -15,6 +16,7 @@ public class Cart_e2e extends SelTestCase {
 			getCurrentFunctionName(true);
 			// Navigate to cart by URL
 			CheckOut.navigatetoCart();
+			Common.refreshBrowser();
 
 			Thread.sleep(1500);
 

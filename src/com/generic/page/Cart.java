@@ -10,7 +10,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import com.generic.selector.CartSelectors;
-import com.generic.selector.PDPSelectors;
 import com.generic.setup.SelTestCase;
 import com.generic.setup.ExceptionMsg;
 import com.generic.setup.GlobalVariables;
@@ -19,12 +18,8 @@ import com.generic.util.SelectorUtil;
 
 public class Cart extends SelTestCase {
 
-	public static class keys {
-
-		public static final String invalidCoupon = "invalid";
-
-	}
-
+	static String editLinkinCartClass = "u-visibility-hidden";
+	static String wishlistPropertyName = "WishList";
 	// Done CBI
 	public static String getTaxValue() throws Exception {
 		try {
@@ -237,11 +232,18 @@ public class Cart extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			List<WebElement> savedItems = new ArrayList<WebElement>();
+			boolean inDisplayed;
+
 			if (isGHRY())
 				savedItems = SelectorUtil.getAllElements(CartSelectors.GHRYaddedItemsPrice.get());
 			else
 				savedItems = SelectorUtil.getAllElements(CartSelectors.addedItemsPrice.get());
-			boolean inDisplayed = HomePage.isListDisplayed(savedItems);
+
+			if (savedItems.size() > 0)
+				inDisplayed = true;
+			else
+				inDisplayed = false;
+
 			getCurrentFunctionName(false);
 			return inDisplayed;
 		} catch (NoSuchElementException e) {
@@ -306,20 +308,21 @@ public class Cart extends SelTestCase {
 			throw e;
 		}
 	}
+
 	public static Boolean isItemEditable() throws Exception {
 		try {
 			getCurrentFunctionName(true);
 			Boolean isEditable = false;
-			if(!SelectorUtil.isNotDisplayed(CartSelectors.editFromCartLink.get())) {
-				if(isMobile()) {
-				String Str =  CartSelectors.editFromCartLink.get();
-				String editButtonClass = SelectorUtil.getAttrString(Str, "class");
-				if(!editButtonClass.toLowerCase().contains("u-visibility-hidden"))
+			if (!SelectorUtil.isNotDisplayed(CartSelectors.editFromCartLink.get())) {
+				if (isMobile()) {
+					String Str = CartSelectors.editFromCartLink.get();
+					String editButtonClass = SelectorUtil.getAttrString(Str, "class");
+					if (!editButtonClass.toLowerCase().contains(editLinkinCartClass))
+						isEditable = true;
+				} else {
 					isEditable = true;
-				}else {
-				isEditable = true;
 				}
-				}
+			}
 			getCurrentFunctionName(false);
 			return isEditable;
 		} catch (NoSuchElementException e) {
@@ -360,9 +363,7 @@ public class Cart extends SelTestCase {
 			} catch (Exception e) {
 
 				try {
-					// Check if the product has swatches and select one
-					// SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.optionsImage.get(),
-					// "index,1");
+
 					List<WebElement> imgs = getDriver().findElements(By.cssSelector(CartSelectors.optionsImage.get()));
 					if (imgs.size() < 3)
 						throw new Exception();
@@ -386,7 +387,7 @@ public class Cart extends SelTestCase {
 					SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.finishAndPreviewButtonGR.get());
 				else if (isGHRY())
 					SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.GHRYfinishAndPreviewButton.get());
-				else
+				else if(isFG())
 					SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.finishAndPreviewButton.get());
 			}
 
@@ -395,7 +396,9 @@ public class Cart extends SelTestCase {
 				SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.saveEditsButtonGR.get());
 			else if (isGHRY())
 				SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.GHRYsaveEditsButton.get());
-			else
+			else if (isBD()) {
+				SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.saveEditsButtonBD.get());	
+			}else
 				SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.saveEditsButton.get());
 			getCurrentFunctionName(false);
 
@@ -476,9 +479,9 @@ public class Cart extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			logs.debug(MessageFormat.format(LoggingMsg.GETTING_TEXT,
-					"Navigating to wish list ..." + getCONFIG().getProperty("WishList")));
+					"Navigating to wish list ..." + getCONFIG().getProperty(wishlistPropertyName)));
 			getDriver()
-					.get(new URI(getDriver().getCurrentUrl()).resolve(getCONFIG().getProperty("WishList")).toString());
+					.get(new URI(getDriver().getCurrentUrl()).resolve(getCONFIG().getProperty(wishlistPropertyName)).toString());
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(

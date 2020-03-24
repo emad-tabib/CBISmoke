@@ -5,7 +5,7 @@
 
 	<test name="checkout chrome">
 		<parameter name="browserName" value="chrome"></parameter>
-		<parameter name="Env" value="devwcs"></parameter>
+		<parameter name="Env" value="stagewcs"></parameter>
 		<parameter name="Brand" value="RY"></parameter>
 
 		<classes>
@@ -13,9 +13,9 @@
 		</classes>
 	</test>
 
- 	<test name="checkout Tests_iPad">
+<test name="checkout Tests_iPad">
 		<parameter name="browserName" value="mobile_iPad"></parameter>
-		<parameter name="Env" value="devwcs"></parameter>
+		<parameter name="Env" value="stagewcs"></parameter>
 		<parameter name="Brand" value="RY"></parameter>
 		<classes>
 			<class name="com.generic.tests.RY.checkout.Base_PayPalCheckout" />
@@ -24,7 +24,7 @@
 
 	<test name="checkout iPhone">
 		<parameter name="browserName" value="mobile_iPhone X"></parameter>
-		<parameter name="Env" value="devwcs"></parameter>
+		<parameter name="Env" value="stagewcs"></parameter>
 		<parameter name="Brand" value="RY"></parameter>
 		<classes>
 			<class name="com.generic.tests.RY.checkout.Base_PayPalCheckout" />

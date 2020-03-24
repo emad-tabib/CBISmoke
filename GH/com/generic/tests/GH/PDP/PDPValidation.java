@@ -3,13 +3,10 @@ package com.generic.tests.GH.PDP;
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Random;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import com.generic.page.PDP;
+import com.generic.page.PDP.*;
 import com.generic.selector.PDPSelectors;
-import com.generic.setup.GlobalVariables;
 import com.generic.setup.SelTestCase;
 import com.generic.util.RandomUtilities;
 import com.generic.util.SelectorUtil;
@@ -50,7 +47,7 @@ public class PDPValidation extends SelTestCase {
 			sassert().assertTrue(PDP.validatePriceIsDisplayed(bundle, ProductID), priceErrorMessage);
 		}
 		// Select all required swatches.
-		PDP.selectSwatches(bundle, ProductID);
+		PDP_selectSwatches.selectSwatches(bundle, ProductID);
 		// update the product id after the refresh
 		if (bundle)
 			ProductID = PDP.getProductID(0);
@@ -58,45 +55,45 @@ public class PDPValidation extends SelTestCase {
 		sassert().assertTrue(!bottomPrice.equals("$0.00"), "Bottom price is not updated correctly, Current price: " + bottomPrice);
 
 		// Check if the personalization button exist.
-		if (Personalized && PDP.PersonalizedItem(bundle, ProductID)) {
+		if (Personalized && PDP_Personalization.PersonalizedItem(bundle, ProductID)) {
 
 			// Click on "add Personalization" button
-			PDP.clickAddPersonalizationButton(bundle, ProductID);
+		     PDP_Personalization.clickAddPersonalizationButton(bundle, ProductID);
 
 			// Verify "Personalization" modal is opened correctly.
-			sassert().assertTrue(PDP.validatePersonalizedModal(), "Personalization Modal is not dispayed");
+			sassert().assertTrue(PDP_Personalization.validatePersonalizedModal(), "Personalization Modal is not dispayed");
 
 			// Select all required swatches in personalized modal.
 			if (isMobile()) {
 				selectPersonalizationModalSwatchesForiPhone();
 			} else {
 				selectPersonalizationModalSwatches();
-				PDP.clickPersonalizationSaveAndCloseButton();
+				PDP_Personalization.clickPersonalizationSaveAndCloseButton();
 			}
-			sassert().assertTrue(PDP.validateAddedPersonalizedDetails(bundle, ProductID),
+			sassert().assertTrue(PDP_Personalization.validateAddedPersonalizedDetails(bundle, ProductID),
 					"Added personalization details is not dispayed");
 
 			// Verify prices are displayed.
 			validatePriceAfterAddedPersonalized();
 		}
 
-		int initialNumberOfCartItems = PDP.getNumberOfCartItems();
+		int initialNumberOfCartItems = PDP_cart.getNumberOfCartItems();
 
 		// Verify "Add to Registry / Wish list" is enabled.
-		sassert().assertTrue(PDP.validateAddToWLGRIsEnabled(bundle, ProductID), "Add to WL/GR button is not enabled");
+		sassert().assertTrue(PDP_WL.validateAddToWLGRIsEnabled(bundle, ProductID), "Add to WL/GR button is not enabled");
 
 		// Verify "Add to Cart" is enabled.
-		sassert().assertTrue(PDP.validateAddToCartIsEnabled(bundle, ProductID), "Add to Cart button is not enabled");
+		sassert().assertTrue(PDP_cart.validateAddToCartIsEnabled(bundle, ProductID), "Add to Cart button is not enabled");
 
-		int quantity = PDP.getQuantity(bundle);
+		int quantity = PDP.getQuantity(bundle,"");
 
 		// Click "Add To Cart".
-		PDP.clickAddToCartButton();
+		PDP_cart.clickAddToCartButton();
 
 		// Verify "add to cart" confirmation is displayed.
-		sassert().assertTrue(PDP.validateProductIsAddedToCart(), "Product is not added successfully");
+		sassert().assertTrue(PDP_cart.validateProductIsAddedToCart(), "Product is not added successfully");
 
-		int numberOfCartItems = PDP.getNumberOfCartItems();
+		int numberOfCartItems = PDP_cart.getNumberOfCartItems();
 		// Verify the product added to the cart.
 		sassert().assertTrue(numberOfCartItems == (quantity + initialNumberOfCartItems) , "There is an error in add item to cart or in mini cart items number.");
 
@@ -112,17 +109,17 @@ public class PDPValidation extends SelTestCase {
 			String inputSelector = MessageFormat.format(PDPSelectors.GHPersonalizedInputValue.get(), index);
 			String colorSelector = MessageFormat.format(PDPSelectors.GHPersonalizedItemColors.get(), index);
 			String styleSelector = MessageFormat.format(PDPSelectors.personalizedItemStyle.get(), index);
-			if (PDP.isPersonalizedInputSwatchesDisplayed(inputSelector)) {// input container like MONOGRAM or any value
+			if (PDP_Personalization.isPersonalizedInputSwatchesDisplayed(inputSelector)) {// input container like MONOGRAM or any value
 				logs.debug("Input personalized item.");
 				WebElement input = SelectorUtil.getElement(inputSelector);
 				String perosnalizedString = RandomUtilities.getRandomName();
 				perosnalizedString = perosnalizedString.substring(0, Math.min(perosnalizedString.length(), 3));
 				input.sendKeys(perosnalizedString);
-			} else if (PDP.isPersonalizedInputSwatchesDisplayed(colorSelector)) { // like item color
+			} else if (PDP_Personalization.isPersonalizedInputSwatchesDisplayed(colorSelector)) { // like item color
 				logs.debug("Color personalized item.");
 				List<WebElement> itemColors = SelectorUtil.getAllElements(colorSelector);
 				selectRandomItem(itemColors);
-			}else if (PDP.isPersonalizedInputSwatchesDisplayed(styleSelector)) { // like item style
+			}else if (PDP_Personalization.isPersonalizedInputSwatchesDisplayed(styleSelector)) { // like item style
 				logs.debug("Style personalized item.");
 				List<WebElement> itemStyle = SelectorUtil.getAllElements(styleSelector);
 				selectRandomItem(itemStyle);
@@ -198,19 +195,19 @@ public class PDPValidation extends SelTestCase {
 			sassert().assertTrue(currentItemClassName.contains("pw-accordion--is-open"),
 					"The target personalization swatch accordion is not opened.");
 
-			if (PDP.isPersonalizedInputSwatchesDisplayed(personalizedInputValueSelector)) {
+			if (PDP_Personalization.isPersonalizedInputSwatchesDisplayed(personalizedInputValueSelector)) {
 				// Input container like MONOGRAM or any value
 				logs.debug("Input personalized item.");
 				// Get a random text contains three characters.
 				String perosnalizedString = RandomUtilities.getRandomName();
 				perosnalizedString = perosnalizedString.substring(0, Math.min(perosnalizedString.length(), 3));
 				SelectorUtil.initializeSelectorsAndDoActions(personalizedInputValueSelector, perosnalizedString);
-			} else if (PDP.isPersonalizedInputSwatchesDisplayed(personalizedItemColorsSelector)) { // like item color
+			} else if (PDP_Personalization.isPersonalizedInputSwatchesDisplayed(personalizedItemColorsSelector)) { // like item color
 				// Select a random color or style option.
 				logs.debug("Color personalized item.");
 				List<WebElement> itemColors = SelectorUtil.getAllElements(personalizedItemColorsSelector);
 				selectRandomItem(itemColors);
-			} else if (PDP.isPersonalizedInputSwatchesDisplayed(PDPSelectors.personalizedItemMenu.get())) {// like item size 
+			} else if (PDP_Personalization.isPersonalizedInputSwatchesDisplayed(PDPSelectors.personalizedItemMenu.get())) {// like item size 
 				// Need an example (Not test on GH).
 				logs.debug("Style personalized item.");
 				WebElement menu = SelectorUtil.getElement(PDPSelectors.personalizedItemMenu.get());

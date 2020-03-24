@@ -4,7 +4,7 @@ import com.generic.setup.cselector;
 
 public class CartSelectors{
 	
-	public static final cselector paypalCheckoutBtn=new cselector("css,#checkout-with-paypal-button","css,button > div > div > img");
+	public static final cselector paypalCheckoutBtn=new cselector("css,.checkout-with-paypal-button-holder > #checkout-with-paypal-button","css,button > div > div > img");
 	public static final cselector shipping = new cselector("css,.shipping > span","css, tr.t-cart__summary-shipping-charges > td.pw-ledger__value");
 	public static final cselector tax = new cselector("css,.tax > span","css, table > tbody > tr:nth-child(2) > td.pw-ledger__value");
 	public static final cselector paymentPageCheckNextBtn=new cselector("css,div.gwt-accordion.checkout-steps.tabopen > div:nth-child(2) > div.gwt-accordion-tab-content.tabopen > div > div > div > div > div.next-botton-panel > button","css, div.c-checkout-accordion__next-cancel-panel > button");  
@@ -37,6 +37,8 @@ public class CartSelectors{
 	public static final cselector saveEditsButton =new cselector("css,div.gwt-submit-cancel-dialog-button-panel > button.primary","css,.c-personalization-modal__save.pw--primary"); 
 	public static final cselector saveEditsButtonGR =new cselector("css,div.gwt-submit-cancel-dialog-button-panel > button.primary","css,.pw-accordion--is-open .pw-accordion__content-wrapper .pw--primary");
 	public static final cselector GHRYsaveEditsButton =new cselector("css,div.gwt-submit-cancel-dialog-button-panel > button.primary","css,.c-personalization-accordion__preview-save  button.pw-button.pw--primary");
+	public static final cselector saveEditsButtonBD =new cselector("css,div.gwt-submit-cancel-dialog-button-panel > button.button.primary","css,button.pw-button.pw--primary.u-flex-1.u-text-weight-bold.m-personalization__button-save-and-close");
+	
 	//Saved for later wish-list
 	public static final cselector firstAddedItemsMoveToLater=new cselector("css,#shopping-cart-v2-root > div > div > div > div > div:nth-child(1) > div > div> div > div > a.move-to-wishlist-link","css,#app-main > div > div > div:nth-child(1) > div > div > div > div:nth-child(1) > div > button.u-padding-end-0");
 	public static final cselector savedListFirstItem=new cselector("css,#saveForLater > tbody > tr:nth-child(2) > td > div > div > div:nth-child(1)","css,.pw-accordion--is-open>div > div > div > div:nth-child(1)");

@@ -2,13 +2,11 @@ package com.generic.tests.GR.HomePage;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
-
 import org.testng.SkipException;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.xml.XmlTest;
-
 import com.generic.setup.Common;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
@@ -75,12 +73,16 @@ public class HomePageBase extends SelTestCase {
 
 			} else if (proprties.contains(search)) {
 				HomePageValidation.validateSearch();
+			
 			} else if (proprties.contains(AccountMenu)) {
 				sassert().assertTrue(AccountMenuValidation.validate(), "My Account menu validation has some problems");
+			
 			} else if (proprties.contains(GlobalFooter)) {
 				sassert().assertTrue(GlobalFooterValidation.validate(), "Global footer validation has some problems");
+			
 			} else if (proprties.contains(YMALCarousels)) {
 				YMALCarouselsVerification.validate();
+			
 			} else {
 				Testlogs.get().debug("please check proprties provided in excel sheet");
 				Common.testSkipped(CaseDescription);

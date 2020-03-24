@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.xml.XmlTest;
-
 import com.generic.page.PLP;
 import com.generic.setup.Common;
 import com.generic.setup.LoggingMsg;
@@ -27,7 +26,10 @@ public class SearchBase extends SelTestCase {
 
 	private String RecommendedProductsCase = "Recommended products";
 	private String fullSearchCase = "full search";
+	public static String firstSearchTrerm="glass";
+	public static String secondSearchTrerm="mat";
 
+	
 	@BeforeTest
 	public static void initialSetUp(XmlTest test) throws Exception {
 		Testlogs.set(new SASLogger(test.getName() + test.getIndex()));
@@ -59,12 +61,12 @@ public class SearchBase extends SelTestCase {
 
 			// validate the suggested items
 			if (proprties.contains(RecommendedProductsCase))
-				sassert().assertTrue(PLP.searchAndVerifyResults("glass", true), "Serach validation failed");
+				sassert().assertTrue(PLP.searchAndVerifyResults(firstSearchTrerm, true), "Serach validation failed");
 
-//			//Validate the direct search
+			//Validate the direct search
 			if (proprties.contains(fullSearchCase))
 
-		     	sassert().assertTrue(PLP.searchAndVerifyResults("mat", false), "Serach validation failed");
+		     	sassert().assertTrue(PLP.searchAndVerifyResults(secondSearchTrerm, false), "Serach validation failed");
 
 			sassert().assertAll();
 

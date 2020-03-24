@@ -4,12 +4,10 @@ import java.text.MessageFormat;
 import java.util.LinkedHashMap;
 import java.util.NoSuchElementException;
 import com.generic.page.CheckOut;
-import com.generic.page.Registration;
+import com.generic.page.Login;
 import com.generic.setup.ExceptionMsg;
-import com.generic.setup.GlobalVariables;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
-import com.generic.util.RandomUtilities;
 
 public class RegisteredCheckoutSingleAddress extends SelTestCase {
 
@@ -23,15 +21,10 @@ public class RegisteredCheckoutSingleAddress extends SelTestCase {
 			String orderTax;
 			String orderShipping;
 
-			String fName = "FirstVisa";
-			String lName = "LastVisa";
-			String userMail = RandomUtilities.getRandomEmail();
-			String userPassword = "TestITG226";
-
 			int productsCountStepTWO = 0;
 
-			// Perform Registration
-			Registration.registerFreshUser(userMail, userPassword, fName, lName);
+			//Login Step
+			Login.logIn(userDetalis.get("mail"),userDetalis.get("password"));
 
 			// Add products to cart
 			CheckOut.addRandomProductTocart(productsCount);
@@ -60,6 +53,14 @@ public class RegisteredCheckoutSingleAddress extends SelTestCase {
 			CheckOut.proceedToStepFour();
 			
 			Thread.sleep(3500);
+			
+			// Current PWA issue
+			if (!CheckOut.checkIfinStepFour()) {
+				CheckOut.proceedToStepFour();
+
+			}
+			
+			Thread.sleep(3500);
 
 			// Fill payment details in the last step
 			CheckOut.fillPayment(paymentDetails);
@@ -75,6 +76,18 @@ public class RegisteredCheckoutSingleAddress extends SelTestCase {
 
 			// Click place order button
 			CheckOut.placeOrder();
+			
+			Thread.sleep(3000);
+			
+			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
+
+				// Fill payment details in the last step
+				CheckOut.fillPayment(paymentDetails);
+
+				// Click place order button
+				CheckOut.placeOrder();
+
+			}
 
 			Thread.sleep(3500);
 

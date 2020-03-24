@@ -29,21 +29,29 @@ public class RegistrationSelectors {
 	public static final cselector confirmPasswordGH = new cselector ("css,#logonPasswordVerify","css,.t-registration__step1-container input");
 	//Fields of 2nd step
 	public static final cselector firstName =new cselector ("css,#bill_fnbox","css,#field-10");
+	public static final cselector firstNameBD = new cselector("css,#bill_fnbox","css,#field-10");
 	public static final cselector firstNameGH =new cselector ("css,#bill_fnbox","css,.c-custom-form .c-custom-input-container input");
 	public static final cselector lastName =new cselector ( "css,#bill_lnbox","css,#field-12");
 	public static final cselector lastNameGH =new cselector ( "css,#bill_lnbox","css,.c-custom-form .c-custom-input-container input");
+	//public static final cselector lastNameBD = new cselector("css,#bill_lnbox","css,#field-12");
 	public static final cselector companyName=new cselector ("css,#bill_cnbox","css,#field-13");
 	public static final cselector companyNameGH=new cselector ("css,#bill_cnbox","css,.c-custom-form .c-custom-input-container input");
+	//public static final cselector companyNameBD=new cselector ("css,#bill_cnbox","css,#field-13");
 	public static final cselector AddressLine1 = new cselector ("css,#bill_sa1box", "css,#field-14");
 	public static final cselector AddressLine1GH = new cselector ("css,#bill_sa1box", "css,.c-custom-form .c-custom-input-container input");
+	//public static final cselector AddressLine1BD = new cselector ("css,#bill_sa1box", "css,#field-14");
 	public static final cselector city = new cselector ("css,#bill_citybox","css,#field-16");
 	public static final cselector cityGH = new cselector ("css,#bill_citybox","css,.c-custom-form .c-custom-input-container input");
+	//public static final cselector cityBD = new cselector ("css,#bill_citybox","css,#field-13");
 	public static final cselector state = new cselector("css,#bill_region","css,#field-17");
 	public static final cselector stateGH = new cselector("css,#bill_region","css,.pw-field__input select");
+	//public static final cselector stateBD = new cselector("css,#bill_region","css,#field-14");
 	public static final cselector Zipcode = new cselector("css,#bill_zipbox","css,#field-18");
 	public static final cselector ZipcodeGH = new cselector("css,#bill_zipbox","css,.c-custom-form .c-custom-input-container input");
+	//public static final cselector ZipcodeBD = new cselector("css,#bill_zipbox","css,#field-15");
 	public static final cselector phone = new cselector("css,#bill_phone1box", "css,#field-19");
 	public static final cselector phoneGH = new cselector("css,#bill_phone1box", "css,.c-custom-form .c-custom-input-container input");
+	public static final cselector phoneBD = new cselector("css,#bill_phone1box", "css,#field-20");
 	
 	//Registration success verification
 	public static final cselector welcomeMessage = new cselector("css,div.data:nth-child(3)","css,#app-main > div > div.u-padding-md.u-padding-bottom-xsm > p");

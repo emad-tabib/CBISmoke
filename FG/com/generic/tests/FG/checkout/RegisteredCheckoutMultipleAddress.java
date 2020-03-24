@@ -4,12 +4,10 @@ import java.text.MessageFormat;
 import java.util.LinkedHashMap;
 import java.util.NoSuchElementException;
 import com.generic.page.CheckOut;
-import com.generic.page.PDP;
 import com.generic.page.Registration;
 import com.generic.setup.ExceptionMsg;
 import com.generic.setup.GlobalVariables;
 import com.generic.setup.LoggingMsg;
-import com.generic.setup.PDPs;
 import com.generic.setup.SelTestCase;
 import com.generic.util.RandomUtilities;
 
@@ -32,7 +30,6 @@ public class RegisteredCheckoutMultipleAddress extends SelTestCase {
 			int productsCountStepTWO = 0;
 
 			// Perform login
-			// SignIn.fillLoginFormAndClickSubmit(userMail, userPassword);
 			Registration.registerFreshUser(userMail, userPassword, fName, lName);
 
 			// Add products to cart
@@ -72,6 +69,14 @@ public class RegisteredCheckoutMultipleAddress extends SelTestCase {
 
 			// Proceed to step 4
 			CheckOut.proceedToStepFour();
+			
+			Thread.sleep(3500);
+			
+			// Current PWA issue
+			if (!CheckOut.checkIfinStepFour()) {
+				CheckOut.proceedToStepFour();
+
+			}
 
 			Thread.sleep(1500);
 
@@ -91,6 +96,19 @@ public class RegisteredCheckoutMultipleAddress extends SelTestCase {
 
 			// Click place order button
 			CheckOut.placeOrder();
+			
+			Thread.sleep(3000);
+			
+			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
+
+				// Fill payment details in the last step
+				CheckOut.fillPayment(paymentDetails);
+
+				// Click place order button
+				CheckOut.placeOrder();
+
+			}
+
 
 			Thread.sleep(3500);
 

@@ -1,6 +1,6 @@
 package com.generic.tests.FG.PDP;
 
-import com.generic.page.PDP;
+import com.generic.page.PDP.*;
 import com.generic.setup.SelTestCase;
 
 public class PDPValidation extends SelTestCase {
@@ -38,37 +38,37 @@ public class PDPValidation extends SelTestCase {
 					"Top price for the bundle item (mini PDP) is not dispayed");
 		}
 
-		PDP.selectSwatches(bundle, ProductID);
+		PDP_selectSwatches.selectSwatches(bundle, ProductID);
 		String bottomPrice = PDP.getBottomPrice(bundle, ProductID);
 		sassert().assertTrue(!bottomPrice.equals("$0.00"),
 				"Bottom price is not updated correctly, Current price: " + bottomPrice);
 		Thread.sleep(2500);
 		// click add personalized button
-		if (Personalized && PDP.PersonalizedItem(bundle, ProductID)) {
+		if (Personalized && PDP_Personalization.PersonalizedItem(bundle, ProductID)) {
 			String initialPrice = bottomPrice;
-			boolean isFreePersonalization = PDP.isFreePersonalization(bundle, ProductID);
-			PDP.clickAddPersonalizationButton(bundle, ProductID);
-			sassert().assertTrue(PDP.validatePersonalizedModal(), "Personalization Modal is not dispayed");
+			boolean isFreePersonalization = PDP_Personalization.isFreePersonalization(bundle, ProductID);
+			PDP_Personalization.clickAddPersonalizationButton(bundle, ProductID);
+			sassert().assertTrue(PDP_Personalization.validatePersonalizedModal(), "Personalization Modal is not dispayed");
 			if (isMobile()) {
-				PDP.selectPersonalizationModalSwatchesForiPhone();
-				PDP.clickPersonalizationSaveAndCloseButtonForiPhone();
+				PDP_Personalization.selectPersonalizationModalSwatchesForiPhone();
+				PDP_Personalization.clickPersonalizationSaveAndCloseButtonForiPhone();
 			} else {
-				PDP.selectPersonalizationModalSwatches();
-				PDP.clickPersonalizationSaveAndCloseButton();
+				PDP_Personalization.selectPersonalizationModalSwatches();
+				PDP_Personalization.clickPersonalizationSaveAndCloseButton();
 			}
-			sassert().assertTrue(PDP.validateAddedPersonalizedDetails(bundle, ProductID),
+			sassert().assertTrue(PDP_Personalization.validateAddedPersonalizedDetails(bundle, ProductID),
 					"Added personalization details is not dispayed");
 			if (!isFreePersonalization) {
 				String finalPrice = PDP.getBottomPrice(bundle, ProductID); // take final price after added personalization
 				logs.debug("compare price" + initialPrice + finalPrice);
-				sassert().assertTrue(PDP.validateTotalPriceAfterAddedPersonalized(initialPrice, finalPrice),
+				sassert().assertTrue(PDP_Personalization.validateTotalPriceAfterAddedPersonalized(initialPrice, finalPrice),
 						"Bottom price is not updated correctly, Current price: " + finalPrice);
 			}
 		}
-		sassert().assertTrue(PDP.validateAddToWLGRIsEnabled(bundle, ProductID), "Add to WL/GR button is not enabled");
-		sassert().assertTrue(PDP.validateAddToCartIsEnabled(bundle, ProductID), "Add to Cart button is not enabled");
-		PDP.clickAddToCartButton();
-		sassert().assertTrue(PDP.validateProductIsAddedToCart(), "Product is not added successfully");
+		sassert().assertTrue(PDP_WL.validateAddToWLGRIsEnabled(bundle, ProductID), "Add to WL/GR button is not enabled");
+		sassert().assertTrue(PDP_cart.validateAddToCartIsEnabled(bundle, ProductID), "Add to Cart button is not enabled");
+		PDP_cart.clickAddToCartButton();
+		sassert().assertTrue(PDP_cart.validateProductIsAddedToCart(), "Product is not added successfully");
 		getCurrentFunctionName(false);
 	}
 }

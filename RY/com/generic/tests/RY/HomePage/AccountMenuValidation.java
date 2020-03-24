@@ -7,6 +7,7 @@ import com.generic.setup.SelTestCase;
 public class AccountMenuValidation extends SelTestCase {
 	public static boolean validate() throws Exception {
 		getCurrentFunctionName(true);
+		Thread.sleep(2000);
 		boolean accountMenuValidation = true; 
 		if (getBrowserName().toLowerCase().equals(browsers.iPhone.toLowerCase())) {
 			accountMenuValidation = validateMobile();

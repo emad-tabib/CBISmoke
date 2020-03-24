@@ -50,7 +50,7 @@ public class RegisteredCheckoutMultipleAddress extends SelTestCase  {
 			// Add addresses for each product and save them
 			CheckOut.fillCheckoutFirstStepAndSave(productsCount, addressDetails);
 
-			Thread.sleep(2500);
+			Thread.sleep(4000);
 
 			CheckOut.proceedToStepTwo();
 
@@ -65,6 +65,14 @@ public class RegisteredCheckoutMultipleAddress extends SelTestCase  {
 
 			// Proceed to step 4
 			CheckOut.proceedToStepFour();
+			
+			Thread.sleep(3500);
+			
+			// Current PWA issue
+			if (!CheckOut.checkIfinStepFour()) {
+				CheckOut.proceedToStepFour();
+
+			}
 			
 			Thread.sleep(3500);	
 		
@@ -81,6 +89,19 @@ public class RegisteredCheckoutMultipleAddress extends SelTestCase  {
 
 			// Click place order button
 			CheckOut.placeOrder();
+			
+			Thread.sleep(3000);
+			
+			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
+
+				// Fill payment details in the last step
+				CheckOut.fillPayment(paymentDetails);
+
+				// Click place order button
+				CheckOut.placeOrder();
+
+			}
+
 
 			Thread.sleep(3500);
 			

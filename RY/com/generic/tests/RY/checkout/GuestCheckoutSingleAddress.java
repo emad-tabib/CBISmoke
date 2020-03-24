@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.NoSuchElementException;
 import com.generic.page.CheckOut;
 import com.generic.setup.ExceptionMsg;
-import com.generic.setup.GlobalVariables;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
 
@@ -54,6 +53,14 @@ public class GuestCheckoutSingleAddress extends SelTestCase {
 			CheckOut.proceedToStepFour();
 			
 			Thread.sleep(3500);
+			
+			// Current PWA issue
+			if (!CheckOut.checkIfinStepFour()) {
+				CheckOut.proceedToStepFour();
+
+			}
+			
+			Thread.sleep(3500);
 
 			// Fill payment details in the last step
 			CheckOut.fillPayment(paymentDetails);
@@ -69,6 +76,18 @@ public class GuestCheckoutSingleAddress extends SelTestCase {
 
 			// Click place order button
 			CheckOut.placeOrder();
+			
+			Thread.sleep(3000);
+			
+			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
+
+				// Fill payment details in the last step
+				CheckOut.fillPayment(paymentDetails);
+
+				// Click place order button
+				CheckOut.placeOrder();
+
+			}
 
 			Thread.sleep(2500);
 

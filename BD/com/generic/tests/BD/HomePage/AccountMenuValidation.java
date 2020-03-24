@@ -21,9 +21,7 @@ public class AccountMenuValidation extends SelTestCase {
 	public static boolean validateDesktopAndTablet() throws Exception {
 		getCurrentFunctionName(true);
 		boolean accountMenuValidation = true;
-		accountMenuValidation = HomePage.validateAccountMenuDisplayed();
-		HomePage.clickOnAccountMenu(true);
-		HomePage.validateAccountMenuItemsDisplayed();
+		accountMenuValidation = HomePage.validateAccountMenuItemsDisplayed();
 		HomePage.clickOnRandomAccountMenuItem();
 		getCurrentFunctionName(false);
 		return accountMenuValidation;
