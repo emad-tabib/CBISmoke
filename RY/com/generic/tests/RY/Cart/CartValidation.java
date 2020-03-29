@@ -9,7 +9,7 @@ import com.generic.page.PDP.*;
 public class CartValidation extends SelTestCase {
 
 	public static void addProductToCart() throws Exception {
-		PDP.NavigateToPDP("Slippers");
+		PDP.NavigateToPDP("dress");
 
 		if (PDP.bundleProduct())
 			PDP.clickBundleItems();

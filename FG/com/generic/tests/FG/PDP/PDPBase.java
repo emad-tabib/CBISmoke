@@ -61,7 +61,9 @@ public class PDPBase extends SelTestCase {
 		initReportTime();
 
 		try {
-
+			
+			Common.refreshBrowser();
+			
 			if (proprties.contains(singlePDP)) {
 				PDP.NavigateToPDP(singlePDPSearchTerm);
 				PDPValidation.validate(false);

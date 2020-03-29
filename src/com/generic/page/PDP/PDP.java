@@ -279,6 +279,14 @@ public class PDP extends SelTestCase {
 				}
 				Str = PDPSelectors.GHItemsID.get();
 			}
+			
+			if (isBD()) {
+				if (isMobile()) {
+					Thread.sleep(2500);
+				}
+				Str = PDPSelectors.BDitemsID.get();
+			}
+			
 			String ID = SelectorUtil.getAttrString(Str, "id", index);
 			getCurrentFunctionName(false);
 			return ID;
@@ -438,13 +446,20 @@ public class PDP extends SelTestCase {
 			// Bundle product selector.
 			if (bundle) {
 
-				if (ProductID.isEmpty()) {
-					ProductID = getProductID(0);
+				if (isMobile() && isBD()) {
+
+					quantitySelector = PDPSelectors.BDQuantityBundleMobile.get();
 				}
 
-				quantitySelector = MessageFormat.format(PDPSelectors.quantityBundle.get(), ProductID);
-				if (ProductID == null) {
-					quantitySelector = PDPSelectors.quantityBundle.get();
+				else {
+					if (ProductID.isEmpty()) {
+						ProductID = getProductID(0);
+					}
+
+					quantitySelector = MessageFormat.format(PDPSelectors.quantityBundle.get(), ProductID);
+					if (ProductID == null) {
+						quantitySelector = PDPSelectors.quantityBundle.get();
+					}
 				}
 			}
 			WebElement quantity = SelectorUtil.getElement(quantitySelector);

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchFrameException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
@@ -234,42 +235,36 @@ public class CheckOut extends SelTestCase {
 		// Done CBI
 		public static void typeCVV(String CVV) throws Exception {
 			try {
-				getCurrentFunctionName(true);				
-			/*	
-				if (isGR()) {
-					// Switch to cvv iframe
-					Thread.sleep(2800);
+				getCurrentFunctionName(true);
 
-					// wait for cvv iframe to load
-					waitforCvvFrame();
+				// Switch to cvv iframe
+				Thread.sleep(2800);
 
-					getDriver().switchTo().frame(GlobalVariables.CVV_Iframe_ID);
-					SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvv2.get(), CVV);
+				// wait for cvv iframe to load
+				waitforCvvFrame();
 
-					Thread.sleep(2000);
+				getDriver().switchTo().frame(GlobalVariables.CVV_Iframe_ID);
+				SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvv2.get(), CVV);
 
-					// Switch to default frame
-					getDriver().switchTo().defaultContent();
-					
-				} 
- */
-				
-				if (isFG() || isBD() || isGR()) {
-						
-				SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvv.get(), CVV);
+				Thread.sleep(2000);
+				// Switch to default frame
+				getDriver().switchTo().defaultContent();
+			} catch (NoSuchFrameException e) {
+				try {
 
+					if (isFG() || isBD() || isGR()) {
+						SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvv.get(), CVV);
+					} else if (isGH() || isRY()) {
+						SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvvGH.get(), CVV);
 
-				} else if(isGH() || isRY()) {
-					SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvvGH.get(), CVV);
-
+					}
+					getCurrentFunctionName(false);
+				} catch (NoSuchElementException e2) {
+					logs.debug(
+							MessageFormat.format(ExceptionMsg.PageFunctionFailed + "CVV typing failed", new Object() {
+							}.getClass().getEnclosingMethod().getName()));
+					throw e;
 				}
-				
-				
-				getCurrentFunctionName(false);
-			} catch (NoSuchElementException e) {
-				logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed + "CVV typing failed", new Object() {
-				}.getClass().getEnclosingMethod().getName()));
-				throw e;
 			}
 		}
 

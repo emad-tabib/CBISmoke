@@ -291,7 +291,7 @@ public class PDP_selectSwatches extends SelTestCase{
 				SelectorUtil.initializeSelectorsAndDoActions(Str);
 				// Clicking on the div on desktop and iPad does not select the options,
 				// you need to click on the img if there is an img tag.
-				if (!SelTestCase.getBrowserName().contains(GlobalVariables.browsers.iPhone)) {
+				if (!isMobile()) {
 					String nthSel = Str + ">img";
 					if (!SelectorUtil.isNotDisplayed(nthSel))
 						SelectorUtil.initializeSelectorsAndDoActions(nthSel);

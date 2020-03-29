@@ -67,6 +67,16 @@ public class Checkout_e2e extends SelTestCase {
 			CheckOut.placeOrder();
 
 			Thread.sleep(3500);
+			
+			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
+
+				// Fill payment details in the last step
+				CheckOut.fillPayment(paymentDetails);
+
+				// Click place order button
+				CheckOut.placeOrder();
+
+			}
 
 			CheckOut.closePromotionalModal();
 
