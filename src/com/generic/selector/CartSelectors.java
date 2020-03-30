@@ -21,8 +21,8 @@ public class CartSelectors{
 	
 	//Items options
 
-	public static final cselector firstAddedItemsOption=new cselector("css, div.left-main-panel > div> div:nth-child(1) > div> div > div > div > div> div > div>div","css,div:nth-child(1) > div > div > div.pw-list.items-container.u-bg-color-neutral-00.u-border-light-bottom > div:nth-child(1) > div.c-cart-product-item > div > div.c-cart-product-item__product-attributes.u-margin-bottom-sm.u-position-relative > div > div");
-	public static final cselector lastAddedItemsOption=new cselector("css,#shopping-cart-v2-root > div > div.main-panel > div.left-main-panel > div.items-container > div:nth-child(2) > div > div.order-item-info-panel > div.order-item-details-panel > div.attribute-panel.less > div > div > div > div","css,#app-main > div.t-cart.t--loaded > div > div:nth-child(1) > div > div > div.pw-list.items-container.u-bg-color-neutral-00.u-border-light-bottom > div:nth-child(2) > div.c-cart-product-item > div > div.c-cart-product-item__product-attributes.u-margin-bottom-sm.u-position-relative");
+	public static final cselector firstAddedItemsOption=new cselector("css, div.left-main-panel > div> div:nth-child(1) > div> div > div > div > div> div > div>div","css,.c-cart-product-item__product-attributes > div > div");
+	public static final cselector lastAddedItemsOption=new cselector("css,#shopping-cart-v2-root > div > div.main-panel > div.left-main-panel > div.items-container > div:nth-child(2) > div > div.order-item-info-panel > div.order-item-details-panel > div.attribute-panel.less > div > div > div > div","css,.pw-list.items-container > div:nth-child(2) > div.c-cart-product-item > div > div.c-cart-product-item__product-attributes");
 	
 	//Edit options
 	public static final cselector editFromCartLink=new cselector("css,.edit-link", "css,.c-cart-product__actions-edit");

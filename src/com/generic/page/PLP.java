@@ -1115,6 +1115,8 @@ public class PLP extends SelTestCase {
 				menueItems.remove(0); // Remove New item
 				menueItems.remove(0); // Remove Custom item
 				menueItems.remove(menueItems.size() - 1); // Remove Get inspired item
+				menueItems.remove(menueItems.size() - 1); // Remove Desgins services
+
 			} else {
 				menueItems = CLP.menueWithoutWhatsNew();
 

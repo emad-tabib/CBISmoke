@@ -236,6 +236,8 @@ public class PDP_BD extends SelTestCase {
 
 	public static void BDSelectItemsConfigurations(boolean bundle) throws Exception {
 		try {
+			getCurrentFunctionName(true);
+
 			int productsNo = 0;
 			if (bundle) {
 				productsNo = SelectorUtil.getAllElements(PDPSelectors.BDproductsBundle.get()).size();
@@ -245,6 +247,7 @@ public class PDP_BD extends SelTestCase {
 			for (int i = 0; i < productsNo; i++) {
 				BDnthProductConfigureItemsSelection(i + 1, bundle);
 			}
+			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(
 					ExceptionMsg.PageFunctionFailed
@@ -395,7 +398,7 @@ public class PDP_BD extends SelTestCase {
 			getCurrentFunctionName(true);
 			Thread.sleep(1000);
 			if (!SelectorUtil.isNotDisplayed(Selector)) {
-				SelectorUtil.initializeSelectorsAndDoActions(Selector);
+				SelectorUtil.initializeSelectorsAndDoActions(Selector,"FFF1");
 			}
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
