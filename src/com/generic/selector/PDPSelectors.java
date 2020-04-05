@@ -261,4 +261,8 @@ public class PDPSelectors {
     public static final cselector BDPDP_PCbottomPrice = new cselector("css,.gwt-right-bottom-product-options .gwt-now-price-holder","css,.js-custom-design-conteiner .js-price.c--large");
     public static final cselector BD_size_option = new cselector("css,#gwt-option-panel > div.enabled.gwt-product-option-panel-listbox > div.gwt-product-option-panel-listbox-container > div > select > option:nth-child(2)"); 
     
+    //PDP Messages
+    public static final cselector Unavilable_Product_Message = new cselector( "css,.gwt-product-detail-widget-base-expired-label");
+    public static final cselector UnPuplished_Product_Message = new cselector( "css,#unpublished-product");
+    
 }
