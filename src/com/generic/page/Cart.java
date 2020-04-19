@@ -559,5 +559,27 @@ public class Cart extends SelTestCase {
 			throw e;
 		}
 	}
+	
+	public static void closeGWPIfExsist() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			try {
+				if (SelectorUtil.isDisplayed(CartSelectors.GWPModalCancelButton.get())) {
+					SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.GWPModalCancelButton.get());
+					logs.debug("Closing GWP Modal");
+				}
+			} catch (Exception e2) {
+				logs.debug("No GWP Modal ...");
+
+			}
+
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed + "issue with GWP modal", new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+	
 
 }// MAIN CLASS

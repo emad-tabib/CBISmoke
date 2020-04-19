@@ -28,8 +28,11 @@ public class CartValidation extends SelTestCase {
 		
 		//Navigate to cart by URL
 		CheckOut.navigatetoCart();
-
 		
+		Thread.sleep(3500);
+
+		Cart.closeGWPIfExsist();
+
 		Thread.sleep(1500);
 
 		//Check addition of products and thier images and prices

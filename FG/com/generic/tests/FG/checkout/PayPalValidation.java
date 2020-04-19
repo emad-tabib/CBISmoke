@@ -41,6 +41,10 @@ public class PayPalValidation extends SelTestCase {
 
 		// Navigating to Cart by URL
 		CheckOut.navigatetoCart();
+		
+		Thread.sleep(3000);
+		
+		Cart.closeGWPIfExsist();
 
 		Thread.sleep(3000);
 

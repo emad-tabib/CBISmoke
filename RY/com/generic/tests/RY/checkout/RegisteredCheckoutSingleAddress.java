@@ -3,6 +3,8 @@ package com.generic.tests.RY.checkout;
 import java.text.MessageFormat;
 import java.util.LinkedHashMap;
 import java.util.NoSuchElementException;
+
+import com.generic.page.Cart;
 import com.generic.page.CheckOut;
 import com.generic.page.Login;
 import com.generic.setup.ExceptionMsg;
@@ -31,6 +33,10 @@ public class RegisteredCheckoutSingleAddress extends SelTestCase {
 			
 			// Navigating to Cart by URL
 			CheckOut.navigatetoCart();
+			
+			Thread.sleep(3500);
+
+			Cart.closeGWPIfExsist();
 
 			// Clicking begin secure checkout
 			CheckOut.clickBeginSecureCheckoutButton();

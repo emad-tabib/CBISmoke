@@ -262,7 +262,7 @@ public class PDPSelectors {
     public static final cselector BD_size_option = new cselector("css,#gwt-option-panel > div.enabled.gwt-product-option-panel-listbox > div.gwt-product-option-panel-listbox-container > div > select > option:nth-child(2)"); 
     
     //PDP Messages
-    public static final cselector Unavilable_Product_Message = new cselector( "css,.gwt-product-detail-widget-base-expired-label");
+    public static final cselector Unavilable_Product_Message = new cselector( "css,.gwt-product-detail-widget-base-expired-label","css,div.t-product-details-messages.t-product-details-messages__expired.u-flexbox.u-justify-center.u-direction-column.u-margin-top-6 > div");
     public static final cselector UnPuplished_Product_Message = new cselector( "css,#unpublished-product");
     
 }

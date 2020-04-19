@@ -16,9 +16,15 @@ public class Cart_e2e extends SelTestCase {
 			getCurrentFunctionName(true);
 			// Navigate to cart by URL
 			CheckOut.navigatetoCart();
-			Common.refreshBrowser();
 
 			Thread.sleep(1500);
+
+			Common.refreshBrowser();
+
+			Thread.sleep(3500);
+
+			Cart.closeGWPIfExsist();
+			
 
 			// Check addition of products and thier images and prices
 			sassert().assertTrue(Cart.isItemAdded(), "Added item to cart validation has some problems");
