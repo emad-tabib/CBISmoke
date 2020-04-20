@@ -16,7 +16,12 @@ public class Cart_e2e extends SelTestCase {
 			getCurrentFunctionName(true);
 			// Navigate to cart by URL
 			CheckOut.navigatetoCart();
+			
 			Common.refreshBrowser();
+			
+			Thread.sleep(3500);
+
+			Cart.closeGWPIfExsist();
 
 			Thread.sleep(1500);
 

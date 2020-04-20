@@ -63,5 +63,8 @@ public class CartSelectors{
 	public static final cselector RYGoToShoppingBagBtn = new cselector("css,div.gwt-DialogBox.ok-cancel-dlog.gwt_addtocart_div button.button.primary","css,div > div > div.m-add-to-cart__buttons-container > button");
 	public static final cselector WLName = new cselector("css,input#wishlist_name_id");
 	public static final cselector nameYourNewWLconfirmationBtn = new cselector("css,#gwt-wishlist-create-modal  button.button.primary","css,div > div.u-width-full > button.pw--primary");
+	
+	//GWP
+	public static final cselector GWPModalCancelButton = new cselector("css,div.gwt-submit-cancel-dialog-button-panel > button.button.secondary","css,div.u-padding-bottom-md.u-flexbox.u-direction-column > button.pw-button.pw--secondary > div");
 
 }
