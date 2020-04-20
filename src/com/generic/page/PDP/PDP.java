@@ -308,6 +308,9 @@ public class PDP extends SelTestCase {
 		getCurrentFunctionName(true);
 		try {
 			Thread.sleep(4500);
+			if(isMobile())
+			getDriver().switchTo().frame("progressive-frame-bridge");
+			
 			String PDPChecker = "return gwtDynamic.coremetrics.isSingleProduct;";
 			Boolean bundle = false;
 			JavascriptExecutor jse = (JavascriptExecutor) getDriver();
@@ -326,9 +329,10 @@ public class PDP extends SelTestCase {
 				if (tries < 10)
 					bundleProduct(tries++);
 			}
-
+			if(isMobile())
+			getDriver().switchTo().defaultContent();
 			return bundle;
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			logs.debug(MessageFormat.format(
 					ExceptionMsg.PageFunctionFailed + "Executing JavaScript code to know PDP type has failed",
 					new Object() {
