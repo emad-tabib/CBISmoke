@@ -237,39 +237,52 @@ public class CheckOut extends SelTestCase {
 			try {
 				getCurrentFunctionName(true);
 
-				// Switch to cvv iframe
 				Thread.sleep(2800);
 
-				// wait for cvv iframe to load
-				waitforCvvFrame();
-
-				getDriver().switchTo().frame(GlobalVariables.CVV_Iframe_ID);
-				SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvv2.get(), CVV);
-
-				Thread.sleep(2000);
-				// Switch to default frame
-				getDriver().switchTo().defaultContent();
-			} catch (NoSuchFrameException e) {
 				try {
-
 					if (isFG() || isBD() || isGR()) {
 						SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvv.get(), CVV);
 					} else if (isGH() || isRY()) {
 						SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvvGH.get(), CVV);
 
 					}
-					getCurrentFunctionName(false);
-				} catch (NoSuchElementException e2) {
-					logs.debug(
-							MessageFormat.format(ExceptionMsg.PageFunctionFailed + "CVV typing failed", new Object() {
-							}.getClass().getEnclosingMethod().getName()));
-					throw e;
+				} catch (Exception e) {
+
+					try {
+						SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvv2.get(), CVV);
+
+					} catch (Exception e3) {
+						if (waitforCvvFrame()) {
+
+							getDriver().switchTo().frame(GlobalVariables.CVV_Iframe_ID);
+
+							try {
+								SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvv2.get(), CVV);
+							} catch (Exception e2) {
+								SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.cvv.get(), CVV);
+
+							}
+
+							Thread.sleep(2000);
+
+							// Switch to default frame
+							getDriver().switchTo().defaultContent();
+
+						}
+					}
 				}
+
+			} catch (NoSuchFrameException e) {
+
+				logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed + "CVV typing failed", new Object() {
+				}.getClass().getEnclosingMethod().getName()));
+				throw e;
+
 			}
 		}
 
 		// Done CBI
-		public static void waitforCvvFrame() throws Exception {
+		public static boolean waitforCvvFrame() throws Exception {
 			try {
 				boolean cvvStatus = false;
 				int noOfTries = 0;
@@ -285,6 +298,7 @@ public class CheckOut extends SelTestCase {
 
 					Thread.sleep(2000);
 				}
+				return cvvStatus;
 
 			} catch (NoSuchElementException e) {
 				logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
