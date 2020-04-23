@@ -1,12 +1,8 @@
 package com.generic.tests.BD.PDP;
 
-import org.openqa.selenium.WebElement;
-
 import com.generic.page.PDP_SC_CS;
 import com.generic.page.PDP.*;
-import com.generic.selector.PDPSelectors;
 import com.generic.setup.SelTestCase;
-import com.generic.util.SelectorUtil;
 
 public class SCPDPValidation extends SelTestCase {
 

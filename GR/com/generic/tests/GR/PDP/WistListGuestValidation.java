@@ -38,10 +38,16 @@ public class WistListGuestValidation extends SelTestCase {
 				" Confirmation Modal is not dispayed");
 		logs.debug("selectedProductName" + selectedProductName);
 
+		if (isMobile())
+			Thread.sleep(2000);
+		
 		// validate if selected product displayed in the WL and click on add to cart
 		// button
 		sassert().assertTrue(PDP_WL.addedProductIsDisplayedInTheWL(selectedProductName),
 				"Added product is not displayed in the Wish list");
+		
+		if (isMobile())
+			Thread.sleep(4000);
 
 		if (!isMobile()) {
 			sassert().assertTrue(PDP_cart.validateAddToCartModalIsDisplayed(),

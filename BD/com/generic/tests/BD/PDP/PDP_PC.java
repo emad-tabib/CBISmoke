@@ -9,20 +9,11 @@ public class PDP_PC  extends SelTestCase{
 		getCurrentFunctionName(true);
 		PDP.NavigateToPDP(searchTerm);
 		
-	    Boolean bundle = PDP.bundleProduct();
-				String ProductID = "";
-				if (!isMobile() && bundle) 
-					ProductID = PDP.getProductID(0);
+	    Boolean bundle = false;
+	    String ProductID = "";
 				
-		String priceErrorMessage;
-		if (!bundle) {
-			priceErrorMessage = "Top price is not dispayed";
-		} else if (!isMobile() && bundle) {
-			sassert().assertTrue(PDP.validateBundlePriceIsDisplayed(), "Bundle Price is not dispayed");
-			priceErrorMessage = "Top price for the bundle items are not dispayed";
-		} else {
-			priceErrorMessage = "Price for the bundle items are not dispayed";
-		}
+		String priceErrorMessage = "Top price is not dispayed";
+		
 			sassert().assertTrue(PDP_BD.validatePDP_PC_TopPriceIsDisplayed(), priceErrorMessage);
 		if(isMobile())
 			PDP_BD.clickStartDesignBtn();
@@ -55,5 +46,4 @@ public class PDP_PC  extends SelTestCase{
 		getCurrentFunctionName(false);
 	}
 	
-
 }

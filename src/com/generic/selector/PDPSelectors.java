@@ -265,4 +265,6 @@ public class PDPSelectors {
     public static final cselector Unavilable_Product_Message = new cselector( "css,.gwt-product-detail-widget-base-expired-label","css,div.t-product-details-messages.t-product-details-messages__expired.u-flexbox.u-justify-center.u-direction-column.u-margin-top-6 > div");
     public static final cselector UnPuplished_Product_Message = new cselector( "css,#unpublished-product");
     
+    //PDP Mobile iframe
+    public static final cselector progressiveFrame = new cselector("progressive-frame-bridge");
 }
