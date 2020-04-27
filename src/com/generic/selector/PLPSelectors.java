@@ -138,7 +138,7 @@ public class PLPSelectors {
 			"css,#mainContent > div.genericESpot > div.container.no-padding.grid-subcategories > div > div:nth-child(1) > div > a > img",
 			"css,#app-main > div > div:nth-child(1) > div.u-flexbox.u-direction-row.u-flex-wrap > div:nth-child(1) > a > div.c-lazy-image.u-width-full > div > img");
 	
-	public static final cselector GHRecommendedOption =new cselector("css,.unbxd-as-popular-product-info","css,.c--align-middle a.pw-link.c-arrange.u-flexbox.c--align-middle.u-align-center", "css,div.pw-sheet__wrapper > div > div.pw-sheet__content > div > div > div:nth-child(2) > ul div > a");
+	public static final cselector GHRecommendedOption =new cselector("css,.unbxd-as-popular-product-info","css,.c--align-middle a.pw-link.c-arrange.u-flexbox.c--align-middle.u-align-center", "css,.c-search-suggestions-products__product.js-suggestion> div > a");
 	public static final cselector GHSearchButton = new cselector("css,#searchButton");
 	public static final cselector PLPPageSelector = new cselector("css,.view-UnbxdBodyView");
 }

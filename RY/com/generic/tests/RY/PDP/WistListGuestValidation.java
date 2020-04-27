@@ -10,7 +10,7 @@ public class WistListGuestValidation extends SelTestCase {
 		if (isMobile())
 			Common.refreshBrowser();
 		   String selectedProductName = PDP.NavigateToPDP("Slippers");
-		PDP_selectSwatches.selectSwatches();
+		PDP_selectSwatches.selectSwatches(false,"");
 		Thread.sleep(2000);
 		PDP_WL.clickAddToWLGR();
 		Thread.sleep(2000);
