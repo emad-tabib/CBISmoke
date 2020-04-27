@@ -25,7 +25,7 @@ public class PDP extends SelTestCase {
 	public static String NavigateToPDP(String SearchTerm) throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			if ((isFGGR() && !isiPad()) || ((isRY() && isMobile())) || ((isBD() && isMobile()))) {
+			if (!isGH() && isMobile()) {
 				PLP.clickSearchicon();
 			}
 			String itemName = "";
@@ -309,7 +309,7 @@ public class PDP extends SelTestCase {
 		try {
 			Thread.sleep(4500);
 			if(isMobile())
-			getDriver().switchTo().frame("progressive-frame-bridge");
+			getDriver().switchTo().frame(PDPSelectors.progressiveFrame.get());
 			
 			String PDPChecker = "return gwtDynamic.coremetrics.isSingleProduct;";
 			Boolean bundle = false;
