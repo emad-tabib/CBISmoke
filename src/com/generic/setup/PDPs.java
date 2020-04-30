@@ -54,9 +54,13 @@ public class PDPs extends SelTestCase {
 		getCurrentFunctionName(true);
 		boolean state = true;
 		try {
-			if (SelectorUtil.isDisplayed(PDPSelectors.Unavilable_Product_Message.get()))
-				state = false;
-
+			if (isGH()) {
+				if (SelectorUtil.isDisplayed(PDPSelectors.GHUnavilable_Product_Message.get()))
+					state = false;
+			} else {
+				if (SelectorUtil.isDisplayed(PDPSelectors.Unavilable_Product_Message.get()))
+					state = false;
+			}
 			getCurrentFunctionName(false);
 			return state;
 		} catch (Exception e) {
@@ -72,9 +76,13 @@ public class PDPs extends SelTestCase {
 		getCurrentFunctionName(true);
 		boolean state = true;
 		try {
-			if (SelectorUtil.isDisplayed(PDPSelectors.UnPuplished_Product_Message.get()))
-				state = false;
-
+			if (isGH()) {
+				if (SelectorUtil.isDisplayed(PDPSelectors.GHUnPuplished_Product_Message.get()))
+					state = false;
+			} else {
+				if (SelectorUtil.isDisplayed(PDPSelectors.UnPuplished_Product_Message.get()))
+					state = false;
+			}
 			getCurrentFunctionName(false);
 			return state;
 		} catch (Exception e) {
