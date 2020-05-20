@@ -70,7 +70,7 @@ public class Checkout_e2e extends SelTestCase {
 			// Click place order button
 			CheckOut.placeOrder();
 
-			Thread.sleep(3500);
+			Thread.sleep(8000);
 			
 			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
 
@@ -161,7 +161,7 @@ public class Checkout_e2e extends SelTestCase {
 			// Click place order button
 			CheckOut.placeOrder();
 			
-			Thread.sleep(2500);
+			Thread.sleep(8000);
 			
 			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
 

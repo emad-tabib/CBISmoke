@@ -88,9 +88,10 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 			// Click place order button
 			CheckOut.placeOrder();
 
-			Thread.sleep(3000);
-			
-			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
+			if (isMobile())
+				Thread.sleep(8000);
+
+			if (isMobile() && !CheckOut.checkIfOrderPlaced()) {
 
 				// Fill payment details in the last step
 				CheckOut.fillPayment(paymentDetails);
@@ -109,7 +110,10 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 
 			Thread.sleep(1500);
 			
-			CheckOut.checkOrderValues(productsCount,orderShipping, orderTax,orderSubTotal );
+			if (isMobile())
+				Thread.sleep(4000);
+
+			CheckOut.checkOrderValues(productsCount, orderShipping, orderTax, orderSubTotal);
 
 			CheckOut.printOrderIDtoLogs();
 

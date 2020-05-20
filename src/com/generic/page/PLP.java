@@ -35,15 +35,9 @@ public class PLP extends SelTestCase {
 				disableMonetate();
 			}
 
-			if (!isGH()) {
-				if (isRY()) {
-					if (isMobile())
-						clickSearchicon();
-				} else if (isBD()) {
-					if (isMobile())
-						clickSearchicon();
-				} else
-					clickSearchicon();
+			if (!isGH() && isMobile()) {
+
+				clickSearchicon();
 			}
 
 			typeSearch(SearchTerm);
