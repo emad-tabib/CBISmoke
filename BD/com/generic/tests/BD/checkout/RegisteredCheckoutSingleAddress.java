@@ -97,7 +97,8 @@ public class RegisteredCheckoutSingleAddress extends SelTestCase {
 			// Click place order button
 			CheckOut.placeOrder();
 			
-			Thread.sleep(3000);
+			if (isMobile())
+				Thread.sleep(8000);
 			
 			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
 

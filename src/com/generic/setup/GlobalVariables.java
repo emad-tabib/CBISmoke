@@ -26,9 +26,24 @@ public class GlobalVariables extends SelTestCase {
 	public static final String RY = "/store/plus-size-dresses/?";
 	public static final String BD = "/lighting/all-lighting/?";
 
-	}
-	// Iframe ID for CVV Filed in chekout
-	public static final String CVV_Iframe_ID = "cvv_Tokenizer";
+}
+
+public class WCS8StaticUrls {
+	public static final String FGStatic1 = "https://static1.frontgate.com/wcsstore/CornerStoneBrands/css-gen/brands/10053/main.css";
+	public static final String FGStatic2 = "https://static2.frontgate.com/wcsstore/CornerStoneBrands/css-gen/brands/10053/main.css";
+	public static final String GRStatic1 = "https://static1.grandinroad.com/wcsstore/CornerStoneBrands/css-gen/brands/11103/main.css";
+	public static final String GRStatic2 = "https://static2.grandinroad.com/wcsstore/CornerStoneBrands/css-gen/brands/11103/main.css";
+	public static final String GHStatic1 = "https://static1.garnethill.com/wcsstore/CornerStoneBrands/css-gen/brands/10054/main.css";
+	public static final String GHStatic2 = "https://static2.garnethill.com/wcsstore/CornerStoneBrands/css-gen/brands/10054/main.css";
+	public static final String BDStatic1 = "https://static1.ballarddesigns.com/wcsstore/CornerStoneBrands/css-gen/brands/10052/main.css";
+	public static final String BDStatic2 = "https://static2.ballarddesigns.com/wcsstore/CornerStoneBrands/css-gen/brands/10052/main.css";
+	public static final String RYStatic1 = "https://static1.ryllace.com/wcsstore/CornerStoneBrands/css-gen/brands/10060/main.css";
+	public static final String RYStatic2 = "https://static2.ryllace.com/wcsstore/CornerStoneBrands/css-gen/brands/10060/main.css";
+
+}
+
+// Iframe ID for CVV Filed in chekout
+public static final String CVV_Iframe_ID = "cvv_Tokenizer";
 
 	// Indexes for tax value
 	public static final int GR_TAX_CART = 0;
