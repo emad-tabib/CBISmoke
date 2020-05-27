@@ -5,7 +5,7 @@ import com.generic.setup.cselector;
 public class PLPSelectors {
 
 	//CBI
-	public static final cselector SearchIcon = new cselector("css,#uNavTop button.searchboxAsButton", "css,.t-header__fades-in>button");
+	public static final cselector SearchIcon = new cselector("css,#uNavTop #headerBox", "css,.t-header__fades-in>button");
 	public static final cselector RYSearchIcon = new cselector("css,.t-header__search-button>button");
 	public static final cselector BDSearchIcon = new cselector("css,div.u-margin-left-sm:nth-child(2) > button");
  
