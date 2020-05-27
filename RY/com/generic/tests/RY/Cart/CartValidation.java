@@ -27,6 +27,7 @@ public class CartValidation extends SelTestCase {
 		Thread.sleep(5000);
 		addProductToCart();
 		
+		
 		//Navigate to cart by URL
 		CheckOut.navigatetoCart();	
 		

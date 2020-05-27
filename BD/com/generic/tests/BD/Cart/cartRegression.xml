@@ -2,6 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="cart regression" parallel="tests" thread-count="3" data-provider-thread-count="1">
 
+	
+
 	<test name="cart Tests _chrome BD">
 		<parameter name="browserName" value="chrome"></parameter>
 		<parameter name="Env" value="prod"></parameter>
@@ -12,7 +14,7 @@
 		</classes>
 	</test>
 
-	<test name="cart iPad BD">
+<test name="cart iPad BD">
 		<parameter name="browserName" value="mobile_iPad"></parameter>
 		<parameter name="Env" value="prod"></parameter>
 		<parameter name="Brand" value="BD"></parameter>
@@ -21,7 +23,7 @@
 		</classes>
 	</test>
 
-	<test name="cart iPhone BD">
+<test name="cart iPhone BD">
 		<parameter name="browserName" value="mobile_iPhone X"></parameter>
 		<parameter name="Env" value="prod"></parameter>
 		<parameter name="Brand" value="BD"></parameter>
@@ -29,5 +31,7 @@
 			<class name="com.generic.tests.BD.Cart.CartBase" />
 		</classes>
 	</test>
+
+	
 
 </suite>  

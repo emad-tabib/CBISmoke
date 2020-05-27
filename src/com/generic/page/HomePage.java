@@ -33,6 +33,7 @@ public class HomePage extends SelTestCase {
 			if (isGH()) {
 				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.GHlogo.get());
 			} else {
+				
 				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.logo.get());
 			}
 			logs.debug("Validate if logo exist" + isDisplayed);
@@ -124,7 +125,11 @@ public class HomePage extends SelTestCase {
 			logs.debug("Validate if YMAL carousels exist");
 			if (isBD()) {
 				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.YMALCarouselsBD.get());
-			} else {
+			}
+			else if(isFGGR()) {
+				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.YMALCarouselsFG.get());
+			}
+			else {
 				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.YMALCarousels.get());
 			}
 			getCurrentFunctionName(false);
@@ -589,7 +594,14 @@ public class HomePage extends SelTestCase {
 			logs.debug("Validate if logo exist");
 			if (SelTestCase.isBD()) {
 				subStrArr.add(HomePageSelectors.moduleHeroImgBD);
-			} else {
+			}
+			else if (isFG() && isMobile()) {
+				subStrArr.add(HomePageSelectors.FGmoduleHeroImg);
+			}
+			else if (isGR()) {
+				subStrArr.add(HomePageSelectors.GRmoduleHeroImg);
+			}
+			else {
 				subStrArr.add(HomePageSelectors.moduleHeroImg);
 			}
 			isDisplayed = SelectorUtil.isDisplayed(subStrArr);
@@ -607,9 +619,16 @@ public class HomePage extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			boolean loaded = false;
-			if (isBD()) {
+			if(isFG() && isMobile()) {
+				loaded = SelectorUtil.isImgLoaded(HomePageSelectors.FGmoduleHeroImg);
+			}
+			else if (isBD()) {
 				loaded = SelectorUtil.isImgLoaded(HomePageSelectors.moduleHeroImgBD);
-			} else {
+			} 
+			else if(isGR()) {
+				loaded = SelectorUtil.isImgLoaded(HomePageSelectors.GRmoduleHeroImg);
+			}
+			else {
 				loaded = SelectorUtil.isImgLoaded(HomePageSelectors.moduleHeroImg);
 			}
 			getCurrentFunctionName(false);
@@ -718,7 +737,11 @@ public class HomePage extends SelTestCase {
 				espots = SelectorUtil.getAllElements(HomePageSelectors.GHespots.get());
 			} else if (isRY()) {
 				espots = SelectorUtil.getAllElements(HomePageSelectors.RYespots.get());
-			} else {
+			} 
+			else if (isFG()) {
+				espots = SelectorUtil.getAllElements(HomePageSelectors.FGespots.get());
+			}
+			else {
 				espots = SelectorUtil.getAllElements(HomePageSelectors.espots.get());
 			}
 
@@ -868,7 +891,11 @@ public class HomePage extends SelTestCase {
 				menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.GHmenuItems.get());
 			} else if (isRY()) {
 				menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.RYmenuItems.get());
-			} else {
+			} 
+			else if(isFG()) {
+				menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.menuItemsFG.get());
+			}
+			else {
 				menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.menuItems.get());
 			}
 			getCurrentFunctionName(false);
@@ -897,7 +924,12 @@ public class HomePage extends SelTestCase {
 				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.navIconBD.get());
 			} else if (isGH()) {
 				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.GHnavigationIcon.get());
-			} else {
+			} 
+			else if(isFG()) {
+				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.navIconFG.get());
+			}
+			else
+			{
 				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.navIcon.get());
 			}
 			getCurrentFunctionName(false);
@@ -957,7 +989,11 @@ public class HomePage extends SelTestCase {
 
 				else if (isGH() || isRY()) {
 					selectedMenuHeader = SelectorUtil.getElement(HomePageSelectors.GHselectedMenuHeader.get());
-				} else {
+				} 
+				else if (isFG()) {
+					selectedMenuHeader = SelectorUtil.getElement(HomePageSelectors.selectedMenuHeaderFG.get());
+				}
+				else {
 					selectedMenuHeader = SelectorUtil.getElement(HomePageSelectors.selectedMenuHeader.get());
 				}
 				String selectedMenuHeaderText = selectedMenuHeader.getText().toLowerCase();
