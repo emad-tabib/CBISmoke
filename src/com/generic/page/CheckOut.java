@@ -461,8 +461,13 @@ public class CheckOut extends SelTestCase {
 	public static void clickMultipleAddressesTab() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			List<WebElement> tabs = SelectorUtil.getAllElements(CheckOutSelectors.multipleAddressesTab.get());		
-			tabs.get(1).click();
+
+			if (!isMobile()) {
+				List<WebElement> tabs = SelectorUtil.getAllElements(CheckOutSelectors.multipleAddressesTab.get());
+				tabs.get(1).click();
+			} else {
+				SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.multipleAddressesTab.get(), "index,1");
+			}
 			
 			logs.debug(MessageFormat.format(LoggingMsg.SEL_TEXT, "Clicking multiple address tab"));
 			getCurrentFunctionName(false);
