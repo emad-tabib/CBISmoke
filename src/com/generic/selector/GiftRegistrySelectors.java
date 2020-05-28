@@ -28,8 +28,8 @@ public class GiftRegistrySelectors {
 	//public static final cselector GRCreateRegistryButton = new cselector("css,[onclick*=submitCreateRegisty]","css,.responsive-content [onclick*=submitCreateRegisty]");
 	//div > div > div > ul > li:nth-child(1) > div > a
 	public static final cselector GRCreateRegistryButton = new cselector("css,[onclick*=submitCreateRegisty]","css,div > div > div > ul > li:nth-child(1) > div > a");
-	public static final cselector BDCreateRegistryButton = new cselector("css,#mainContent > div.data > div > div.hidden-xs > div > div.row.registry-items > div > div > div.row-registry-buttons > a:nth-child(2)","css,#app-main > div > div.u-margin-bottom > div > div > div > div > div.hidden-sm.hidden-md.hidden-lg.text-center > div.u-margin-bottom-hg.u-padding-all-lg > div:nth-child(1) > a");
-	
+	public static final cselector BDCreateRegistryButton = new cselector("css,#mainContent > div.data > div > div.hidden-xs > div > div.row.registry-items > div > div > div.row-registry-buttons > a:nth-child(2)","css,div > div > div:nth-child(2) > div > div > div > div.hidden-sm.hidden-md.hidden-lg.text-center > div.u-margin-bottom-hg.u-padding-all-lg > div:nth-child(1) > a");
+
 	// Gift registry step one.
 	public static final cselector eventType = new cselector("css,#event_type_id","css,.t-gift-registry-information #event_type_id");
 	public static final cselector eventDay = new cselector("css,#gr_event_day","css,.t-gift-registry-information__event-date select");
@@ -75,7 +75,7 @@ public class GiftRegistrySelectors {
 	public static final cselector BDselectGRModal = new cselector("css,#gwt-add-to-gift-registry-modal > div > table > tbody > tr.dialogMiddle > td.dialogMiddleCenter > div > div > table > tbody > tr:nth-child(3) > td > select", "css,.m-select_wl_gr_modal");
 	public static final cselector saveToGR = new cselector("css,#gift-registry-btn", "css,.t-product-details #gift-registry-btn");
 	// adding this
-	public static final cselector BDsaveToGR = new cselector("css,#scrollableRigthPanel > div > div.qty-and-cta-buttons-panel > div.product-detail-cta-buttons-panel > button.button.primary.add-to-gift-registry-button","css,#app-main > div > div:nth-child(14) > div.u-margin-start-lg.u-margin-end-lg > button");
+	public static final cselector BDsaveToGR = new cselector("css,#scrollableRigthPanel > div > div.qty-and-cta-buttons-panel > div.product-detail-cta-buttons-panel > button.button.primary.add-to-gift-registry-button","css,div.u-margin-start-lg.u-margin-end-lg > button");
 	public static final cselector FGListBoxGR = new cselector("css,.gift-registry-list-bx", "css,.m-select_wl_gr_modal.m-select_wl_gr_modal .c-custom-select");
 	public static final cselector GRListBoxGR = new cselector("css,.gift-registry-list-bx", "css,.m-select_wl_gr_modal.m-select_wl_gr_modal select");
 	
@@ -88,12 +88,13 @@ public class GiftRegistrySelectors {
 	public static final cselector viewRegistryButtonBD = new cselector("css,.gwt-added-to-gift-registry-modal .primary", "css,.pw--primary.u-margin-top");
 	public static final cselector productAddedToGRContainer = new cselector("css,.addToCartProductsList", "css,.m-registry-confirmation__image");
 	public static final cselector movableMiniCart = new cselector("css,.c-movable-cart-item-counter-badge");
+	public static final cselector movableMiniCartGR = new cselector("css,div.t-registry-list-product-list.u-width-full > div > div > div > div.u-flex-1.t-registry-list-product-list__product-details > div.t-registry-list-product-list__actions-container > div:nth-child(2) > div.u-flexbox.t-registry-list-product-list__product-qty-wrapper > div.t-registry-list-product-list__product-add-to-cart.u-flex-grow > button");
 
 	// Gift registry in shopping.
 	public static final cselector addedFromGR = new cselector("css,.from-registry-link", "css,.t-cart__messages-from-customer-registry");
-	//public static final cselector miniCartText = new cselector("css,.cartText", "css,.qa-header__cart .pw-badge span>span");
-	//.t-header-bar__cart > button > div > p
 	public static final cselector miniCartText = new cselector("css,.cartText", "css,.t-header-bar__cart > button > div > p");
+	public static final cselector miniCartTextGH = new cselector("css,.cartText", "css,div.pw-header-bar.u-direction-column.u-bg-color-neutral-00 > div:nth-child(1) > div.pw-header-bar__actions.t-header-bar__cart.u-margin-end-6 > button > div > div > span.u-visually-hidden");
+	public static final cselector miniCartTextFG = new cselector("css,.cartText", "css,#headerBox > div.t-header__bar > div > div > div:nth-child(3) > div.pw-header-bar__actions.t-header-bar__cart > button > div > div > span.u-visually-hidden");
 	public static final cselector miniCartTextBD = new cselector("css,.cartText","css,#headerBox > div.t-header__bar > div > div.t-header-top.u-flexbox.u-width-full.u-padding-sm > div.pw-header-bar__actions.t-header-bar__cart > button > div");
 	public static final cselector cartProductContainer = new cselector("css,.order-item-display-widget-v2", "css,.c-cart-product");
 	public static final cselector BDcartProductContainer = new cselector("css,#shopping-cart-v2-root > div > div.main-panel > div.left-main-panel > div.items-container","css,#app-main > div > div > div:nth-child(1) > div > div");

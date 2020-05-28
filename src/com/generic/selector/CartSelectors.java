@@ -29,6 +29,8 @@ public class CartSelectors{
 	public static final cselector expandOptionsModal=new cselector("css,.gwt-tab-header-sign-button");
 	public static final cselector optionsImage =new cselector( "css,.gwt-image-picker-option-image","css,.pw-swatch__item img");
 	public static final cselector optionsButton =new cselector("css,#personalization-modal-options-scroll > div > div.gwt-accordion-tab-content.tabopen > div > div > div.gwt-personalization-modal-accordions-content-option > div.gwt-product-option-panel-widget-panel > div > div > div:nth-child(2)", "css,.m-product-options-no-padding > div > div:nth-child(2) > div > button");
+	public static final cselector FGoptionsButton =new cselector("css,div.gwt-accordion-tab-header > button.button.gwt-tab-header-edit-button.third", "css,div > div > div > div > div > div > div > div > div > div.u-margin-top.m-product-options-no-padding > div > button > div");
+	public static final cselector GHoptionsButton =new cselector("css,div.gwt-product-option-panel-control-inner.enabled > div.gwt-product-option-panel-widget-panel > div > div > div", "css,.m-product-options-no-padding > div > div:nth-child(2) > div > button");
 	public static final cselector optionsDropDown =new cselector( "css,.gwt-ListBox","css,.c-product-options__content");
 	public static final cselector finishAndPreviewButton =new cselector("css,.c-personalization-modal__finish.pw--primary");
 	public static final cselector finishAndPreviewButtonGR =new cselector("css,.pw-accordion__content .pw--primary");
@@ -41,12 +43,14 @@ public class CartSelectors{
 	
 	//Saved for later wish-list
 	public static final cselector firstAddedItemsMoveToLater=new cselector("css,#shopping-cart-v2-root > div > div > div > div > div:nth-child(1) > div > div> div > div > a.move-to-wishlist-link","css,#app-main > div > div > div:nth-child(1) > div > div > div > div:nth-child(1) > div > button.u-padding-end-0");
+	public static final cselector FGfirstAddedItemsMoveToLater=new cselector("css,#shopping-cart-v2-root > div > div > div > div > div:nth-child(1) > div > div> div > div > a.move-to-wishlist-link","css,#app-main > div > div.u-center-piece > div:nth-child(1) > div > div > div.pw-list.items-container.u-bg-color-neutral-00.u-border-light-bottom > div:nth-child(2) > div.c-cart-product__actions.u-flexbox > button.pw-button.c-cart-product__actions-move-to-wishlist.u-padding-end-0.u-text-letter-spacing-normal");
 	public static final cselector savedListFirstItem=new cselector("css,#saveForLater > tbody > tr:nth-child(2) > td > div > div > div:nth-child(1)","css,.pw-accordion--is-open>div > div > div > div:nth-child(1)");
 	public static final cselector returnFromWishListBtn=new cselector("> div > div> div.order-item-bottom-links-panel > a.move-to-wishlist-link",">div > button.c-cart-product__actions-move-to-wishlist");
 
 	//Remove 
 	public static final cselector firstAddedItemsRemove=new cselector("css,#shopping-cart-v2-root > div > div > div > div > div:nth-child(1) > div > div> div > div > a.remove-link","css,#app-main > div > div > div:nth-child(1) > div > div > div> div:nth-child(1) > div > button.pw-button.c-cart-product__actions-remove");
-
+	public static final cselector FGfirstAddedItemsRemove=new cselector("css,#shopping-cart-v2-root > div > div > div > div > div:nth-child(1) > div > div> div > div > a.remove-link","css,#app-main > div > div.u-center-piece > div:nth-child(1) > div > div > div.pw-list.items-container.u-bg-color-neutral-00.u-border-light-bottom > div:nth-child(2) > div.c-cart-product__actions.u-flexbox > button.pw-button.c-cart-product__actions-remove.u-text-letter-spacing-normal.qa-cart__remove-item");
+	
 	
 	public static final cselector WLFirstItem=new cselector("css,tr:nth-child(4) .productInfo","css,div.t-registry-list-product-list.u-width-full > div > div > div:nth-child(1)");
 	public static final cselector GHsavedListFirstItem=new cselector("css,tr:nth-child(4)","css,div.t-registry-list-product-list.u-width-full > div > div > div:nth-child(1)");

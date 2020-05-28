@@ -9,8 +9,8 @@ import com.generic.page.PDP.*;
 
 public class CartValidation extends SelTestCase {
 
-	public static void addProductToCart() throws Exception {
-		PDP.NavigateToPDP("red");
+	public static void addProductToCart(String item) throws Exception {
+		PDP.NavigateToPDP(item);
 
 		if (PDP.bundleProduct())
 			PDP.clickBundleItems();
@@ -24,12 +24,15 @@ public class CartValidation extends SelTestCase {
 
 	public static void cartValidation() throws Exception {
 		// Search for products and add them to cart
-		addProductToCart();
+		addProductToCart("red");
 
 		URI url = new URI(getURL());
 		getDriver().get("https://" + url.getHost());
 
-		addProductToCart();
+		if(isiPad()) {
+		addProductToCart("rugs");
+		}
+		else {addProductToCart("red");}
 
 		// Navigate to cart by URL
 		CheckOut.navigatetoCart();
@@ -88,7 +91,7 @@ public class CartValidation extends SelTestCase {
 
 		Cart.clickRemoveBtnForSavedItem();
 
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 
 		String totalPriceAfterDelete = Cart.getTotalPrice();
 		sassert().assertTrue(!totalPriceBeforeDelete.equals(totalPriceAfterDelete),
