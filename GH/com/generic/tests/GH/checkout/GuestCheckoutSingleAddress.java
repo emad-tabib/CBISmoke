@@ -93,7 +93,7 @@ public class GuestCheckoutSingleAddress extends SelTestCase {
 			CheckOut.placeOrder();
 			
 			if (isMobile())
-				Thread.sleep(8000);
+				Thread.sleep(GlobalVariables.deley.placeOrderDelay);
 			
 			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
 

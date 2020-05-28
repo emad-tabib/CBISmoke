@@ -42,6 +42,10 @@ public class WCS8StaticUrls {
 
 }
 
+public class deley {
+	public static final int placeOrderDelay = 8000;
+	
+}
 // Iframe ID for CVV Filed in chekout
 public static final String CVV_Iframe_ID = "cvv_Tokenizer";
 
