@@ -38,10 +38,12 @@ public class GuestCheckoutSingleAddress extends SelTestCase {
 			// Clicking begin secure checkout
 			CheckOut.clickGuestCheckoutButton();
 
-			Thread.sleep(1000);
+			Thread.sleep(3500);
 
 			// Add addresses for each product and save them
 			CheckOut.fillCheckoutFirstStepAndSave(addressDetails);
+			
+			Thread.sleep(2500);
 
 			// Proceed to step 2
 			CheckOut.proceedToStepTwo();
