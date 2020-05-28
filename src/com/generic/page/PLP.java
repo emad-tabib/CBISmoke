@@ -35,15 +35,9 @@ public class PLP extends SelTestCase {
 				disableMonetate();
 			}
 
-			if (!isGH()) {
-				if (isRY()) {
-					if (isMobile())
-						clickSearchicon();
-				} else if (isBD()) {
-					if (isMobile())
-						clickSearchicon();
-				} else
-					clickSearchicon();
+			if (!isGH() && isMobile()) {
+
+				clickSearchicon();
 			}
 
 			typeSearch(SearchTerm);
@@ -1186,7 +1180,7 @@ public class PLP extends SelTestCase {
 			WebElement randomElement = menuFirstLevelElements
 					.get(randomGenerator.nextInt(menuFirstLevelElements.size() - 1));
 
-			if (isGH()) {
+			if (isGH() || isFG() || isGR()) {
 				getDriver().get(randomElement.getAttribute("href"));
 			}
 
@@ -1257,7 +1251,7 @@ public class PLP extends SelTestCase {
 			getCurrentFunctionName(true);
 			List<WebElement> menuFirstLevelElements;
 
-			if (isMobile() || isiPad()) {
+			if (isMobile()) {
 
 				if (isMobile())
 					SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.shopMenuRY.get());
@@ -1279,15 +1273,12 @@ public class PLP extends SelTestCase {
 				SelectorUtil.clickOnWebElement(randomElement);
 
 			} else {
-				Actions actions = new Actions(getDriver());
-				WebElement shopMenu = SelectorUtil.getElement(HomePageSelectors.shopMenuRY.get());
-				actions.moveToElement(shopMenu).perform(); // Hover on shop menu
 
 				menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.menuItemsRY.get());
 				Random randomGenerator = new Random();
 				WebElement randomElement = menuFirstLevelElements
 						.get(randomGenerator.nextInt(menuFirstLevelElements.size() - 1));
-				SelectorUtil.clickOnWebElement(randomElement);
+				getDriver().get(randomElement.getAttribute("href"));
 
 			}
 

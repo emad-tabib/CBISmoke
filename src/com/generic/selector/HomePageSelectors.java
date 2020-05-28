@@ -36,7 +36,7 @@ public class HomePageSelectors
 	public static final cselector RYaccountMenu = new cselector ("css,.gwt-MenuItem > a#accountMenu","css,div.m-accordion-navigation__content-my-account");
 	public static final cselector shopMenuRY = new cselector("css,.gwt-MenuItem a", "css,.t-header__menu-button .pw-button");
 	public static final cselector expandShopMenuRY = new cselector("css,.pw-accordion__inner-header .pw-accordion__icon");
-	public static final cselector menuItemsRY = new cselector("css,.subcat-level-1","css,.container .gwt-MenuItem a" ,"css,.pw-accordion__content .pw-list-tile__content"); 
+	public static final cselector menuItemsRY = new cselector("css,#horzNav .menuItem a","css,#horzNav .menuItem a" ,"css,.pw-accordion__content .pw-list-tile__content"); 
 	public static final cselector GHaccordionHeader =  new cselector("css,div.footer-container li.list-title","css,div.pw-accordion > div.pw-accordion__item");
 	public static final cselector GHglobalFooter =  new cselector("css,div.footer-container","css,footer > div.c-custom-accordion"); 
 	public static final cselector GHlogo = new cselector("css,#logoGH > a","t-header__logo");
@@ -100,8 +100,10 @@ public class HomePageSelectors
 	public static final String footerEmailSignUp = "footer-email-sign-up";
 	// Header navigation menu selectors.
 	public static final cselector navigationIcon = new cselector("css,.nav-toggle", "css,.t-header__menu-icon .pw-button");
+
 	public static final cselector menuItems = new cselector("css,#css-top-navigation #flyout>.menuItem>a","css,#gwt-top-navigation .active>.gwt-nav-item-has-submenu>.gwt-HTML", "css,.navigation-modal_class .pw-link");
 	public static final cselector menuItemsFG = new cselector("css,#css-top-navigation #flyout>.menuItem>a","css,.navigation-modal_class .pw-link");
+
 	public static final cselector menuItemsBD = new cselector("css,#css-top-navigation #flyout>.menuItem>a", "css,.pw-nav-menu__panel .pw-list-tile a");
 	// adding this
 	public static final cselector menuItemsBDforMobile = new cselector("css,.navigation-modal__class .pw-link");

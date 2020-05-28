@@ -56,7 +56,7 @@ public class PLP_Base extends SelTestCase {
 		try {
 
 			if (Proprties.contains(plpTest)) {
-				if (isMobile() || isiPad())
+				if (isMobile())
 					PLP.navigateToRandomPLPMobileIpad();
 
 				else

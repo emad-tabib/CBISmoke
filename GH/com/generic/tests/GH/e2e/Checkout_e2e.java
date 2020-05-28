@@ -69,9 +69,10 @@ public class Checkout_e2e extends SelTestCase {
 
 			CheckOut.placeOrder();
 
-			Thread.sleep(7000);
-			
-			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
+			if (isMobile())
+				Thread.sleep(GlobalVariables.deley.placeOrderDelay);
+
+			if (isMobile() && !CheckOut.checkIfOrderPlaced()) {
 
 				// Fill payment details in the last step
 				CheckOut.fillPayment(paymentDetails);
@@ -157,7 +158,8 @@ public class Checkout_e2e extends SelTestCase {
 			// Click place order button
 			CheckOut.placeOrder();
 			
-			Thread.sleep(7000);
+			if (isMobile())
+				Thread.sleep(GlobalVariables.deley.placeOrderDelay);
 			
 			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
 

@@ -103,7 +103,8 @@ public class RegisteredCheckoutMultipleAddress extends SelTestCase {
 			// Click place order button
 			CheckOut.placeOrder();
 			
-			Thread.sleep(3000);
+			if (isMobile())
+				Thread.sleep(GlobalVariables.deley.placeOrderDelay);
 			
 			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
 
@@ -121,9 +122,12 @@ public class RegisteredCheckoutMultipleAddress extends SelTestCase {
 			CheckOut.closePromotionalModal();
 			
 			Thread.sleep(1500);
+
+			if (isMobile())
+				Thread.sleep(4000);
 			
-			CheckOut.checkOrderValues(productsCount,orderShipping, orderTax,orderSubTotal );
-			
+			CheckOut.checkOrderValues(productsCount, orderShipping, orderTax, orderSubTotal);
+
 			CheckOut.printOrderIDtoLogs();			
 
 			getCurrentFunctionName(false);
