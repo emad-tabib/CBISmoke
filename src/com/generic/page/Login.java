@@ -22,7 +22,7 @@ public class Login extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			fillLoginFormAndClickSubmit(userName, Password);
-			Thread.sleep(1000);
+			Thread.sleep(4000);
 			if (!checkUserAccount()) {
 				throw new Exception("Login failed");
 			}

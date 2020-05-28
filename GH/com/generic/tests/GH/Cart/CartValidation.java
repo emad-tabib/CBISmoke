@@ -8,23 +8,28 @@ import com.generic.page.PDP.*;
 
 public class CartValidation extends SelTestCase {
 
-	public static void addProductToCart() throws Exception {
-		PDP.NavigateToPDP("elizabeth");
+	public static void addProductToCart(String item) throws Exception {
+		PDP.NavigateToPDP(item);
 
 		if (PDP.bundleProduct())
 		PDP.clickBundleItems();
 
 		PDP_cart.addProductsToCart();
 		Thread.sleep(3000);
-     	PDP_cart.clickAddToCartCloseBtn();
+     	if(!isMobile()) {PDP_cart.clickAddToCartCloseBtn();}
 		
 	}
 
 	public static void cartValidation() throws Exception {
 		//Search for products and add them to cart
-		addProductToCart();		
+		addProductToCart("rugs");		
 		Thread.sleep(3000);
-		addProductToCart();
+		if(isMobile()) {
+		addProductToCart("blue");
+		}
+		else {
+			addProductToCart("tables");
+		}
 		
 		//Navigate to cart by URL
 		CheckOut.navigatetoCart();

@@ -37,6 +37,7 @@ public class PDP extends SelTestCase {
 					itemName = PLP.pickPLPFirstProduct();
 				}
 			} else {
+				Thread.sleep(2000);
 				PLP.typeSearch(SearchTerm);
 				itemName = PLP.pickRecommendedOption();
 			}

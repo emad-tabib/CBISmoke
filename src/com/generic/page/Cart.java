@@ -113,10 +113,15 @@ public class Cart extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			String subStrArr;
-			if (isGHRY())
+			if (isGHRY()) {
 				subStrArr = CartSelectors.GHRYfirstAddedItemsRemove.get();
-			else
+			}
+			else if (isFG()) {
+				subStrArr = CartSelectors.FGfirstAddedItemsRemove.get();
+			}
+			else {
 				subStrArr = CartSelectors.firstAddedItemsRemove.get();
+			}
 			SelectorUtil.initializeSelectorsAndDoActions(subStrArr);
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
@@ -131,7 +136,13 @@ public class Cart extends SelTestCase {
 	public static void clickMoveToWishListBtnForSavedItem() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			String subStrArr = CartSelectors.firstAddedItemsMoveToLater.get();
+			String subStrArr;
+			if(isFG()) {
+				subStrArr = CartSelectors.FGfirstAddedItemsMoveToLater.get();
+			}
+			else {
+			subStrArr = CartSelectors.firstAddedItemsMoveToLater.get();
+			}
 			SelectorUtil.initializeSelectorsAndDoActions(subStrArr);
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
@@ -375,7 +386,16 @@ public class Cart extends SelTestCase {
 					Thread.sleep(2500);
 
 					// Check if the product has buttons and select one
-					SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.optionsButton.get());
+					if(isFG()) {
+						SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.FGoptionsButton.get());
+						}
+					else if (isGH() || isRY()) {
+						Thread.sleep(3000);
+						SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.GHoptionsButton.get());
+					}
+					else {
+						SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.optionsButton.get());
+					}
 				}
 
 			}

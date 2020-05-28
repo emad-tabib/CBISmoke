@@ -139,7 +139,11 @@ public class CLP extends SelTestCase {
 			 }
 			else if(isGH()) {
 				items = SelectorUtil.getAllElements(HomePageSelectors.GHmenuItems.get());
-			} else {
+			} 
+			else if(isFGGR()) {
+				items = SelectorUtil.getAllElements(HomePageSelectors.menuItemsFG.get());
+			}
+			else {
 				items = SelectorUtil.getAllElements(HomePageSelectors.menuItems.get());
 			}
 			items.remove(0);// remove what's New item : First item

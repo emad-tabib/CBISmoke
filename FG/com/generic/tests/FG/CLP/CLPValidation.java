@@ -7,7 +7,7 @@ public class CLPValidation extends SelTestCase {
 
 	public static boolean validate() throws Exception {
 		boolean isValidCLP = false;
-		boolean isMobile = isMobile() || isiPad();
+		boolean isMobile = isMobile();
 		if (isMobile) {
 			isValidCLP = CLP.validateMobileIpadCLP();
 		} else {

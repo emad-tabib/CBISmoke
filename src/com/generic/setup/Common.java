@@ -120,6 +120,7 @@ public class Common extends SelTestCase {
 		String url = brands.get(Env, brand);
 		logs.debug("Navigating to the following brand/ env :" + url);
 		SelTestCase.setURL(url);
+	//	launchProdWCS8StaticLinks(Env, brand);
 		getDriver().get(url);
 		if (!Browser.contains(browsers.iOS))
 			getDriver().manage().window().maximize();
@@ -127,6 +128,49 @@ public class Common extends SelTestCase {
 		if (Browser.contains("IE") || Browser.contains("edge")) {
 			Thread.sleep(2000);
 			getDriver().navigate().to("javascript:document.getElementById('overridelink').click()");
+		}
+		getCurrentFunctionName(false);
+	}
+
+	public static void launchProdWCS8StaticLinks(String Env, String brand) throws Exception {
+		getCurrentFunctionName(true);
+
+		if (Env.contains("prod") || Env.contains("www")) {
+			logs.debug("Navigating to the static CSS links for the folloing brand:" + brand);
+			if (brand.equalsIgnoreCase("FG")) {
+				getDriver().get(GlobalVariables.WCS8StaticUrls.FGStatic1);
+				Thread.sleep(2000);
+				getDriver().get(GlobalVariables.WCS8StaticUrls.FGStatic2);
+				Thread.sleep(2000);
+			}
+
+			if (brand.equalsIgnoreCase("GR")) {
+				getDriver().get(GlobalVariables.WCS8StaticUrls.GRStatic1);
+				Thread.sleep(2000);
+				getDriver().get(GlobalVariables.WCS8StaticUrls.GRStatic2);
+				Thread.sleep(2000);
+			}
+
+			if (brand.equalsIgnoreCase("GH")) {
+				getDriver().get(GlobalVariables.WCS8StaticUrls.GHStatic1);
+				Thread.sleep(2000);
+				getDriver().get(GlobalVariables.WCS8StaticUrls.GHStatic2);
+				Thread.sleep(2000);
+			}
+
+			if (brand.equalsIgnoreCase("BD")) {
+				getDriver().get(GlobalVariables.WCS8StaticUrls.BDStatic1);
+				Thread.sleep(2000);
+				getDriver().get(GlobalVariables.WCS8StaticUrls.BDStatic2);
+				Thread.sleep(2000);
+			}
+
+			if (brand.equalsIgnoreCase("RY")) {
+				getDriver().get(GlobalVariables.WCS8StaticUrls.RYStatic1);
+				Thread.sleep(2000);
+				getDriver().get(GlobalVariables.WCS8StaticUrls.RYStatic2);
+				Thread.sleep(2000);
+			}
 		}
 		getCurrentFunctionName(false);
 	}
