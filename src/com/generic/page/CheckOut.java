@@ -461,8 +461,14 @@ public class CheckOut extends SelTestCase {
 	public static void clickMultipleAddressesTab() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			List<WebElement> tabs = SelectorUtil.getAllElements(CheckOutSelectors.multipleAddressesTab.get());
-			tabs.get(1).click();
+
+			if (!isMobile()) {
+				List<WebElement> tabs = SelectorUtil.getAllElements(CheckOutSelectors.multipleAddressesTab.get());
+				tabs.get(1).click();
+			} else {
+				SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.multipleAddressesTab.get(), "index,1");
+			}
+			
 			logs.debug(MessageFormat.format(LoggingMsg.SEL_TEXT, "Clicking multiple address tab"));
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
@@ -688,6 +694,23 @@ public class CheckOut extends SelTestCase {
 			throw e;
 		}
 	}
+	
+	// Done CBI
+		public static void fillEmailBillingAddress(String email_address) throws Exception {
+			try {
+				getCurrentFunctionName(true);
+				// Fill email field
+				SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.emailBillingAddress.get(),email_address);
+				getCurrentFunctionName(false);
+
+			} catch (NoSuchElementException e) {
+				logs.debug(MessageFormat.format(
+						ExceptionMsg.PageFunctionFailed + "email in belling address selector was not found by selenium ",
+						new Object() {
+						}.getClass().getEnclosingMethod().getName()));
+				throw e;
+			}
+		}
 
 	// Done CBI
 	public static String getShippingCosts() throws Exception {

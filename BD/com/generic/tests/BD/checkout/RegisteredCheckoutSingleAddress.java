@@ -44,14 +44,17 @@ public class RegisteredCheckoutSingleAddress extends SelTestCase {
 			Thread.sleep(3500);
 
 			Cart.closeGWPIfExsist();
-
+			
 			// Clicking begin secure checkout
 			CheckOut.clickBeginSecureCheckoutButton();
+			
+			Thread.sleep(3500);
 
 			if (!CheckOut.checkIfInStepTwo()) {
 				// Proceed to step 2
 				CheckOut.proceedToStepTwo();
 			}
+			
 			Thread.sleep(1000);
 
 			// Check number of products in step 2
