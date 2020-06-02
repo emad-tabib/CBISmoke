@@ -68,19 +68,19 @@ public class Base_checkout extends SelTestCase {
 		LinkedHashMap<String, String> addressDetails = (LinkedHashMap<String, String>) addresses.get(shippingAddress);
 		LinkedHashMap<String, String> paymentDetails = (LinkedHashMap<String, String>) paymentCards.get(payment);
 		LinkedHashMap<String, String> userdetails = (LinkedHashMap<String, String>) users.get(email);
-
+		
 		int productsCount = Integer.parseInt(productsNumber);
 
 		try {
 
 			// Guest user with multiple addresses
 			if (proprties.contains(freshUserMultipleAddresses)) {
-				GuestCheckoutMultipleAddress.startTest(productsCount, addressDetails, paymentDetails);
+				GuestCheckoutMultipleAddress.startTest(productsCount, addressDetails, paymentDetails,userdetails);
 			}
 
 			// Guest user with single address
 			if (proprties.contains(freshUserSingleAddress)) {
-				GuestCheckoutSingleAddress.startTest(productsCount, addressDetails, paymentDetails);
+				GuestCheckoutSingleAddress.startTest(productsCount, addressDetails, paymentDetails, userdetails);
 			}
 
 			// Registered user with multiple addresses

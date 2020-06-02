@@ -13,7 +13,7 @@ import com.generic.setup.SelTestCase;
 public class GuestCheckoutMultipleAddress extends SelTestCase {
 
 	public static void startTest(int productsCount, LinkedHashMap<String, String> addressDetails,
-			LinkedHashMap<String, String> paymentDetails) throws Exception {
+			LinkedHashMap<String, String> paymentDetails,  LinkedHashMap<String, String> userDetalis) throws Exception {
 		getCurrentFunctionName(true);
 
 		try {
@@ -33,9 +33,13 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 
 			// Clicking begin secure checkout
 			CheckOut.clickBeginSecureCheckoutButton();
+			
+			Thread.sleep(8000);
 
 			// Clicking begin secure checkout
 			CheckOut.clickGuestCheckoutButton();
+			
+			Thread.sleep(8000);
 
 			// Clicking multiple addresses tab
 			CheckOut.clickMultipleAddressesTab();
@@ -55,7 +59,7 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 			CheckOut.proceedToStepThree();
 
 			// Fill email field and proceed to step 4
-			CheckOut.fillEmailBillingAddress();
+			CheckOut.fillEmailBillingAddress(userDetalis.get("mail"));
 
 			// Proceed to step 4
 			CheckOut.proceedToStepFour();

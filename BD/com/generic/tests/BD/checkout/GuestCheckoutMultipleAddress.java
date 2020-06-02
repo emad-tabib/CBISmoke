@@ -38,12 +38,12 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 			// Clicking begin secure checkout
 			CheckOut.clickGuestCheckoutButton();
 
-			Thread.sleep(1500);
+			Thread.sleep(3500);
 
 			// Clicking multiple addresses tab
 			CheckOut.clickMultipleAddressesTab();
 
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 
 			// Add addresses for each product and save them
 			CheckOut.fillCheckoutFirstStepAndSave(productsCount, addressDetails);
