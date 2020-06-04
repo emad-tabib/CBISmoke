@@ -156,8 +156,8 @@ public class PDPSelectors {
 	public static final cselector GHBottomPriceBundle = new cselector("css,#{0} .gwt-product-detail-widget-price-holder", "css,#{0} .pw-accordion__content-wrapper .t-product-details__price");
 	public static final cselector GHRYSizeOptionsBundle = new cselector("css,.{0} .gwt-product-detail-widget-options-column>div>div>div>div>.gwt-product-option-panel-widget-panel>.gwt-selection-chip-picker>div>.gwt-selection-chip-picker-option>div", "css,.{0} .c-product-options__item");
 	public static final cselector GHRYColorOptionsBundle = new cselector("css,.{0} .gwt-product-detail-widget-options-column>div>div>.gwt-product-option-panel-swatchbox>.gwt-product-option-panel-widget-panel>.gwt-image-picker>.gwt-image-picker-option-holder>.gwt-image-picker-option","css,.{0} .gwt-image-picker-option>div");
-	public static final String GHAddToWLGRBtnEnabledBundle = "css,#{0} #gwt-add-to-gift-registry-btn";
-	public static final String GHAddToCartBtnEnabledBundle = "css,#{0} #gwt-add-to-cart-btn";
+	public static final String GHAddToWLGRBtnEnabledBundle = "css,.{0} #gwt-add-to-gift-registry-btn";
+	public static final String GHAddToCartBtnEnabledBundle = "css,.{0} #gwt-add-to-cart-btn";
 	public static final cselector quantityBundle = new cselector("css,#{0} .gwt-quantity-textbox", "css,#{0} .t-product-details-quantity-value");
 	public static final cselector GHAvailableOptionsBundle = new cselector("css,.{0} .gwt-product-option-panel-widget-panel>div", "css,.{0} .t-product-options__product-option-label");
 	public static final cselector GHNumberOfBundleItems = new cselector("css,.gwt-product-detail-products-container>.gwt-product-detail-widget","css,.t-product-details__accordion-collection .pw-accordion__item>button");
