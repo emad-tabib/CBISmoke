@@ -273,6 +273,7 @@ public class PDP extends SelTestCase {
 	public static String getProductID(int index) throws Exception {
 		try {
 			getCurrentFunctionName(true);
+			String ID;
 			String Str = PDPSelectors.itemsID.get();
 			if (isGH()) {
 				if (isMobile()) {
@@ -280,7 +281,7 @@ public class PDP extends SelTestCase {
 				}
 				Str = PDPSelectors.GHItemsID.get();
 			}
-			
+
 			if (isBD()) {
 				if (isMobile()) {
 					Thread.sleep(2500);
@@ -288,7 +289,11 @@ public class PDP extends SelTestCase {
 				Str = PDPSelectors.BDitemsID.get();
 			}
 			
-			String ID = SelectorUtil.getAttrString(Str, "id", index);
+			if (!isGH())
+				ID = SelectorUtil.getAttrString(Str, "id", index);
+			else
+				ID = SelectorUtil.getAttrString(Str, "class", index);
+
 			getCurrentFunctionName(false);
 			return ID;
 		} catch (NoSuchElementException e) {
