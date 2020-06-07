@@ -1151,6 +1151,7 @@ public class PLP extends SelTestCase {
 					else if (isBD())
 						SelectorUtil.initializeSelectorsAndDoActions(PLPSelectors.navigatetoPLPBD.get());
 
+					Thread.sleep(4000);
 				} catch (Exception e) {
 
 					if (isFG())
@@ -1195,6 +1196,12 @@ public class PLP extends SelTestCase {
 				} else if (isBD()) {
 
 					SelectorUtil.initializeSelectorsAndDoActions(PLPSelectors.navigatetoPLPBD.get());
+					
+					if(isDesktop()) {
+						if(isCLP())
+							SelectorUtil.initializeSelectorsAndDoActions(PLPSelectors.navigatetoPLPBD.get());
+
+					}
 
 				} else {
 					try {
