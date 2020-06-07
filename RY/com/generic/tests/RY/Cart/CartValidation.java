@@ -11,8 +11,6 @@ public class CartValidation extends SelTestCase {
 	public static void addProductToCart() throws Exception {
 		PDP.NavigateToPDP("dress");
 
-		if (PDP.bundleProduct())
-			PDP.clickBundleItems();
 
 		PDP_cart.addProductsToCart();
 		Thread.sleep(5000);

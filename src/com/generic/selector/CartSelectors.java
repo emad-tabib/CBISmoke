@@ -60,7 +60,7 @@ public class CartSelectors{
 	public static final cselector addedToWLModal = new cselector("css,div.gwt-DialogBox.ok-cancel-dlog.checkout-v2-added-to-wish-list-modal");
 	public static final cselector viewListBtn = new cselector("css,div.okCancelPanel >  button.button.primary");
 	public static final cselector GHRYfirstAddedItemsRemove=new cselector("css,div:nth-of-type(1) > div> div > div> div > .action.order-item-link.remove-link","css,#app-main > div > div > div:nth-child(1) > div > div > div> div:nth-child(1) > div > button.pw-button.c-cart-product__actions-remove");
-	public static final cselector selectWLConfiramtionBtn=new cselector("","css,div.c-cart-product__wishlist.u-position-relative > div > button.pw-button");
+	public static final cselector selectWLConfiramtionBtn=new cselector("","css,div.c-cart-product__wishlist.u-position-relative > div > button.pw-button>div");
 	public static final cselector selectWL = new cselector("css,select.c-custom-select");
 	public static final cselector selectWLOptions = new cselector("css,select.c-custom-select > option");
 	public static final cselector checkoutBtn = new cselector("css,div.gwt-DialogBox.ok-cancel-dlog.gwt_addtocart_div button.button.primary","css,div.u-flexbox.u-direction-column > button.pw-button.pw--primary");

@@ -73,8 +73,9 @@ public class CartValidation extends SelTestCase {
 	    String WLName = PDP_WL.getWishListName();
 	    if(isMobile()) {
 			Cart.createNewWL(WLName);
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 			Cart.clickOnSelectWLConfirmationBtn();
+			Thread.sleep(5000);
 	    }else {
 			sassert().assertTrue(PDP_WL.validateNameYourNewWLModalIsDisplayed(), "Name your new wish list modal is not dispayed");
 			Cart.createNewWL(WLName);
