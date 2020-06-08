@@ -912,7 +912,7 @@ public class PLP extends SelTestCase {
 			getCurrentFunctionName(true);
 			SelectorUtil.initializeSelectorsAndDoActions(PLPSelectors.searchBox.get(), searchTerm + ",pressEnter");
 
-			if (isMobile())
+			if(isMobile())
 				Thread.sleep(5000);
 
 			getCurrentFunctionName(false);
@@ -988,12 +988,13 @@ public class PLP extends SelTestCase {
 	public static void typeSearch(String searchTerm) throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			Thread.sleep(2500);
+			Thread.sleep(4500);
 			if (isBD()) {
 				SelectorUtil.initializeSelectorsAndDoActions(PLPSelectors.BDsearchBox.get(), searchTerm);
 			} else {
 				SelectorUtil.initializeSelectorsAndDoActions(PLPSelectors.searchBox.get(), searchTerm);
 			}
+			Thread.sleep(4500);
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(
