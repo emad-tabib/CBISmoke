@@ -20,7 +20,11 @@ public class PDP_selectSwatches extends SelTestCase{
 	public static void selectSwatches() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			Boolean bundle = PDP.bundleProduct();
+			Boolean bundle;
+			if(!isRY())
+				bundle = PDP.bundleProduct();
+			else
+				bundle = false;
 			if (isFGGR() || isBD()) {
 				String ProductID = null;
 				if (!isMobile() && bundle)
@@ -28,8 +32,10 @@ public class PDP_selectSwatches extends SelTestCase{
 				selectSwatches(bundle, ProductID);
 			} else if (isGHRY()) {
 				String ProductID = null;
-				if (bundle)
-					ProductID = PDP.getProductID(0);
+				if (bundle) {
+				//	int size = PDP.getProductID(0).replace(" " , ".");
+					ProductID = PDP.getProductID(0).replace(" " , ".");
+				}
 				GHRYselectSwatches(bundle, ProductID);
 			}
 
@@ -385,7 +391,7 @@ public class PDP_selectSwatches extends SelTestCase{
 					PDP.clickBundleItems();
 					// update the product id after the refresh
 					if (bundle)
-						ProductID = PDP.getProductID(0);
+						ProductID = PDP.getProductID(0).replace(" " , ".");
 					GHRYselectColor(bundle, ProductID);
 					GHRYselectSize(bundle, ProductID);
 				} else {
@@ -409,16 +415,17 @@ public class PDP_selectSwatches extends SelTestCase{
 				if (!(e.getMessage() == null) && e.getMessage().contains("element click intercepted")) {
 					logs.debug(MessageFormat.format(LoggingMsg.FORMATTED_ERROR_MSG, e.getMessage()));
 					logs.debug("Refresh the browser to close the Intercepted windows");
-					Common.refreshBrowser();
-					PDP.clickBundleItems();
+					getDriver().navigate().refresh();
+					Thread.sleep(10000);
 					// update the product id after the refresh
-					if (bundle)
-						ProductID = PDP.getProductID(0);
+					if (bundle) {
+						PDP.clickBundleItems();
+						ProductID = PDP.getProductID(0).replace(" ", ".");
+					}
 					GHRYselectColorTemplate(bundle, ProductID);
 				} else {
-					logs.debug(MessageFormat.format(
-							ExceptionMsg.PageFunctionFailed + " Aplication was not able to select color swatch",
-							new Object() {
+					logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed
+							+ " Aplication was not able to select color swatch", new Object() {
 							}.getClass().getEnclosingMethod().getName()));
 					throw e;
 				}
@@ -456,7 +463,7 @@ public class PDP_selectSwatches extends SelTestCase{
 					}
 				}
 				getCurrentFunctionName(false);
-			} catch (NoSuchElementException e) {
+			} catch (Exception e) {
 				logs.debug(MessageFormat.format(
 						ExceptionMsg.PageFunctionFailed + "Color option selector was not found by seleniuem", new Object() {
 						}.getClass().getEnclosingMethod().getName()));
@@ -475,7 +482,7 @@ public class PDP_selectSwatches extends SelTestCase{
 
 			// Bundle product selector.
 			if (bundle) {
-				String ProductID = PDP.getProductID(0);
+				String ProductID = PDP.getProductID(0).replace(" ", ".");
 				subStrArr = MessageFormat.format(PDPSelectors.GHAvailableOptionsBundle.get(), ProductID);
 			}
 

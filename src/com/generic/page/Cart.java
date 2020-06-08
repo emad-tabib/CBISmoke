@@ -116,9 +116,6 @@ public class Cart extends SelTestCase {
 			if (isGHRY()) {
 				subStrArr = CartSelectors.GHRYfirstAddedItemsRemove.get();
 			}
-			else if (isFG()) {
-				subStrArr = CartSelectors.FGfirstAddedItemsRemove.get();
-			}
 			else {
 				subStrArr = CartSelectors.firstAddedItemsRemove.get();
 			}
