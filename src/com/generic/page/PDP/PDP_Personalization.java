@@ -44,9 +44,6 @@ public class PDP_Personalization extends SelTestCase {
 				if (isBD())
 					addedPersonlizedDetailsSelector = "css,#" + ProductID + " "
 							+ addedPersonlizedDetailsSelector.replace("css,", "");
-				else if (isGH())
-					addedPersonlizedDetailsSelector = "css,." + ProductID + ">"
-							+ PDPSelectors.addedPersonlizedDetails.get().replace("css,", "");
 				else
 					addedPersonlizedDetailsSelector = "css,#" + ProductID + ">"
 							+ PDPSelectors.addedPersonlizedDetails.get().replace("css,", "");
@@ -159,11 +156,7 @@ public class PDP_Personalization extends SelTestCase {
 				if (isBD())
 					addPersonalizedButtonSelector = "css,#" + ProductID + " "
 							+ PDPSelectors.BDaddPersonalizedButton.get().replace("css,", "");
-				else if (isGH()) {
-					addPersonalizedButtonSelector = "css,." + ProductID + ">"
-							+ PDPSelectors.addPersonalizedButton.get().replace("css,", "");
-					logs.debug("addPersonalizedButtonSelector:  " + addPersonalizedButtonSelector);
-				}
+
 				else {
 					addPersonalizedButtonSelector = "css,#" + ProductID + ">"
 							+ PDPSelectors.addPersonalizedButton.get().replace("css,", "");
