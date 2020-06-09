@@ -758,18 +758,33 @@ public class HomePage extends SelTestCase {
 
 	public static boolean isDisplayAllSpots() throws Exception {
 		getCurrentFunctionName(true);
-		List<WebElement> elements = getEspots();
-		boolean loaded = isListDisplayed(elements);
-		getCurrentFunctionName(false);
-		return loaded;
+		try {
+			List<WebElement> elements = getEspots();
+			boolean loaded = isListDisplayed(elements);
+			getCurrentFunctionName(false);
+			return loaded;
+
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(
+					ExceptionMsg.PageFunctionFailed + "Espots selector cant be found bu selenium", new Object() {
+					}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
 	}
 
 	public static boolean isLoadedAllEspots() throws Exception {
-		getCurrentFunctionName(true);
-		List<WebElement> elements = getEspots();
-		boolean result = isListLoaded(elements);
-		getCurrentFunctionName(false);
-		return result;
+		try {
+			getCurrentFunctionName(true);
+			List<WebElement> elements = getEspots();
+			boolean result = isListLoaded(elements);
+			getCurrentFunctionName(false);
+			return result;
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(
+					ExceptionMsg.PageFunctionFailed + "Espots selector cant be found bu selenium", new Object() {
+					}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
 	}
 
 	/**
@@ -1005,7 +1020,7 @@ public class HomePage extends SelTestCase {
 					currentPageMatchNavigated = false;
 					validateSubMenuNavigation = false;
 				} else {
-					SelectorUtil.waitGWTLoadedEventPWA();
+					//SelectorUtil.waitGWTLoadedEventPWA();
 
 					List<WebElement> leafMenuItems;
 					// Select the list of leaf items in the menu.
@@ -1030,8 +1045,8 @@ public class HomePage extends SelTestCase {
 					SelectorUtil.clickOnWebElement(randomElement);
 
 					Thread.sleep(1000);
-					if (!isBD())
-						SelectorUtil.waitGWTLoadedEventPWA();
+					//if (!isBD())
+					//	SelectorUtil.waitGWTLoadedEventPWA();
 					String currentPageUrl = SelectorUtil.getCurrentPageUrl();
 					// Get the current page URL.
 					logs.debug("Navigated random page path: " + currentPageUrl + "    " + href);

@@ -33,6 +33,7 @@ public class PDP extends SelTestCase {
 			// TODO: to use this process on all brands
 			if (isGHRY() && isiPad() || isBD() && isiPad()) {
 				PLP.clickSearch(SearchTerm);
+				Thread.sleep(4500);
 				if (SelectorUtil.isElementExist(By.cssSelector(PLPSelectors.PLPPageSelector.get()))) {
 					itemName = PLP.pickPLPFirstProduct();
 				}

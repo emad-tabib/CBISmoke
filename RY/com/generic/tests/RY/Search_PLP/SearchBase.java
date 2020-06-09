@@ -24,6 +24,7 @@ public class SearchBase extends SelTestCase {
 
 	private static ThreadLocal<SASLogger> Testlogs = new ThreadLocal<SASLogger>();
 	private String searchTerm = "dress";
+	private String searchTermRecommended = "Skinny Jeans";
 	private String RecommendedProductsCase = "Recommended products";
 	private String fullSearchCase = "full search";
 
@@ -61,7 +62,7 @@ public class SearchBase extends SelTestCase {
 
 			// validate the suggested items
 			if (proprties.contains(RecommendedProductsCase) && !isiPad())
-				sassert().assertTrue(PLP.searchAndVerifyResults(searchTerm, true), "Serach validation failed");
+				sassert().assertTrue(PLP.searchAndVerifyResults(searchTermRecommended, true), "Serach validation failed");
 
 			if (proprties.contains(fullSearchCase))
 				// Validate the direct search
