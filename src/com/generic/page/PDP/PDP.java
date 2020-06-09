@@ -290,10 +290,7 @@ public class PDP extends SelTestCase {
 				Str = PDPSelectors.BDitemsID.get();
 			}
 			
-			if (!isGH())
 				ID = SelectorUtil.getAttrString(Str, "id", index);
-			else
-				ID = SelectorUtil.getAttrString(Str, "class", index);
 
 			getCurrentFunctionName(false);
 			return ID;
@@ -305,6 +302,29 @@ public class PDP extends SelTestCase {
 		}
 	}
 
+	public static String getProductClass(int index) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			String ID;
+			String Str = null;
+			if (isGH()) {
+				if (isMobile()) {
+					Thread.sleep(2500);
+				}
+				Str = PDPSelectors.GHItemsID.get();
+			}
+				ID = SelectorUtil.getAttrString(Str, "class", index);
+
+			getCurrentFunctionName(false);
+			return ID;
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(
+					ExceptionMsg.PageFunctionFailed + "Product calss selector was not found by selenium", new Object() {
+					}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+	
 	// done - SMK
 	public static boolean bundleProduct() throws Exception {
 		return bundleProduct(0);

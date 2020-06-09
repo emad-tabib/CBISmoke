@@ -24,6 +24,7 @@ public class PDPValidation extends SelTestCase {
 		sassert().assertTrue(PDP_WL.validateAddToWLGRIsEnabled(bundle, ProductID), "Add to WL/GR button is not enabled");
 		sassert().assertTrue(PDP_cart.validateAddToCartIsEnabled(bundle, ProductID), "Add to Cart button is not enabled");
 		PDP_cart.clickAddToCartButton();
+		Thread.sleep(2500);
 		sassert().assertTrue(PDP_cart.validateProductIsAddedToCart(), "Product is not added successfully");
 		getCurrentFunctionName(false);
 	}

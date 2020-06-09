@@ -65,6 +65,7 @@ public class PDPSelectors {
 	public static final String addToWLGRBtnEnabledBundle = "css,#{0}>" + addToWLGRBtnEnabledSingle.DesktopSelector.replace("css,", "");
 	public static final String addToWLGRBtnDisabledBundle = "css,#{0}>" + addToWLGRBtnDisabledSingle.DesktopSelector.replace("css,", "");
 	public final static String topPriceBundle = "css,#{0}>" + topPriceSingle.DesktopSelector.replace("css,", "");
+	public final static String GHtopPriceBundle = "css,#{0}>" + topPriceSingle.DesktopSelector.replace("css,", "");
 	public static final String ListBoxBundle = "css,#{0}>" + ListBox.DesktopSelector.replace("css,", "");
 	public static final String activeListBoxBundle = "css,#{0}>" + activeListBox.DesktopSelector.replace("css,", "");
 	public static final String swatchContainerBundle = "css,#{0}>" + swatchContainer.DesktopSelector.replace("css,", "");
@@ -121,7 +122,7 @@ public class PDPSelectors {
 	public  final static cselector RYtopPriceSingle = new cselector("css,.gwt-product-detail-top-price", "css,.t-product-details-heading__price.t-product-details__price");
 	public  final static cselector GHtopPriceSingle = new cselector("css,.gwt-product-detail-quantity-price-column>.gwt-product-detail-widget-price-holder", "css,.t-product-details-heading__price-and-tag>.t-product-details-heading__price.t-product-details__price");
 	public static final cselector GHRYColorOptions = new cselector("css,.gwt-product-detail-widget-options-column>div>div>.gwt-product-option-panel-swatchbox>.gwt-product-option-panel-widget-panel>.gwt-image-picker>.gwt-image-picker-option-holder>.gwt-image-picker-option","css,.gwt-image-picker-option>div");
-	public static final cselector GHRYSizeOptions = new cselector("css,.gwt-product-detail-widget-options-column>div>div>div>div>.gwt-product-option-panel-widget-panel>.gwt-selection-chip-picker>div>.gwt-selection-chip-picker-option>div","css,.pw-swatch__chip-inner>div>.c-product-option-items__item-normal");
+	public static final cselector GHRYSizeOptions = new cselector("css,.gwt-product-detail-widget-options-column>div>div>div>div>.gwt-product-option-panel-widget-panel>.gwt-selection-chip-picker>div>.gwt-selection-chip-picker-option","css,.pw-swatch__chip-inner>div>.c-product-option-items__item-normal");
 	public static final cselector offerControlClose = new cselector("css,body>form>div>.offer-control.close");
 	public static final cselector GHOfferControlClose = new cselector("fcopt-offer-35642-content","fcopt-offer-35745-content");
 	public static final cselector RYOfferControlClose = new cselector("fcopt-offer-100287-content","fcopt-offer-94688-content");
@@ -154,12 +155,12 @@ public class PDPSelectors {
 	public static final cselector GHBundleItems = new cselector("css,.t-product-details__accordion-collection .pw-accordion__header");
 	public static final cselector GHMiniPDPPrice = new cselector("css,.t-product-details__accordion-collection .t-product-details__price");
 	public static final cselector GHBottomPriceBundle = new cselector("css,#{0} .gwt-product-detail-widget-price-holder", "css,#{0} .pw-accordion__content-wrapper .t-product-details__price");
-	public static final cselector GHRYSizeOptionsBundle = new cselector("css,.{0} .gwt-product-detail-widget-options-column>div>div>div>div>.gwt-product-option-panel-widget-panel>.gwt-selection-chip-picker>div>.gwt-selection-chip-picker-option>div", "css,.{0} .c-product-options__item");
-	public static final cselector GHRYColorOptionsBundle = new cselector("css,.{0} .gwt-product-detail-widget-options-column>div>div>.gwt-product-option-panel-swatchbox>.gwt-product-option-panel-widget-panel>.gwt-image-picker>.gwt-image-picker-option-holder>.gwt-image-picker-option","css,.{0} .gwt-image-picker-option>div");
-	public static final String GHAddToWLGRBtnEnabledBundle = "css,.{0} #gwt-add-to-gift-registry-btn";
-	public static final String GHAddToCartBtnEnabledBundle = "css,.{0} #gwt-add-to-cart-btn";
+	public static final cselector GHRYSizeOptionsBundle = new cselector("css,#{0} .gwt-product-detail-widget-options-column>div>div>div>div>.gwt-product-option-panel-widget-panel>.gwt-selection-chip-picker>div>.gwt-selection-chip-picker-option>div", "css,#{0} .c-product-options__item");
+	public static final cselector GHRYColorOptionsBundle = new cselector("css,#{0} .gwt-product-detail-widget-options-column>div>div>.gwt-product-option-panel-swatchbox>.gwt-product-option-panel-widget-panel>.gwt-image-picker>.gwt-image-picker-option-holder>.gwt-image-picker-option","css,#{0} .gwt-image-picker-option>div");
+	public static final String GHAddToWLGRBtnEnabledBundle = "css,#{0} #gwt-add-to-gift-registry-btn";
+	public static final String GHAddToCartBtnEnabledBundle = "css,#{0} #gwt-add-to-cart-btn";
 	public static final cselector quantityBundle = new cselector("css,#{0} .gwt-quantity-textbox", "css,#{0} .t-product-details-quantity-value");
-	public static final cselector GHAvailableOptionsBundle = new cselector("css,.{0} .gwt-product-option-panel-widget-panel>div", "css,.{0} .t-product-options__product-option-label");
+	public static final cselector GHAvailableOptionsBundle = new cselector("css,#{0} .gwt-product-option-panel-widget-panel>div", "css,#{0} .t-product-options__product-option-label");
 	public static final cselector GHNumberOfBundleItems = new cselector("css,.gwt-product-detail-products-container>.gwt-product-detail-widget","css,.t-product-details__accordion-collection .pw-accordion__item>button");
 	public static final cselector GHItemsID = new cselector("css,.gwt-product-detail-products-container>.gwt-product-detail-widget", "css,.t-product-details__accordion-collection .pw-accordion__item.pw-accordion--is-open");	
 
@@ -215,7 +216,7 @@ public class PDPSelectors {
 	public static final cselector CSOrderASwatchButton = new cselector("css,#gwt-comshop-customization-sub-tab-panel > button","css,div.c-order-swatch > button");
 	public static final cselector CSSearchSwatchResults = new cselector("css,div.swatches-container-panel.fabric-swatches-container > div.gwt-PDP-Fabric-Image-panel:not([aria-hidden]) > img","css, div.pw-sheet__content > div > div > div:nth-child(7) > div:nth-child(1) > div.m-order-swatch-modal__option.u-display-flex.u-padding-lg.u-border-no-color.u-margin-top-lg.u-margin-bottom-lg.u-border-alto > div > button > div > div > img");
 
-	public static final cselector BDimageOption = new cselector("css,#gwt-option-panel > div > div.gwt-product-option-panel-widget-panel > div > div.gwt-image-picker-with-dialog-option-holder div.image-picker-option-image-container > img","css,.t-product-details__accordion-collection >div:nth-child({0}) .c-product-options>div:nth-child({1})>div>div.c-product-option-items__container > div:nth-child({2})>div") ;
+	public static final cselector BDimageOption = new cselector("css,#gwt-option-panel > div > div.gwt-product-option-panel-widget-panel > div > div.gwt-image-picker-option-holder div.image-picker-option-image-container > img","css,.t-product-details__accordion-collection >div:nth-child({0}) .c-product-options>div:nth-child({1})>div>div.c-product-option-items__container > div:nth-child({2})>div") ;
     public static final cselector BDaddPersonalizedButton = new cselector("css,.gwt-personalize-link-style","css,.pw-button.add-personalization-button");
 	public static final cselector BDpersonalizedItemColors2 = new cselector("css,.gwt-option-picker-swatch-picker> div.gwt-personalization-swatch-picker-option > img");
     public static final cselector BDPersonalizationCost = new cselector("css,div.gwt-HTML.hyper-label.gwt-personalize-link-style > div","css,.pw-button.add-personalization-button>div");
