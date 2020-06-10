@@ -8,7 +8,7 @@ public class WistListGuestValidation extends SelTestCase {
 	public static void validate() throws Exception {
 		getCurrentFunctionName(true);
 
-		String selectedProductName = PDP.NavigateToPDP("mirror");
+		String selectedProductName = PDP.NavigateToPDP("lights");
 
 		PDP_selectSwatches.selectSwatches();
 

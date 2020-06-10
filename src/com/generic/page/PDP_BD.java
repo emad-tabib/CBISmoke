@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import com.generic.page.PDP.*;
 import com.generic.selector.PDPSelectors;
 import com.generic.setup.ExceptionMsg;
+import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
 import com.generic.util.SelectorUtil;
 
@@ -131,11 +132,21 @@ public class PDP_BD extends SelTestCase {
 
 			getCurrentFunctionName(false);
 			return isSizeShownAsListbox;
-		} catch (NoSuchElementException e) {
-			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed
-					+ "Select swatches has falied, a selector was not found by selenium", new Object() {
-					}.getClass().getEnclosingMethod().getName()));
-			throw e;
+		} catch (Exception e) {
+			if (!(e.getMessage() == null) && e.getMessage().contains("element click intercepted")) {
+				logs.debug(MessageFormat.format(LoggingMsg.FORMATTED_ERROR_MSG, e.getMessage()));
+				logs.debug("Refresh the browser to close the Intercepted windows");
+				getDriver().navigate().refresh();
+				Thread.sleep(2000);
+				ProductID = PDP.getProductID(0);
+				BDselectSwatchesBundle(ProductID);
+				return false;
+			} else {
+				logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed
+						+ "Select swatches has falied, a selector was not found by selenium", new Object() {
+						}.getClass().getEnclosingMethod().getName()));
+				throw e;
+			}
 		}
 	}
 

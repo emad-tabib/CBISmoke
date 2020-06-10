@@ -29,7 +29,7 @@ public class PDPValidation extends SelTestCase {
 		 			"Top price for the bundle item (mini PDP) is not dispayed");
 		 }
 			if (bundle)
-				ProductID = PDP.getProductID(0);
+				ProductID = PDP.getProductID(0).replace(" ", ".");
 			
 		String priceErrorMessage;
 		// price error message
@@ -50,7 +50,7 @@ public class PDPValidation extends SelTestCase {
 		PDP_selectSwatches.selectSwatches(bundle, ProductID);
 		// update the product id after the refresh
 		if (bundle)
-			ProductID = PDP.getProductID(0);
+			ProductID = PDP.getProductID(0).replace(" ", ".");
 		String bottomPrice = PDP.getBottomPrice(bundle, ProductID);
 		sassert().assertTrue(!bottomPrice.equals("$0.00"), "Bottom price is not updated correctly, Current price: " + bottomPrice);
 
