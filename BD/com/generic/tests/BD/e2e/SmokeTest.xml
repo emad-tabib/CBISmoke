@@ -17,7 +17,7 @@
 		<parameter name="Env" value="prod"></parameter>
 		<parameter name="Brand" value="BD"></parameter>
 		<classes>
-			<class name="com.generic.tests.DB.e2e.SmokeTest_Guest_e2e" />
+			<class name="com.generic.tests.BD.e2e.SmokeTest_Guest_e2e" />
 		</classes>
 	</test>
 
