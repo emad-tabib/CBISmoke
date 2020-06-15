@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="general regression" parallel="tests" thread-count="3" data-provider-thread-count="1">
+
+	<test name="general chrome FG">
+		<parameter name="browserName" value="chrome"></parameter>
+		<parameter name="Env" value="prod"></parameter>
+		<parameter name="Brand" value="FG"></parameter>
+		<classes>
+			<class name="com.generic.tests.AutomationTemplate.General.TestBase" />
+
+		</classes>
+	</test>
+
+	<test name="general iPad FG">
+		<parameter name="browserName" value="mobile_iPad"></parameter>
+		<parameter name="Env" value="prod"></parameter>
+		<parameter name="Brand" value="FG"></parameter>
+		<classes>
+			<class name="com.generic.tests.AutomationTemplate.General.TestBase" />
+		</classes>
+	</test>
+
+	<test name="general iPhone FG">
+		<parameter name="browserName" value="mobile_iPhone X"></parameter>
+		<parameter name="Env" value="prod"></parameter>
+		<parameter name="Brand" value="FG"></parameter>
+		<classes>
+			<class name="com.generic.tests.AutomationTemplate.General.TestBase" />
+		</classes>
+	</test>
+
+</suite>  
