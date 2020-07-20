@@ -61,6 +61,7 @@ public class PLP_Base extends SelTestCase {
 				else if(isiPad())
 					PLP.navigateToRandomPLPIpadGH();
 				else
+					Thread.sleep(5000);
 					PLP.navigateToRandomPLPDesktop();
 				
 				Thread.sleep(2500);

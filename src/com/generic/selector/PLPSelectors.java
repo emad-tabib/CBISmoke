@@ -26,11 +26,12 @@ public class PLPSelectors {
     public static final cselector productContainer =  new cselector("css,div.unbxd-products-display-panel","css,footer > div.c-custom-accordion"); 
     public static final cselector productsImages = new cselector("css,div.iwc-main-img-wrapper img.iwc-main-img", "css,article > a > div > div > img");
     public static final cselector productsImagesBD = new cselector("css,.unbxd-grid-product-image", "css,article > a > div > div > img");
-
+    
     
     public static final cselector productsImagesGR = new cselector("css,.gwt-product-info-panel-image-container > a > img", "css,Article > a > div > div > img");
     public static final cselector productsNames = new cselector("css,a.gwt-sub-category-info-panel-link","css,a.pw-link.c-product-item-title-link > div > div > h2 > div > div");
-
+    
+    
     public static final cselector GHproductsImages = new cselector("css,.gwt-product-info-panel-image-container>a>.unbxd-grid-product-image", "css,.c-product-item-img");
     public static final cselector productsImagesGH = new cselector("css,.gwt-product-info-panel-image-container > a > img","css,article > a > div > div > img");
     public static final cselector BDproductTitle = new cselector("css,h2 > a.gwt-sub-category-info-panel-link");
@@ -95,9 +96,9 @@ public class PLPSelectors {
 	public static final cselector GRDeskTopSortingHighToLow = new cselector("css,#unbxd-sort-options-container > div > div > a:nth-child(3)");
 	public static final cselector BDDeskTopSortingCustomerRating = new cselector("css,#unbxd-sort-options-container > div > div > a:nth-child(4)");
 	public static final cselector BDDeskTopSortingLowToHigh = new cselector("css,#unbxd-sort-options-container > div > div > a:nth-child(3)");
-
-
-	public static final cselector GRFilterContainer = new cselector("css,#text-facets-container-panel > div:nth-child(1) > span","css,div.pw-accordion__close-icon");
+	
+	//div.c-product-list__container-filter-option.u-flex-1 > div
+	public static final cselector GRFilterContainer = new cselector("css,#text-facets-container-panel > div:nth-child(1)","css,div.pw-accordion__close-icon");
 	public static final cselector BDFilterContainer = new cselector("css,#text-facets-container-panel > div:nth-child(1) > span","css,button.c-product-list__filter-button");
 	public static final cselector GRFilterContainerContents = new cselector("css,.unbxd-facet-option-checkbox input","css,.u-text-letter-spacing-0 > div");
 	public static final cselector BDFilterContainerContents = new cselector("css,.unbxd-facet-option-checkbox input","css,div.c-custom-sheet__content.u-height-full.u-border-top  div > div.pw-accordion__icon > div.pw-accordion__open-icon");
@@ -114,8 +115,8 @@ public class PLPSelectors {
 
 	
 	public static final cselector navigatetoPLPBD = new cselector(
-			"css,div.gwt-product-image-horizontal-panel > a",
-			"css,.gwt-sub-category-image",
+			"css,div.gwt-product-image-horizontal-panel > a:nth-chiled(2)",
+			"css,.gwt-sub-category-image:nth-chiled(2)",
 			"css,.t-category-list__category a > img" );
 
 	public static final cselector navigatetoPLP2 = new cselector(

@@ -55,7 +55,7 @@ public class PLP_Base extends SelTestCase {
 		try {
 
 			if (Proprties.contains(plpTest)) {
-				
+				Common.refreshBrowser();
 					PLP.navigateToRandomPLPRY();
 //				PDP.closeSignUpModalIfDisplayed();
 				sassert().assertTrue(PLP.VerifyPLP(), "PLP Validation failed");
