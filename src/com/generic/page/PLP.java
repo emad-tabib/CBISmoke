@@ -73,7 +73,7 @@ public class PLP extends SelTestCase {
 
 	private static boolean verifySearchResultPage() throws Exception {
 		try {
-			getCurrentFunctionName(true);
+			getCurrentFunctionName(true); 
 			Thread.sleep(3000);
 
 			getDriver().navigate().refresh();
