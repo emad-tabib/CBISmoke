@@ -45,7 +45,7 @@ public class PDP_VK extends SelTestCase{
 		Thread.sleep(2500);
 		sassert().assertTrue(PDP_WL.validateAddToWLGRIsEnabled(bundle, ProductID), "Add to WL/GR button is not enabled");
 		sassert().assertTrue(PDP_cart.validateAddToCartIsEnabled(bundle, ProductID), "Add to Cart button is not enabled");
-	
+	 
 		
 		boolean priceShownInSizeOption = PDP_BD.isPriceShownInSizeOption();
 	

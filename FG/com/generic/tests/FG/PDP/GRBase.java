@@ -36,7 +36,7 @@ public class GRBase extends SelTestCase {
 		Testlogs.set(new SASLogger(test.getName() + test.getIndex()));
 		testObject = test;
 		LoginBase.initialSetUp(test);
-	}
+	} 
 
 	@DataProvider(name = "GR_SC", parallel = true)
 	// concurrency maintenance on sheet reading
