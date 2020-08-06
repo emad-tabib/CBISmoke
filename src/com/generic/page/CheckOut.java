@@ -1011,7 +1011,11 @@ public class CheckOut extends SelTestCase {
 
 			for (int count = 0; count < prodCount; count++) {
 				Thread.sleep(3000);
-				PDPs.navigateToRandomPDP();
+				PDP.NavigateToPDP();
+				Thread.sleep(3000);
+				if (isGH() && isMobile())
+					HomePage.closeReferandEarnModal();
+				PDP_selectSwatches.selectSwatches();
 				Thread.sleep(3000);
 				PDP_cart.clickAddToCartButtonNoBundle();
 				Thread.sleep(3500);
