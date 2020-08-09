@@ -10,6 +10,7 @@ import com.generic.setup.ExceptionMsg;
 import com.generic.setup.GlobalVariables;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
+import com.generic.util.RandomUtilities;
 
 public class GuestCheckoutMultipleAddress extends SelTestCase {
 
@@ -55,6 +56,10 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 			sassert().assertTrue(CheckOut.checkProductsinStepTwo() == productsCount,
 					"Some products are missing in step 2 ");
 
+			// Fill the Phone number for TruckDelivery and In Home delivery products.
+			CheckOut.typePhoneInStepTwoforTruckDeliveryProducts(RandomUtilities.getRandomPhone());
+			Thread.sleep(1500);
+			
 			// Proceed to step 3
 			CheckOut.proceedToStepThree();
 

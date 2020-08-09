@@ -43,8 +43,7 @@ public class CheckOutSelectors
 	public static final cselector stepTwoIdentifierGR =new cselector("css,.ship-method-panel .csb-panels-list-box","css,.t-checkout-shipping-and-gift__help-btn");
 	public static final cselector stepTwoIdentifier2 =new cselector("css,.ship-method-panel","css,.t-checkout-step2__truck-delivery-panel");
 	public static final cselector stepTwoIdentifier2GR =new cselector("css,.ship-method-panel .csb-panels-list-box","css,.t-checkout-step2__truck-delivery-panel");
-
-
+	public static final cselector stepTwoPhoneNumber =new cselector("css,#scheduling_phone_number.c-custom-input");
 	
 	//Step 3
 	public static final cselector thirdStepNextButton = new cselector("css,.billing-address .next-botton-panel .primary-button","css,.c-checkout-accordion__next-cancel-panel .pw--primary");

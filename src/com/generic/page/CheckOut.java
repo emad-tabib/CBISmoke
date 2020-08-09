@@ -626,6 +626,25 @@ public class CheckOut extends SelTestCase {
 		}
 	}
 
+	// Done CBI
+	public static void typePhoneInStepTwoforTruckDeliveryProducts(String phone) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			if (isFGGR())
+				if (!SelectorUtil.isNotDisplayed(CheckOutSelectors.stepTwoPhoneNumber.get()))
+					SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.stepTwoPhoneNumber.get(), phone);
+
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(
+					ExceptionMsg.PageFunctionFailed + "Truck delivery Phone field selector was not found by selenium",
+					new Object() {
+					}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+
+	}
+	
 	public static void watiStepTobeready() throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -1015,6 +1034,8 @@ public class CheckOut extends SelTestCase {
 				Thread.sleep(3000);
 				if (isGH() && isMobile())
 					HomePage.closeReferandEarnModal();
+				if (isMobile() && PDP.bundleProduct())
+					PDP.clickBundleItems();
 				PDP_selectSwatches.selectSwatches();
 				Thread.sleep(3000);
 				PDP_cart.clickAddToCartButtonNoBundle();

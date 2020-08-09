@@ -69,6 +69,10 @@ public class RegisteredCheckoutMultipleAddress extends SelTestCase {
 
 			Thread.sleep(2000);
 
+			// Fill the Phone number for TruckDelivery and In Home delivery products.
+			CheckOut.typePhoneInStepTwoforTruckDeliveryProducts(RandomUtilities.getRandomPhone());
+			Thread.sleep(1500);
+
 			// Proceed to step 3
 			CheckOut.proceedToStepThree();
 
