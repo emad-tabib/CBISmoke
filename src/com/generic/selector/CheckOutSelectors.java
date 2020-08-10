@@ -15,7 +15,7 @@ public class CheckOutSelectors
 	public static final cselector stepLoaderButton = new cselector("button.pw-button.pw--primary.u-width-full>div>div.c-custom-loader");
 	
 	//Step 1 Multiple Addresses
-	public static final cselector multipleAddressesTab = new cselector( "css,.shipping-address .gwt-TabBarItem .gwt-HTML","css,.t-checkout-step1__tabs .pw-tabs__tab a");
+	public static final cselector multipleAddressesTab = new cselector( "css,.shipping-address .gwt-TabBarItem","css,.t-checkout-step1__tabs .pw-tabs__tab a");
 	public static final cselector addAddressButton = new cselector( "css,.order-item-shipping-panel .button","css,.t-cart__product-list .add-address-button");
 	public static final cselector saveAddressButton = new cselector("css,.okCancelPanel .button.primary","css,.m-address_widget_modal button.pw--primary");
 	public static final cselector firstStepNextButton = new cselector( "css,.next-botton-panel .primary-button","css,.c-checkout-accordion__next-cancel-panel .pw--primary");
@@ -43,8 +43,7 @@ public class CheckOutSelectors
 	public static final cselector stepTwoIdentifierGR =new cselector("css,.ship-method-panel .csb-panels-list-box","css,.t-checkout-shipping-and-gift__help-btn");
 	public static final cselector stepTwoIdentifier2 =new cselector("css,.ship-method-panel","css,.t-checkout-step2__truck-delivery-panel");
 	public static final cselector stepTwoIdentifier2GR =new cselector("css,.ship-method-panel .csb-panels-list-box","css,.t-checkout-step2__truck-delivery-panel");
-
-
+	public static final cselector stepTwoPhoneNumber =new cselector("css,#scheduling_phone_number.c-custom-input");
 	
 	//Step 3
 	public static final cselector thirdStepNextButton = new cselector("css,.billing-address .next-botton-panel .primary-button","css,.c-checkout-accordion__next-cancel-panel .pw--primary");

@@ -12,6 +12,7 @@ public class WistListGuestValidation extends SelTestCase {
 			Common.refreshBrowser();
 		String selectedProductName = PDP.NavigateToPDP("Espadrilles");
 		PDP_selectSwatches.selectSwatches();
+		Thread.sleep(3500);
 		PDP_WL.clickAddToWLGR();
 		sassert().assertTrue(PDP_WL.validateSelectRegistryOrWishListModalIsDisplayed(), " Select A Registry Or Wish list modal is not dispayed");
 		PDP_WL.clickOnCreateNewWL();

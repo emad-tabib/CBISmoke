@@ -6,6 +6,8 @@ import java.util.NoSuchElementException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+
+import com.generic.page.HomePage;
 import com.generic.page.PDP_BD;
 import com.generic.selector.PDPSelectors;
 import com.generic.setup.Common;
@@ -20,7 +22,11 @@ public class PDP_selectSwatches extends SelTestCase{
 	public static void selectSwatches() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			Boolean bundle = PDP.bundleProduct();
+			Boolean bundle;
+			if(!isRY())
+				bundle = PDP.bundleProduct();
+			else
+				bundle = false;
 			if (isFGGR() || isBD()) {
 				String ProductID = null;
 				if (!isMobile() && bundle)
@@ -28,8 +34,10 @@ public class PDP_selectSwatches extends SelTestCase{
 				selectSwatches(bundle, ProductID);
 			} else if (isGHRY()) {
 				String ProductID = null;
-				if (bundle)
+				if (bundle) {
+			
 					ProductID = PDP.getProductID(0);
+				}
 				GHRYselectSwatches(bundle, ProductID);
 			}
 
@@ -335,7 +343,7 @@ public class PDP_selectSwatches extends SelTestCase{
 		public static void GHRYselectSwatches(Boolean bundle, String ProductID) throws Exception {
 			try {
 				getCurrentFunctionName(true);
-				GHRYselectColor(bundle, ProductID);
+				GHRYselectColorTemplate(bundle, ProductID);
 				int numberOfPanels = GHRYNumberOfOptions(bundle);
 				logs.debug("numberOfPanels: " + numberOfPanels);
 
@@ -365,7 +373,9 @@ public class PDP_selectSwatches extends SelTestCase{
 				for (int index = 0; index < list.size(); index++) {
 					String classValue = SelectorUtil.getAttrString(subStrArr, "class", index);
 					if (!classValue.contains("no-available") && !classValue.contains("disabled")) {
-						String nthSel = subStrArr ;//+ ">div";
+						String nthSel = subStrArr;
+						if (!isMobile())
+							nthSel = subStrArr + ">div";
 						WebElement item = getDriver().findElements(By.cssSelector(nthSel)).get(index);
 						JavascriptExecutor jse = (JavascriptExecutor) getDriver();
 						jse.executeScript("arguments[0].scrollIntoView(false)", item);
@@ -382,11 +392,13 @@ public class PDP_selectSwatches extends SelTestCase{
 					logs.debug(MessageFormat.format(LoggingMsg.FORMATTED_ERROR_MSG, e.getMessage()));
 					logs.debug("Refresh the browser to close the Intercepted windows");
 					Common.refreshBrowser();
+					if (isMobile())
+						Thread.sleep(12000);
 					PDP.clickBundleItems();
 					// update the product id after the refresh
 					if (bundle)
 						ProductID = PDP.getProductID(0);
-					GHRYselectColor(bundle, ProductID);
+					GHRYselectColorTemplate(bundle, ProductID);
 					GHRYselectSize(bundle, ProductID);
 				} else {
 					logs.debug(MessageFormat.format(
@@ -409,16 +421,18 @@ public class PDP_selectSwatches extends SelTestCase{
 				if (!(e.getMessage() == null) && e.getMessage().contains("element click intercepted")) {
 					logs.debug(MessageFormat.format(LoggingMsg.FORMATTED_ERROR_MSG, e.getMessage()));
 					logs.debug("Refresh the browser to close the Intercepted windows");
-					Common.refreshBrowser();
-					PDP.clickBundleItems();
+					getDriver().navigate().refresh();
+					if (isMobile())
+						Thread.sleep(12000);
 					// update the product id after the refresh
-					if (bundle)
+					if (bundle) {
+						PDP.clickBundleItems();
 						ProductID = PDP.getProductID(0);
+					}
 					GHRYselectColorTemplate(bundle, ProductID);
 				} else {
-					logs.debug(MessageFormat.format(
-							ExceptionMsg.PageFunctionFailed + " Aplication was not able to select color swatch",
-							new Object() {
+					logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed
+							+ " Aplication was not able to select color swatch", new Object() {
 							}.getClass().getEnclosingMethod().getName()));
 					throw e;
 				}
@@ -456,14 +470,32 @@ public class PDP_selectSwatches extends SelTestCase{
 					}
 				}
 				getCurrentFunctionName(false);
-			} catch (NoSuchElementException e) {
-				logs.debug(MessageFormat.format(
-						ExceptionMsg.PageFunctionFailed + "Color option selector was not found by seleniuem", new Object() {
-						}.getClass().getEnclosingMethod().getName()));
-				throw e;
+			} catch (Exception e) {
+				if (!(e.getMessage() == null) && e.getMessage().contains("element click intercepted")) {
+					logs.debug(MessageFormat.format(LoggingMsg.FORMATTED_ERROR_MSG, e.getMessage()));
+					logs.debug("Refresh the browser to close the Intercepted windows");
+					getDriver().navigate().refresh();
+					if (isMobile()) {
+						Thread.sleep(8000);
+						if (isGH())
+							HomePage.closeReferandEarnModal();
+					}
+					// update the product id after the refresh
+					if (bundle) {
+						PDP.clickBundleItems();
+						ProductID = PDP.getProductID(0);
+					}
+					GHRYselectColorTemplate(bundle, ProductID);
+				} else {
+					logs.debug(MessageFormat.format(
+							ExceptionMsg.PageFunctionFailed + " Aplication was not able to select color swatch",
+							new Object() {
+							}.getClass().getEnclosingMethod().getName()));
+					throw e;
+				}
 			}
 		}
-		
+
 		/**
 		 * Get the number options for GH & RY.
 		 *

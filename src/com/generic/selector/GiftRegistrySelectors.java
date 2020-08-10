@@ -4,7 +4,7 @@ import com.generic.setup.cselector;
 
 public class GiftRegistrySelectors {
 	public static final cselector GH_GRLink=new cselector("css,.col-links2 > li:nth-child(4) > a");
-	public static final cselector GHSaveToGR = new cselector("css,.gwt-product-detail-buttons-container:nth-child(2) > button","css,.gwt-bundle-add-to-gift-registry-btn #gwt-add-to-gift-registry-btn", "css,.u-margin-end-md > button");
+	public static final cselector GHSaveToGR = new cselector("css,.gwt-product-detail-buttons-container:nth-child(2) > button", "css,.u-margin-end-md > button");
 	public static final cselector GHAddGRProductToCart = new cselector("css,.options >div> a", "css,.t-registry-list-product-list__add-to-cart-btn.pw-button");
 
 	public static final cselector GHHomePageMenueToGR = new cselector("css,div:nth-child(1)>.pw-accordion__header");

@@ -156,6 +156,7 @@ public class PDP_Personalization extends SelTestCase {
 				if (isBD())
 					addPersonalizedButtonSelector = "css,#" + ProductID + " "
 							+ PDPSelectors.BDaddPersonalizedButton.get().replace("css,", "");
+
 				else {
 					addPersonalizedButtonSelector = "css,#" + ProductID + ">"
 							+ PDPSelectors.addPersonalizedButton.get().replace("css,", "");

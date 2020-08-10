@@ -21,7 +21,7 @@ public class GiftRegistry extends SelTestCase {
 	public static String eventDateMonth;
 	public static String eventDateDay;
 	public static String eventDateYear;
-	public static String registryName;
+	public static ThreadLocal<String> registryName = new ThreadLocal<String>();
 	public static String emptyMessage;
 	public static String BDemptymessage = "your gift registry is currently empty. browse the site and click \"add to gift registry\" on product you like.";
 	public static String password;
@@ -60,7 +60,7 @@ public class GiftRegistry extends SelTestCase {
 	public static void setRegistryInformtion(String registryType, String eventDMonth, String eventDDay,
 			String eventDYear, String emptyMsg, String searchTerm) {
 		type = registryType;
-		registryName = RandomUtilities.getRandomName();
+		registryName.set(RandomUtilities.getRandomName());
 		eventDateMonth = eventDMonth;
 		eventDateDay = eventDDay;
 		eventDateYear = eventDYear;
@@ -77,7 +77,7 @@ public class GiftRegistry extends SelTestCase {
 	 */
 	public static void setRegistryName(String name) {
 		logs.debug("Set registry value: " + name);
-		registryName = name;
+		registryName.set(name);
 	}
 
 	/**
@@ -194,9 +194,9 @@ public class GiftRegistry extends SelTestCase {
 
 			SelectorUtil.initializeSelectorsAndDoActions(GiftRegistrySelectors.eventType.get(), type);
 			if (registryName.equals("")) {
-				registryName = RandomUtilities.getRandomName();
+				registryName.set(RandomUtilities.getRandomName());
 			}
-			SelectorUtil.initializeSelectorsAndDoActions(GiftRegistrySelectors.registryName.get(), registryName);
+			SelectorUtil.initializeSelectorsAndDoActions(GiftRegistrySelectors.registryName.get(), registryName.get());
 
 			if (isMobile()) {
 				List<WebElement> eventDataList = SelectorUtil.getElementsList(GiftRegistrySelectors.eventDay.get());
@@ -311,7 +311,7 @@ public class GiftRegistry extends SelTestCase {
 			SelectorUtil.initializeSelectorsAndDoActions(GiftRegistrySelectors.registryInfo.get());
 			selectedRegistry = SelectorUtil.textValue.get();
 
-			sassert().assertTrue(selectedRegistry.contains(registryName),
+			sassert().assertTrue(selectedRegistry.contains(registryName.get()),
 					"Error in selected registry, expected " + registryName + " : " + selectedRegistry);
 
 			// Validate the empty registry.
@@ -458,7 +458,7 @@ public class GiftRegistry extends SelTestCase {
 				SelectorUtil.initializeSelectorsAndDoActions(GRListBoxSelector);
 				String selectedGiftRegistry = SelectorUtil.textValue.get();
 
-				if (!selectedGiftRegistry.contains(registryName)) {
+				if (!selectedGiftRegistry.contains(registryName.get())) {
 					// Selected created registry.
 					SelectorUtil.initializeSelectorsAndDoActions(GRListBoxSelector,
 							MessageFormat.format(commands.actions.selectOption, "\"" + registryName + "\""));
@@ -579,7 +579,7 @@ public class GiftRegistry extends SelTestCase {
 					SelectorUtil.initializeSelectorsAndDoActions(GRListBoxSelector);
 					String selectedGiftRegistry = SelectorUtil.textValue.get();
 
-					if (!selectedGiftRegistry.contains(registryName)) {
+					if (!selectedGiftRegistry.contains(registryName.get())) {
 						// Selected created registry.
 						SelectorUtil.initializeSelectorsAndDoActions(GRListBoxSelector,
 								MessageFormat.format(commands.actions.selectOption, "\"" + registryName + "\""));

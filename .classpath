@@ -47,5 +47,6 @@
 	<classpathentry kind="lib" path="C:/SelAssets/jars/Sel3_141_guava-25.0-jre.jar"/>
 	<classpathentry kind="lib" path="C:/SelAssets/jars/Sel3_141_okhttp-3.11.0.jar"/>
 	<classpathentry kind="lib" path="C:/SelAssets/jars/Sel3_141_okio-1.14.0.jar"/>
+	<classpathentry kind="src" path="AutomationTemplate"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

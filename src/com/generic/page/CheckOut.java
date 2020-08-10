@@ -461,8 +461,14 @@ public class CheckOut extends SelTestCase {
 	public static void clickMultipleAddressesTab() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			List<WebElement> tabs = SelectorUtil.getAllElements(CheckOutSelectors.multipleAddressesTab.get());
-			tabs.get(1).click();
+
+			if (!isMobile()) {
+				List<WebElement> tabs = SelectorUtil.getAllElements(CheckOutSelectors.multipleAddressesTab.get());
+				tabs.get(1).click();
+			} else {
+				SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.multipleAddressesTab.get(), "index,1");
+			}
+			
 			logs.debug(MessageFormat.format(LoggingMsg.SEL_TEXT, "Clicking multiple address tab"));
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
@@ -620,6 +626,25 @@ public class CheckOut extends SelTestCase {
 		}
 	}
 
+	// Done CBI
+	public static void typePhoneInStepTwoforTruckDeliveryProducts(String phone) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			if (isFGGR())
+				if (!SelectorUtil.isNotDisplayed(CheckOutSelectors.stepTwoPhoneNumber.get()))
+					SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.stepTwoPhoneNumber.get(), phone);
+
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(
+					ExceptionMsg.PageFunctionFailed + "Truck delivery Phone field selector was not found by selenium",
+					new Object() {
+					}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+
+	}
+	
 	public static void watiStepTobeready() throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -688,6 +713,23 @@ public class CheckOut extends SelTestCase {
 			throw e;
 		}
 	}
+	
+	// Done CBI
+		public static void fillEmailBillingAddress(String email_address) throws Exception {
+			try {
+				getCurrentFunctionName(true);
+				// Fill email field
+				SelectorUtil.initializeSelectorsAndDoActions(CheckOutSelectors.emailBillingAddress.get(),email_address);
+				getCurrentFunctionName(false);
+
+			} catch (NoSuchElementException e) {
+				logs.debug(MessageFormat.format(
+						ExceptionMsg.PageFunctionFailed + "email in belling address selector was not found by selenium ",
+						new Object() {
+						}.getClass().getEnclosingMethod().getName()));
+				throw e;
+			}
+		}
 
 	// Done CBI
 	public static String getShippingCosts() throws Exception {
@@ -988,7 +1030,13 @@ public class CheckOut extends SelTestCase {
 
 			for (int count = 0; count < prodCount; count++) {
 				Thread.sleep(3000);
-				PDPs.navigateToRandomPDP();
+				PDP.NavigateToPDP();
+				Thread.sleep(3000);
+				if (isGH() && isMobile())
+					HomePage.closeReferandEarnModal();
+				if (isMobile() && PDP.bundleProduct())
+					PDP.clickBundleItems();
+				PDP_selectSwatches.selectSwatches();
 				Thread.sleep(3000);
 				PDP_cart.clickAddToCartButtonNoBundle();
 				Thread.sleep(3500);

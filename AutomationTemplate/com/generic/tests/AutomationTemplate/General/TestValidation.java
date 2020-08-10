@@ -1,4 +1,4 @@
-package com.generic.tests.FG.Cart;
+package com.generic.tests.AutomationTemplate.General;
 
 import java.net.URI;
 import java.util.List;
@@ -7,7 +7,7 @@ import com.generic.page.CheckOut;
 import com.generic.setup.SelTestCase;
 import com.generic.page.PDP.*;
 
-public class CartValidation extends SelTestCase {
+public class TestValidation extends SelTestCase {
 
 	public static void addProductToCart() throws Exception {
 		PDP.NavigateToPDP();
@@ -22,7 +22,8 @@ public class CartValidation extends SelTestCase {
 
 	}
 
-	public static void cartValidation() throws Exception {
+	//TODO [SAS] : fill this function
+	public static void testValidationfunction() throws Exception {
 		// Search for products and add them to cart
 		addProductToCart();
 
@@ -38,7 +39,7 @@ public class CartValidation extends SelTestCase {
 
 		Cart.closeGWPIfExsist();
 
-		// Check addition of products and thier images and prices
+		// Check addition of products and their images and prices
 		sassert().assertTrue(Cart.isItemAdded(), "Added item to cart validation has some problems");
 		sassert().assertTrue(Cart.addedItemImageValidation(), "Added item image validation has some problems");
 		sassert().assertTrue(Cart.checkAddedItemPriceDisplay(),

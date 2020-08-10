@@ -33,6 +33,7 @@ public class PDP extends SelTestCase {
 			// TODO: to use this process on all brands
 			if (isGHRY() && isiPad() || isBD() && isiPad()) {
 				PLP.clickSearch(SearchTerm);
+				Thread.sleep(4500);
 				if (SelectorUtil.isElementExist(By.cssSelector(PLPSelectors.PLPPageSelector.get()))) {
 					itemName = PLP.pickPLPFirstProduct();
 				}
@@ -273,6 +274,7 @@ public class PDP extends SelTestCase {
 	public static String getProductID(int index) throws Exception {
 		try {
 			getCurrentFunctionName(true);
+			String ID;
 			String Str = PDPSelectors.itemsID.get();
 			if (isGH()) {
 				if (isMobile()) {
@@ -280,7 +282,7 @@ public class PDP extends SelTestCase {
 				}
 				Str = PDPSelectors.GHItemsID.get();
 			}
-			
+
 			if (isBD()) {
 				if (isMobile()) {
 					Thread.sleep(2500);
@@ -288,7 +290,8 @@ public class PDP extends SelTestCase {
 				Str = PDPSelectors.BDitemsID.get();
 			}
 			
-			String ID = SelectorUtil.getAttrString(Str, "id", index);
+				ID = SelectorUtil.getAttrString(Str, "id", index);
+
 			getCurrentFunctionName(false);
 			return ID;
 		} catch (NoSuchElementException e) {
@@ -299,6 +302,29 @@ public class PDP extends SelTestCase {
 		}
 	}
 
+	public static String getProductClass(int index) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			String ID;
+			String Str = null;
+			if (isGH()) {
+				if (isMobile()) {
+					Thread.sleep(2500);
+				}
+				Str = PDPSelectors.GHItemsID.get();
+			}
+				ID = SelectorUtil.getAttrString(Str, "class", index);
+
+			getCurrentFunctionName(false);
+			return ID;
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(
+					ExceptionMsg.PageFunctionFailed + "Product calss selector was not found by selenium", new Object() {
+					}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+	
 	// done - SMK
 	public static boolean bundleProduct() throws Exception {
 		return bundleProduct(0);
@@ -309,8 +335,12 @@ public class PDP extends SelTestCase {
 		getCurrentFunctionName(true);
 		try {
 			Thread.sleep(4500);
-			if(isMobile())
-			getDriver().switchTo().frame(PDPSelectors.progressiveFrame.get());
+			if(isMobile()) {
+				logs.debug("switch To progressiveFrame");
+				getDriver().switchTo().frame(PDPSelectors.progressiveFrame.get());
+				logs.debug("Successfully switched to the progressiveFrame");
+			}
+			
 			
 			String PDPChecker = "return gwtDynamic.coremetrics.isSingleProduct;";
 			Boolean bundle = false;
