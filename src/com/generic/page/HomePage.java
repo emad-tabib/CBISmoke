@@ -1080,5 +1080,22 @@ public class HomePage extends SelTestCase {
 		}
 
 	}
+	
+	public static void closeReferandEarnModal() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			logs.debug("close Refer and Earn Modal");
+			if(SelectorUtil.isDisplayed(HomePageSelectors.closeReferandEarnModal.get())) {
+				SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.closeReferandEarnModal.get());
+				}
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(
+					ExceptionMsg.PageFunctionFailed + "closeReferandEarnModal selector cant be found by selenium",
+					new Object() {
+					}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
 
 }// End of class

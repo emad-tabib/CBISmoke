@@ -6,6 +6,8 @@ import java.util.NoSuchElementException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+
+import com.generic.page.HomePage;
 import com.generic.page.PDP_BD;
 import com.generic.selector.PDPSelectors;
 import com.generic.setup.Common;
@@ -341,7 +343,7 @@ public class PDP_selectSwatches extends SelTestCase{
 		public static void GHRYselectSwatches(Boolean bundle, String ProductID) throws Exception {
 			try {
 				getCurrentFunctionName(true);
-				GHRYselectColor(bundle, ProductID);
+				GHRYselectColorTemplate(bundle, ProductID);
 				int numberOfPanels = GHRYNumberOfOptions(bundle);
 				logs.debug("numberOfPanels: " + numberOfPanels);
 
@@ -396,7 +398,7 @@ public class PDP_selectSwatches extends SelTestCase{
 					// update the product id after the refresh
 					if (bundle)
 						ProductID = PDP.getProductID(0);
-					GHRYselectColor(bundle, ProductID);
+					GHRYselectColorTemplate(bundle, ProductID);
 					GHRYselectSize(bundle, ProductID);
 				} else {
 					logs.debug(MessageFormat.format(
@@ -473,8 +475,11 @@ public class PDP_selectSwatches extends SelTestCase{
 					logs.debug(MessageFormat.format(LoggingMsg.FORMATTED_ERROR_MSG, e.getMessage()));
 					logs.debug("Refresh the browser to close the Intercepted windows");
 					getDriver().navigate().refresh();
-					if (isMobile())
-						Thread.sleep(12000);
+					if (isMobile()) {
+						Thread.sleep(8000);
+						if (isGH())
+							HomePage.closeReferandEarnModal();
+					}
 					// update the product id after the refresh
 					if (bundle) {
 						PDP.clickBundleItems();
