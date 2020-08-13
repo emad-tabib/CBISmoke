@@ -5,7 +5,7 @@
 
 	<test name="checkout chrome">
 		<parameter name="browserName" value="chrome"></parameter>
-		<parameter name="Env" value="prod"></parameter>
+		<parameter name="Env" value="stagewcs"></parameter>
 		<parameter name="Brand" value="GH"></parameter>
 		<classes>
 			<class name="com.generic.tests.GH.checkout.Base_checkout" />
@@ -16,7 +16,7 @@
 	<test name="Registration Tests_iPad">
 
 		<parameter name="browserName" value="mobile_iPad"></parameter>
-		<parameter name="Env" value="prod"></parameter>
+		<parameter name="Env" value="stagewcs"></parameter>
 		<parameter name="Brand" value="GH"></parameter>
 		<classes>
 			<class name="com.generic.tests.GH.checkout.Base_checkout" />
@@ -26,7 +26,7 @@
 
 	<test name="Registration iPhone">
 		<parameter name="browserName" value="mobile_iPhone X"></parameter>
-		<parameter name="Env" value="prod"></parameter>
+		<parameter name="Env" value="stagewcs"></parameter>
 		<parameter name="Brand" value="GH"></parameter>
 		<classes>
 			<class name="com.generic.tests.GH.checkout.Base_checkout" />
