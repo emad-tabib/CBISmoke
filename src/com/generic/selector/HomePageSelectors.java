@@ -137,5 +137,8 @@ public class HomePageSelectors
 
     public static final cselector product =  new cselector("css,div.unbxd-products-dispaly-container > div > div > div > a","css,footer > div.c-custom-accordion"); 
     public static final cselector productContainer =  new cselector("css,div.unbxd-products-display-panel","css,footer > div.c-custom-accordion"); 
+
     public static final cselector closeReferandEarnModal =  new cselector("extole-js-close-button extole-controls extole-controls--close"); 
+
 }
+
