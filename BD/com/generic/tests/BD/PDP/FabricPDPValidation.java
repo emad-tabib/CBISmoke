@@ -19,6 +19,7 @@ public class FabricPDPValidation extends SelTestCase {
 		sassert().assertTrue(PDP_BD.validateFabricAddToCartIsEnabled(), "Add to Cart button is not enabled");
 		//there is No bottom price.
 		PDP_BD.clickAddToCartButton();
+		Thread.sleep(2000);
 		sassert().assertTrue(PDP_SC_CS.validateProductIsAddedToCart(), "Product is not added successfully");
 		PDP_BD.pickOneQuantity();
 		PDP_BD.clickAddToFreeSwatch();
