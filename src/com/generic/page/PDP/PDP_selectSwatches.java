@@ -347,7 +347,7 @@ public class PDP_selectSwatches extends SelTestCase{
 		public static void GHRYselectSwatches(Boolean bundle, String ProductID) throws Exception {
 			try {
 				getCurrentFunctionName(true);
-				GHRYselectColor(bundle, ProductID);
+				GHRYselectColorTemplate(bundle, ProductID);
 				int numberOfPanels = GHRYNumberOfOptions(bundle);
 				logs.debug("numberOfPanels: " + numberOfPanels);
 
@@ -407,7 +407,7 @@ public class PDP_selectSwatches extends SelTestCase{
 					// update the product id after the refresh
 					if (bundle)
 						ProductID = PDP.getProductID(0);
-					GHRYselectColor(bundle, ProductID);
+					GHRYselectColorTemplate(bundle, ProductID);
 					GHRYselectSize(bundle, ProductID);
 				} else {
 					logs.debug(MessageFormat.format(
@@ -488,7 +488,9 @@ public class PDP_selectSwatches extends SelTestCase{
 					getDriver().navigate().refresh();
 					if (isMobile()) {
 						Thread.sleep(12000);
-						HomePage.closeReferandEarnModal();
+				
+						if (isGH())
+							HomePage.closeReferandEarnModal();
 					}
 					// update the product id after the refresh
 					if (bundle) {
