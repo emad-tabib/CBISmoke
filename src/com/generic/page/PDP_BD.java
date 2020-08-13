@@ -11,6 +11,7 @@ import com.generic.selector.PDPSelectors;
 import com.generic.setup.ExceptionMsg;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
+import com.generic.tests.BD.PDP.PDPBase;
 import com.generic.util.SelectorUtil;
 
 public class PDP_BD extends SelTestCase {
@@ -119,7 +120,12 @@ public class PDP_BD extends SelTestCase {
 							Actions action = new Actions(getDriver());
 							action.moveToElement(element).click().build().perform();
 
-						} else {
+						} else if(!isMobile() && PDPBase.isVK) {
+							PDP_selectSwatches
+							.selectNthOptionFirstSwatchBundle("css,#" + ProductID + " " + MessageFormat
+									.format(PDPSelectors.BDVKimageOption.get(), i + 1, 1).replace("css,", ""));
+						}
+						else {
 							PDP_selectSwatches
 									.selectNthOptionFirstSwatchBundle("css,#" + ProductID + " " + MessageFormat
 											.format(PDPSelectors.BDimageOption.get(), i + 1, 1).replace("css,", ""));
@@ -338,19 +344,24 @@ public class PDP_BD extends SelTestCase {
 	}
 
 	public static boolean validatePDP_PC_TopPriceIsDisplayed() throws Exception {
-		try {
-			boolean isDisplayed = false;
-			isDisplayed = SelectorUtil.isDisplayed(PDPSelectors.BDPDP_PCtopPrice.get());
-			getCurrentFunctionName(false);
-			return isDisplayed;
-		} catch (NoSuchElementException e) {
-			logs.debug(MessageFormat.format(
-					ExceptionMsg.PageFunctionFailed + "Top price  not displayed, a selector was not found by selenium",
-					new Object() {
-					}.getClass().getEnclosingMethod().getName()));
-			throw e;
-		}
-
+			
+			try {
+				boolean isDisplayed = false;
+				if(!isMobile()) {
+					isDisplayed = SelectorUtil.isDisplayed(PDPSelectors.BDPDP_PCtopPrice.get());
+					getCurrentFunctionName(false);
+					return isDisplayed;
+				}else {
+					return true;
+				}
+			} catch (NoSuchElementException e) {
+				logs.debug(MessageFormat.format(
+						ExceptionMsg.PageFunctionFailed + "Top price  not displayed, a selector was not found by selenium",
+						new Object() {
+						}.getClass().getEnclosingMethod().getName()));
+				throw e;
+			}
+		
 	}
 
 	public static String validatePDP_PC_BottomPriceIsDisplayed() throws Exception {
@@ -367,7 +378,7 @@ public class PDP_BD extends SelTestCase {
 			throw e;
 		}
 
-	}
+	} 
 
 	public static void clickOnConfigureBtn(String ProductID) throws Exception {
 		try {

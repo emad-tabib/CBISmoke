@@ -7,6 +7,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.xml.XmlTest;
+
+import com.generic.page.HomePage;
 import com.generic.page.PDP.*;
 import com.generic.setup.Common;
 import com.generic.setup.LoggingMsg;
@@ -23,7 +25,7 @@ public class PDPBase extends SelTestCase {
 	public static final String bundlePDP = "Validate PDP Bundle active elements";
 	public static final String personalizedPDP = "Validate PDP Personalized active elements";
 	public static final String singlePDPSearchTerm = "shoes";
-	public static final String BundlePDPSearchTerm = "1508";
+	public static final String BundlePDPSearchTerm = "44611";
 	public static final String personalizedPDPSearchTerm = "2750";
 
 	public static final String wishListGuestValidation = "Wish List Guest Validation";
