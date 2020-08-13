@@ -8,6 +8,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.xml.XmlTest;
 import java.util.LinkedHashMap;
+
+import com.generic.page.HomePage;
 import com.generic.setup.Common;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
@@ -74,8 +76,11 @@ public class Base_checkout extends SelTestCase {
 		int productsCount = Integer.parseInt(productsNumber);
 
 		try {
-			Common.refreshBrowser();
-
+			
+		//	Common.refreshBrowser();
+			if(isMobile()) {
+				HomePage.closeReferandEarnModal();
+			}
 			// Guest user with multiple addresses
 			if (proprties.contains(freshUserMultipleAddresses)) {
 				GuestCheckoutMultipleAddress.startTest(productsCount, addressDetails, paymentDetails);

@@ -335,8 +335,12 @@ public class PDP extends SelTestCase {
 		getCurrentFunctionName(true);
 		try {
 			Thread.sleep(4500);
-			if(isMobile())
-			getDriver().switchTo().frame(PDPSelectors.progressiveFrame.get());
+			if(isMobile()) {
+				logs.debug("switch To progressiveFrame");
+				getDriver().switchTo().frame(PDPSelectors.progressiveFrame.get());
+				logs.debug("Successfully switched to the progressiveFrame");
+			}
+			
 			
 			String PDPChecker = "return gwtDynamic.coremetrics.isSingleProduct;";
 			Boolean bundle = false;

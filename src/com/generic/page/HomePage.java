@@ -1097,6 +1097,5 @@ public class HomePage extends SelTestCase {
 			throw e;
 		}
 	}
-	
 
 }// End of class
