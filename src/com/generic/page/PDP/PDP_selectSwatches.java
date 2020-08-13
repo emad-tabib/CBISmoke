@@ -382,7 +382,7 @@ public class PDP_selectSwatches extends SelTestCase{
 					if (!classValue.contains("no-available") && !classValue.contains("disabled")) {
 						String nthSel = subStrArr;
 						if (!isMobile())
-							nthSel = subStrArr; //+ ">div" ;
+							nthSel = subStrArr+ ">div" ;
 						WebElement item = getDriver().findElements(By.cssSelector(nthSel)).get(index);
 						JavascriptExecutor jse = (JavascriptExecutor) getDriver();
 						jse.executeScript("arguments[0].scrollIntoView(false)", item);
