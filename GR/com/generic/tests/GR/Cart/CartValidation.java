@@ -46,21 +46,23 @@ public class CartValidation extends SelTestCase {
 		sassert().assertTrue(Cart.checkAddedItemTotalPriceDisplay(),
 				"Added item total price displayed validation has some problems");
 
-		
-		if(Cart.isItemEditable()) {
-		List <String> optionsBefore = Cart.getFirstSavedItemsOptions();
-		Thread.sleep(2000);
+		Cart.closeGWPIfExsist();
+		if (Cart.isItemEditable()) {
+			List<String> optionsBefore = Cart.getFirstSavedItemsOptions();
+			Thread.sleep(2000);
 
-		// Perform edit on first product in cart
-		Cart.editOptions();
+			// Perform edit on first product in cart
+			Cart.editOptions();
 
-		Thread.sleep(3000);
+			Thread.sleep(3000);
 
-		List <String> optionsAfter = Cart.getlastAddedItemsOptions();
+			List<String> optionsAfter = Cart.getlastAddedItemsOptions();
 
-		// Check if the edit is saved correctly
-		sassert().assertTrue(!optionsBefore.equals(optionsAfter), "Edit item validation has some problems");
+			logs.debug("optionsBefore : " + optionsBefore + " , optionsAfter: " + optionsAfter);
+			// Check if the edit is saved correctly
+			sassert().assertTrue(!optionsBefore.equals(optionsAfter), "Edit item validation has some problems");
 		}
+
 		// Save total before moving item
 		String totalPriceBeforeMove = Cart.getTotalPrice();
 
@@ -72,6 +74,8 @@ public class CartValidation extends SelTestCase {
 		// Save total again
 		String totalPriceAfterMove = Cart.getTotalPrice();
 
+		logs.debug(
+				"totalPriceBeforeMove =  " + totalPriceBeforeMove + " , totalPriceAfterMove = " + totalPriceAfterMove);
 		// Compare total values
 		sassert().assertTrue(!totalPriceBeforeMove.equals(totalPriceAfterMove),
 				"Move item to wish list validation has some problems");
@@ -82,6 +86,7 @@ public class CartValidation extends SelTestCase {
 		Thread.sleep(2000);
 		Cart.moveItemsToCartFromWishlist();
 		Thread.sleep(2000);
+
 		// Deletion and total before and after
 		String totalPriceBeforeDelete = Cart.getTotalPrice();
 		Thread.sleep(2000);
@@ -93,6 +98,8 @@ public class CartValidation extends SelTestCase {
 
 		Thread.sleep(2000);
 
+		logs.debug("totalPriceBeforeDelete =" + totalPriceBeforeDelete + " , totalPriceAfterDelete = "
+				+ totalPriceAfterDelete);
 		sassert().assertTrue(!totalPriceBeforeDelete.equals(totalPriceAfterDelete),
 				"Remove item validation has some problems");
 
