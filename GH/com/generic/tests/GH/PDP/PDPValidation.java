@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.generic.page.HomePage;
 import com.generic.page.PDP.*;
 import com.generic.selector.PDPSelectors;
 import com.generic.setup.SelTestCase;
@@ -16,6 +18,9 @@ public class PDPValidation extends SelTestCase {
 	public static void validate(Boolean Personalized) throws Exception {
 		getCurrentFunctionName(true);
 		// Verify user is navigated to PDP page.
+		if(isMobile()) {
+			HomePage.closeReferandEarnModal();
+		}
 		validateIsPDPPage();
 		SelectorUtil.waitGWTLoadedEventPWA();
 
