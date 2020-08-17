@@ -111,7 +111,9 @@ public class PLP extends SelTestCase {
 			Thread.sleep(3000);
 
 			String firstProductName = getfirst3ProductsNames().get(0);
+			if(!isGR()) {
 			SelectFilter();
+			}
 			Thread.sleep(3000);
 			String secondProductName = getfirst3ProductsNames().get(0);
 			result = result && (firstProductName != secondProductName);
@@ -166,11 +168,13 @@ public class PLP extends SelTestCase {
 
 			Thread.sleep(2500);
 
-			if (isGR() || isFG())
+			if (isGR() || isFG()) {
 				sortByPriceHighToLowPLP();
+			}
 
-			else if (isGH() || isRY() || isBD())
+			else if (isGH() || isRY() || isBD()) {
 				sortByProductName();
+			}
 
 			List<String> H2LsortedProductsNames = getfirst3ProductsNames();
 

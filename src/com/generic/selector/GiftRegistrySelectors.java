@@ -4,7 +4,7 @@ import com.generic.setup.cselector;
 
 public class GiftRegistrySelectors {
 	public static final cselector GH_GRLink=new cselector("css,.col-links2 > li:nth-child(4) > a");
-	public static final cselector GHSaveToGR = new cselector("css,.gwt-product-detail-buttons-container:nth-child(2) > button", "css,.u-margin-end-md > button");
+	public static final cselector GHSaveToGR = new cselector("css,.gwt-product-detail-buttons-container:nth-child(2) > button", "css,#gwt-add-to-gift-registry-btn", "css,.u-margin-end-md > button");
 	public static final cselector GHAddGRProductToCart = new cselector("css,.options >div> a", "css,.t-registry-list-product-list__add-to-cart-btn.pw-button");
 
 	public static final cselector GHHomePageMenueToGR = new cselector("css,div:nth-child(1)>.pw-accordion__header");
@@ -66,6 +66,7 @@ public class GiftRegistrySelectors {
 	public static final cselector BDaddGRProductToCart = new cselector("css,#giftRegistryQuantityForm > div > table > tbody > tr:nth-child(4) > td.options > div > a","css,button.pw-button.t-registry-list-product-list__add-to-cart-btn");
 	
 	public static final cselector addCartFromGRModal = new cselector("css,.gwt_addtocart_div", "css,.t-registry-list-product-list__product-add-to-cart .pw-button");
+	public static final cselector FGaddCartFromGRModal = new cselector("css,.gwt_addtocart_div","css,td.options > button", "css,.t-registry-list-product-list__product-add-to-cart .pw-button");
 	public static final cselector BDaddCartFromGRModal = new cselector("css,.gwt_addtocart_div","css,div.t-registry-list-product-list__details-add-container");
 	public static final cselector checkoutFromGRModal = new cselector("css,.gwt_addtocart_div .primary", "css,.t-registry-list-product-list__product-add-to-cart .pw-button");
 	public static final cselector productListGR = new cselector("css,[id*=gwt_giftregistry_item_display]", "css,.t-registry-list-product-list");
@@ -75,7 +76,8 @@ public class GiftRegistrySelectors {
 	public static final cselector BDselectGRModal = new cselector("css,#gwt-add-to-gift-registry-modal > div > table > tbody > tr.dialogMiddle > td.dialogMiddleCenter > div > div > table > tbody > tr:nth-child(3) > td > select", "css,.m-select_wl_gr_modal");
 	public static final cselector saveToGR = new cselector("css,#gift-registry-btn", "css,.t-product-details #gift-registry-btn");
 	// adding this
-	public static final cselector BDsaveToGR = new cselector("css,#scrollableRigthPanel > div > div.qty-and-cta-buttons-panel > div.product-detail-cta-buttons-panel > button.button.primary.add-to-gift-registry-button","css,div.u-margin-start-lg.u-margin-end-lg > button");
+	public static final cselector BDsaveToGR = new cselector("css,.add-to-gift-registry-button","css,div.u-margin-start-lg.u-margin-end-lg > button");
+	//public static final cselector BDsaveToGR = new cselector("css,#scrollableRigthPanel > div > div.qty-and-cta-buttons-panel > div.product-detail-cta-buttons-panel > button.button.primary.add-to-gift-registry-button","css,div.u-margin-start-lg.u-margin-end-lg > button");
 	public static final cselector FGListBoxGR = new cselector("css,.gift-registry-list-bx", "css,.m-select_wl_gr_modal.m-select_wl_gr_modal .c-custom-select");
 	public static final cselector GRListBoxGR = new cselector("css,.gift-registry-list-bx", "css,.m-select_wl_gr_modal.m-select_wl_gr_modal select");
 	
@@ -84,9 +86,15 @@ public class GiftRegistrySelectors {
 	public static final cselector BDAddToGiftRegistySelectButton = new cselector("css,#gwt-add-to-gift-registry-modal .primary", "css,div.pw-sheet__wrapper > div > div.pw-sheet__content > div > div > div.u-padding-top-0.u-position-relative.u-width-full > div:nth-child(2) > div.u-width-1of2.u-margin-start-sm > button");
 
 	public static final cselector addToGiftRegistyModal = new cselector("css,.gwt-added-to-gift-registry-modal", "css,.m-add-to-registry");
+	public static final cselector FGaddToGiftRegistyModal = new cselector("css,#gwt-add-to-gift-registry-modal", "css,.m-add-to-registry");
 	public static final cselector viewRegistryButton = new cselector("css,.gwt-added-to-gift-registry-modal .primary", "css,.m-add-to-registry .pw--secondary");
+	public static final cselector viewRegistryButtonFG = new cselector("css,#gwt-add-to-gift-registry-modal .primary", "css,.m-add-to-registry .pw--secondary");
+
 	public static final cselector viewRegistryButtonBD = new cselector("css,.gwt-added-to-gift-registry-modal .primary", "css,.pw--primary.u-margin-top");
 	public static final cselector productAddedToGRContainer = new cselector("css,.addToCartProductsList", "css,.m-registry-confirmation__image");
+	public static final cselector FGproductAddedToGRContainer = new cselector("css,td > select", "css,.m-registry-confirmation__image");
+	//td > select
+	//#gwt-add-to-gift-registry-modal
 	public static final cselector movableMiniCart = new cselector("css,.c-movable-cart-item-counter-badge");
 	public static final cselector movableMiniCartGR = new cselector("css,div.t-registry-list-product-list.u-width-full > div > div > div > div.u-flex-1.t-registry-list-product-list__product-details > div.t-registry-list-product-list__actions-container > div:nth-child(2) > div.u-flexbox.t-registry-list-product-list__product-qty-wrapper > div.t-registry-list-product-list__product-add-to-cart.u-flex-grow > button");
 
