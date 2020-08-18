@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 import com.generic.page.Cart;
 import com.generic.page.CheckOut;
 import com.generic.page.Registration;
+import com.generic.setup.Common;
 import com.generic.setup.ExceptionMsg;
 import com.generic.setup.GlobalVariables;
 import com.generic.setup.LoggingMsg;
@@ -34,20 +35,30 @@ public class RegisteredCheckoutMultipleAddress extends SelTestCase  {
 
 			//Perform Registration
 			Registration.registerFreshUser(userMail, userPassword, fName, lName);
-
+			Thread.sleep(5000);
+			if (isMobile())
+				Thread.sleep(5000);
 			// Add products to cart
 			CheckOut.addRandomProductTocart(productsCount);
-			
+			if (isMobile())
+				Thread.sleep(5000);
 			// Navigating to Cart by URL
 			CheckOut.navigatetoCart();
 			
 			Thread.sleep(3500);
 
 			Cart.closeGWPIfExsist();
-
+			Thread.sleep(4000);
+			Cart.closeGWPIfExsist();
+			
+			if (isMobile()) {
+				Common.refreshBrowser();
+				Thread.sleep(3000);
+			}
 			// Clicking begin secure checkout
 			CheckOut.clickBeginSecureCheckoutButton();
-
+			Thread.sleep(4000);
+			
 			// Clicking multiple addresses tab
 			CheckOut.clickMultipleAddressesTab();
 
@@ -60,7 +71,7 @@ public class RegisteredCheckoutMultipleAddress extends SelTestCase  {
 
 			CheckOut.proceedToStepTwo();
 
-			Thread.sleep(1500);
+			Thread.sleep(2000);
 
 			// Check number of products in step 2
 			sassert().assertTrue(CheckOut.checkProductsinStepTwo() >= productsCount, "Some products are missing in step 2 ");
@@ -95,6 +106,7 @@ public class RegisteredCheckoutMultipleAddress extends SelTestCase  {
 
 			// Click place order button
 			CheckOut.placeOrder();
+			Thread.sleep(2000);
 			
 			if (isMobile())
 				Thread.sleep(GlobalVariables.deley.placeOrderDelay);

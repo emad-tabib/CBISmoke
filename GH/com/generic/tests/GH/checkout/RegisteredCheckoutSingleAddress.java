@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 import com.generic.page.Cart;
 import com.generic.page.CheckOut;
 import com.generic.page.Registration;
+import com.generic.setup.Common;
 import com.generic.setup.ExceptionMsg;
 import com.generic.setup.GlobalVariables;
 import com.generic.setup.LoggingMsg;
@@ -35,6 +36,7 @@ public class RegisteredCheckoutSingleAddress extends SelTestCase {
 
 			//Perform Registration
 			Registration.registerFreshUser(userMail, userPassword, fName, lName);
+			Thread.sleep(3500);
 			
 			// Add products to cart
 			CheckOut.addRandomProductTocart(productsCount);
@@ -45,7 +47,12 @@ public class RegisteredCheckoutSingleAddress extends SelTestCase {
 			Thread.sleep(3500);
 
 			Cart.closeGWPIfExsist();
-			
+			Thread.sleep(3500);
+			Cart.closeGWPIfExsist();
+			if (isMobile()) {
+				Common.refreshBrowser();
+				Thread.sleep(3000);
+			}
 			// Clicking begin secure checkout
 			CheckOut.clickBeginSecureCheckoutButton();
 			

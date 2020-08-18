@@ -23,21 +23,31 @@ public class GuestCheckoutSingleAddress extends SelTestCase {
 			String orderSubTotal;
 			String orderTax;
 			String orderShipping;
-
+			Thread.sleep(5000);
+			if (isMobile())
+				Thread.sleep(5000);
+			
 			// Add products to cart
 			CheckOut.addRandomProductTocart(productsCount);
-
+			if (isMobile())
+				Thread.sleep(5000);
 			// Navigating to Cart by URL
 			CheckOut.navigatetoCart();
 			
 			Thread.sleep(3500);
 
 			Cart.closeGWPIfExsist();
-			
-			Common.refreshBrowser();
+			Thread.sleep(3500);
+			Cart.closeGWPIfExsist();
+			if (isMobile()) {
+				Common.refreshBrowser();
+				Thread.sleep(3000);
+			}
 			// Clicking begin secure checkout
 			CheckOut.clickBeginSecureCheckoutButton();
-
+			
+			Thread.sleep(4000);
+			
 			// Clicking begin secure checkout
 			CheckOut.clickGuestCheckoutButton();
 
@@ -87,11 +97,11 @@ public class GuestCheckoutSingleAddress extends SelTestCase {
 
 			logs.debug(MessageFormat.format(LoggingMsg.SEL_TEXT, "Shippping cost is: " + orderShipping + " ---- Tax cost is:" + orderTax + " ---- Subtotal is:" + orderSubTotal));
 			
-			Thread.sleep(1500);
+			Thread.sleep(2500);
 
 			// Click place order button
 			CheckOut.placeOrder();
-			
+			Thread.sleep(2500);
 			if (isMobile())
 				Thread.sleep(GlobalVariables.deley.placeOrderDelay);
 			

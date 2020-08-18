@@ -1036,9 +1036,10 @@ public class CheckOut extends SelTestCase {
 					HomePage.closeReferandEarnModal();
 				if (isMobile() && PDP.bundleProduct())
 					PDP.clickBundleItems();
+				Thread.sleep(3000);
 				PDP_selectSwatches.selectSwatches();
 				Thread.sleep(3000);
-				PDP_cart.clickAddToCartButtonNoBundle();
+				PDP_cart.clickAddToCartButton();
 				Thread.sleep(3500);
 			}
 			getCurrentFunctionName(false);
