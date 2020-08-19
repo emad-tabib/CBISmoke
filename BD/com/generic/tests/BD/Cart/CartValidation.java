@@ -11,12 +11,15 @@ public class CartValidation extends SelTestCase {
 
 	public static void addProductToCart(String item) throws Exception {
 		PDP.NavigateToPDP(item);
+		Thread.sleep(3500);
 
 		if (PDP.bundleProduct())
 			PDP.clickBundleItems();
-
+		
+		Thread.sleep(3500);
 		PDP_cart.addProductsToCart();
-
+		
+		Thread.sleep(3500);
 		if (!isMobile())
 			PDP_cart.clickAddToCartCloseBtn();
 
@@ -24,19 +27,20 @@ public class CartValidation extends SelTestCase {
 
 	public static void cartValidation() throws Exception {
 		// Search for products and add them to cart
-		addProductToCart("red");
+		addProductToCart("table");
 
 		URI url = new URI(getURL());
 		getDriver().get("https://" + url.getHost());
 
-		if(isiPad()) {
-		addProductToCart("rugs");
+		if (isiPad()) {
+			addProductToCart("rugs");
+		} else {
+			addProductToCart("red");
 		}
-		else {addProductToCart("red");}
 
 		// Navigate to cart by URL
 		CheckOut.navigatetoCart();
-		
+
 		Thread.sleep(3500);
 
 		Cart.closeGWPIfExsist();
@@ -51,31 +55,38 @@ public class CartValidation extends SelTestCase {
 		sassert().assertTrue(Cart.checkAddedItemTotalPriceDisplay(),
 				"Added item total price displayed validation has some problems");
 
-		List <String>  optionsBefore = Cart.getFirstSavedItemsOptions();
+		Cart.closeGWPIfExsist();
 
-		Thread.sleep(2000);
+		if (Cart.isItemEditable()) {
 
-		// Perform edit on first product in cart
-		Cart.editOptions();
+			List<String> optionsBefore = Cart.getFirstSavedItemsOptions();
 
-		Thread.sleep(3000);
+			Thread.sleep(2000);
 
-		List <String>  optionsAfter = Cart.getlastAddedItemsOptions();
+			// Perform edit on first product in cart
+			Cart.editOptions();
 
-		// Check if the edit is saved correctly
-		sassert().assertTrue(!optionsBefore.equals(optionsAfter), "Edit item validation has some problems");
+			Thread.sleep(3000);
 
+			List<String> optionsAfter = Cart.getlastAddedItemsOptions();
+
+			logs.debug("optionsBefore : " + optionsBefore + " , optionsAfter: " + optionsAfter);
+			// Check if the edit is saved correctly
+			sassert().assertTrue(!optionsBefore.equals(optionsAfter), "Edit item validation has some problems");
+		}
 		// Save total before moving item
 		String totalPriceBeforeMove = Cart.getTotalPrice();
 
 		// Moving item
 		Cart.clickMoveToWishListBtnForSavedItem();
 
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 
 		// Save total again
 		String totalPriceAfterMove = Cart.getTotalPrice();
 
+		logs.debug(
+				"totalPriceBeforeMove =  " + totalPriceBeforeMove + " , totalPriceAfterMove = " + totalPriceAfterMove);
 		// Compare total values
 		sassert().assertTrue(!totalPriceBeforeMove.equals(totalPriceAfterMove),
 				"Move item to wish list validation has some problems");
@@ -85,7 +96,7 @@ public class CartValidation extends SelTestCase {
 
 		Thread.sleep(2000);
 		Cart.moveItemsToCartFromWishlist();
-
+		Thread.sleep(4000);
 		// Deletion and total before and after
 		String totalPriceBeforeDelete = Cart.getTotalPrice();
 
@@ -94,6 +105,8 @@ public class CartValidation extends SelTestCase {
 		Thread.sleep(4000);
 
 		String totalPriceAfterDelete = Cart.getTotalPrice();
+		logs.debug("totalPriceBeforeDelete =" + totalPriceBeforeDelete + " , totalPriceAfterDelete = "
+				+ totalPriceAfterDelete);
 		sassert().assertTrue(!totalPriceBeforeDelete.equals(totalPriceAfterDelete),
 				"Remove item validation has some problems");
 
