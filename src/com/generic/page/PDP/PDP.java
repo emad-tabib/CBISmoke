@@ -553,47 +553,5 @@ public class PDP extends SelTestCase {
 			throw e;
 		}
 	}
-	
-	
-	public static int getItemNumberFromPDPpage() throws Exception {
-		try {
-			getCurrentFunctionName(true);
-			logs.debug("Get item number from PDP Page");
-			String selector = PDPSelectors.itemNumberInGHPDP.get();
-			
-			SelectorUtil.initializeSelectorsAndDoActions(selector);
-			String valueOfitemNumberInGHPDP = SelectorUtil.textValue.get();
-			int itemNumberInGHPDP = Integer.parseInt(valueOfitemNumberInGHPDP.substring(6));
-			getCurrentFunctionName(false);
-			return itemNumberInGHPDP;
-		}
-		catch (NoSuchElementException e) {
-			logs.debug(MessageFormat.format(
-					ExceptionMsg.PageFunctionFailed + "Item NumberIn GH PDP selector was not found by seleniuem", 
-					new Object() {
-					}.getClass().getEnclosingMethod().getName()));
-			throw e;
 
-		}
-	}
-	public static int getItemNumberFromCartModel() throws Exception {
-		try {
-			getCurrentFunctionName(true);
-			logs.debug("Get item number from Cart Model");
-			String selector = PDPSelectors.itemNumberInGHCartModel.get();
-			SelectorUtil.initializeSelectorsAndDoActions(selector);
-			
-			String valueOfitemNumberInGHCartModel = SelectorUtil.textValue.get();
-			int itemNumberInGHCartModel = Integer.parseInt(valueOfitemNumberInGHCartModel );
-			getCurrentFunctionName(false);
-			return itemNumberInGHCartModel;
-		} catch (NoSuchElementException e) {
-			logs.debug(MessageFormat.format(
-					ExceptionMsg.PageFunctionFailed + "Item NumberIn GH Cart Model selector was not found by seleniuem", 
-					new Object() {
-					}.getClass().getEnclosingMethod().getName()));
-			throw e;
-
-		}
-	}
 }

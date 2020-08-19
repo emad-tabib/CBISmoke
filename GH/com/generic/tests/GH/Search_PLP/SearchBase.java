@@ -54,20 +54,18 @@ public class SearchBase extends SelTestCase {
 		String CaseDescription = MessageFormat.format(LoggingMsg.TEST_CASE_DESC, testDataSheet + "." + caseId,
 				this.getClass().getCanonicalName(), desc.replace("\n", "<br>--"));
 		initReportTime();
-		
 		try {
 
 			Common.refreshBrowser();
-			Thread.sleep(5000);
+			
 			// validate the suggested items only on mobile and desktop, as iPad view doesn't
 			// have suggested items
 			if (proprties.contains(RecommendedProductsCase) && !isiPad())
-				Thread.sleep(3000);
-				sassert().assertTrue(PLP.searchAndVerifyResults("blue", true), "Serach validation failed");
+				sassert().assertTrue(PLP.searchAndVerifyResults("red", true), "Serach validation failed");
 
 			// Validate the direct search
 			if (proprties.contains(fullSearchCase))
-				sassert().assertTrue(PLP.searchAndVerifyResults("white", false), "Serach validation failed");
+				sassert().assertTrue(PLP.searchAndVerifyResults("red", false), "Serach validation failed");
 
 			sassert().assertAll();
 			Common.testPass(CaseDescription);

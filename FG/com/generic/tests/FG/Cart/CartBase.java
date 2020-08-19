@@ -53,7 +53,6 @@ public class CartBase extends SelTestCase {
 		initReportTime();
 
 		try {
-			Thread.sleep(2500);
 			CartValidation.cartValidation();
 
 			sassert().assertAll();

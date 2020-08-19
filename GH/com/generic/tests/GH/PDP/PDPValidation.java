@@ -86,26 +86,18 @@ public class PDPValidation extends SelTestCase {
 		sassert().assertTrue(PDP_cart.validateAddToCartIsEnabled(bundle, ProductID), "Add to Cart button is not enabled");
 
 		int quantity = PDP.getQuantity(bundle,"");
-		int itemNumberInPDPpage = PDP.getItemNumberFromPDPpage();
-		logs.debug("itemNumberInPDPpage = " +itemNumberInPDPpage);
+
 		// Click "Add To Cart".
 		PDP_cart.clickAddToCartButton();
-		
 
 		// Verify "add to cart" confirmation is displayed.
 		sassert().assertTrue(PDP_cart.validateProductIsAddedToCart(), "Product is not added successfully");
-	    
-		int itemNumberFromCartModel = PDP.getItemNumberFromCartModel();
-	    logs.debug("itemNumberFromCartModel = " +itemNumberFromCartModel);
-		sassert().assertTrue(itemNumberInPDPpage == itemNumberFromCartModel , "The Item number in PDP Page not match the Item number in cart model");
 
 		int numberOfCartItems = PDP_cart.getNumberOfCartItems();
 		// Verify the product added to the cart.
 		sassert().assertTrue(numberOfCartItems == (quantity + initialNumberOfCartItems) , "There is an error in add item to cart or in mini cart items number.");
 
 		getCurrentFunctionName(false);
-		
-
 	}
 
 

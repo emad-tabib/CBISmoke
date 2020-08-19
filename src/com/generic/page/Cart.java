@@ -1,6 +1,5 @@
 package com.generic.page;
 
-import java.io.Console;
 import java.net.URI;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -21,7 +20,6 @@ public class Cart extends SelTestCase {
 
 	static String editLinkinCartClass = "u-visibility-hidden";
 	static String wishlistPropertyName = "WishList";
-
 	// Done CBI
 	public static String getTaxValue() throws Exception {
 		try {
@@ -117,7 +115,8 @@ public class Cart extends SelTestCase {
 			String subStrArr;
 			if (isGHRY()) {
 				subStrArr = CartSelectors.GHRYfirstAddedItemsRemove.get();
-			} else {
+			}
+			else {
 				subStrArr = CartSelectors.firstAddedItemsRemove.get();
 			}
 			SelectorUtil.initializeSelectorsAndDoActions(subStrArr);
@@ -135,10 +134,11 @@ public class Cart extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			String subStrArr;
-			if (isFG()) {
+			if(isFG()) {
 				subStrArr = CartSelectors.FGfirstAddedItemsMoveToLater.get();
-			} else {
-				subStrArr = CartSelectors.firstAddedItemsMoveToLater.get();
+			}
+			else {
+			subStrArr = CartSelectors.firstAddedItemsMoveToLater.get();
 			}
 			SelectorUtil.initializeSelectorsAndDoActions(subStrArr);
 			getCurrentFunctionName(false);
@@ -211,9 +211,8 @@ public class Cart extends SelTestCase {
 			getCurrentFunctionName(false);
 			return isAdded;
 		} catch (NoSuchElementException e) {
-			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed + "Get number of products in cart failed",
-					new Object() {
-					}.getClass().getEnclosingMethod().getName()));
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed + "Get number of products in cart failed", new Object() {
+			}.getClass().getEnclosingMethod().getName()));
 			throw e;
 		}
 	}
@@ -283,10 +282,10 @@ public class Cart extends SelTestCase {
 	// Done CBI
 	public static List<String> getFirstSavedItemsOptions() throws Exception {
 		try {
-			getCurrentFunctionName(true);
+			getCurrentFunctionName(true);			
 			List<String> values = new ArrayList<String>();
-			List<WebElement> elements = SelectorUtil.getAllElements(CartSelectors.firstAddedItemsOption.get());
-			for (WebElement element : elements) {
+			List<WebElement>  elements = SelectorUtil.getAllElements(CartSelectors.firstAddedItemsOption.get());
+			for(WebElement  element: elements) {
 				values.add(element.getText());
 			}
 			getCurrentFunctionName(false);
@@ -304,8 +303,8 @@ public class Cart extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			List<String> values = new ArrayList<String>();
-			List<WebElement> elements = SelectorUtil.getAllElements(CartSelectors.lastAddedItemsOption.get());
-			for (WebElement element : elements) {
+			List<WebElement>  elements = SelectorUtil.getAllElements(CartSelectors.lastAddedItemsOption.get());
+			for(WebElement  element: elements) {
 				values.add(element.getText());
 			}
 			getCurrentFunctionName(false);
@@ -362,7 +361,6 @@ public class Cart extends SelTestCase {
 					SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.optionsDropDown.get(), "FFF2");
 				} else {
 					List<WebElement> selects = SelectorUtil.getElementsList(CartSelectors.optionsDropDown.get());
-					logs.debug("is optionsDropDown for GH");
 					for (int i = 0; i < selects.size(); i++) {
 						WebElement ele = selects.get(i);
 						Select dropDownList = new Select(ele);
@@ -378,7 +376,6 @@ public class Cart extends SelTestCase {
 					if (imgs.size() < 3)
 						throw new Exception();
 					WebElement ele = imgs.get(imgs.size() - 1);
-					logs.debug("is optionsImage for GH");
 					JavascriptExecutor executor = (JavascriptExecutor) getDriver();
 					executor.executeScript("arguments[0].click();", ele);
 
@@ -386,13 +383,14 @@ public class Cart extends SelTestCase {
 					Thread.sleep(2500);
 
 					// Check if the product has buttons and select one
-					if (isFG()) {
+					if(isFG()) {
 						SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.FGoptionsButton.get());
-					} else if (isGH() || isRY()) {
-						logs.debug("is button for GH");
+						}
+					else if (isGH() || isRY()) {
 						Thread.sleep(3000);
 						SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.GHoptionsButton.get());
-					} else {
+					}
+					else {
 						SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.optionsButton.get());
 					}
 				}
@@ -406,7 +404,7 @@ public class Cart extends SelTestCase {
 					SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.finishAndPreviewButtonGR.get());
 				else if (isGHRY())
 					SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.GHRYfinishAndPreviewButton.get());
-				else if (isFG())
+				else if(isFG())
 					SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.finishAndPreviewButton.get());
 			}
 
@@ -416,8 +414,8 @@ public class Cart extends SelTestCase {
 			else if (isGHRY())
 				SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.GHRYsaveEditsButton.get());
 			else if (isBD()) {
-				SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.saveEditsButtonBD.get());
-			} else
+				SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.saveEditsButtonBD.get());	
+			}else
 				SelectorUtil.initializeSelectorsAndDoActions(CartSelectors.saveEditsButton.get());
 			getCurrentFunctionName(false);
 
@@ -499,8 +497,8 @@ public class Cart extends SelTestCase {
 			getCurrentFunctionName(true);
 			logs.debug(MessageFormat.format(LoggingMsg.GETTING_TEXT,
 					"Navigating to wish list ..." + getCONFIG().getProperty(wishlistPropertyName)));
-			getDriver().get(new URI(getDriver().getCurrentUrl()).resolve(getCONFIG().getProperty(wishlistPropertyName))
-					.toString());
+			getDriver()
+					.get(new URI(getDriver().getCurrentUrl()).resolve(getCONFIG().getProperty(wishlistPropertyName)).toString());
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(
@@ -578,7 +576,7 @@ public class Cart extends SelTestCase {
 			throw e;
 		}
 	}
-
+	
 	public static void closeGWPIfExsist() throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -599,5 +597,6 @@ public class Cart extends SelTestCase {
 			throw e;
 		}
 	}
+	
 
 }// MAIN CLASS

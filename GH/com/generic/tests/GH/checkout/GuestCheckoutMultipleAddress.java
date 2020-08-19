@@ -6,7 +6,6 @@ import java.util.NoSuchElementException;
 
 import com.generic.page.Cart;
 import com.generic.page.CheckOut;
-import com.generic.setup.Common;
 import com.generic.setup.ExceptionMsg;
 import com.generic.setup.GlobalVariables;
 import com.generic.setup.LoggingMsg;
@@ -22,33 +21,24 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 			String orderSubTotal;
 			String orderTax;
 			String orderShipping;
-			Thread.sleep(5000);
-			if (isMobile())
-				Thread.sleep(5000);
+
 			// Add products to cart
 			CheckOut.addRandomProductTocart(productsCount);
-			if (isMobile())
-				Thread.sleep(5000);
+			
 			// Navigating to Cart by URL
 			CheckOut.navigatetoCart();
-
+			
 			Thread.sleep(3500);
 
 			Cart.closeGWPIfExsist();
-			Thread.sleep(3500);
-			Cart.closeGWPIfExsist();
-			if (isMobile()) {
-				Common.refreshBrowser();
-				Thread.sleep(3000);
-			}
+
 			// Clicking begin secure checkout
 			CheckOut.clickBeginSecureCheckoutButton();
-			Thread.sleep(5000);
 
 			// Clicking begin secure checkout
 			CheckOut.clickGuestCheckoutButton();
 
-			Thread.sleep(2500);
+			Thread.sleep(1500);
 
 			// Clicking multiple addresses tab
 			CheckOut.clickMultipleAddressesTab();
@@ -57,18 +47,16 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 
 			// Add addresses for each product and save them
 			CheckOut.fillCheckoutFirstStepAndSave(productsCount, addressDetails);
-
+			
 			Thread.sleep(3000);
 
 			// Proceed to step 2
 			CheckOut.proceedToStepTwo();
-
+			
 			Thread.sleep(3000);
 
 			// Check number of products in step 2
-			sassert().assertTrue(CheckOut.checkProductsinStepTwo() >= productsCount,
-					"Some products are missing in step 2 ,in step 2" + CheckOut.checkProductsinStepTwo()
-							+ " ,But added " + productsCount);
+			sassert().assertTrue(CheckOut.checkProductsinStepTwo() >= productsCount, "Some products are missing in step 2 ,in step 2"+ CheckOut.checkProductsinStepTwo()+" ,But added "+productsCount);
 
 			// Proceed to step 3
 			CheckOut.proceedToStepThree();
@@ -79,9 +67,9 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 
 			// Proceed to step 4
 			CheckOut.proceedToStepFour();
-
+			
 			Thread.sleep(3500);
-
+			
 			// Current PWA issue
 			if (!CheckOut.checkIfinStepFour()) {
 				CheckOut.proceedToStepFour();
@@ -91,7 +79,7 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 			Thread.sleep(2500);
 			// Fill payment details in the last step
 			CheckOut.fillPayment(paymentDetails);
-			Thread.sleep(2500);
+
 			// Saving tax and shipping costs to compare them in the confirmation page
 			orderShipping = CheckOut.getShippingCosts();
 			orderTax = CheckOut.getTaxCosts(GlobalVariables.FG_TAX_CART);
@@ -100,14 +88,14 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 			logs.debug(MessageFormat.format(LoggingMsg.SEL_TEXT, "Shippping cost is: " + orderShipping
 					+ " ---- Tax cost is:" + orderTax + " ---- Subtotal is:" + orderSubTotal));
 			Thread.sleep(1500);
-
+			
 			// Click place order button
 			CheckOut.placeOrder();
-			Thread.sleep(3000);
+			
 			if (isMobile())
 				Thread.sleep(GlobalVariables.deley.placeOrderDelay);
-
-			if (!CheckOut.checkIfOrderPlaced()) {
+			
+			if (isMobile() && !CheckOut.checkIfOrderPlaced() ) {
 
 				// Fill payment details in the last step
 				CheckOut.fillPayment(paymentDetails);
@@ -117,15 +105,16 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 
 			}
 
+
 			Thread.sleep(2000);
 
 			CheckOut.closePromotionalModal();
 
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 
 			CheckOut.closeRegisterButton();
-
-			CheckOut.checkOrderValues(productsCount, orderShipping, orderTax, orderSubTotal);
+			
+			CheckOut.checkOrderValues(productsCount,orderShipping, orderTax,orderSubTotal );
 
 			CheckOut.printOrderIDtoLogs();
 
@@ -139,4 +128,5 @@ public class GuestCheckoutMultipleAddress extends SelTestCase {
 
 	}
 
+	
 }

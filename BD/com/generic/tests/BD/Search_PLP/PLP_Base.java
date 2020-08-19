@@ -52,7 +52,6 @@ public class PLP_Base extends SelTestCase {
 		String CaseDescription = MessageFormat.format(LoggingMsg.TEST_CASE_DESC, testDataSheet + "." + caseId,
 				this.getClass().getCanonicalName(), desc.replace("\n", "<br>--"));
 		initReportTime();
-		Thread.sleep(5000);
 
 		try {
 

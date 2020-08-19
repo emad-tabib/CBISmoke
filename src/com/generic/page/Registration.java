@@ -891,8 +891,7 @@ public class Registration extends SelTestCase {
 
 		Thread.sleep(6500);
 		Registration.fillRegistrationSecondStep(firstName, lastName, companyName, addressDetails);
-		
-		Thread.sleep(6500);
+
 		// Success message needs to be updated on excel to (Welcome to your account at )
 		String registrationSuccessMsg = Registration.getRegistrationSuccessMessage();
 		return registrationSuccessMsg;

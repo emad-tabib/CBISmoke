@@ -17,7 +17,7 @@ import com.generic.util.dataProviderUtils;
 
 public class PLP_Base extends SelTestCase {
 
-	// used sheet in test 
+	// used sheet in test
 	public static final String testDataSheet = SheetVariables.plpSheet;
 
 	public static final String plpTest = "Full PLP";

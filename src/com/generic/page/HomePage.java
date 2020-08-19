@@ -901,7 +901,7 @@ public class HomePage extends SelTestCase {
 
 			// Get the menu items list.
 			if (isBD()) {
-				menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.menuItemsBD.get());//menuItemsBD
+				menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.menuItemsBD.get());
 			} else if (isGH()) {
 				menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.GHmenuItems.get());
 			} else if (isRY()) {

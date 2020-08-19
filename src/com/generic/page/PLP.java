@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -27,7 +25,7 @@ public class PLP extends SelTestCase {
 	}
 
 	// CBI
-	public static boolean searchAndVerifyResults(String SearchTerm, boolean recommendedOption) throws Exception { 
+	public static boolean searchAndVerifyResults(String SearchTerm, boolean recommendedOption) throws Exception {
 		try {
 			getCurrentFunctionName(true);
 			boolean result;
@@ -38,7 +36,7 @@ public class PLP extends SelTestCase {
 			}
 
 			if (!isGH() && isMobile()) {
-				Thread.sleep(10000);
+
 				clickSearchicon();
 			}
 
@@ -47,17 +45,15 @@ public class PLP extends SelTestCase {
 			if (recommendedOption) {
 				if (isBD() && isiPad()) {
 					PLP.clickSearch(SearchTerm);
-					Thread.sleep(5000);
 					productName = PLP.pickPLPFirstProduct();
 				} else {
-					Thread.sleep(10000);
 					productName = pickRecommendedOption();
 				}
 				Thread.sleep(2000);
 				result = verifyPickedProduct(productName);
 			} else {
 				clickSearch(SearchTerm);
-				Thread.sleep(5000);
+				Thread.sleep(2000);
 				result = verifySearchResultPage();
 			}
 			getCurrentFunctionName(false);
@@ -73,13 +69,12 @@ public class PLP extends SelTestCase {
 
 	private static boolean verifySearchResultPage() throws Exception {
 		try {
-			getCurrentFunctionName(true); 
+			getCurrentFunctionName(true);
 			Thread.sleep(3000);
 
 			getDriver().navigate().refresh();
 
 			boolean result = true;
-			Thread.sleep(5000);
 			result = result && verifyProductImagesDisplayed();
 			logs.debug("Products Images check result " + result);
 
@@ -161,22 +156,22 @@ public class PLP extends SelTestCase {
 			getCurrentFunctionName(true);
 			boolean result = true;
 			Thread.sleep(3000);
+
 			result = result && verifyProductImagesDisplayed();
 
 			logs.debug("Image cehck result " + result);
-			Thread.sleep(3000);
-			Common.refreshBrowser();
+
 			sortByPriceLowToHighPLP();
 			List<String> L2HproductsNames = getfirst3ProductsNames();
 
-			Thread.sleep(3000);
+			Thread.sleep(2500);
 
 			if (isGR() || isFG())
 				sortByPriceHighToLowPLP();
 
 			else if (isGH() || isRY() || isBD())
 				sortByProductName();
-			Common.refreshBrowser();
+
 			List<String> H2LsortedProductsNames = getfirst3ProductsNames();
 
 			result = result && compareOperationResults(L2HproductsNames, H2LsortedProductsNames);
@@ -866,7 +861,6 @@ public class PLP extends SelTestCase {
 
 			if (isBD()) {
 				result = SelectorUtil.isImgLoaded(PLPSelectors.productsImagesBD.get());
-				logs.debug("The result after get productsImagesBD selector = "+ result);
 			}
 			else if (isGR()) {
 				result = SelectorUtil.isImgLoaded(PLPSelectors.productsImagesGR.get());
@@ -895,7 +889,6 @@ public class PLP extends SelTestCase {
 			boolean result;
 			String productTitle;
 			// For Product Title
-			Thread.sleep(5000); 
 			productTitle = PDP.getTitle();
 
 			result = (productName.toLowerCase().contains(productTitle.toLowerCase()))
@@ -937,13 +930,11 @@ public class PLP extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			String SelectorSS;
-			Thread.sleep(5000);
+
 			if (isRY()) {
 				SelectorSS = PLPSelectors.recommendedOptionRY.get();
 			} else if (isGH()) {
-				Thread.sleep(5000);
 				SelectorSS = PLPSelectors.GHRecommendedOption.get();
-				logs.debug( "GHRecommendedOption = "+ SelectorSS);
 			} else if (isBD()) {
 				SelectorSS = PLPSelectors.BDrecommendedOption.get();
 			} else {
@@ -951,7 +942,6 @@ public class PLP extends SelTestCase {
 			}
 
 			WebElement recommendedProduct = SelectorUtil.getElement(SelectorSS);
-			logs.debug( "recommendedProduct = "+ recommendedProduct);
 			if (isGH() && isiPad()) {
 				// The GH option didn't contains suggestion product so submit search.
 				// (The unbxd redirect the site to PDP if the search for product id).
@@ -981,7 +971,6 @@ public class PLP extends SelTestCase {
 				logs.debug(MessageFormat.format(LoggingMsg.FORMATTED_ERROR_MSG, e.getMessage()));
 				logs.debug("Refresh the browser to close the Intercepted windows");
 				Common.refreshBrowser();
-				Thread.sleep(10000);
 				pickRecommendedOption();
 				return itemTitle;
 			} else {
@@ -1114,7 +1103,6 @@ public class PLP extends SelTestCase {
 			List<WebElement> menueItems = new ArrayList<WebElement>();
 
 			if (isGH()) {
-				Thread.sleep(5000);
 				menueItems = CLP.menueForGH();
 
 			} else if (isBD()) {
@@ -1190,17 +1178,9 @@ public class PLP extends SelTestCase {
 			getCurrentFunctionName(true);
 			// Get the menu items list in first level.
 			List<WebElement> menuFirstLevelElements = HomePage.getFirstLevelMenuItems();
-			Random randomGenerator= new Random();
-			WebElement randomElement;
-			
-			if( isBD() ) {
-			randomElement = menuFirstLevelElements.get(randomGenerator.nextInt(9)); 
-			}else {
-				
-				randomElement = menuFirstLevelElements
-						.get(randomGenerator.nextInt(menuFirstLevelElements.size() - 1)); 
-			}
-			
+			Random randomGenerator = new Random();
+			WebElement randomElement = menuFirstLevelElements
+					.get(randomGenerator.nextInt(menuFirstLevelElements.size() - 1));
 
 			if (isGH() || isFG() || isGR()) {
 				getDriver().get(randomElement.getAttribute("href"));
@@ -1218,7 +1198,7 @@ public class PLP extends SelTestCase {
 
 					SelectorUtil.initializeSelectorsAndDoActions(PLPSelectors.navigatetoPLPBD.get());
 					
-					if(isDesktop() || isiPad()) {
+					if(isDesktop()) {
 						if(isCLP())
 							SelectorUtil.initializeSelectorsAndDoActions(PLPSelectors.navigatetoPLPBD.get());
 
@@ -1301,7 +1281,7 @@ public class PLP extends SelTestCase {
 				SelectorUtil.clickOnWebElement(randomElement);
 
 			} else {
-				
+
 				menuFirstLevelElements = SelectorUtil.getAllElements(HomePageSelectors.menuItemsRY.get());
 				Random randomGenerator = new Random();
 				WebElement randomElement = menuFirstLevelElements

@@ -9,135 +9,113 @@ import com.generic.page.PDP.*;
 public class CartValidation extends SelTestCase {
 
 	public static void addProductToCart(String item) throws Exception {
-		Thread.sleep(3000);
 		PDP.NavigateToPDP(item);
-		Thread.sleep(3000);
 
 		if (PDP.bundleProduct())
-			PDP.clickBundleItems();
-		Thread.sleep(3000);
+		PDP.clickBundleItems();
 
 		PDP_cart.addProductsToCart();
 		Thread.sleep(3000);
-
-		if (!isMobile()) {
-			PDP_cart.clickAddToCartCloseBtn();
-		}
-
+     	if(!isMobile()) {PDP_cart.clickAddToCartCloseBtn();}
+		
 	}
 
 	public static void cartValidation() throws Exception {
-		// Search for products and add them to cart
-		addProductToCart("red");
+		//Search for products and add them to cart
+		addProductToCart("red");		
 		Thread.sleep(3000);
-
-		if (isMobile()) {
-			addProductToCart("blue");
-		} else {
+		if(isMobile()) {
+		addProductToCart("blue");
+		}
+		else {
 			addProductToCart("tables");
 		}
-
-		// Navigate to cart by URL
+		
+		//Navigate to cart by URL
 		CheckOut.navigatetoCart();
-
+		
 		Thread.sleep(3500);
 
 		Cart.closeGWPIfExsist();
 
 		Thread.sleep(1500);
 
-		// Check addition of products and thier images and prices
+		//Check addition of products and thier images and prices
 		sassert().assertTrue(Cart.isItemAdded(), "Added item to cart validation has some problems");
 		sassert().assertTrue(Cart.addedItemImageValidation(), "Added item image validation has some problems");
 		sassert().assertTrue(Cart.checkAddedItemPriceDisplay(),
 				"Added item price displayed validation has some problems");
 		sassert().assertTrue(Cart.checkAddedItemTotalPriceDisplay(),
 				"Added item total price displayed validation has some problems");
+		if(Cart.isItemEditable()) {
 
-		Cart.closeGWPIfExsist();
+		List <String> optionsBefore = Cart.getFirstSavedItemsOptions();
+		
+		Thread.sleep(2000);
 
-		if (Cart.isItemEditable()) {
-
-			List<String> optionsBefore = Cart.getFirstSavedItemsOptions();
-
-			Thread.sleep(2000);
-
-			// Perform edit on first product in cart
-			Cart.editOptions();
-
-			Thread.sleep(3000);
-
-			List<String> optionsAfter = Cart.getlastAddedItemsOptions();
-
-			logs.debug("optionsBefore : " + optionsBefore + " , optionsAfter: " + optionsAfter);
-			// Check if the edit is saved correctly
-			sassert().assertTrue(!optionsBefore.equals(optionsAfter), "Edit item validation has some problems");
+		//Perform edit on first product in cart
+		Cart.editOptions();
+		
+		Thread.sleep(3000);
+		
+		List <String> optionsAfter = Cart.getlastAddedItemsOptions();
+				
+		//Check if the edit is saved correctly
+		sassert().assertTrue(!optionsBefore.equals(optionsAfter), "Edit item validation has some problems");
 		}
-		// Save total before moving item
+		//Save total before moving item
 		String totalPriceBeforeMove = Cart.getTotalPrice();
-
-		// Moving item
+		
+		//Moving item
 		Cart.clickMoveToWishListBtnForSavedItem();
 
-		Thread.sleep(3000);
-		String WLName = PDP_WL.getWishListName();
-		logs.debug("WLName : " + WLName);
-
-		if (isMobile()) {
+	    Thread.sleep(3000);
+	    String WLName = PDP_WL.getWishListName();
+	    if(isMobile()) {
 			Cart.createNewWL(WLName);
 			Thread.sleep(3000);
 			Cart.clickOnSelectWLConfirmationBtn();
 			Thread.sleep(5000);
-		} else {
-			sassert().assertTrue(PDP_WL.validateNameYourNewWLModalIsDisplayed(),
-					"Name your new wish list modal is not dispayed");
+	    }else {
+			sassert().assertTrue(PDP_WL.validateNameYourNewWLModalIsDisplayed(), "Name your new wish list modal is not dispayed");
 			Cart.createNewWL(WLName);
 			Cart.validateSelectWishListModalIsDisplayed();
-			sassert().assertTrue(PDP_WL.validateCreatedWLisSelectedByDefault(WLName),
-					"created wish list is not selected by default");
+			sassert().assertTrue(PDP_WL.validateCreatedWLisSelectedByDefault(WLName), "created wish list is not selected by default");
 			PDP_WL.clickOnCreateNewWLConfirmationBtn();
-		}
-
+	    }
+	    
 		Thread.sleep(3000);
-		// Save total again
+		//Save total again 
 		String totalPriceAfterMove = Cart.getTotalPrice();
-
-		logs.debug(
-				"totalPriceBeforeMove =  " + totalPriceBeforeMove + " , totalPriceAfterMove = " + totalPriceAfterMove);
-		// Compare total values
-		sassert().assertTrue(!totalPriceBeforeMove.equals(totalPriceAfterMove),
-				"Move item to wish list validation has some problems");
-
-		if (isMobile()) {
+		
+		//Compare total values
+		sassert().assertTrue(!totalPriceBeforeMove.equals(totalPriceAfterMove), "Move item to wish list validation has some problems");
+		
+		if(isMobile()){
 			Thread.sleep(5000);
 			Cart.navigatetoWishList();
 			Cart.selectWLByName(WLName);
-		} else {
+		}else {
 			Cart.validateAddedToWLModalIsDisplayed();
 			Cart.clickOnViewListBtn();
 		}
 		Thread.sleep(2000);
 		sassert().assertTrue(Cart.verifySavedItemToWL(), "Saved list validation has some problems");
-
+		
 		Thread.sleep(2000);
 		Cart.moveItemsToCartFromWishlist();
-		Thread.sleep(4000);
-
+		
 		Cart.clickOnCheckout();
 		Thread.sleep(2000);
-
-		// Deletion and total before and after
+		//Deletion and total before and after
 		String totalPriceBeforeDelete = Cart.getTotalPrice();
-
+		
 		Cart.clickRemoveBtnForSavedItem();
-
+		
 		Thread.sleep(2000);
-
+		
 		String totalPriceAfterDelete = Cart.getTotalPrice();
-		logs.debug("totalPriceBeforeDelete =" + totalPriceBeforeDelete + " , totalPriceAfterDelete = "
-				+ totalPriceAfterDelete);
-		sassert().assertTrue(!totalPriceBeforeDelete.equals(totalPriceAfterDelete),
-				"Remove item validation has some problems");
+		sassert().assertTrue(!totalPriceBeforeDelete.equals(totalPriceAfterDelete), "Remove item validation has some problems");
 
 	}
 
