@@ -110,7 +110,10 @@ public class PDP extends SelTestCase {
 			logs.debug("Validate if top price exist");
 			String selector = null;
 			if (isFGGR()) {
-				selector = PDPSelectors.topPriceSingle.get();
+				if(isMobile() && bundle)
+					selector = PDPSelectors.topPriceBundleFGMObile.get();
+				else
+					selector = PDPSelectors.topPriceSingle.get();
 				if (!isMobile() && bundle) {
 					logs.debug(PDPSelectors.topPriceBundle);
 					selector = MessageFormat.format(PDPSelectors.topPriceBundle, ProductID);
@@ -245,6 +248,8 @@ public class PDP extends SelTestCase {
 				selector = PDPSelectors.bottomPriceSingle.get();
 
 			if (bundle) {
+				if(isFG() && isMobile())
+					selector = PDPSelectors.bottomPriceSingleBundleMobileFG.get();
 				if (isBD()) {
 					if (isMobile())
 						selector = PDPSelectors.BDbottomPriceBundleMobile.get();

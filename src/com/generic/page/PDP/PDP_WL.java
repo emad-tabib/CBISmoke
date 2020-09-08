@@ -254,28 +254,33 @@ public class PDP_WL extends SelTestCase {
 			// disabled.
 			// because there is no attribute to verify if it is enabled.
 			String selectorEnabled;
+			
 			if (isFGGR())
-				selectorEnabled = PDPSelectors.addToWLGRBtnEnabledSingle.get();
+				if (Bundle)
+					selectorEnabled = PDPSelectors.addToWLGRBtnEnabledBundleMobile.get();
+				else
+					selectorEnabled = PDPSelectors.addToWLGRBtnEnabledSingle.get();
+
 			else if (isRY())
-			selectorEnabled = PDPSelectors.RYAddToWLGRBtnEnabledSingle.get();
+				selectorEnabled = PDPSelectors.RYAddToWLGRBtnEnabledSingle.get();
 			else if (isBD())
-			selectorEnabled = PDPSelectors.BDaddToWLGRBtnEnabledSingle.get();
-            else
-                selectorEnabled = PDPSelectors.GHAddToWLGRBtnEnabledSingle.get();
-            if (!isMobile() && Bundle) {
-                String addToWLGRBtnEnabledBundleSelector;
-                if (isBD())
-                    selectorEnabled = PDPSelectors.BDaddToWLGRBtnEnabledSingle.get();
-                else if (isGH()) {
-                    addToWLGRBtnEnabledBundleSelector = PDPSelectors.GHAddToWLGRBtnEnabledBundle;
-                logs.debug(addToWLGRBtnEnabledBundleSelector);
-                selectorEnabled = MessageFormat.format(addToWLGRBtnEnabledBundleSelector, ProductID);
-                }else {
-                    addToWLGRBtnEnabledBundleSelector = PDPSelectors.addToWLGRBtnEnabledBundle;
-                    logs.debug(addToWLGRBtnEnabledBundleSelector);
-                    selectorEnabled = MessageFormat.format(addToWLGRBtnEnabledBundleSelector, ProductID);
-                }
-            }
+				selectorEnabled = PDPSelectors.BDaddToWLGRBtnEnabledSingle.get();
+			else
+				selectorEnabled = PDPSelectors.GHAddToWLGRBtnEnabledSingle.get();
+			if (!isMobile() && Bundle) {
+				String addToWLGRBtnEnabledBundleSelector;
+				if (isBD())
+					selectorEnabled = PDPSelectors.BDaddToWLGRBtnEnabledSingle.get();
+				else if (isGH()) {
+					addToWLGRBtnEnabledBundleSelector = PDPSelectors.GHAddToWLGRBtnEnabledBundle;
+					logs.debug(addToWLGRBtnEnabledBundleSelector);
+					selectorEnabled = MessageFormat.format(addToWLGRBtnEnabledBundleSelector, ProductID);
+				} else {
+					addToWLGRBtnEnabledBundleSelector = PDPSelectors.addToWLGRBtnEnabledBundle;
+					logs.debug(addToWLGRBtnEnabledBundleSelector);
+					selectorEnabled = MessageFormat.format(addToWLGRBtnEnabledBundleSelector, ProductID);
+				}
+			}
             isDisplayed = SelectorUtil.isDisplayed(selectorEnabled);
             getCurrentFunctionName(false);
             return isDisplayed;

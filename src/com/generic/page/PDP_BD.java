@@ -52,7 +52,7 @@ public class PDP_BD extends SelTestCase {
 
 				Boolean noOptions = true;
 				if (SelTestCase.isMobile())
-					noOptions = !PDP_cart.getAddToCartClass();
+					noOptions = !PDP_cart.getAddToCartClass(false);
 				else
 					noOptions = PDP_selectSwatches.getSwatchContainersdivClass(0).contains("no-options");
 

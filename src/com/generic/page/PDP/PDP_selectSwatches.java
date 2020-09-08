@@ -59,7 +59,11 @@ public class PDP_selectSwatches extends SelTestCase{
 				if (!isMobile() && bundle) {
 					FGGRselectSwatchesBundle(ProductID);
 
-				} else {
+				} 
+				else if(isMobile() && bundle) {
+					FGGRselectSwatchesBundleMobile();
+				}
+				else {
 					FGGRselectSwatchesSingle();
 				}
 
@@ -96,7 +100,7 @@ public class PDP_selectSwatches extends SelTestCase{
 						list++;
 					} else { 
 						selectNthOptionFirstSwatchBundle("css,#" + ProductID + ">"
-								+ MessageFormat.format(PDPSelectors.imageOption.get(), img + 1, 1).replace("css,", ""));
+								+ MessageFormat.format(PDPSelectors.imageOption.get(), img + 1, 2).replace("css,", ""));
 						img++;
 					}
 				}
@@ -116,7 +120,7 @@ public class PDP_selectSwatches extends SelTestCase{
 			getCurrentFunctionName(true);
 			Boolean noOptions = true;
 			if (SelTestCase.isMobile())
-				noOptions = !PDP_cart.getAddToCartClass();
+				noOptions = !PDP_cart.getAddToCartClass(false);
 			else
 				noOptions = getSwatchContainersdivClass(0).contains("no-options");
 
@@ -128,7 +132,7 @@ public class PDP_selectSwatches extends SelTestCase{
 					if (getSwatchContainersdivClass(i).contains("listbox")) {
 						selectNthListBoxFirstValue(i);
 					} else {
-						selectNthOptionFirstSwatch(i + 1);
+						selectNthOptionFirstSwatch(i + 1,false);
 					}
 				}
 			} else {
@@ -137,7 +141,39 @@ public class PDP_selectSwatches extends SelTestCase{
 					if (getSwatchContainersdivClass(i).contains("product-option")) {
 						selectNthListBoxFirstValue((i - 1) / 2);
 					} else {
-						selectNthOptionFirstSwatch((i + 1) / 2);
+						selectNthOptionFirstSwatch((i + 1) / 2,false);
+					}
+				}
+			}
+			getCurrentFunctionName(false);
+
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed
+					+ "Select swatches has falied, a selector was not found by selenium", new Object() {
+					}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+	
+	public static void FGGRselectSwatchesBundleMobile() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			Boolean noOptions = true;
+			if (SelTestCase.isMobile())
+				noOptions = !PDP_cart.getAddToCartClass(true);
+			else
+				noOptions = getSwatchContainersdivClass(0).contains("no-options");
+
+			if (noOptions) {
+				logs.debug("No options to select");
+			} else {
+				int numberOfSwatchContainers = getNumberofSwatchContainers();
+				for (int i = 1; i < numberOfSwatchContainers; i += 2) {
+						
+					try {
+						selectNthListBoxFirstValue((i - 1) / 2);
+					} catch (Exception e) {
+						selectNthOptionFirstSwatch((i + 1) / 2,true);
 					}
 				}
 			}
@@ -176,14 +212,19 @@ public class PDP_selectSwatches extends SelTestCase{
 	}
 	
 	// done - SMK
-	public static void selectNthOptionFirstSwatch(int index) throws Exception {
+	public static void selectNthOptionFirstSwatch(int index, boolean isBundle) throws Exception {
 		try {
 			getCurrentFunctionName(true);
 			String subStrArr;
 			if (isBD())
 				subStrArr = MessageFormat.format(PDPSelectors.BDfirstSwatchInOptions.get(), index);
+			
+			else if (isFG() && isMobile() && isBundle) {
+				subStrArr = MessageFormat.format(PDPSelectors.firstSwatchInOptionsFGBundleMobile.get(), index);
+			}
 			else
 				subStrArr = MessageFormat.format(PDPSelectors.firstSwatchInOptions.get(), index);
+			
 			logs.debug(MessageFormat.format(LoggingMsg.CLICKING_SEL, subStrArr));
 			String nthSel = subStrArr;
 			// Clicking on the div on desktop and iPad does not select the options,
