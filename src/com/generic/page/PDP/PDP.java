@@ -289,8 +289,8 @@ public class PDP extends SelTestCase {
 				}
 				Str = PDPSelectors.BDitemsID.get();
 			}
-			
-				ID = SelectorUtil.getAttrString(Str, "id", index);
+
+			ID = SelectorUtil.getAttrString(Str, "id", index);
 
 			getCurrentFunctionName(false);
 			return ID;
@@ -313,7 +313,7 @@ public class PDP extends SelTestCase {
 				}
 				Str = PDPSelectors.GHItemsID.get();
 			}
-				ID = SelectorUtil.getAttrString(Str, "class", index);
+			ID = SelectorUtil.getAttrString(Str, "class", index);
 
 			getCurrentFunctionName(false);
 			return ID;
@@ -324,7 +324,7 @@ public class PDP extends SelTestCase {
 			throw e;
 		}
 	}
-	
+
 	// done - SMK
 	public static boolean bundleProduct() throws Exception {
 		return bundleProduct(0);
@@ -335,33 +335,47 @@ public class PDP extends SelTestCase {
 		getCurrentFunctionName(true);
 		try {
 			Thread.sleep(4500);
-			if(isMobile()) {
-				logs.debug("switch To progressiveFrame");
-				getDriver().switchTo().frame(PDPSelectors.progressiveFrame.get());
-				logs.debug("Successfully switched to the progressiveFrame");
-			}
-			
-			
-			String PDPChecker = "return gwtDynamic.coremetrics.isSingleProduct;";
 			Boolean bundle = false;
-			JavascriptExecutor jse = (JavascriptExecutor) getDriver();
 
-			String value = (String) jse.executeScript(PDPChecker);
+			if (isMobile()) {
+				/*
+				 * logs.debug("switch To progressiveFrame");
+				 * getDriver().switchTo().frame(PDPSelectors.progressiveFrame.get());
+				 * logs.debug("Successfully switched to the progressiveFrame");
+				 */
+				// bundleidntefier
 
-			logs.debug("isSingleProduct: " + value);
-
-			if (value.equals("N")) {
-				bundle = true;
-				logs.debug("This item is bundle");
-			} else if (value.equals("Y")) {
-				bundle = false;
-				logs.debug("This item is not bundle");
-			} else {
-				if (tries < 10)
-					bundleProduct(tries++);
+				try {
+					if (SelectorUtil.isDisplayed(PDPSelectors.bundleidntefier.get()))
+						bundle = true;
+				} catch (Exception e) {
+					bundle = false;
+				}
 			}
-			if(isMobile())
-			getDriver().switchTo().defaultContent();
+
+			else {
+				String PDPChecker = "return gwtDynamic.coremetrics.isSingleProduct;";
+				JavascriptExecutor jse = (JavascriptExecutor) getDriver();
+
+				String value = (String) jse.executeScript(PDPChecker);
+
+				logs.debug("isSingleProduct: " + value);
+
+				if (value.equals("N")) {
+					bundle = true;
+					logs.debug("This item is bundle");
+				} else if (value.equals("Y")) {
+					bundle = false;
+					logs.debug("This item is not bundle");
+				} else {
+					if (tries < 10)
+						bundleProduct(tries++);
+				}
+			}
+			/*
+			 * if(isMobile()) getDriver().switchTo().defaultContent();
+			 */
+
 			return bundle;
 		} catch (Exception e) {
 			logs.debug(MessageFormat.format(
@@ -402,12 +416,11 @@ public class PDP extends SelTestCase {
 			if (isGHRY()) {
 				SelectorUtil.initializeSelectorsAndDoActions(PDPSelectors.titleGH.get());
 
-			} 
+			}
 
 			else if (isBD()) {
 				SelectorUtil.initializeSelectorsAndDoActions(PDPSelectors.BDtitle.get());
-			}
-			else {
+			} else {
 				SelectorUtil.initializeSelectorsAndDoActions(PDPSelectors.title.get());
 			}
 

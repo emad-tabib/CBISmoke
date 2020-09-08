@@ -134,7 +134,7 @@ public class PDP_selectSwatches extends SelTestCase{
 			} else {
 				int numberOfSwatchContainers = getNumberofSwatchContainers();
 				for (int i = 1; i < numberOfSwatchContainers; i += 2) {
-					if (getSwatchContainersdivClass(i).contains("u-product-options")) {
+					if (getSwatchContainersdivClass(i).contains("product-option")) {
 						selectNthListBoxFirstValue((i - 1) / 2);
 					} else {
 						selectNthOptionFirstSwatch((i + 1) / 2);
