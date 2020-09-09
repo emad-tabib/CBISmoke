@@ -129,19 +129,19 @@ public class PDP_selectSwatches extends SelTestCase{
 			} else if (!SelTestCase.isMobile()) {
 				int numberOfSwatchContainers = getNumberofSwatchContainers();
 				for (int i = 0; i < numberOfSwatchContainers; i++) {
-					if (getSwatchContainersdivClass(i).contains("listbox")) {
+					try {
 						selectNthListBoxFirstValue(i);
-					} else {
-						selectNthOptionFirstSwatch(i + 1,false);
+					} catch (Exception e) {
+						selectNthOptionFirstSwatch(i + 1, false);
 					}
 				}
 			} else {
 				int numberOfSwatchContainers = getNumberofSwatchContainers();
 				for (int i = 1; i < numberOfSwatchContainers; i += 2) {
-					if (getSwatchContainersdivClass(i).contains("product-option")) {
+					try {
 						selectNthListBoxFirstValue((i - 1) / 2);
-					} else {
-						selectNthOptionFirstSwatch((i + 1) / 2,false);
+					} catch (Exception e) {
+						selectNthOptionFirstSwatch((i + 1) / 2, false);
 					}
 				}
 			}
@@ -222,9 +222,9 @@ public class PDP_selectSwatches extends SelTestCase{
 			else if (isFG() && isMobile() && isBundle) {
 				subStrArr = MessageFormat.format(PDPSelectors.firstSwatchInOptionsFGBundleMobile.get(), index);
 			}
-			else
+			else {
 				subStrArr = MessageFormat.format(PDPSelectors.firstSwatchInOptions.get(), index);
-			
+			}
 			logs.debug(MessageFormat.format(LoggingMsg.CLICKING_SEL, subStrArr));
 			String nthSel = subStrArr;
 			// Clicking on the div on desktop and iPad does not select the options,
@@ -294,7 +294,7 @@ public class PDP_selectSwatches extends SelTestCase{
 				getCurrentFunctionName(false);
 			} catch (NoSuchElementException e) {
 				logs.debug(MessageFormat.format(
-						ExceptionMsg.PageFunctionFailed + "Add to cart close button selector was not found by selenium",
+						ExceptionMsg.PageFunctionFailed + "dropdown menu selector was not found by selenium",
 						new Object() {
 						}.getClass().getEnclosingMethod().getName()));
 				throw e;

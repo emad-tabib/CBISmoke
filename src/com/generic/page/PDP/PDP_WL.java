@@ -43,7 +43,9 @@ public class PDP_WL extends SelTestCase {
 				WebElement element = SelectorUtil.getElement(PDPSelectors.giftRegistryListBox.get());
 				WebElement option = element.findElement(By.cssSelector(PDPSelectors.createNewWL.get()));
 				option.click();
-				clickOnCreateNewWLConfirmationBtn();
+				
+				if(!isMobile())
+				  clickOnCreateNewWLConfirmationBtn();
 			}
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
@@ -189,7 +191,7 @@ public class PDP_WL extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			boolean isDisplayed = true;
-			Thread.sleep(2000);
+			Thread.sleep(3500);
 			List<WebElement> products = SelectorUtil.getElementsList(PDPSelectors.addedProductName.get());
 			List<WebElement> addToCartBtns = new ArrayList<WebElement>();
 			if (isGH() || isBD()) {

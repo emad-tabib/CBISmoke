@@ -22,7 +22,8 @@ public class PDPSelectors {
 	public static final cselector addToCartBtnGH = new cselector("css,div.gwt-product-detail-buttons-panel > div> button.button.primary","css,button.c-add-to-cart");
 	public static final cselector addToCartBtnBD = new cselector("css,.product-detail-cta-buttons-panel .add-to-cart-button","css,.c-add-to-cart");
 	public static final cselector addToCartCloseBtn = new cselector("css,button.gwt-Button.ok-cancel-close-btn","css,div.pw-header-bar__actions > button.c-icon-label-button");
-	public static final cselector firstSwatchInOptions = new cselector("css,.gwt-product-option-panel-widget-panel > div  > div > div:nth-child(1)","css,.c-product-options > div:nth-child(1) > div:nth-child(2)");	
+	public static final cselector firstSwatchInOptions = new cselector("css,.gwt-product-option-panel-widget-panel > div  > div > div:nth-child(1)","css,.c-product-options .pw-button__inner");	
+	public static final cselector firstSwatchInOptionsFG2 = new cselector("css,.c-product-options .pw-button__inner");	
 	public static final cselector firstSwatchInOptionsFGBundleMobile = new cselector("css,.c-product-options > div:nth-child(1) > div > div > div:nth-child(2) >div > button");
 	public static final cselector topPrice = new cselector("gwt-pdp-main-was-now-price-holder","css,.t-product-details-heading__price.t-product-details__price>div");
 	public static final cselector addToWLGRBtnEnabled = new cselector("css,.button.secondary.gift-registry","css,.t-product-wl-gr-btn-txt__txt");
@@ -79,16 +80,16 @@ public class PDPSelectors {
 	
 	public static final cselector SelectRegistryOrWishListModal = new cselector("css,#gwt-add-to-gift-registry-modal","css,.pw-sheet__inner");
     public static final cselector giftRegistryListBox = new cselector("css,select.gift-registry-list-bx","css,div.pw-sheet__content > div > div  select");
-    public static final cselector createNewWL = new cselector("css,select.gift-registry-list-bx > option[value='Create New Wish List']","css, div.pw-sheet__content > div > div  select > option[value='Create New Wish List']");
+    public static final cselector createNewWL = new cselector("css,select.gift-registry-list-bx > option[value='Create New Wish List']","css,  div.pw-sheet__content > div > div  select > option[value='createWL']");
     public static final cselector RYcreateNewWL = new cselector("css,li> button.wishlist-item","css,div.t-product-details__wishlist-dropdown > button");
     public static final cselector RYcreateNewWLName = new cselector("css,li> button.wishlist-item > span","css,div.t-product-details__wishlist-dropdown > button > div");
-    public static final cselector createNewWLConfirmationBtn = new cselector("css,div.gwt-submit-cancel-dialog-button-panel > button.button.primary","css, div.pw-sheet__content > div > div > button");
-    public static final cselector nameYourNewWL = new cselector("css,#gwt-wishlist-create-modal","css,div.m-create_new_wishlist_modal");
-    public static final cselector WLName = new cselector("css,input#wishlist_name_id");
-    public static final cselector nameYourNewWLconfirmationBtn = new cselector("css,#gwt-wishlist-create-modal  button.button.primary","css,div.pw-sheet__content > div > div > button.pw--primary");
-    public static final cselector confirmationModal = new cselector("css,div.gwt-DialogBox.ok-cancel-dlog.gwt-added-to-wish-list-modal","css,div.m-product_added_to_wishlist_modal");
+    public static final cselector createNewWLConfirmationBtn = new cselector("css,div.gwt-submit-cancel-dialog-button-panel > button.button.primary","css,div.pw-sheet__content > div > div > div.m-wishlist-registery__btns > button.pw-button.m-wishlist-registery__btn");
+    public static final cselector nameYourNewWL = new cselector("css,#gwt-wishlist-create-modal","css,.m-create-wishlist-form");
+    public static final cselector WLName = new cselector("css,input#wishlist_name_id","css,div.pw-sheet__content > div > div > input");
+    public static final cselector nameYourNewWLconfirmationBtn = new cselector("css,#gwt-wishlist-create-modal  button.button.primary","css,div.pw-sheet__content > div > div > div.m-create-wishlist-form-btns > button.pw-button.m-create-wishlist-form__create.pw--primary.u-width-full.u-margin-top-md.u-margin-bottom-md");
+    public static final cselector confirmationModal = new cselector("css,div.gwt-DialogBox.ok-cancel-dlog.gwt-added-to-wish-list-modal","css,.pw-sheet__inner div.pw-header-bar__title");
     public static final cselector productName = new cselector("css,div.gwt-product-main-title-panel > div > h2","css,div.c-custom-sheet__content > div >div> div> div> div.u-justify-center");
-    public static final cselector addToCardProductName = new cselector("css,div.addToCartProductName > div","css,span.t-product-details-heading__title-text > div > div");
+    public static final cselector addToCardProductName = new cselector("css,div.addToCartProductName > div","css,div.pw-sheet__content > div > div > div:nth-child(1) > div:nth-child(2) > div>div:nth-child(1)");
     public static final cselector viewListBtn = new cselector("css,td > div > button.button.primary","css,button.pw-button.pw--secondary");
     public static final cselector GHRYviewListBtn = new cselector("css,td > div > button.button.primary","css,div.u-flexbox > button.pw-button.pw--primary");
     public static final cselector addedProductName = new cselector("css,div.gwt_gr_label","css,.t-registry-list-product-list__product-name");
