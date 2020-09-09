@@ -278,40 +278,42 @@ public class PDP_Personalization extends SelTestCase {
 	public static void selectPersonalizationModalSwatchesForiPhone() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			PDP.closeOpendItem();
-			List<WebElement> elementsList = SelectorUtil.getAllElements(PDPSelectors.personalizedItems.get());
-			if (isBD())
-				elementsList = SelectorUtil.getAllElements(PDPSelectors.BDpersonalizedItems.get());
-			for (int i = 0; i < elementsList.size() - 1; i++) {
-				WebElement element = elementsList.get(i);
-				SelectorUtil.clickOnWebElement(element);
-				String personalizedInputValue = PDPSelectors.personalizedInputValue.get();
-				String personalizedItemColors1 = PDPSelectors.personalizedItemColors1.get();
+			
+			String personalizedInputValue = PDPSelectors.personalizedInputValue.get();
+			String personalizedItemColors1 = PDPSelectors.personalizedItemColors1.get();
+			String personalizedItemColors2 = PDPSelectors.personalizedItemColors2.get();
+			String personalizedItemSize = PDPSelectors.personalizedItemMenu.get();
 
-				if (isBD()) {
-					personalizedInputValue = PDPSelectors.BDpersonalizedInputValue.get();
-				}
-				if (isPersonalizedInputSwatchesDisplayed(personalizedInputValue)) {// input container
-																					// like MONOGRAM
-																					// or any value
-					WebElement input = SelectorUtil.getElement(personalizedInputValue);
-					input.sendKeys(RandomUtilities.getRandomStringWithLength(3));
-				} else if (isPersonalizedInputSwatchesDisplayed(personalizedItemColors1)) { // like
-																							// item
-																							// color
-					List<WebElement> itemColors = SelectorUtil.getAllElements(personalizedItemColors1);
-					if (itemColors.size() > 0) {
-						WebElement firstItemColor = itemColors.get(0);
-						SelectorUtil.clickOnWebElement(firstItemColor);
-					}
-				} else if (isPersonalizedInputSwatchesDisplayed(PDPSelectors.personalizedItemMenu.get())) {// like item
-																											// size
-					WebElement menu = SelectorUtil.getElement(PDPSelectors.personalizedItemMenu.get());
-					List<WebElement> options = menu
-							.findElements(By.cssSelector(PDPSelectors.personalizedMenuOptions.get()));
-					options.get(1).click();// the first item is selected size
-				}
+			if (isBD()) {
+				personalizedInputValue = PDPSelectors.BDpersonalizedInputValue.get();
 			}
+
+			if (isPersonalizedInputSwatchesDisplayed(personalizedInputValue)) {
+
+				WebElement input = SelectorUtil.getElement(personalizedInputValue);
+				input.sendKeys(RandomUtilities.getRandomStringWithLength(3));
+			} else if (isPersonalizedInputSwatchesDisplayed(personalizedItemColors1)) {
+
+				List<WebElement> itemColors = SelectorUtil.getAllElements(personalizedItemColors1);
+				if (itemColors.size() > 0) {
+					WebElement firstItemColor = itemColors.get(0);
+					SelectorUtil.clickOnWebElement(firstItemColor);
+				}
+			} else if (isPersonalizedInputSwatchesDisplayed(personalizedItemColors2)) {												
+
+				List<WebElement> itemColors = SelectorUtil.getAllElements(personalizedItemColors1);
+				if (itemColors.size() > 0) {
+					WebElement firstItemColor = itemColors.get(0);
+					SelectorUtil.clickOnWebElement(firstItemColor);
+				}
+			} else if (isPersonalizedInputSwatchesDisplayed(personalizedItemSize)) {
+				
+				WebElement menu = SelectorUtil.getElement(PDPSelectors.personalizedItemMenu.get());
+				List<WebElement> options = menu
+						.findElements(By.cssSelector(PDPSelectors.personalizedMenuOptions.get()));
+				options.get(1).click();
+			}
+
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(
@@ -326,71 +328,42 @@ public class PDP_Personalization extends SelTestCase {
 	public static void selectPersonalizationModalSwatches() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			PDP.closeOpendItem();
-			List<WebElement> elementsList = new ArrayList<WebElement>();
-			if (isBD())
-				elementsList = SelectorUtil.getAllElements(PDPSelectors.BDpersonalizedItems.get());
-			else
-				elementsList = SelectorUtil.getAllElements(PDPSelectors.personalizedItems.get());
+			
+			String personalizedInputValue = PDPSelectors.personalizedInputValue.get();
+			String personalizedItemColors1 = PDPSelectors.personalizedItemColors1.get();
+			String personalizedItemColors2 = PDPSelectors.personalizedItemColors2.get();
+			String personalizedItemSize = PDPSelectors.personalizedItemMenu.get();
 
-			for (int i = 0; i < elementsList.size(); i++) {
-				WebElement element = elementsList.get(i);
-				if (!isBD())
-					SelectorUtil.clickOnWebElement(element);
-
-				String inputSwatches = PDPSelectors.personalizedInputValue.get();
-				;
-				String personalizedItemColor2 = PDPSelectors.personalizedItemColors2.get();
-				;
-
-				if (isBD()) {
-					inputSwatches = PDPSelectors.BDpersonalizedInputValue.get();
-					personalizedItemColor2 = PDPSelectors.BDpersonalizedItemColors2.get();
-				}
-
-				if (isPersonalizedInputSwatchesDisplayed(inputSwatches)) {// input container
-																			// like MONOGRAM // or any value
-					WebElement input = SelectorUtil.getElement(inputSwatches);
-					input.sendKeys(RandomUtilities.getRandomStringWithLength(3));
-				} else if (isPersonalizedInputSwatchesDisplayed(PDPSelectors.personalizedItemColors1.get())) { // like
-																												// item
-																												// color
-					List<WebElement> itemColors = SelectorUtil
-							.getAllElements(PDPSelectors.personalizedItemColors1.get());
-					if (itemColors.size() > 0) {
-						WebElement firstItemColor = itemColors.get(0);
-						SelectorUtil.clickOnWebElement(firstItemColor);
-					}
-				} else if (isPersonalizedInputSwatchesDisplayed(personalizedItemColor2)) { // like
-																							// thread
-																							// color
-					List<WebElement> itemColors = SelectorUtil.getAllElements(personalizedItemColor2);
-					if (itemColors.size() > 0) {
-						WebElement firstItemColor = itemColors.get(0);
-						SelectorUtil.clickOnWebElement(firstItemColor);
-					}
-
-				} else if (isPersonalizedInputSwatchesDisplayed(PDPSelectors.personalizedTypeFaces.get())) {// like
-																											// TypeFace
-																											// , English
-																											// style ,
-																											// etching
-																											// style
-																											// (Roman
-					List<WebElement> items = SelectorUtil.getAllElements(PDPSelectors.personalizedTypeFaces.get());
-					if (items.size() > 0) {
-						WebElement firstItemColor = items.get(0);
-						SelectorUtil.clickOnWebElement(firstItemColor);
-					}
-				} else if (isPersonalizedInputSwatchesDisplayed(PDPSelectors.personalizedItemMenu.get())) {// like item
-																											// size
-					WebElement menu = SelectorUtil.getElement(PDPSelectors.personalizedItemMenu.get());
-					List<WebElement> options = menu
-							.findElements(By.cssSelector(PDPSelectors.personalizedMenuOptions.get()));
-					options.get(1).click();// the first item is selected size
-				}
-				// Thread.sleep(1000);
+			if (isBD()) {
+				personalizedInputValue = PDPSelectors.BDpersonalizedInputValue.get();
 			}
+
+			if (isPersonalizedInputSwatchesDisplayed(personalizedInputValue)) {
+
+				WebElement input = SelectorUtil.getElement(personalizedInputValue);
+				input.sendKeys(RandomUtilities.getRandomStringWithLength(3));
+			} else if (isPersonalizedInputSwatchesDisplayed(personalizedItemColors1)) {
+
+				List<WebElement> itemColors = SelectorUtil.getAllElements(personalizedItemColors1);
+				if (itemColors.size() > 0) {
+					WebElement firstItemColor = itemColors.get(0);
+					SelectorUtil.clickOnWebElement(firstItemColor);
+				}
+			} else if (isPersonalizedInputSwatchesDisplayed(personalizedItemColors2)) {												
+
+				List<WebElement> itemColors = SelectorUtil.getAllElements(personalizedItemColors1);
+				if (itemColors.size() > 0) {
+					WebElement firstItemColor = itemColors.get(0);
+					SelectorUtil.clickOnWebElement(firstItemColor);
+				}
+			} else if (isPersonalizedInputSwatchesDisplayed(personalizedItemSize)) {
+				
+				WebElement menu = SelectorUtil.getElement(PDPSelectors.personalizedItemMenu.get());
+				List<WebElement> options = menu
+						.findElements(By.cssSelector(PDPSelectors.personalizedMenuOptions.get()));
+				options.get(1).click();// the first item is selected size
+			}
+			
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
