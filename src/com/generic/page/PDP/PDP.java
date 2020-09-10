@@ -343,12 +343,6 @@ public class PDP extends SelTestCase {
 			Boolean bundle = false;
 
 			if (isMobile()) {
-				/*
-				 * logs.debug("switch To progressiveFrame");
-				 * getDriver().switchTo().frame(PDPSelectors.progressiveFrame.get());
-				 * logs.debug("Successfully switched to the progressiveFrame");
-				 */
-				// bundleidntefier
 
 				try {
 					if (SelectorUtil.isDisplayed(PDPSelectors.bundleidntefier.get()))
@@ -377,9 +371,6 @@ public class PDP extends SelTestCase {
 						bundleProduct(tries++);
 				}
 			}
-			/*
-			 * if(isMobile()) getDriver().switchTo().defaultContent();
-			 */
 
 			return bundle;
 		} catch (Exception e) {
