@@ -25,6 +25,8 @@ public class WistListGuestValidation extends SelTestCase {
 		String WLName = PDP_WL.getWishListName();
 
 		PDP_WL.createNewWL(WLName);
+		
+		Thread.sleep(3500);
 
 		sassert().assertTrue(PDP_WL.validateSelectRegistryOrWishListModalIsDisplayed(),
 				" Select A Registry Or Wish list modal is not dispayed after created a new one");

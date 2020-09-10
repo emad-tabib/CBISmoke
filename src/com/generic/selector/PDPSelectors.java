@@ -91,6 +91,8 @@ public class PDPSelectors {
     public static final cselector productName = new cselector("css,div.gwt-product-main-title-panel > div > h2","css,div.c-custom-sheet__content > div >div> div> div> div.u-justify-center");
     public static final cselector addToCardProductName = new cselector("css,div.addToCartProductName > div","css,div.pw-sheet__content > div > div > div:nth-child(1) > div:nth-child(2) > div>div:nth-child(1)");
     public static final cselector viewListBtn = new cselector("css,td > div > button.button.primary","css,button.pw-button.pw--secondary");
+    public static final cselector viewListBtnGR = new cselector("css,td > div > button.button.primary","css,.c-custom-sheet__content .pw-button.pw--secondary");
+
     public static final cselector GHRYviewListBtn = new cselector("css,td > div > button.button.primary","css,div.u-flexbox > button.pw-button.pw--primary");
     public static final cselector addedProductName = new cselector("css,div.gwt_gr_label","css,.t-registry-list-product-list__product-name");
     public static final cselector myWLAddToCartBtn = new cselector("css,div.wish-list-add-to-cart > div > button","css,div.t-registry-list-product-list__product-add-to-cart.u-flex-grow > button");

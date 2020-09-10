@@ -157,8 +157,11 @@ public class PDP_WL extends SelTestCase {
 
 				WebElement addToCardProductElement = SelectorUtil.getElement(PDPSelectors.addToCardProductName.get());
 				String viewListBtnSelector;
+				
 				if (isGH() || isRY() || isBD()) {
 					viewListBtnSelector = PDPSelectors.GHRYviewListBtn.get();
+				} else if (isGR()) {
+					viewListBtnSelector = PDPSelectors.viewListBtnGR.get();
 				} else {
 					viewListBtnSelector = PDPSelectors.viewListBtn.get();
 				}
