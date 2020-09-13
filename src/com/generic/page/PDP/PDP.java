@@ -123,7 +123,11 @@ public class PDP extends SelTestCase {
 			} else if (isBD()) {
 				selector = PDPSelectors.BDtopPriceSingle.get();
 			} else {
-				selector = PDPSelectors.GHtopPriceSingle.get();
+				//GH
+				if (bundle)
+					selector = PDPSelectors.GHtopPriceBundleMobile.get();
+				else
+					selector = PDPSelectors.GHtopPriceSingle.get();
 			}
 			isDisplayed = SelectorUtil.isDisplayed(selector);
 			getCurrentFunctionName(false);
@@ -345,10 +349,15 @@ public class PDP extends SelTestCase {
 			if (isMobile()) {
 
 				try {
-					if (SelectorUtil.isDisplayed(PDPSelectors.bundleidntefier.get()))
+					if (SelectorUtil.isDisplayed(PDPSelectors.bundleidntefier.get())) {
 						bundle = true;
+						logs.debug("isBundleProduct: " + bundle);
+
+					}
 				} catch (Exception e) {
 					bundle = false;
+					logs.debug("isBundleProduct: " + bundle);
+
 				}
 			}
 
@@ -371,6 +380,7 @@ public class PDP extends SelTestCase {
 						bundleProduct(tries++);
 				}
 			}
+			getCurrentFunctionName(false);
 
 			return bundle;
 		} catch (Exception e) {
@@ -494,7 +504,10 @@ public class PDP extends SelTestCase {
 
 					quantitySelector = PDPSelectors.BDQuantityBundleMobile.get();
 				}
-
+				else if(isMobile() && isGH()) {
+					quantitySelector = PDPSelectors.GHQuantityBundleMobile.get();
+					
+				}
 				else {
 					if (ProductID.isEmpty()) {
 						ProductID = getProductID(0);

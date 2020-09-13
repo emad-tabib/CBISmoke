@@ -155,7 +155,16 @@ public class PDP_WL extends SelTestCase {
 				isDisplayed = SelectorUtil.isDisplayed(PDPSelectors.confirmationModal.get());
 				logs.debug("Validate confirmation modal exist menu" + isDisplayed + "   " + selectedProductName);
 
-				WebElement addToCardProductElement = SelectorUtil.getElement(PDPSelectors.addToCardProductName.get());
+				WebElement addToCardProductElement; 
+				
+				if (isMobile() && isGH()) {
+					addToCardProductElement = SelectorUtil.getElement(PDPSelectors.productNameinWLModalGHMobile.get());
+
+				} else {
+
+					addToCardProductElement = SelectorUtil.getElement(PDPSelectors.addToCardProductName.get());
+				}
+				
 				String viewListBtnSelector;
 				
 				if (isGH() || isRY() || isBD()) {
@@ -169,6 +178,7 @@ public class PDP_WL extends SelTestCase {
 				if (addToCardProductElement.getText().equals(selectedProductName))
 					logs.debug("Product is the right added one");
 
+				Thread.sleep(2500);
 				SelectorUtil.initializeSelectorsAndDoActions(viewListBtnSelector);
 				getCurrentFunctionName(false);
 

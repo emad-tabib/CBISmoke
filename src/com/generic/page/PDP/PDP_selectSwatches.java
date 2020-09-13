@@ -384,24 +384,30 @@ public class PDP_selectSwatches extends SelTestCase{
 				throw e;
 			}
 		}
-		
-		public static void GHRYselectSwatches(Boolean bundle, String ProductID) throws Exception {
-			try {
-				getCurrentFunctionName(true);
-				GHRYselectColorTemplate(bundle, ProductID);
-				int numberOfPanels = GHRYNumberOfOptions(bundle);
-				logs.debug("numberOfPanels: " + numberOfPanels);
 
-				if (numberOfPanels > 1)
-					GHRYselectSize(bundle, ProductID);
-				getCurrentFunctionName(false);
+	public static void GHRYselectSwatches(Boolean bundle, String ProductID) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			
+			int numberOfPanels = GHRYNumberOfOptions(bundle);
+			logs.debug("numberOfPanels: " + numberOfPanels);
 
-			} catch (NoSuchElementException e) {
-				logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
-				}.getClass().getEnclosingMethod().getName()));
-				throw e;
+			if (numberOfPanels > 1) {
+				// size
+				GHRYselectSize(bundle, ProductID);
+
+				// color
+				GHRYselectColor(bundle, ProductID);
 			}
+			
+			getCurrentFunctionName(false);
+
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
 		}
+	}
 		
 		// done - SMK
 		public static void GHRYselectSize(Boolean bundle, String ProductID) throws Exception {
@@ -418,6 +424,7 @@ public class PDP_selectSwatches extends SelTestCase{
 				}
 				List<WebElement> list = SelectorUtil.getAllElements(subStrArr);
 				logs.debug("Number of size options:" + list.size());
+				
 				for (int index = 0; index < list.size(); index++) {
 					String classValue = SelectorUtil.getAttrString(subStrArr, "class", index);
 					if (!classValue.contains("no-available") && !classValue.contains("disabled")) {
@@ -517,6 +524,7 @@ public class PDP_selectSwatches extends SelTestCase{
 						}
 						JavascriptExecutor jse = (JavascriptExecutor) getDriver();
 						jse.executeScript("arguments[0].scrollIntoView(false)", item);
+						Thread.sleep(1500);
 						item.click();
 						break;
 					}
