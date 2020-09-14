@@ -121,7 +121,10 @@ public class PDP extends SelTestCase {
 			} else if (isRY()) {
 				selector = PDPSelectors.RYtopPriceSingle.get();
 			} else if (isBD()) {
-				selector = PDPSelectors.BDtopPriceSingle.get();
+				if (bundle)
+					selector = PDPSelectors.BDtopPriceBundle.get();
+				else
+					selector = PDPSelectors.BDtopPriceSingle.get();
 			} else {
 				//GH
 				if (bundle)

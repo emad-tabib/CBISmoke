@@ -68,6 +68,38 @@ public class PDP_BD extends SelTestCase {
 		}
 	}
 
+	// done - SMK
+	public static void BDselectSwatchesPersonalized(Boolean bundle, String ProductID) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			Boolean noOptions = true;
+
+			if (SelTestCase.isMobile())
+				noOptions = !PDP_cart.getAddToCartClass(false);
+			else
+				noOptions = PDP_selectSwatches.getSwatchContainersdivClass(0).contains("no-options");
+
+			int numberOfSwatchContainers = PDP_selectSwatches.getNumberofSwatchContainers();
+
+			for (int i = 0; i < numberOfSwatchContainers; i++) {
+
+				if (PDP_selectSwatches.getSwatchContainersdivClass(i).contains("swatch")
+						|| PDP_selectSwatches.getSwatchContainersdivClass(i).contains("color"))
+					PDP_selectSwatches.selectNthOptionFirstSwatch(i, false);
+
+				else if (PDP_selectSwatches.getSwatchContainersdivClass(i).contains("list"))
+					PDP_selectSwatches.selectNthListBoxFirstValue(i + 1);
+
+			}
+
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed + "select swatch was failed", new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+
 	public static boolean isPriceShownInSizeOption() throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -75,8 +107,10 @@ public class PDP_BD extends SelTestCase {
 			if (!SelectorUtil.isNotDisplayed(PDPSelectors.BD_size_option.get())) {
 				if (SelectorUtil.getElement(PDPSelectors.BD_size_option.get()).getText().contains("$")) {
 					isShown = true;
+					logs.debug("Is shown " + isShown);
 				} else {
 					isShown = false;
+					logs.debug("Is shown " + isShown);
 				}
 			}
 
@@ -120,12 +154,11 @@ public class PDP_BD extends SelTestCase {
 							Actions action = new Actions(getDriver());
 							action.moveToElement(element).click().build().perform();
 
-						} else if(!isMobile() && PDPBase.isVK) {
+						} else if (!isMobile() && PDPBase.isVK) {
 							PDP_selectSwatches
-							.selectNthOptionFirstSwatchBundle("css,#" + ProductID + " " + MessageFormat
-									.format(PDPSelectors.BDVKimageOption.get(), i + 1, 1).replace("css,", ""));
-						}
-						else {
+									.selectNthOptionFirstSwatchBundle("css,#" + ProductID + " " + MessageFormat
+											.format(PDPSelectors.BDVKimageOption.get(), i + 1, 1).replace("css,", ""));
+						} else {
 							PDP_selectSwatches
 									.selectNthOptionFirstSwatchBundle("css,#" + ProductID + " " + MessageFormat
 											.format(PDPSelectors.BDimageOption.get(), i + 1, 1).replace("css,", ""));
@@ -344,24 +377,24 @@ public class PDP_BD extends SelTestCase {
 	}
 
 	public static boolean validatePDP_PC_TopPriceIsDisplayed() throws Exception {
-			
-			try {
-				boolean isDisplayed = false;
-				if(!isMobile()) {
-					isDisplayed = SelectorUtil.isDisplayed(PDPSelectors.BDPDP_PCtopPrice.get());
-					getCurrentFunctionName(false);
-					return isDisplayed;
-				}else {
-					return true;
-				}
-			} catch (NoSuchElementException e) {
-				logs.debug(MessageFormat.format(
-						ExceptionMsg.PageFunctionFailed + "Top price  not displayed, a selector was not found by selenium",
-						new Object() {
-						}.getClass().getEnclosingMethod().getName()));
-				throw e;
+
+		try {
+			boolean isDisplayed = false;
+			if (!isMobile()) {
+				isDisplayed = SelectorUtil.isDisplayed(PDPSelectors.BDPDP_PCtopPrice.get());
+				getCurrentFunctionName(false);
+				return isDisplayed;
+			} else {
+				return true;
 			}
-		
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(
+					ExceptionMsg.PageFunctionFailed + "Top price  not displayed, a selector was not found by selenium",
+					new Object() {
+					}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+
 	}
 
 	public static String validatePDP_PC_BottomPriceIsDisplayed() throws Exception {
@@ -378,7 +411,7 @@ public class PDP_BD extends SelTestCase {
 			throw e;
 		}
 
-	} 
+	}
 
 	public static void clickOnConfigureBtn(String ProductID) throws Exception {
 		try {
@@ -420,7 +453,7 @@ public class PDP_BD extends SelTestCase {
 			getCurrentFunctionName(true);
 			Thread.sleep(1000);
 			if (!SelectorUtil.isNotDisplayed(Selector)) {
-				SelectorUtil.initializeSelectorsAndDoActions(Selector,"FFF1");
+				SelectorUtil.initializeSelectorsAndDoActions(Selector, "FFF1");
 			}
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {

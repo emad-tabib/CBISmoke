@@ -239,9 +239,13 @@ public class PDP_Personalization extends SelTestCase {
 	public static void clickPersonalizationSaveAndCloseButtonForiPhone() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			List<WebElement> elementsList = SelectorUtil.getAllElements(PDPSelectors.personalizedItems.get());
-			WebElement element = elementsList.get(elementsList.size() - 1);
-			SelectorUtil.clickOnWebElement(element);
+			
+			if (!isBD()) {
+				List<WebElement> elementsList = SelectorUtil.getAllElements(PDPSelectors.personalizedItems.get());
+				WebElement element = elementsList.get(elementsList.size() - 1);
+				SelectorUtil.clickOnWebElement(element);
+			}
+			
 			clickPersonalizationSaveAndCloseButton();
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
@@ -267,8 +271,13 @@ public class PDP_Personalization extends SelTestCase {
 	public static boolean isPersonalizedInputSwatchesDisplayed(String value) throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			boolean isDisplayed = SelectorUtil.isDisplayed(value);
+			boolean isDisplayed = false;
+
+			if (SelectorUtil.getAllElements(value).size() > 0)
+				isDisplayed = true;
+
 			getCurrentFunctionName(false);
+			
 			return isDisplayed;
 		} catch (NoSuchElementException e) {
 			return false;
@@ -290,6 +299,9 @@ public class PDP_Personalization extends SelTestCase {
 
 			if (isPersonalizedInputSwatchesDisplayed(personalizedInputValue)) {
 
+				if(isBD() && isMobile()) 
+					SelectorUtil.initializeSelectorsAndDoActions(PDPSelectors.BDaddedPersonlizationModalExpandField.get());
+				
 				WebElement input = SelectorUtil.getElement(personalizedInputValue);
 				input.sendKeys(RandomUtilities.getRandomStringWithLength(3));
 			} else if (isPersonalizedInputSwatchesDisplayed(personalizedItemColors1)) {

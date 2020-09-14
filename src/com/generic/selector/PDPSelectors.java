@@ -175,19 +175,21 @@ public class PDPSelectors {
 	public static final cselector GHItemsID = new cselector("css,.gwt-product-detail-products-container>.gwt-product-detail-widget", "css,.t-product-details__accordion-collection .pw-accordion__item.pw-accordion--is-open");	
 
 	//BD Selectors
-	public static final cselector BDSwatchesOptions = new cselector("css,.gwt-product-option-panel > div","css,.c-product-options>div>div>div" );
+	public static final cselector BDSwatchesOptions = new cselector("css,.gwt-product-option-panel > div","css,.c-product-option__item-container" );
 	public static final cselector BDBundleSwatchesOptions = new cselector("css,.gwt-product-option-panel > div","css,.t-product-details__accordion-collection >div:nth-child(1) .c-product-options>div>div>div.u-flexbox" );
 	public static final cselector BDoptionsContainer = new cselector("css,div.t-product-details__accordion-collection > div:nth-child(1) .c-product-options");
 	public static final cselector BDallSizes = new cselector("css,div>.gwt-ListBox","css,.c-product-options__content.u-border-brand-color.u-border-radius");
 	public static final cselector BDallColors = new cselector("css,.image-picker-option-image-container >img","css,.pw-swatch__chip>.pw-swatch__chip-inner>.c-product-option-items__item-content.gwt-image-picker-option");	
 	public static final cselector BDbottomPriceSingle = new cselector("css,div.gwt-price-panel.gwt-was-now-price-with-promo-holder .gwt-promo-discount-now-label","css,div > div:nth-child(2) > div > div.t-product-details__price");
 	public static final cselector BDaddToCartBtnEnabledSingle = new cselector("css,button.add-to-cart-button","css,button.c-add-to-cart");
-	public static final cselector BDaddToWLGRBtnEnabledSingle = new cselector("css,button.add-to-gift-registry-button","css,button.t-product-details__wishlist-button");
+	public static final cselector BDaddToWLGRBtnEnabledSingle = new cselector("css,button.add-to-gift-registry-button","css,.pw-button.t-product-wl-gr-btn");
+	
 	public static final cselector BDListBox = new cselector("css,select.gwt-ListBox","css,.c-product-options__content.u-border-brand-color.u-border-radius");
-	public static final cselector BDtopPriceSingle = new cselector("css,div.gwt-product-top-price-and-number > div > div","css,div.u-padding-bottom div.t-product-details-heading__price > div");
+	public static final cselector BDtopPriceSingle = new cselector("css,div.gwt-product-top-price-and-number > div > div","css,.t-product-details-heading__prod-number");
+	public static final cselector BDtopPriceBundle = new cselector("css,div.gwt-product-top-price-and-number > div > div","css,.t-product-details .t-product-details-heading__price .t-product-new-price");
 	public static final cselector BDnumberOfBundleItems = new cselector("css,.gwt-product-detail-products-container>.gwt-product-detail-widget","css,div.u-margin-bottom > .t-product-details-heading__price.t-product-details__price>div");	
 	public static final cselector BDaddToCartBtn = new cselector("css,button.add-to-cart-button","css,button.c-add-to-cart");
-	public static final cselector BDfirstSwatchInOptions = new cselector("css,div:nth-child({0})>.gwt-product-option-panel-widget-panel>div>div>div:nth-child(1)","css,.c-product-options>div:nth-child({0}) .c-product-option-items__container button>div>div:nth-child(1)>div>div:nth-child(1)> div");
+	public static final cselector BDfirstSwatchInOptions = new cselector("css,.image-picker-option-image-container > img","css,.c-product-option__item-content > img");
 	public static final cselector BDtopPriceBundleDesktop = new cselector("css,.gwt-price-panel");
 	public static final String BDaddToCartBtnEnabledBundle = "css,#{0} #gwt-add-to-cart-btn";
 	public static final String BDbottomPriceBundle = "css,#{0} .product-detail-widget-top-row-price-column div.gwt-promo-discount-now-label";
@@ -233,12 +235,15 @@ public class PDPSelectors {
 
 	public static final cselector BDpersonalizedItemColors2 = new cselector("css,.gwt-option-picker-swatch-picker> div.gwt-personalization-swatch-picker-option > img");
     public static final cselector BDPersonalizationCost = new cselector("css,div.gwt-HTML.hyper-label.gwt-personalize-link-style > div","css,.pw-button.add-personalization-button>div");
-	public static final cselector BDaddedPersonlizedDetails = new cselector("css,div.gwt-custom-personalization-chosen-values-container > div > div > div.gwt-Label.product-option-chosen-values-panel-entry-value","css,.c-personalization-panel .u-display-inline-block > span.u-padding-end-sm:nth-child(2)");
-    public static final cselector BDpersonalizedInputValue = new cselector("css,input.gwt-option-picker-alpha-numeric-textbox","css,div.pw-accordion--is-open>div>div>div>div>div>div>div>div>div>div>div>div>div>input");
+	public static final cselector BDaddedPersonlizedDetails = new cselector("css,div.gwt-custom-personalization-chosen-values-container > div > div > div.gwt-Label.product-option-chosen-values-panel-entry-value","css,.t-personalization__chosen-values");
+	public static final cselector BDaddedPersonlizationModalExpandField = new cselector("css,.m-personalization-accordion button");
+	
+
+    public static final cselector BDpersonalizedInputValue = new cselector("css,input.gwt-option-picker-alpha-numeric-textbox","css,.pw-accordion__content-wrapper input");
 	public static final cselector BDpersonalizedItems = new cselector("css,.gwt-personalization-picker-panel","css,div.pw-accordion--is-prerender > button");
 	public static final cselector BDMonogramCost = new cselector("css,div.gwt-custom-personalization-chosen-values-container > div > div > div.gwt-product-personalization-option-chosen-values-panel.gwt-item-personalization-cost > div.gwt-Label.product-option-chosen-values-panel-entry-value","css,.c-personalization-panel  .u-display-inline-block:nth-child(3) > span.u-padding-end-sm:nth-child(2)");
 	public static final cselector BDpersonlizedTitle = new cselector ("css,.pw-button.add-personalization-button > div");
-	public static final cselector BDpersonalizationSaveAndCloseButton = new cselector ("css,div.gwt-submit-cancel-dialog-button-panel > button.button.primary" , "css,.m-personalization__button-save-and-close"); 
+	public static final cselector BDpersonalizationSaveAndCloseButton = new cselector ("css,div.gwt-submit-cancel-dialog-button-panel > button.button.primary" , "css,.m-personalization-accordion__action-save"); 
     public static final cselector BDcreateNewWLConfirmationBtn = new cselector("css,div.gwt-submit-cancel-dialog-button-panel > button.button.primary","css, div.pw-sheet__content > div > div  button.pw--primary");
     public static final cselector BDnameYourNewWLconfirmationBtn = new cselector("css,#gwt-wishlist-create-modal  button.button.primary","css,button.m-create-wishlist__create-button");
     public static final cselector BDconfigureItems = new cselector("css,.vk-product-detail-accordion-container > div:nth-child({0}) .vk-product-detail-items-display-accordion > div","css,div.c-variable-kit-items-display-panel:nth-child({0}) .c-vk-product-detail-accordion") ;
