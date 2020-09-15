@@ -277,8 +277,8 @@ public class PDPSelectors {
     public static final cselector BDPDP_PCaddToWLGRBtnEnabled = new cselector("css,button.js-add-to-wishlist.js-add");
     public static final cselector BDAddToCart_PDP_PC = new cselector("css,div.t-pdp__actions> button.js-add-to-cart.js--add");
 	public static final cselector BDaddToCartModal = new cselector("css,.gwt-DialogBox.ok-cancel-dlog.gwt_addtocart_div");
-    public static final cselector BDPDP_PCtopPrice = new cselector("css,.gwt-now-price-holder","css,.js-price.c--large");
-    public static final cselector BDPDP_PCbottomPrice = new cselector("css,.gwt-right-bottom-product-options .gwt-now-price-holder","css,.js-custom-design-conteiner .js-price.c--large");
+    public static final cselector BDPDP_PCtopPrice = new cselector("css,.gwt-product-detail-top-price","css,.js-price.c--large");
+    public static final cselector BDPDP_PCbottomPrice = new cselector("css,.gwt-right-bottom-product-options .gwt-price-panel","css,.js-custom-design-conteiner .js-price.c--large");
     public static final cselector BD_size_option = new cselector("css,#gwt-option-panel > div.enabled.gwt-product-option-panel-listbox > div.gwt-product-option-panel-listbox-container > div > select > option:nth-child(2)"); 
     
     //PDP Messages
