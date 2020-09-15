@@ -358,32 +358,31 @@ public class PDP_selectSwatches extends SelTestCase{
 			}
 		}
 		
-		public static String getSwatchContainersdivClassBundle(int index, String ProductID) throws Exception {
-			try {
-				getCurrentFunctionName(true);
-				String Str;
-				if (!isBD()) {
-					Str = "css,#" + ProductID + ">" + PDPSelectors.FGGRSwatchesOptions.get().replace("css,", "");
-				}
-				else {
-					Str = "css,#" + ProductID + " " + PDPSelectors.BDSwatchesOptions.get().replace("css,", "");
-				}
-				if (isBD() && isMobile()) {
+	public static String getSwatchContainersdivClassBundle(int index, String ProductID) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			String Str;
+			if (!isBD()) {
+				Str = "css,#" + ProductID + ">" + PDPSelectors.FGGRSwatchesOptions.get().replace("css,", "");
+			} else {
+				if (isMobile())
 					Str = PDPSelectors.BDSwatchesOptions.get();
-				}
-
-				String SwatchContainerClass = SelectorUtil.getAttrString(Str, "class", index);
-				logs.debug("SwatchContainerClass: " + SwatchContainerClass);
-				getCurrentFunctionName(false);
-				return SwatchContainerClass;
-			} catch (NoSuchElementException e) {
-				logs.debug(MessageFormat.format(
-						ExceptionMsg.PageFunctionFailed + "Swatches button selector was not found by seleniuem",
-						new Object() {
-						}.getClass().getEnclosingMethod().getName()));
-				throw e;
+				else
+					Str = "css,#" + ProductID + " " + PDPSelectors.BDSwatchesOptions.get().replace("css,", "");
 			}
+
+			String SwatchContainerClass = SelectorUtil.getAttrString(Str, "class", index);
+			logs.debug("SwatchContainerClass: " + SwatchContainerClass);
+			getCurrentFunctionName(false);
+			return SwatchContainerClass;
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(
+					ExceptionMsg.PageFunctionFailed + "Swatches button selector was not found by seleniuem",
+					new Object() {
+					}.getClass().getEnclosingMethod().getName()));
+			throw e;
 		}
+	}
 
 	public static void GHRYselectSwatches(Boolean bundle, String ProductID) throws Exception {
 		try {

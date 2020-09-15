@@ -312,6 +312,33 @@ public class PDP_WL extends SelTestCase {
         }
     }
 	
+	
+	public static boolean validateAddToWLGRIsEnabledVK(Boolean Bundle, String ProductID) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			boolean isDisplayed;
+			logs.debug("Validate if Add To WL/GR Is Displayed");
+			String addToWLGRBtnEnabledBundleSelector;
+			
+			addToWLGRBtnEnabledBundleSelector = PDPSelectors.BDaddToWLGRBtnEnabledSingle.get();
+			
+			if (isMobile() && Bundle) {
+				
+				addToWLGRBtnEnabledBundleSelector = PDPSelectors.BDaddToWLGRBtnEnabledBundleMobile.get();
+
+			}
+			
+            isDisplayed = SelectorUtil.isDisplayed(addToWLGRBtnEnabledBundleSelector);
+            getCurrentFunctionName(false);
+            return isDisplayed;
+        } catch (NoSuchElementException e) {
+            logs.debug(MessageFormat.format(
+                    ExceptionMsg.PageFunctionFailed + "Add to gift registrey button selector was not found by selenium",
+                    new Object() {
+                    }.getClass().getEnclosingMethod().getName()));
+            throw e;
+        }
+    }
 
 	// done - SMK
 	public static void clickAddToWLGR() throws Exception {

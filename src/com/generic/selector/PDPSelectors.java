@@ -175,7 +175,7 @@ public class PDPSelectors {
 	public static final cselector GHItemsID = new cselector("css,.gwt-product-detail-products-container>.gwt-product-detail-widget", "css,.t-product-details__accordion-collection .pw-accordion__item.pw-accordion--is-open");	
 
 	//BD Selectors
-	public static final cselector BDSwatchesOptions = new cselector("css,.gwt-product-option-panel > div","css,.c-product-option__item-container" );
+	public static final cselector BDSwatchesOptions = new cselector("css,.gwt-product-option-panel > div","css,.c-product-option-items__container" );
 	public static final cselector BDBundleSwatchesOptions = new cselector("css,.gwt-product-option-panel > div","css,.t-product-details__accordion-collection >div:nth-child(1) .c-product-options>div>div>div.u-flexbox" );
 	public static final cselector BDoptionsContainer = new cselector("css,div.t-product-details__accordion-collection > div:nth-child(1) .c-product-options");
 	public static final cselector BDallSizes = new cselector("css,div>.gwt-ListBox","css,.c-product-options__content.u-border-brand-color.u-border-radius");
@@ -183,7 +183,8 @@ public class PDPSelectors {
 	public static final cselector BDbottomPriceSingle = new cselector("css,div.gwt-price-panel.gwt-was-now-price-with-promo-holder .gwt-promo-discount-now-label","css,div > div:nth-child(2) > div > div.t-product-details__price");
 	public static final cselector BDaddToCartBtnEnabledSingle = new cselector("css,button.add-to-cart-button","css,button.c-add-to-cart");
 	public static final cselector BDaddToWLGRBtnEnabledSingle = new cselector("css,button.add-to-gift-registry-button","css,.pw-button.t-product-wl-gr-btn");
-	
+	public static final cselector BDaddToWLGRBtnEnabledBundleMobile = new cselector("css,.t-product-details__wishlist-button-text");
+
 	public static final cselector BDListBox = new cselector("css,select.gwt-ListBox","css,.c-product-options__content.u-border-brand-color.u-border-radius");
 	public static final cselector BDtopPriceSingle = new cselector("css,div.gwt-product-top-price-and-number > div > div","css,.t-product-details-heading__prod-number");
 	public static final cselector BDtopPriceBundle = new cselector("css,div.gwt-product-top-price-and-number > div > div","css,.t-product-details .t-product-details-heading__price .t-product-new-price");
@@ -252,9 +253,9 @@ public class PDPSelectors {
     public static final cselector BDproducts = new cselector("css,.vk-product-detail-items-display-accordion","css,.m-product-options .c-variable-kit-items-display-panel");
     public static final cselector BDVK_PDPPrice = new cselector("css,.gwt-was-now-price-panel","css,.t-product-details-heading__price.t-product-details__price");
     public static final cselector BDconfigureBtn = new cselector("css,div.gwt-bundle-vk-detail-widget-column3 > button","css,div.c-configure-button-container.u-padding-lg > div > button.c-configure-button > .pw-button__inner");
-    public static final cselector BDproductsBundle = new cselector("css,.gwt-vk-item-display-panel","css,.c-variable-kit-product > div");
-    public static final cselector BDnthConfigureItemOptionBundle = new cselector("css,.gwt-vk-item-display-panel:nth-child({0}) > div.gwt-vk-item-panel:nth-child({1})  select","css,.c-variable-kit-product > div:nth-child({0}) .pw-accordion__item:nth-child({1}) button.pw-button");
-    public static final cselector BDconfigureItemsBundle = new cselector("css,.gwt-vk-item-display-panel:nth-child({0}) > div.gwt-vk-item-panel","css,.c-variable-kit-product> div:nth-child({0})>.pw-accordion.c-variable-kit-product__bellows > .pw-accordion__item");
+    public static final cselector BDproductsBundle = new cselector("css,.gwt-product-detail-widget","css,.pw-accordion__inner-header.pw--icon-start");
+    public static final cselector BDnthConfigureItemOptionBundle = new cselector("css,.gwt-vk-item-display-panel:nth-child({0}) > div.gwt-vk-item-panel:nth-child({1})  select","css,.pw-accordion__content-wrapper .pw-button");
+    public static final cselector BDconfigureItemsBundle = new cselector("css,.gwt-vk-item-panel-column3 .gwt-ListBox","css,.c-variable-kit-product .pw-accordion__item .pw-accordion__header");
     public static final cselector BDconfigureModalDoneBtn = new cselector("css,div.gwt-submit-cancel-dialog-button-panel > button","css,.c-variable-kit-product__save-button button");
     public static final cselector BDitemsAccordion = new cselector("css,.c-variable-kit-product> div:nth-child({0}) .pw-accordion__item.c-variable-kit-product__bellows-item:nth-child({1}) > button");
 

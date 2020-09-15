@@ -294,6 +294,7 @@ public class PDP_BD extends SelTestCase {
 			} else {
 				productsNo = SelectorUtil.getAllElements(PDPSelectors.BDproducts.get()).size();
 			}
+								
 			for (int i = 0; i < productsNo; i++) {
 				BDnthProductConfigureItemsSelection(i + 1, bundle);
 			}
@@ -318,6 +319,7 @@ public class PDP_BD extends SelTestCase {
 			} else {
 
 				for (int i = 0; i < numberOfconfigureItems; i++) {
+
 					if (SelectorUtil
 							.isNotDisplayed(MessageFormat.format(PDPSelectors.BDopenedConfigureItem.get(), i + 1))) {
 						int index = i + 1;
@@ -325,9 +327,6 @@ public class PDP_BD extends SelTestCase {
 							SelectorUtil.initializeSelectorsAndDoActions(
 									MessageFormat.format(PDPSelectors.BDconfigureItems.get(), productNo) + ":nth-child("
 											+ index + ")");
-						if (isMobile() && bundle && index == 1) {
-							// SelectorUtil.initializeSelectorsAndDoActions(MessageFormat.format(PDPSelectors.BDitemsAccordion.get(),productNo,index));
-						}
 					}
 					if (isMobile()) {
 						if (bundle) {
