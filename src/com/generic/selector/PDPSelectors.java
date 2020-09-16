@@ -184,6 +184,7 @@ public class PDPSelectors {
 	public static final cselector BDaddToCartBtnEnabledSingle = new cselector("css,button.add-to-cart-button","css,button.c-add-to-cart");
 	public static final cselector BDaddToWLGRBtnEnabledSingle = new cselector("css,button.add-to-gift-registry-button","css,.pw-button.t-product-wl-gr-btn");
 	public static final cselector BDaddToWLGRBtnEnabledSC = new cselector("css,button.add-to-gift-registry-button","css,.t-product-details__wishlist-button");
+	public static final cselector BDaddToWLGRBtnEnabledCSMobile = new cselector("css,button.add-to-gift-registry-button","css,.t-product-details__wishlist-button-comshop");
 	public static final cselector BDaddToWLGRBtnEnabledBundleMobile = new cselector("css,.t-product-details__wishlist-button-text");
 
 	public static final cselector BDListBox = new cselector("css,select.gwt-ListBox","css,.c-product-options__content.u-border-brand-color.u-border-radius");
@@ -230,8 +231,8 @@ public class PDPSelectors {
 
 	 
 	//COM Shop
-	public static final cselector CSBDTopPrice = new cselector("css,table.com-shop-pdp-left-table-1 > tbody > tr:nth-child(1) > td > div > div:nth-child(1)","css,div.t-product-details-heading__price-wrapper > div > div > div > span.t-product-promo-price.final-price.u-text-weight-medium.u-color-accent.u-text-size-18");
-	public static final cselector CSBDBottomPrice = new cselector("css,table.com-shop-pdp-left-table-2 > tbody > tr:nth-child(3) > td > div > div:nth-child(1) > div:nth-child(1)","css,.t-product-details__quantity .t-product-promo-price");
+	public static final cselector CSBDTopPrice = new cselector("css,table.com-shop-pdp-left-table-1 > tbody > tr:nth-child(1) > td > div > div:nth-child(1)","css,.t-product-details-heading__price-wrapper  .t-product-details__price-range");
+	public static final cselector CSBDBottomPrice = new cselector("css,table.com-shop-pdp-left-table-2 > tbody > tr:nth-child(3) > td > div > div:nth-child(1) > div:nth-child(1)","css,.t-product-details__quantity  .t-product-details-heading__price.t-product-details__price");
 	public static final cselector CSFinishColorOptions = new cselector("css, table > tbody > tr:nth-child(2) > td > div > div.gwt-comshop-body-option-swatch-container > img","css, div.c-fabric-options > div > div > div > div > div.pw-swatch__items > div > button");
 	public static final cselector CSOrderASwatchButton = new cselector("css,#gwt-comshop-customization-sub-tab-panel > button","css,div.c-order-swatch > button");
 	public static final cselector CSSearchSwatchResults = new cselector("css,div.swatches-container-panel.fabric-swatches-container > div.gwt-PDP-Fabric-Image-panel:not([aria-hidden]) > img","css, div.pw-sheet__content > div > div > div:nth-child(7) > div:nth-child(1) > div.m-order-swatch-modal__option.u-display-flex.u-padding-lg.u-border-no-color.u-margin-top-lg.u-margin-bottom-lg.u-border-alto > div > button > div > div > img");
