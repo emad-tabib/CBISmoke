@@ -312,6 +312,35 @@ public class PDP_WL extends SelTestCase {
         }
     }
 	
+	// SC WL Button
+	public static boolean validateAddToWLGRIsEnabledSC(Boolean Bundle, String ProductID) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			boolean isDisplayed;
+			logs.debug("Validate if Add To WL/GR Is Displayed");
+
+			String selectorEnabled;
+
+			selectorEnabled = PDPSelectors.BDaddToWLGRBtnEnabledSC.get();
+
+			if (!isMobile() && Bundle) {
+				if (isBD())
+					selectorEnabled = PDPSelectors.BDaddToWLGRBtnEnabledSingle.get();
+
+			}
+			isDisplayed = SelectorUtil.isDisplayed(selectorEnabled);
+			getCurrentFunctionName(false);
+			return isDisplayed;
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(
+					ExceptionMsg.PageFunctionFailed + "Add to gift registrey button selector was not found by selenium",
+					new Object() {
+					}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+	
+	//.t-product-details__wishlist-button
 	
 	public static boolean validateAddToWLGRIsEnabledVK(Boolean Bundle, String ProductID) throws Exception {
 		try {

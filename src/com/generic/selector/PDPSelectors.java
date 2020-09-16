@@ -183,6 +183,7 @@ public class PDPSelectors {
 	public static final cselector BDbottomPriceSingle = new cselector("css,div.gwt-price-panel.gwt-was-now-price-with-promo-holder .gwt-promo-discount-now-label","css,div > div:nth-child(2) > div > div.t-product-details__price");
 	public static final cselector BDaddToCartBtnEnabledSingle = new cselector("css,button.add-to-cart-button","css,button.c-add-to-cart");
 	public static final cselector BDaddToWLGRBtnEnabledSingle = new cselector("css,button.add-to-gift-registry-button","css,.pw-button.t-product-wl-gr-btn");
+	public static final cselector BDaddToWLGRBtnEnabledSC = new cselector("css,button.add-to-gift-registry-button","css,.t-product-details__wishlist-button");
 	public static final cselector BDaddToWLGRBtnEnabledBundleMobile = new cselector("css,.t-product-details__wishlist-button-text");
 
 	public static final cselector BDListBox = new cselector("css,select.gwt-ListBox","css,.c-product-options__content.u-border-brand-color.u-border-radius");
@@ -223,6 +224,11 @@ public class PDPSelectors {
 	public static final cselector closeModal = new cselector("css,div.gwt-DialogBox.ok-cancel-dlog.gwt_addtocart_div > div > table > tbody > tr.dialogTop > td.dialogTopCenter > div > div > div > button","css,.captionContainer > button","css,.m-products_added_to_cart_modal  .c-icon-label-button");
 	public static final cselector BDAddToCartModal = new cselector("css,.gwt-DialogBox.ok-cancel-dlog.gwt_addtocart_div","css,div.pw-sheet__wrapper > div > div.pw-sheet__content");
 
+	//BD Slipcover
+	public static final cselector SCBDTopPrice = new cselector("css,.gwt-price-panel","css,.t-product-details-heading__price.t-product-details__price.t-product-details__price-range");
+	public static final cselector SCBDBottomPrice = new cselector("css,.gwt-sc-bottom-of-right .gwt-price-itemNumber  .gwt-list-price-panel","css,.t-product-new-price.final-price");
+
+	 
 	//COM Shop
 	public static final cselector CSBDTopPrice = new cselector("css,table.com-shop-pdp-left-table-1 > tbody > tr:nth-child(1) > td > div > div:nth-child(1)","css,div.t-product-details-heading__price-wrapper > div > div > div > span.t-product-promo-price.final-price.u-text-weight-medium.u-color-accent.u-text-size-18");
 	public static final cselector CSBDBottomPrice = new cselector("css,table.com-shop-pdp-left-table-2 > tbody > tr:nth-child(3) > td > div > div:nth-child(1) > div:nth-child(1)","css,.t-product-details__quantity .t-product-promo-price");
