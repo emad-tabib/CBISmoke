@@ -30,7 +30,7 @@ public class PDPBase extends SelTestCase {
 
 
 
-	public static final String singlePDPSearchTerm = "WN151";
+	public static final String singlePDPSearchTerm = "WN15";
 	public static final String BundlePDPSearchTerm = "LC558";
 	public static final String personalizedPDPSearchTerm = "RD313";
 	public static final String slipCoverPDPSearchTerm = "sa083";
@@ -41,6 +41,8 @@ public class PDPBase extends SelTestCase {
 
 
 	public static final String wishListGuestValidation = "Wish List Guest Validation";
+	
+	public static boolean isVK = false;
 
 	// used sheet in test
 	public static final String testDataSheet = SheetVariables.PDPSheet_BD;
@@ -93,6 +95,7 @@ public class PDPBase extends SelTestCase {
 				WistListGuestValidation.validate();
 			}
 			if (proprties.contains(vkPDP)) {
+				isVK = true;
 		     	PDP_VK.validate(vkPDPSearchTerm);
 			}
 			
@@ -109,7 +112,7 @@ public class PDPBase extends SelTestCase {
 			
 			if (proprties.contains(pcPDP)) {
 				PDP_PC.validate(pcPDPSearchTerm);
-			}
+			} 
 			
 			sassert().assertAll();
 

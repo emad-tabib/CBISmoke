@@ -1165,13 +1165,15 @@ public class SelectorUtil extends SelTestCase {
 	@SuppressWarnings("rawtypes")
 	public static void selectActiveOption(String Str, String value) throws Exception {
 		LinkedHashMap<String, LinkedHashMap> webelementsInfo = initializeSelectorsAndDoActions(Str, value, false);
+		
 		WebElement items = getDriver().findElement((By) webelementsInfo.get(Str).get("by"));
 		Select select = new Select(items);
 		List<WebElement> options = select.getOptions();
 		for (int i = 1; i < options.size(); i++) {
 			// logs.debug(options.get(i).getText().trim());
-			logs.debug("khara" + options.get(i).getText());
-			if (!options.get(i).getText().toLowerCase().trim().contains("no longer")) {
+			logs.debug("option value" + options.get(i).getText());
+			if (!options.get(i).getText().toLowerCase().trim().contains("unavailable")) {
+				logs.debug("slected option value: " + options.get(i).getText());
 				logs.debug(MessageFormat.format(LoggingMsg.SELECTED_INDEX, i));
 				select.selectByIndex(i);
 				break;

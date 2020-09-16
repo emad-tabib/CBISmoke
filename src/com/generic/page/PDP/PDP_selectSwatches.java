@@ -87,13 +87,17 @@ public class PDP_selectSwatches extends SelTestCase{
 				logs.debug("No options to select");
 			} else {
 				String ListSelector = MessageFormat.format(PDPSelectors.ListBoxBundle, ProductID);
+				int list = 0;
+				int img = 0;
 				for (int i = 0; i < numberOfSwatchContainers; i++) {
 					if (getSwatchContainersdivClassBundle(i, ProductID).contains("listbox")) {
-						selectNthListBoxFirstValueBundle(ListSelector, i);
-
-					} else {
+						
+						selectNthListBoxFirstValueBundle(ListSelector, list); // replace i by 0
+						list++;
+					} else { 
 						selectNthOptionFirstSwatchBundle("css,#" + ProductID + ">"
-								+ MessageFormat.format(PDPSelectors.imageOption.get(), i + 1, 1).replace("css,", ""));
+								+ MessageFormat.format(PDPSelectors.imageOption.get(), img + 1, 1).replace("css,", ""));
+						img++;
 					}
 				}
 
@@ -245,7 +249,7 @@ public class PDP_selectSwatches extends SelTestCase{
 					Str = PDPSelectors.allSizes.get();
 					value = "FFF1";
 				}
-				SelectorUtil.initializeSelectorsAndDoActions(Str, value);
+				SelectorUtil.selectActiveOption(Str, value);
 				getCurrentFunctionName(false);
 			} catch (NoSuchElementException e) {
 				logs.debug(MessageFormat.format(
@@ -362,6 +366,9 @@ public class PDP_selectSwatches extends SelTestCase{
 		public static void GHRYselectSize(Boolean bundle, String ProductID) throws Exception {
 			try {
 				getCurrentFunctionName(true);
+				if (bundle)
+					ProductID = PDP.getProductID(0);
+				
 				String subStrArr = (PDPSelectors.GHRYSizeOptions.get());
 
 				// Bundle product selector.
@@ -375,7 +382,7 @@ public class PDP_selectSwatches extends SelTestCase{
 					if (!classValue.contains("no-available") && !classValue.contains("disabled")) {
 						String nthSel = subStrArr;
 						if (!isMobile())
-							nthSel = subStrArr + ">div";
+							nthSel = subStrArr+ ">div" ;
 						WebElement item = getDriver().findElements(By.cssSelector(nthSel)).get(index);
 						JavascriptExecutor jse = (JavascriptExecutor) getDriver();
 						jse.executeScript("arguments[0].scrollIntoView(false)", item);
@@ -392,8 +399,10 @@ public class PDP_selectSwatches extends SelTestCase{
 					logs.debug(MessageFormat.format(LoggingMsg.FORMATTED_ERROR_MSG, e.getMessage()));
 					logs.debug("Refresh the browser to close the Intercepted windows");
 					Common.refreshBrowser();
-					if (isMobile())
+					if (isMobile()) {
 						Thread.sleep(12000);
+						HomePage.closeReferandEarnModal();
+					}
 					PDP.clickBundleItems();
 					// update the product id after the refresh
 					if (bundle)
@@ -422,8 +431,10 @@ public class PDP_selectSwatches extends SelTestCase{
 					logs.debug(MessageFormat.format(LoggingMsg.FORMATTED_ERROR_MSG, e.getMessage()));
 					logs.debug("Refresh the browser to close the Intercepted windows");
 					getDriver().navigate().refresh();
-					if (isMobile())
+					if (isMobile()){
 						Thread.sleep(12000);
+						HomePage.closeReferandEarnModal();
+					}
 					// update the product id after the refresh
 					if (bundle) {
 						PDP.clickBundleItems();
@@ -476,7 +487,8 @@ public class PDP_selectSwatches extends SelTestCase{
 					logs.debug("Refresh the browser to close the Intercepted windows");
 					getDriver().navigate().refresh();
 					if (isMobile()) {
-						Thread.sleep(8000);
+						Thread.sleep(12000);
+				
 						if (isGH())
 							HomePage.closeReferandEarnModal();
 					}
