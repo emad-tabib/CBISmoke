@@ -249,7 +249,7 @@ public class PDP_selectSwatches extends SelTestCase{
 					Str = PDPSelectors.allSizes.get();
 					value = "FFF1";
 				}
-				SelectorUtil.initializeSelectorsAndDoActions(Str, value);
+				SelectorUtil.selectActiveOption(Str, value);
 				getCurrentFunctionName(false);
 			} catch (NoSuchElementException e) {
 				logs.debug(MessageFormat.format(

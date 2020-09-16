@@ -32,11 +32,11 @@ public class CartValidation extends SelTestCase {
 		URI url = new URI(getURL());
 		getDriver().get("https://" + url.getHost());
 
-		if (isiPad()) {
-			addProductToCart("rugs");
-		} else {
+//		if (isiPad()) {
+//			addProductToCart("rugs");
+//		} else {
 			addProductToCart("red");
-		}
+//		}
 
 		// Navigate to cart by URL
 		CheckOut.navigatetoCart();
