@@ -52,7 +52,7 @@ public class HomePageSelectors
 	//#pwa-shop-nav-button
 	// adding this
 	public static final cselector miniCartCloseBD = new cselector("css,button.pw-button.c-icon-label-button");
-	public static final cselector miniCartProductContainer = new cselector("css,.mini-cart-items-container","css,.m-mini-cart__content-products");
+	public static final cselector miniCartProductContainer = new cselector("css,.mini-cart-items-container","css,.pw-header-bar__actions .pw-badge");
 	public static final cselector GHminiCartText = new cselector("css,.empty-cart-sign-in-container > .gwt-HTML.inst-copy","css,.m-mini-cart__empty-content.u-text-align-center div.m-mini-cart__empty-header");
 	public static final cselector GHminiCartClose = new cselector("css,#headerBox > div.t-header__bar > div > div:nth-child(1) > div.pw-header-bar__actions.t-header-bar__cart.u-margin-end-6");
 	public static final cselector RYminiCartText = new cselector("css,.empty-cart-sign-in-container > .gwt-HTML.inst-copy","css, div.cart-empty-text");

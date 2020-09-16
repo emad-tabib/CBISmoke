@@ -100,7 +100,12 @@ public class PDP_SC_CS extends SelTestCase {
 			if(isCS(key)) {
 				selector = PDPSelectors.CSBDTopPrice.get();
 				isDisplayed = SelectorUtil.isDisplayed(selector);
-			}else {
+			}
+			else if(isSC(key)) {
+				selector = PDPSelectors.SCBDTopPrice.get();
+				isDisplayed = SelectorUtil.isDisplayed(selector);
+			}
+			else {
 				selector = PDPSelectors.BDTopPrice.get();
 				isDisplayed = SelectorUtil.isDisplayed(selector);
 			}
@@ -117,6 +122,14 @@ public class PDP_SC_CS extends SelTestCase {
 	public static boolean isCS(String csKey) {
 		getCurrentFunctionName(true);
 		boolean result = csKey.equals("COM Shop");
+		getCurrentFunctionName(false);
+		return result;
+	}
+	
+	
+	public static boolean isSC(String csKey) {
+		getCurrentFunctionName(true);
+		boolean result = csKey.equals("Slip Cover");
 		getCurrentFunctionName(false);
 		return result;
 	}
@@ -145,13 +158,18 @@ public class PDP_SC_CS extends SelTestCase {
 			getCurrentFunctionName(true);
 			logs.debug("Validate if bottom price is updated after seleting options");
 			String selector;
-			if(isCS(Key)) {
+
+			if (isCS(Key)) {
 				selector = PDPSelectors.CSBDBottomPrice.get();
-				SelectorUtil.initializeSelectorsAndDoActions(selector);	
-			}else {
+				SelectorUtil.initializeSelectorsAndDoActions(selector);
+			} else if (isSC(Key)) {
+				selector = PDPSelectors.SCBDBottomPrice.get();
+				SelectorUtil.initializeSelectorsAndDoActions(selector);
+			} else {
 				selector = PDPSelectors.BDBottomPrice.get();
-				SelectorUtil.initializeSelectorsAndDoActions(selector);	
+				SelectorUtil.initializeSelectorsAndDoActions(selector);
 			}
+			
 			String price = SelectorUtil.textValue.get();	
 			getCurrentFunctionName(false);
 			return price;

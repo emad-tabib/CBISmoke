@@ -22,7 +22,6 @@ public class PDPValidation extends SelTestCase {
 			HomePage.closeReferandEarnModal();
 		}
 		validateIsPDPPage();
-		SelectorUtil.waitGWTLoadedEventPWA();
 
 		Boolean bundle = PDP.bundleProduct();
 		String ProductID = null;
@@ -153,7 +152,13 @@ public class PDPValidation extends SelTestCase {
 		String perosnalizationPrice = "";
 
 		if (isMobile()) {
-			List<WebElement> elementsList = SelectorUtil.getAllElements(PDPSelectors.personalizationPrice.get());
+			List<WebElement> elementsList;
+
+			if (isGH())
+				elementsList = SelectorUtil.getAllElements(PDPSelectors.personalizationPriceGHMobile.get());
+			else
+				elementsList = SelectorUtil.getAllElements(PDPSelectors.personalizationPrice.get());
+
 			for (int i = 0; i < elementsList.size(); i++) {
 				WebElement item = elementsList.get(i);
 				String itemText = item.getText();
