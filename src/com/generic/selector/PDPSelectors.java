@@ -258,7 +258,7 @@ public class PDPSelectors {
     public static final cselector BDnthConfigureItemOption = new cselector("css,.vk-product-detail-accordion-container > div:nth-child({0}) .vk-product-detail-items-display-accordion > div:nth-child({1}) .gwt-image-picker-option img","css,div.c-variable-kit-items-display-panel:nth-child({0}) .c-vk-product-detail-accordion:nth-child({1}) button.pw-swatch__button");
     public static final cselector BDopenedConfigureItem = new cselector("css,.vk-product-detail-items-display-accordion > div:nth-child({0}) > div.tabopen","css,button.m-create-wishlist__create-button");
     public static final cselector BDproducts = new cselector("css,.vk-product-detail-items-display-accordion","css,.m-product-options .c-variable-kit-items-display-panel");
-    public static final cselector BDVK_PDPPrice = new cselector("css,.gwt-was-now-price-panel","css,.t-product-details-heading__price.t-product-details__price");
+    public static final cselector BDVK_PDPPrice = new cselector("css,.gwt-price-panel","css,.u-margin-bottom>.t-product-details-heading__price.t-product-details__price");
     public static final cselector BDconfigureBtn = new cselector("css,div.gwt-bundle-vk-detail-widget-column3 > button","css,div.c-configure-button-container.u-padding-lg > div > button.c-configure-button > .pw-button__inner");
     public static final cselector BDproductsBundle = new cselector("css,.gwt-product-detail-widget","css,.pw-accordion__inner-header.pw--icon-start");
     public static final cselector BDnthConfigureItemOptionBundle = new cselector("css,.gwt-vk-item-display-panel:nth-child({0}) > div.gwt-vk-item-panel:nth-child({1})  select","css,.pw-accordion__content-wrapper .pw-button");
@@ -268,9 +268,9 @@ public class PDPSelectors {
 
     
     //Fabric
-    public static final cselector FabricAddtoCartBtn = new cselector("css,#gwt-product-detail-widget-id-475942 .gwt-bundle-add-to-cart-btn >button","css,.u-margin-start-negative-md .u-margin-bottom-md .u-padding-start-md button");
-    public static final cselector FabricAddFreeSwatchtoCartBtn = new cselector("css,#gwt-product-detail-widget-id-475951 .gwt-bundle-add-to-cart-btn >button","css,.t-product-details__fabric-swatch-content .t-product-details__swatch-qty-cart .u-width-2of3 .u-padding-start-md > button");
-    public static final cselector pickOneFreeSwatch = new cselector("css,#gwt-product-detail-widget-id-475951 .csb-quantity-ctl > #incrementId","css,div.t-product-details__swatch-qty-cart.u-flexbox > div:nth-child(1) > div > div > div > div > button.pw-button.pw--icon-only.increment-quantity.u-padding-0.u-border-0");
+    public static final cselector FabricAddtoCartBtn = new cselector("css,#gwt-product-detail-widget-id-546381 .gwt-bundle-add-to-cart-btn > button","css,#gwt-product-detail-widget-id-526932 .gwt-bundle-add-to-cart-btn > button","css,.u-margin-start-negative-md .u-margin-bottom-md .u-padding-start-md button");
+    public static final cselector FabricAddFreeSwatchtoCartBtn = new cselector("css, #gwt-product-detail-widget-id-546390 .gwt-bundle-add-to-cart-btn >button","css,#gwt-product-detail-widget-id-527000 .gwt-bundle-add-to-cart-btn >button","css,.t-product-details__fabric-swatch-content .t-product-details__swatch-qty-cart .u-width-2of3 .u-padding-start-md > button");
+    public static final cselector pickOneFreeSwatch = new cselector("css,#gwt-product-detail-widget-id-546390  .csb-quantity-ctl > #incrementId","css, #gwt-product-detail-widget-id-527000 .csb-quantity-ctl > #incrementId","css,div.t-product-details__swatch-qty-cart.u-flexbox > div:nth-child(1) > div > div > div > div > button.pw-button.pw--icon-only.increment-quantity.u-padding-0.u-border-0");
 
     public static final cselector BDnextButton = new cselector("css,div.tabcontent.tabopen > div > div > div.tabs-button-panel > button.button.secondary.step-button.next","css,div.bellows--is-open  button.js--next");
     public static final cselector BDPCoptions = new cselector("css,div.tabcontent.tabopen > div > div > div.gwt-pc-option-content-panel > div > div.gwt-option-values-panel > div > div > div > div > img","css,div.bellows--is-open > div.bellows__content-wrapper > div > div.js-configure-fabric__fabric-swatches > div.c-swatch-msg-container > div > div > ul > li img");
