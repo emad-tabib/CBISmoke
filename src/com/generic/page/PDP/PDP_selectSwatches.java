@@ -392,11 +392,11 @@ public class PDP_selectSwatches extends SelTestCase{
 			logs.debug("numberOfPanels: " + numberOfPanels);
 
 			if (numberOfPanels > 1) {
-				// size
-				GHRYselectSize(bundle, ProductID);
-
 				// color
 				GHRYselectColor(bundle, ProductID);
+				
+				// size
+				GHRYselectSize(bundle, ProductID);
 			}
 			
 			getCurrentFunctionName(false);
