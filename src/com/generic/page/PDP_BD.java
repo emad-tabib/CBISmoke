@@ -55,9 +55,22 @@ public class PDP_BD extends SelTestCase {
 					noOptions = !PDP_cart.getAddToCartClass(false);
 				else
 					noOptions = PDP_selectSwatches.getSwatchContainersdivClass(0).contains("no-options");
+				
+				
+				int numberOfSwatchContainers = PDP_selectSwatches.getNumberofSwatchContainers();
 
+				for (int i = 0; i < numberOfSwatchContainers; i++) {
+
+					if (PDP_selectSwatches.getSwatchContainersdivClass(i).contains("swatch")
+							|| PDP_selectSwatches.getSwatchContainersdivClass(i).contains("color"))
+						PDP_selectSwatches.selectNthOptionFirstSwatch(i, false);
+
+					else if (PDP_selectSwatches.getSwatchContainersdivClass(i).contains("list"))
+						PDP_selectSwatches.selectNthListBoxFirstValue(i + 1);
+
+				}
 				isPriceShownInOption = !noOptions;
-				PDP_selectSwatches.FGGRselectSwatchesSingle();
+				//PDP_selectSwatches.FGGRselectSwatchesSingle();
 			}
 			getCurrentFunctionName(false);
 			return isPriceShownInOption;

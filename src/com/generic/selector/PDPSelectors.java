@@ -80,16 +80,16 @@ public class PDPSelectors {
 	
 	public static final cselector SelectRegistryOrWishListModal = new cselector("css,#gwt-add-to-gift-registry-modal","css,.pw-sheet__inner");
     public static final cselector giftRegistryListBox = new cselector("css,select.gift-registry-list-bx","css,div.pw-sheet__content > div > div  select");
-    public static final cselector createNewWL = new cselector("css,select.gift-registry-list-bx > option[value='Create New Wish List']","css,  div.pw-sheet__content > div > div  select > option[value='createWL']");
+    public static final cselector createNewWL = new cselector("css,select.gift-registry-list-bx > option[value='Create New Wish List']","css,  div.pw-sheet__content > div > div  select > option[value='Create New Wish List']");
     public static final cselector RYcreateNewWL = new cselector("css,li> button.wishlist-item","css,div.t-product-details__wishlist-dropdown > button");
     public static final cselector RYcreateNewWLName = new cselector("css,li> button.wishlist-item > span","css,div.t-product-details__wishlist-dropdown > button > div");
     public static final cselector createNewWLConfirmationBtn = new cselector("css,div.gwt-submit-cancel-dialog-button-panel > button.button.primary","css,div.pw-sheet__content > div > div > div.m-wishlist-registery__btns > button.pw-button.m-wishlist-registery__btn");
-    public static final cselector nameYourNewWL = new cselector("css,#gwt-wishlist-create-modal","css,.m-create-wishlist-form");
+    public static final cselector nameYourNewWL = new cselector("css,#gwt-wishlist-create-modal","css, div.pw-sheet__wrapper > div");
     public static final cselector WLName = new cselector("css,input#wishlist_name_id","css,div.pw-sheet__content > div > div > input");
     public static final cselector nameYourNewWLconfirmationBtn = new cselector("css,#gwt-wishlist-create-modal  button.button.primary","css,div.pw-sheet__content > div > div > div.m-create-wishlist-form-btns > button.pw-button.m-create-wishlist-form__create.pw--primary.u-width-full.u-margin-top-md.u-margin-bottom-md");
     public static final cselector confirmationModal = new cselector("css,div.gwt-DialogBox.ok-cancel-dlog.gwt-added-to-wish-list-modal","css,.pw-sheet__inner div.pw-header-bar__title");
     public static final cselector productName = new cselector("css,div.gwt-product-main-title-panel > div > h2","css,div.c-custom-sheet__content > div >div> div> div> div.u-justify-center");
-    public static final cselector addToCardProductName = new cselector("css,div.addToCartProductName > div","css,div.pw-sheet__content > div > div > div:nth-child(1) > div:nth-child(2) > div>div:nth-child(1)");
+    public static final cselector addToCardProductName = new cselector("css,div.addToCartProductName > div","css, div.m-registry-confirmation__product-info > div > h3 > span:nth-child(1)");
     public static final cselector productNameinWLModalGHMobile = new cselector("css,.u-padding-start-md > div:nth-child(1) > div.u-flexbox.u-justify-start.u-margin-bottom-6");
 
     public static final cselector viewListBtn = new cselector("css,td > div > button.button.primary","css,button.pw-button.pw--secondary");
@@ -175,14 +175,14 @@ public class PDPSelectors {
 	public static final cselector GHItemsID = new cselector("css,.gwt-product-detail-products-container>.gwt-product-detail-widget", "css,.t-product-details__accordion-collection .pw-accordion__item.pw-accordion--is-open");	
 
 	//BD Selectors
-	public static final cselector BDSwatchesOptions = new cselector("css,.gwt-product-option-panel > div","css,.c-product-option-items__container" );
+	public static final cselector BDSwatchesOptions = new cselector("css,.gwt-product-option-panel > div", "css,.c-product-options__container" );
 	public static final cselector BDBundleSwatchesOptions = new cselector("css,.gwt-product-option-panel > div","css,.t-product-details__accordion-collection >div:nth-child(1) .c-product-options>div>div>div.u-flexbox" );
 	public static final cselector BDoptionsContainer = new cselector("css,div.t-product-details__accordion-collection > div:nth-child(1) .c-product-options");
 	public static final cselector BDallSizes = new cselector("css,div>.gwt-ListBox","css,.c-product-options__content.u-border-brand-color.u-border-radius");
 	public static final cselector BDallColors = new cselector("css,.image-picker-option-image-container >img","css,.pw-swatch__chip>.pw-swatch__chip-inner>.c-product-option-items__item-content.gwt-image-picker-option");	
 	public static final cselector BDbottomPriceSingle = new cselector("css,div.gwt-price-panel.gwt-was-now-price-with-promo-holder .gwt-promo-discount-now-label","css,div > div:nth-child(2) > div > div.t-product-details__price");
 	public static final cselector BDaddToCartBtnEnabledSingle = new cselector("css,button.add-to-cart-button","css,button.c-add-to-cart");
-	public static final cselector BDaddToWLGRBtnEnabledSingle = new cselector("css,button.add-to-gift-registry-button","css,.pw-button.t-product-wl-gr-btn");
+	public static final cselector BDaddToWLGRBtnEnabledSingle = new cselector("css,button.add-to-gift-registry-button","css,.pw-button.t-product-details__wishlist-button");
 	public static final cselector BDaddToWLGRBtnEnabledSC = new cselector("css,button.add-to-gift-registry-button","css,.t-product-details__wishlist-button");
 	public static final cselector BDaddToWLGRBtnEnabledCSMobile = new cselector("css,button.add-to-gift-registry-button","css,.t-product-details__wishlist-button-comshop");
 	public static final cselector BDaddToWLGRBtnEnabledBundleMobile = new cselector("css,.t-product-details__wishlist-button-text");

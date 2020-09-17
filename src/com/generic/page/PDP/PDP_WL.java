@@ -44,8 +44,7 @@ public class PDP_WL extends SelTestCase {
 				WebElement option = element.findElement(By.cssSelector(PDPSelectors.createNewWL.get()));
 				option.click();
 				
-				if(!isMobile())
-				  clickOnCreateNewWLConfirmationBtn();
+				clickOnCreateNewWLConfirmationBtn();
 			}
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
