@@ -46,7 +46,7 @@ public class PDP_cart extends SelTestCase {
 	
 	
 
-	public static boolean getAddToCartClass() throws Exception {
+	public static boolean getAddToCartClass(boolean isBundle) throws Exception {
 		try {
 			getCurrentFunctionName(true);
 			String Str;
@@ -62,8 +62,14 @@ public class PDP_cart extends SelTestCase {
 					isDisabled = true;
 				}
 
-			} else {
-				Str = PDPSelectors.addToCartBtn.get();
+			} 
+
+			else {
+				if(isBundle)
+					Str = PDPSelectors.addToCartBtnBundle.get();
+				else
+					Str = PDPSelectors.addToCartBtn.get();
+				
 				String addToCartBtnClass = SelectorUtil.getAttrString(Str, "class");
 				logs.debug("addToCartBtnClass: " + addToCartBtnClass);
 				isDisabled = addToCartBtnClass.contains("disabled");
@@ -297,7 +303,10 @@ public class PDP_cart extends SelTestCase {
 			getCurrentFunctionName(true);
 			String subStrArr = null;
 			if (SelTestCase.isFGGR())
-				subStrArr = PDPSelectors.addToCartBtn.get();
+				if(isMobile() && isFG() && PDP.bundleProduct())
+					subStrArr = PDPSelectors.addToCartBtnBundle.get();
+				else
+					subStrArr = PDPSelectors.addToCartBtn.get();
 			if (SelTestCase.isGHRY())
 				subStrArr = PDPSelectors.GHRYaddToCartBtn.get();
 			if (SelTestCase.isBD())
