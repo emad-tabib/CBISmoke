@@ -114,7 +114,7 @@ public class PDP_selectSwatches extends SelTestCase{
 			throw e;
 		}
 	}
-	
+
 	public static void FGGRselectSwatchesSingle() throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -126,18 +126,27 @@ public class PDP_selectSwatches extends SelTestCase{
 
 			if (noOptions) {
 				logs.debug("No options to select");
-			} else if (!SelTestCase.isMobile()) {
+			}
+
+			else if (!SelTestCase.isMobile()) {
 				int numberOfSwatchContainers = getNumberofSwatchContainers();
 				for (int i = 0; i < numberOfSwatchContainers; i++) {
 					try {
-						selectNthListBoxFirstValue(i);
-					} catch (Exception e) {
 						selectNthOptionFirstSwatch(i + 1, false);
+					} catch (Exception e) {
+
+					}
+
+					try {
+						selectNthListBoxFirstValue(i);
+
+					} catch (Exception e) {
+
 					}
 				}
 			} else {
 				int numberOfSwatchContainers = getNumberofSwatchContainers();
-				for (int i = 1; i < numberOfSwatchContainers; i += 2) {
+				for (int i = 1; i <= numberOfSwatchContainers; i += 2) {
 					try {
 						selectNthListBoxFirstValue((i - 1) / 2);
 					} catch (Exception e) {
@@ -197,7 +206,8 @@ public class PDP_selectSwatches extends SelTestCase{
 				Str = PDPSelectors.FGGRSwatchesOptions.get();
 			}
 			else {
-				Str = PDPSelectors.BDSwatchesOptions.get();
+					Str = PDPSelectors.BDSwatchesOptions.get();
+
 			}
 			String SwatchContainerClass = SelectorUtil.getAttrString(Str, "class", index);
 			logs.debug("SwatchContainerClass: " + SwatchContainerClass);
@@ -259,13 +269,24 @@ public class PDP_selectSwatches extends SelTestCase{
 		try {
 			getCurrentFunctionName(true);
 			String Str;
+			int numberOfSwatchContainers;
+			
 			if (isBD()) {
-				Str = PDPSelectors.BDSwatchesOptions.get();
+				try {
+					Str = PDPSelectors.BDSwatchesOptions.get();
+					numberOfSwatchContainers = SelectorUtil.getAllElements(Str).size();
+
+				} catch (Exception e) {
+					Str = PDPSelectors.BDSwatchesOptions2.get();
+					numberOfSwatchContainers = SelectorUtil.getAllElements(Str).size();
+
 				}
+			}
 			else {
 				Str = PDPSelectors.FGGRSwatchesOptions.get();
+				numberOfSwatchContainers = SelectorUtil.getAllElements(Str).size();
+
 			}
-			int numberOfSwatchContainers = SelectorUtil.getAllElements(Str).size();
 			logs.debug("Number of Swatch Containers: " + numberOfSwatchContainers);
 			getCurrentFunctionName(false);
 			return numberOfSwatchContainers;
@@ -362,16 +383,25 @@ public class PDP_selectSwatches extends SelTestCase{
 		try {
 			getCurrentFunctionName(true);
 			String Str;
+			String SwatchContainerClass;
+			
 			if (!isBD()) {
 				Str = "css,#" + ProductID + ">" + PDPSelectors.FGGRSwatchesOptions.get().replace("css,", "");
+				SwatchContainerClass = SelectorUtil.getAttrString(Str, "class", index);
 			} else {
-				if (isMobile())
-					Str = PDPSelectors.BDSwatchesOptions.get();
-				else
+				if (isMobile()) {
+					try {
+						Str = PDPSelectors.BDSwatchesOptionsBundle.get();
+						SwatchContainerClass = SelectorUtil.getAttrString(Str, "class", index);
+					} catch (Exception e) {
+						Str = PDPSelectors.BDSwatchesOptionsBundle2.get();
+						SwatchContainerClass = SelectorUtil.getAttrString(Str, "class", index);
+					}
+				} else
 					Str = "css,#" + ProductID + " " + PDPSelectors.BDSwatchesOptions.get().replace("css,", "");
+				SwatchContainerClass = SelectorUtil.getAttrString(Str, "class", index);
 			}
 
-			String SwatchContainerClass = SelectorUtil.getAttrString(Str, "class", index);
 			logs.debug("SwatchContainerClass: " + SwatchContainerClass);
 			getCurrentFunctionName(false);
 			return SwatchContainerClass;
@@ -392,11 +422,11 @@ public class PDP_selectSwatches extends SelTestCase{
 			logs.debug("numberOfPanels: " + numberOfPanels);
 
 			if (numberOfPanels > 1) {
-				// size
-				GHRYselectSize(bundle, ProductID);
-
 				// color
 				GHRYselectColor(bundle, ProductID);
+				
+				// size
+				GHRYselectSize(bundle, ProductID);
 			}
 			
 			getCurrentFunctionName(false);

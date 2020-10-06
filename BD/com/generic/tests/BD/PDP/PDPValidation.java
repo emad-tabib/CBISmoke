@@ -10,7 +10,7 @@ public class PDPValidation extends SelTestCase {
 	public static void validate(String searchTerm, Boolean Personalized) throws Exception {
 		getCurrentFunctionName(true);
 		PDP.NavigateToPDP(searchTerm);
-		Thread.sleep(2500);
+		Thread.sleep(10000);
 		// int numberOfItems = PDP.getNumberOfItems();
 		Boolean bundle = PDP.bundleProduct();
 		String ProductID = null;
