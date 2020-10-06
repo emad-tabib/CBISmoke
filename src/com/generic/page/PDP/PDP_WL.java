@@ -41,10 +41,25 @@ public class PDP_WL extends SelTestCase {
 
 			} else {
 				WebElement element = SelectorUtil.getElement(PDPSelectors.giftRegistryListBox.get());
-				WebElement option = element.findElement(By.cssSelector(PDPSelectors.createNewWL.get()));
-				option.click();
+				WebElement option;
 				
-				clickOnCreateNewWLConfirmationBtn();
+				try {// Selector is not stable
+					option = element.findElement(By.cssSelector(PDPSelectors.createNewWL.get()));
+
+				} catch (Exception e) {
+					option = element.findElement(By.cssSelector(PDPSelectors.createNewWL2.get()));
+				}
+				
+				option.click();
+	
+
+				if(isBD() && isMobile()) {
+					SelectorUtil.initializeSelectorsAndDoActions(PDPSelectors.addButtonWLModal.get());		
+				}
+				
+				
+				if(!isMobile())
+				  clickOnCreateNewWLConfirmationBtn();
 			}
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
@@ -61,7 +76,12 @@ public class PDP_WL extends SelTestCase {
 			getCurrentFunctionName(true);
 			boolean isDisplayed = true;
 			logs.debug("Validate Name your new wish list modal exist");
-			isDisplayed = SelectorUtil.isDisplayed(PDPSelectors.nameYourNewWL.get());
+			
+			if (isBD())
+				isDisplayed = SelectorUtil.isDisplayed(PDPSelectors.nameYourNewWLBD.get());
+			else
+				isDisplayed = SelectorUtil.isDisplayed(PDPSelectors.nameYourNewWL.get());
+			
 			getCurrentFunctionName(false);
 			return isDisplayed;
 		} catch (NoSuchElementException e) {
@@ -159,17 +179,22 @@ public class PDP_WL extends SelTestCase {
 				if (isMobile() && isGH()) {
 					addToCardProductElement = SelectorUtil.getElement(PDPSelectors.productNameinWLModalGHMobile.get());
 
-				} else {
+				} else if (isBD()) {
 
+					addToCardProductElement = SelectorUtil.getElement(PDPSelectors.addToCardProductNameBD.get());
+				} else {
 					addToCardProductElement = SelectorUtil.getElement(PDPSelectors.addToCardProductName.get());
+
 				}
-				
+
 				String viewListBtnSelector;
 				
-				if (isGH() || isRY() || isBD()) {
+				if (isGH() || isRY()) {
 					viewListBtnSelector = PDPSelectors.GHRYviewListBtn.get();
 				} else if (isGR()) {
 					viewListBtnSelector = PDPSelectors.viewListBtnGR.get();
+				} else if (isBD()) {
+					viewListBtnSelector = PDPSelectors.BDRYviewListBtn.get();
 				} else {
 					viewListBtnSelector = PDPSelectors.viewListBtn.get();
 				}
@@ -278,10 +303,13 @@ public class PDP_WL extends SelTestCase {
 
 			else if (isRY())
 				selectorEnabled = PDPSelectors.RYAddToWLGRBtnEnabledSingle.get();
-			
-			else if (isBD())
-				selectorEnabled = PDPSelectors.BDaddToWLGRBtnEnabledSingle.get();
-			
+
+			else if (isBD()) {
+				if (Bundle)
+					selectorEnabled = PDPSelectors.BDaddToWLGRBtnEnabledBundleMobile.get();
+				else
+					selectorEnabled = PDPSelectors.BDaddToWLGRBtnEnabledSingle.get();
+			}
 			else
 				selectorEnabled = PDPSelectors.GHAddToWLGRBtnEnabledSingle.get();
 			
@@ -406,9 +434,14 @@ public class PDP_WL extends SelTestCase {
 				SelectorUtil.initializeSelectorsAndDoActions(PDPSelectors.GHaddToWLGRBtnEnabled.get());
 			} else if (isRY()) {
 				WebElement element = SelectorUtil.getElement(PDPSelectors.RYaddToWLGRBtnEnabled.get());
-				   element.click();	
+				element.click();
 			} else if (isBD()) {
-				SelectorUtil.initializeSelectorsAndDoActions(PDPSelectors.BDaddToWLGRBtnEnabledSingle.get());
+				try {
+					SelectorUtil.initializeSelectorsAndDoActions(PDPSelectors.BDaddToWLGRBtnEnabledSingle.get());
+				} catch (Exception e) {
+					SelectorUtil.initializeSelectorsAndDoActions(PDPSelectors.BDaddToWLGRBtnEnabledSingle2.get());
+
+				}
 			} else {
 				SelectorUtil.initializeSelectorsAndDoActions(PDPSelectors.addToWLGRBtnEnabled.get());
 			}
