@@ -51,7 +51,8 @@ public class PDP_WL extends SelTestCase {
 				}
 				
 				option.click();
-				
+	
+
 				if(isBD() && isMobile()) {
 					SelectorUtil.initializeSelectorsAndDoActions(PDPSelectors.addButtonWLModal.get());		
 				}
