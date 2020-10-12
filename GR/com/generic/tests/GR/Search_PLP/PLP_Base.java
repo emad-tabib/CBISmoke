@@ -62,7 +62,7 @@ public class PLP_Base extends SelTestCase {
 				else
 					PLP.navigateToRandomPLPDesktop();
 
-				sassert().assertTrue(PLP.VerifyPLP(), " has failed");
+				sassert().assertTrue(PLP.VerifyPLP(), "Serach validation failed");
 			}
 
 			sassert().assertAll();

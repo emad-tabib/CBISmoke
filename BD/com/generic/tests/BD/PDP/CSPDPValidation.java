@@ -11,7 +11,9 @@ public class CSPDPValidation extends SelTestCase {
 		getCurrentFunctionName(true);
 		 
 		PDP.NavigateToPDP(searchTerm);
+    
 		Thread.sleep(40000);
+
 		sassert().assertTrue(PDP_SC_CS.validatePriceIsDisplayed(desc),
 				"The price for the item is not dispayed"); 
 		

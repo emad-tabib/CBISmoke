@@ -24,9 +24,7 @@ public class PLPSelectors {
     public static final cselector product =  new cselector("css,div.gwt-product-info-panel-details-panel-html > h2 > a","css,div.pw-list-tile__content  a.c-product-item__main-image"); 
     public static final cselector productName =  new cselector("css,div.gwt-product-info-panel-details-panel-html > h2 > a","css,a.pw-link.c-product-item-title-link > div > div > h2 > div"); 
     public static final cselector productContainer =  new cselector("css,div.unbxd-products-display-panel","css,footer > div.c-custom-accordion"); 
-    //public static final cselector productsImages = new cselector("css,div.iwc-main-img-wrapper img.iwc-main-img", "css,article > a > div > div > img");
-    public static final cselector productsImages = new cselector("css,.gwt-product-info-panel-image-container > a > img", "css,article > a > div > div > img");
-    //.gwt-product-info-panel-image-container > a > img
+    public static final cselector productsImages = new cselector("css,div.iwc-main-img-wrapper img.iwc-main-img", "css,article > a > div > div > img");
     public static final cselector productsImagesBD = new cselector("css,.unbxd-grid-product-image", "css,article > a > div > div > img");
 
     
@@ -135,15 +133,10 @@ public class PLPSelectors {
 			"css,.gwt-sub-category-image",
 			"css,.c-lazy-image.u-width-full > div > img");
 	
-	/*public static final cselector navigatetoPLP2GR = new cselector(
-			"css,#mainContent > div.genericESpot > div.container.no-padding.grid-subcategories > div > div:nth-child(1) > div > a > img",
-			"css,#mainContent > div.genericESpot > div.container.no-padding.grid-subcategories > div > div:nth-child(1) > div > a > img",
-			"css,#app-main > div > div:nth-child(1) > div.u-flexbox.u-direction-row.u-flex-wrap > div:nth-child(1) > a > div.c-lazy-image.u-width-full > div > img");*/
-	
 	public static final cselector navigatetoPLP2GR = new cselector(
 			"css,#mainContent > div.genericESpot > div.container.no-padding.grid-subcategories > div > div:nth-child(1) > div > a > img",
 			"css,#mainContent > div.genericESpot > div.container.no-padding.grid-subcategories > div > div:nth-child(1) > div > a > img",
-			"css,a > img");
+			"css,#app-main > div > div:nth-child(1) > div.u-flexbox.u-direction-row.u-flex-wrap > div:nth-child(1) > a > div.c-lazy-image.u-width-full > div > img");
 	
 	public static final cselector GHRecommendedOption =new cselector("css,.unbxd-as-popular-product-info","css,.c--align-middle a.pw-link.c-arrange.u-flexbox.c--align-middle.u-align-center", "css,.c-search-suggestions-products__product.js-suggestion> div > a");
 	public static final cselector GHSearchButton = new cselector("css,#searchButton");

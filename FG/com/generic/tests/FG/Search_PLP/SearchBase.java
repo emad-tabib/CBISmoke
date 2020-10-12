@@ -62,11 +62,11 @@ public class SearchBase extends SelTestCase {
 
 			// validate the suggested items
 			if (proprties.contains(RecommendedProductsCase))
-				sassert().assertTrue(PLP.searchAndVerifyResults(firstSearchTerm, true), "Search validation has failed");
+				sassert().assertTrue(PLP.searchAndVerifyResults(firstSearchTerm, true), "Serach validation failed");
 
 			// Validate the direct search
 			if (proprties.contains(fullSearchCase))
-				sassert().assertTrue(PLP.searchAndVerifyResults(secondSearchTerm, false), "Search validation has failed");
+				sassert().assertTrue(PLP.searchAndVerifyResults(secondSearchTerm, false), "Serach validation failed");
 
 			sassert().assertAll();
 

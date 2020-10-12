@@ -56,7 +56,7 @@ public class CartValidation extends SelTestCase {
 
 		Thread.sleep(3000);
 
-		List<String> optionsAfter = Cart.getlastAddedItemsOptions();
+		List<String> optionsAfter = Cart.getFirstSavedItemsOptions();
 
 		logs.debug("optionsBefore"+optionsBefore+"optionsAfter"+optionsAfter);
 

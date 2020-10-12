@@ -22,7 +22,7 @@ public class CartValidation extends SelTestCase {
 
 	public static void cartValidation() throws Exception {
 		//Search for products and add them to cart
-		addProductToCart("red");		
+		addProductToCart("rugs");		
 		Thread.sleep(3000);
 		if(isMobile()) {
 		addProductToCart("blue");
