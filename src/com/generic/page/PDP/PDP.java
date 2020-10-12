@@ -110,7 +110,10 @@ public class PDP extends SelTestCase {
 			logs.debug("Validate if top price exist");
 			String selector = null;
 			if (isFGGR()) {
-				selector = PDPSelectors.topPriceSingle.get();
+				if(isMobile() && bundle)
+					selector = PDPSelectors.topPriceBundleFGMObile.get();
+				else
+					selector = PDPSelectors.topPriceSingle.get();
 				if (!isMobile() && bundle) {
 					logs.debug(PDPSelectors.topPriceBundle);
 					selector = MessageFormat.format(PDPSelectors.topPriceBundle, ProductID);
@@ -118,9 +121,16 @@ public class PDP extends SelTestCase {
 			} else if (isRY()) {
 				selector = PDPSelectors.RYtopPriceSingle.get();
 			} else if (isBD()) {
-				selector = PDPSelectors.BDtopPriceSingle.get();
+				if (bundle)
+					selector = PDPSelectors.BDtopPriceBundle.get();
+				else
+					selector = PDPSelectors.BDtopPriceSingle.get();
 			} else {
-				selector = PDPSelectors.GHtopPriceSingle.get();
+				//GH
+				if (bundle)
+					selector = PDPSelectors.GHtopPriceBundleMobile.get();
+				else
+					selector = PDPSelectors.GHtopPriceSingle.get();
 			}
 			isDisplayed = SelectorUtil.isDisplayed(selector);
 			getCurrentFunctionName(false);
@@ -245,6 +255,8 @@ public class PDP extends SelTestCase {
 				selector = PDPSelectors.bottomPriceSingle.get();
 
 			if (bundle) {
+				if(isFG() && isMobile())
+					selector = PDPSelectors.bottomPriceSingleBundleMobileFG.get();
 				if (isBD()) {
 					if (isMobile())
 						selector = PDPSelectors.BDbottomPriceBundleMobile.get();
@@ -289,8 +301,8 @@ public class PDP extends SelTestCase {
 				}
 				Str = PDPSelectors.BDitemsID.get();
 			}
-			
-				ID = SelectorUtil.getAttrString(Str, "id", index);
+
+			ID = SelectorUtil.getAttrString(Str, "id", index);
 
 			getCurrentFunctionName(false);
 			return ID;
@@ -313,7 +325,7 @@ public class PDP extends SelTestCase {
 				}
 				Str = PDPSelectors.GHItemsID.get();
 			}
-				ID = SelectorUtil.getAttrString(Str, "class", index);
+			ID = SelectorUtil.getAttrString(Str, "class", index);
 
 			getCurrentFunctionName(false);
 			return ID;
@@ -324,7 +336,7 @@ public class PDP extends SelTestCase {
 			throw e;
 		}
 	}
-	
+
 	// done - SMK
 	public static boolean bundleProduct() throws Exception {
 		return bundleProduct(0);
@@ -335,33 +347,44 @@ public class PDP extends SelTestCase {
 		getCurrentFunctionName(true);
 		try {
 			Thread.sleep(4500);
-			if(isMobile()) {
-				logs.debug("switch To progressiveFrame");
-				getDriver().switchTo().frame(PDPSelectors.progressiveFrame.get());
-				logs.debug("Successfully switched to the progressiveFrame");
-			}
-			
-			
-			String PDPChecker = "return gwtDynamic.coremetrics.isSingleProduct;";
 			Boolean bundle = false;
-			JavascriptExecutor jse = (JavascriptExecutor) getDriver();
 
-			String value = (String) jse.executeScript(PDPChecker);
+			if (isMobile()) {
 
-			logs.debug("isSingleProduct: " + value);
+				try {
+					if (SelectorUtil.isDisplayed(PDPSelectors.bundleidntefier.get())) {
+						bundle = true;
+						logs.debug("isBundleProduct: " + bundle);
 
-			if (value.equals("N")) {
-				bundle = true;
-				logs.debug("This item is bundle");
-			} else if (value.equals("Y")) {
-				bundle = false;
-				logs.debug("This item is not bundle");
-			} else {
-				if (tries < 10)
-					bundleProduct(tries++);
+					}
+				} catch (Exception e) {
+					bundle = false;
+					logs.debug("isBundleProduct: " + bundle);
+
+				}
 			}
-			if(isMobile())
-			getDriver().switchTo().defaultContent();
+
+			else {
+				String PDPChecker = "return gwtDynamic.coremetrics.isSingleProduct;";
+				JavascriptExecutor jse = (JavascriptExecutor) getDriver();
+
+				String value = (String) jse.executeScript(PDPChecker);
+
+				logs.debug("isSingleProduct: " + value);
+
+				if (value.equals("N")) {
+					bundle = true;
+					logs.debug("This item is bundle");
+				} else if (value.equals("Y")) {
+					bundle = false;
+					logs.debug("This item is not bundle");
+				} else {
+					if (tries < 10)
+						bundleProduct(tries++);
+				}
+			}
+			getCurrentFunctionName(false);
+
 			return bundle;
 		} catch (Exception e) {
 			logs.debug(MessageFormat.format(
@@ -402,12 +425,11 @@ public class PDP extends SelTestCase {
 			if (isGHRY()) {
 				SelectorUtil.initializeSelectorsAndDoActions(PDPSelectors.titleGH.get());
 
-			} 
+			}
 
 			else if (isBD()) {
 				SelectorUtil.initializeSelectorsAndDoActions(PDPSelectors.BDtitle.get());
-			}
-			else {
+			} else {
 				SelectorUtil.initializeSelectorsAndDoActions(PDPSelectors.title.get());
 			}
 
@@ -485,7 +507,10 @@ public class PDP extends SelTestCase {
 
 					quantitySelector = PDPSelectors.BDQuantityBundleMobile.get();
 				}
-
+				else if(isMobile() && isGH()) {
+					quantitySelector = PDPSelectors.GHQuantityBundleMobile.get();
+					
+				}
 				else {
 					if (ProductID.isEmpty()) {
 						ProductID = getProductID(0);

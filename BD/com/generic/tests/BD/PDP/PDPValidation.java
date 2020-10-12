@@ -10,6 +10,7 @@ public class PDPValidation extends SelTestCase {
 	public static void validate(String searchTerm, Boolean Personalized) throws Exception {
 		getCurrentFunctionName(true);
 		PDP.NavigateToPDP(searchTerm);
+		Thread.sleep(10000);
 		// int numberOfItems = PDP.getNumberOfItems();
 		Boolean bundle = PDP.bundleProduct();
 		String ProductID = null;
@@ -36,7 +37,12 @@ public class PDPValidation extends SelTestCase {
 		sassert().assertTrue(PDP.validatePriceIsDisplayed(bundle, ProductID), priceErrorMessage);
 
 		// for bundle PDP mobile, validate the price is displayed in mini PDP page
-		PDP_BD.BDselectSwatches(bundle, ProductID);
+		if (!Personalized)
+			PDP_BD.BDselectSwatches(bundle, ProductID);
+
+		else
+			PDP_BD.BDselectSwatchesPersonalized(bundle, ProductID);
+		
 		boolean priceShownInSizeOption = PDP_BD.isPriceShownInSizeOption();
 		if(isMobile()) {
 			if(PDP.getQuantity(bundle, ProductID) == 0) {

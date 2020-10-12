@@ -26,7 +26,7 @@ public class SCPDPValidation extends SelTestCase {
 		sassert().assertTrue(!bottomPrice.equals("$0.00"),
 				"Bottom price is not updated correctly, Current price: " + bottomPrice);
 		Thread.sleep(2500);
-		sassert().assertTrue(PDP_WL.validateAddToWLGRIsEnabled(false, " "), "Add to WL/GR button is not enabled");
+		sassert().assertTrue(PDP_WL.validateAddToWLGRIsEnabledSC(false, " "), "Add to WL/GR button is not enabled");
 		sassert().assertTrue(PDP_cart.validateAddToCartIsEnabled(false, " "), "Add to Cart button is not enabled");
 		PDP_SC_CS.clickAddToCartButton();
 		sassert().assertTrue(PDP_SC_CS.validateProductIsAddedToCart(), "Product is not added successfully");

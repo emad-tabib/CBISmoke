@@ -59,7 +59,11 @@ public class PDP_selectSwatches extends SelTestCase{
 				if (!isMobile() && bundle) {
 					FGGRselectSwatchesBundle(ProductID);
 
-				} else {
+				} 
+				else if(isMobile() && bundle) {
+					FGGRselectSwatchesBundleMobile();
+				}
+				else {
 					FGGRselectSwatchesSingle();
 				}
 
@@ -96,7 +100,7 @@ public class PDP_selectSwatches extends SelTestCase{
 						list++;
 					} else { 
 						selectNthOptionFirstSwatchBundle("css,#" + ProductID + ">"
-								+ MessageFormat.format(PDPSelectors.imageOption.get(), img + 1, 1).replace("css,", ""));
+								+ MessageFormat.format(PDPSelectors.imageOption.get(), img + 1, 2).replace("css,", ""));
 						img++;
 					}
 				}
@@ -110,34 +114,75 @@ public class PDP_selectSwatches extends SelTestCase{
 			throw e;
 		}
 	}
-	
+
 	public static void FGGRselectSwatchesSingle() throws Exception {
 		try {
 			getCurrentFunctionName(true);
 			Boolean noOptions = true;
 			if (SelTestCase.isMobile())
-				noOptions = !PDP_cart.getAddToCartClass();
+				noOptions = !PDP_cart.getAddToCartClass(false);
 			else
 				noOptions = getSwatchContainersdivClass(0).contains("no-options");
 
 			if (noOptions) {
 				logs.debug("No options to select");
-			} else if (!SelTestCase.isMobile()) {
+			}
+
+			else if (!SelTestCase.isMobile()) {
 				int numberOfSwatchContainers = getNumberofSwatchContainers();
 				for (int i = 0; i < numberOfSwatchContainers; i++) {
-					if (getSwatchContainersdivClass(i).contains("listbox")) {
+					try {
+						selectNthOptionFirstSwatch(i + 1, false);
+					} catch (Exception e) {
+
+					}
+
+					try {
 						selectNthListBoxFirstValue(i);
-					} else {
-						selectNthOptionFirstSwatch(i + 1);
+
+					} catch (Exception e) {
+
 					}
 				}
 			} else {
 				int numberOfSwatchContainers = getNumberofSwatchContainers();
-				for (int i = 1; i < numberOfSwatchContainers; i += 2) {
-					if (getSwatchContainersdivClass(i).contains("u-product-options")) {
+				for (int i = 1; i <= numberOfSwatchContainers; i += 2) {
+					try {
 						selectNthListBoxFirstValue((i - 1) / 2);
-					} else {
-						selectNthOptionFirstSwatch((i + 1) / 2);
+					} catch (Exception e) {
+						selectNthOptionFirstSwatch((i + 1) / 2, false);
+					}
+				}
+			}
+			getCurrentFunctionName(false);
+
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed
+					+ "Select swatches has falied, a selector was not found by selenium", new Object() {
+					}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+	
+	public static void FGGRselectSwatchesBundleMobile() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			Boolean noOptions = true;
+			if (SelTestCase.isMobile())
+				noOptions = !PDP_cart.getAddToCartClass(true);
+			else
+				noOptions = getSwatchContainersdivClass(0).contains("no-options");
+
+			if (noOptions) {
+				logs.debug("No options to select");
+			} else {
+				int numberOfSwatchContainers = getNumberofSwatchContainers();
+				for (int i = 1; i < numberOfSwatchContainers; i += 2) {
+						
+					try {
+						selectNthListBoxFirstValue((i - 1) / 2);
+					} catch (Exception e) {
+						selectNthOptionFirstSwatch((i + 1) / 2,true);
 					}
 				}
 			}
@@ -161,7 +206,8 @@ public class PDP_selectSwatches extends SelTestCase{
 				Str = PDPSelectors.FGGRSwatchesOptions.get();
 			}
 			else {
-				Str = PDPSelectors.BDSwatchesOptions.get();
+					Str = PDPSelectors.BDSwatchesOptions.get();
+
 			}
 			String SwatchContainerClass = SelectorUtil.getAttrString(Str, "class", index);
 			logs.debug("SwatchContainerClass: " + SwatchContainerClass);
@@ -176,14 +222,19 @@ public class PDP_selectSwatches extends SelTestCase{
 	}
 	
 	// done - SMK
-	public static void selectNthOptionFirstSwatch(int index) throws Exception {
+	public static void selectNthOptionFirstSwatch(int index, boolean isBundle) throws Exception {
 		try {
 			getCurrentFunctionName(true);
 			String subStrArr;
 			if (isBD())
 				subStrArr = MessageFormat.format(PDPSelectors.BDfirstSwatchInOptions.get(), index);
-			else
+			
+			else if (isFG() && isMobile() && isBundle) {
+				subStrArr = MessageFormat.format(PDPSelectors.firstSwatchInOptionsFGBundleMobile.get(), index);
+			}
+			else {
 				subStrArr = MessageFormat.format(PDPSelectors.firstSwatchInOptions.get(), index);
+			}
 			logs.debug(MessageFormat.format(LoggingMsg.CLICKING_SEL, subStrArr));
 			String nthSel = subStrArr;
 			// Clicking on the div on desktop and iPad does not select the options,
@@ -218,13 +269,24 @@ public class PDP_selectSwatches extends SelTestCase{
 		try {
 			getCurrentFunctionName(true);
 			String Str;
+			int numberOfSwatchContainers;
+			
 			if (isBD()) {
-				Str = PDPSelectors.BDSwatchesOptions.get();
+				try {
+					Str = PDPSelectors.BDSwatchesOptions.get();
+					numberOfSwatchContainers = SelectorUtil.getAllElements(Str).size();
+
+				} catch (Exception e) {
+					Str = PDPSelectors.BDSwatchesOptions2.get();
+					numberOfSwatchContainers = SelectorUtil.getAllElements(Str).size();
+
 				}
+			}
 			else {
 				Str = PDPSelectors.FGGRSwatchesOptions.get();
+				numberOfSwatchContainers = SelectorUtil.getAllElements(Str).size();
+
 			}
-			int numberOfSwatchContainers = SelectorUtil.getAllElements(Str).size();
 			logs.debug("Number of Swatch Containers: " + numberOfSwatchContainers);
 			getCurrentFunctionName(false);
 			return numberOfSwatchContainers;
@@ -249,11 +311,11 @@ public class PDP_selectSwatches extends SelTestCase{
 					Str = PDPSelectors.allSizes.get();
 					value = "FFF1";
 				}
-				SelectorUtil.initializeSelectorsAndDoActions(Str, value);
+				SelectorUtil.selectActiveOption(Str, value);
 				getCurrentFunctionName(false);
 			} catch (NoSuchElementException e) {
 				logs.debug(MessageFormat.format(
-						ExceptionMsg.PageFunctionFailed + "Add to cart close button selector was not found by selenium",
+						ExceptionMsg.PageFunctionFailed + "dropdown menu selector was not found by selenium",
 						new Object() {
 						}.getClass().getEnclosingMethod().getName()));
 				throw e;
@@ -317,50 +379,64 @@ public class PDP_selectSwatches extends SelTestCase{
 			}
 		}
 		
-		public static String getSwatchContainersdivClassBundle(int index, String ProductID) throws Exception {
-			try {
-				getCurrentFunctionName(true);
-				String Str;
-				if (!isBD()) {
-					Str = "css,#" + ProductID + ">" + PDPSelectors.FGGRSwatchesOptions.get().replace("css,", "");
-				}
-				else {
+	public static String getSwatchContainersdivClassBundle(int index, String ProductID) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			String Str;
+			String SwatchContainerClass;
+			
+			if (!isBD()) {
+				Str = "css,#" + ProductID + ">" + PDPSelectors.FGGRSwatchesOptions.get().replace("css,", "");
+				SwatchContainerClass = SelectorUtil.getAttrString(Str, "class", index);
+			} else {
+				if (isMobile()) {
+					try {
+						Str = PDPSelectors.BDSwatchesOptionsBundle.get();
+						SwatchContainerClass = SelectorUtil.getAttrString(Str, "class", index);
+					} catch (Exception e) {
+						Str = PDPSelectors.BDSwatchesOptionsBundle2.get();
+						SwatchContainerClass = SelectorUtil.getAttrString(Str, "class", index);
+					}
+				} else
 					Str = "css,#" + ProductID + " " + PDPSelectors.BDSwatchesOptions.get().replace("css,", "");
-				}
-				if (isBD() && isMobile()) {
-					Str = PDPSelectors.BDSwatchesOptions.get();
-				}
-
-				String SwatchContainerClass = SelectorUtil.getAttrString(Str, "class", index);
-				logs.debug("SwatchContainerClass: " + SwatchContainerClass);
-				getCurrentFunctionName(false);
-				return SwatchContainerClass;
-			} catch (NoSuchElementException e) {
-				logs.debug(MessageFormat.format(
-						ExceptionMsg.PageFunctionFailed + "Swatches button selector was not found by seleniuem",
-						new Object() {
-						}.getClass().getEnclosingMethod().getName()));
-				throw e;
+				SwatchContainerClass = SelectorUtil.getAttrString(Str, "class", index);
 			}
+
+			logs.debug("SwatchContainerClass: " + SwatchContainerClass);
+			getCurrentFunctionName(false);
+			return SwatchContainerClass;
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(
+					ExceptionMsg.PageFunctionFailed + "Swatches button selector was not found by seleniuem",
+					new Object() {
+					}.getClass().getEnclosingMethod().getName()));
+			throw e;
 		}
-		
-		public static void GHRYselectSwatches(Boolean bundle, String ProductID) throws Exception {
-			try {
-				getCurrentFunctionName(true);
-				GHRYselectColorTemplate(bundle, ProductID);
-				int numberOfPanels = GHRYNumberOfOptions(bundle);
-				logs.debug("numberOfPanels: " + numberOfPanels);
+	}
 
-				if (numberOfPanels > 1)
-					GHRYselectSize(bundle, ProductID);
-				getCurrentFunctionName(false);
+	public static void GHRYselectSwatches(Boolean bundle, String ProductID) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			
+			int numberOfPanels = GHRYNumberOfOptions(bundle);
+			logs.debug("numberOfPanels: " + numberOfPanels);
 
-			} catch (NoSuchElementException e) {
-				logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
-				}.getClass().getEnclosingMethod().getName()));
-				throw e;
+			if (numberOfPanels > 1) {
+				// color
+				GHRYselectColor(bundle, ProductID);
+				
+				// size
+				GHRYselectSize(bundle, ProductID);
 			}
+			
+			getCurrentFunctionName(false);
+
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
 		}
+	}
 		
 		// done - SMK
 		public static void GHRYselectSize(Boolean bundle, String ProductID) throws Exception {
@@ -377,6 +453,7 @@ public class PDP_selectSwatches extends SelTestCase{
 				}
 				List<WebElement> list = SelectorUtil.getAllElements(subStrArr);
 				logs.debug("Number of size options:" + list.size());
+				
 				for (int index = 0; index < list.size(); index++) {
 					String classValue = SelectorUtil.getAttrString(subStrArr, "class", index);
 					if (!classValue.contains("no-available") && !classValue.contains("disabled")) {
@@ -476,6 +553,7 @@ public class PDP_selectSwatches extends SelTestCase{
 						}
 						JavascriptExecutor jse = (JavascriptExecutor) getDriver();
 						jse.executeScript("arguments[0].scrollIntoView(false)", item);
+						Thread.sleep(1500);
 						item.click();
 						break;
 					}

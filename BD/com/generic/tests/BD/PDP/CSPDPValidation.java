@@ -11,6 +11,9 @@ public class CSPDPValidation extends SelTestCase {
 		getCurrentFunctionName(true);
 		 
 		PDP.NavigateToPDP(searchTerm);
+    
+		Thread.sleep(40000);
+
 		sassert().assertTrue(PDP_SC_CS.validatePriceIsDisplayed(desc),
 				"The price for the item is not dispayed"); 
 		
@@ -25,7 +28,7 @@ public class CSPDPValidation extends SelTestCase {
 		sassert().assertTrue(!bottomPrice.equals("$0.00"),
 				"Bottom price is not updated correctly, Current price: " + bottomPrice);
 		Thread.sleep(2500);
-		sassert().assertTrue(PDP_WL.validateAddToWLGRIsEnabled(false, " "), "Add to WL/GR button is not enabled");
+		sassert().assertTrue(PDP_WL.validateAddToWLGRIsEnabledCS(false, " "), "Add to WL/GR button is not enabled");
 		sassert().assertTrue(PDP_cart.validateAddToCartIsEnabled(false, " "), "Add to Cart button is not enabled");
 		PDP_SC_CS.clickAddToCartButton();
 		sassert().assertTrue(PDP_SC_CS.validateProductIsAddedToCart(), "Product is not added successfully");
