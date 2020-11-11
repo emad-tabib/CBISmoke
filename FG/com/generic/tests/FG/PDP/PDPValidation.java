@@ -7,6 +7,7 @@ public class PDPValidation extends SelTestCase {
 
 	public static void validate(Boolean Personalized) throws Exception {
 		getCurrentFunctionName(true);
+		Thread.sleep(2500);
 		Boolean bundle = PDP.bundleProduct();
 		String ProductID = null;
 		if (!isMobile() && bundle)
