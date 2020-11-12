@@ -31,7 +31,7 @@ public class PDP extends SelTestCase {
 			String itemName = "";
 			// This is to handle iPad behavior for search modal.
 			// TODO: to use this process on all brands
-			if (isGHRY() && isiPad() || isBD() && isiPad()) {
+			if (isGHRY() && isiPad() || isBD() && isiPad() || isGR() && isMobile()) {
 				PLP.clickSearch(SearchTerm);
 				Thread.sleep(4500);
 				if (SelectorUtil.isElementExist(By.cssSelector(PLPSelectors.PLPPageSelector.get()))) {

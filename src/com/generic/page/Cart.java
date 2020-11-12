@@ -75,9 +75,9 @@ public class Cart extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			String subStrArr;
-			if (isGH())
-				subStrArr = CartSelectors.GHsavedListFirstItem.get() + CartSelectors.GHreturnFromWishListBtn.get();
-			else if (isRY())
+			//if (isGH())
+			//	subStrArr = CartSelectors.GHsavedListFirstItem.get() + CartSelectors.GHreturnFromWishListBtn.get();
+			if (isRY())
 				subStrArr = CartSelectors.GHsavedListFirstItem.get() + CartSelectors.RYreturnFromWishListBtn.get();
 			else
 				subStrArr = CartSelectors.savedListFirstItem.get() + CartSelectors.returnFromWishListBtn.get();
@@ -303,7 +303,11 @@ public class Cart extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			List<String> values = new ArrayList<String>();
-			List<WebElement>  elements = SelectorUtil.getAllElements(CartSelectors.lastAddedItemsOption.get());
+			List<WebElement>  elements ;
+			if (isGR()) {
+				elements = SelectorUtil.getAllElements(CartSelectors.lastAddedItemsOptionInGR.get());
+			}
+			else {elements = SelectorUtil.getAllElements(CartSelectors.lastAddedItemsOption.get());}
 			for(WebElement  element: elements) {
 				values.add(element.getText());
 			}
