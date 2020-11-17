@@ -292,7 +292,7 @@ public class PDP_WL extends SelTestCase {
 			// here it will pass if the button exist regardless if it is enabled or
 			// disabled.
 			// because there is no attribute to verify if it is enabled.
-			String selectorEnabled;
+			String selectorEnabled = null;
 
 			if (isFGGR()) {
 				if (Bundle)
@@ -307,8 +307,15 @@ public class PDP_WL extends SelTestCase {
 			else if (isBD()) {
 				if (Bundle)
 					selectorEnabled = PDPSelectors.BDaddToWLGRBtnEnabledBundleMobile.get();
-				else
-					selectorEnabled = PDPSelectors.BDaddToWLGRBtnEnabledSingle.get();
+				else {
+					try {
+						if (SelectorUtil.isDisplayed(PDPSelectors.BDaddToWLGRBtnEnabledSingle.get())) {
+							selectorEnabled = PDPSelectors.BDaddToWLGRBtnEnabledSingle.get();
+						}
+					} catch (Exception e) {
+						selectorEnabled = PDPSelectors.BDaddToWLGRBtnEnabledSingle2.get();
+					}
+				}	
 			}
 			else
 				selectorEnabled = PDPSelectors.GHAddToWLGRBtnEnabledSingle.get();

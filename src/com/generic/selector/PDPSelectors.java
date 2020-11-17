@@ -238,7 +238,7 @@ public class PDPSelectors {
 
 	//BD Slipcover
 	public static final cselector SCBDTopPrice = new cselector("css,.gwt-price-panel","css,.t-product-details-heading__price.t-product-details__price.t-product-details__price-range");
-	public static final cselector SCBDBottomPrice = new cselector("css,.gwt-sc-bottom-of-right .gwt-price-itemNumber  .gwt-list-price-panel","css,.t-product-new-price.final-price");
+	public static final cselector SCBDBottomPrice = new cselector("css,.gwt-sc-bottom-of-right .gwt-price-itemNumber .gwt-price-panel","css,.t-product-new-price.final-price");
 
 	 
 	//COM Shop
@@ -279,9 +279,9 @@ public class PDPSelectors {
 
     
     //Fabric
-    public static final cselector FabricAddtoCartBtn = new cselector("css,#gwt-product-detail-widget-id-546381 .gwt-bundle-add-to-cart-btn > button","css,#gwt-product-detail-widget-id-526932 .gwt-bundle-add-to-cart-btn > button","css,.u-margin-start-negative-md .u-margin-bottom-md .u-padding-start-md button");
-    public static final cselector FabricAddFreeSwatchtoCartBtn = new cselector("css, #gwt-product-detail-widget-id-546390 .gwt-bundle-add-to-cart-btn >button","css,#gwt-product-detail-widget-id-527000 .gwt-bundle-add-to-cart-btn >button","css,.t-product-details__fabric-swatch-content .t-product-details__swatch-qty-cart .u-width-2of3 .u-padding-start-md > button");
-    public static final cselector pickOneFreeSwatch = new cselector("css,#gwt-product-detail-widget-id-546390  .csb-quantity-ctl > #incrementId","css, #gwt-product-detail-widget-id-527000 .csb-quantity-ctl > #incrementId","css,div.t-product-details__swatch-qty-cart.u-flexbox > div:nth-child(1) > div > div > div > div > button.pw-button.pw--icon-only.increment-quantity.u-padding-0.u-border-0");
+    public static final cselector FabricAddtoCartBtn = new cselector("css,.gwt-product-detail-widget:nth-child(1)  .gwt-bundle-add-to-cart-btn > button","css,.u-margin-start-negative-md .u-margin-bottom-md .u-padding-start-md button");
+    public static final cselector FabricAddFreeSwatchtoCartBtn = new cselector("css,.gwt-product-detail-widget:nth-child(2) .gwt-bundle-add-to-cart-btn >button","css,.t-product-details__fabric-swatch-content .t-product-details__swatch-qty-cart .u-width-2of3 .u-padding-start-md > button");
+    public static final cselector pickOneFreeSwatch = new cselector("css,.gwt-product-detail-widget:nth-child(2) .csb-quantity-ctl > #incrementId","css,div.t-product-details__swatch-qty-cart.u-flexbox > div:nth-child(1) > div > div > div > div > button.pw-button.pw--icon-only.increment-quantity.u-padding-0.u-border-0");
     public static final cselector BDnextButton = new cselector("css,div.tabcontent.tabopen > div > div > div.tabs-button-panel > button.button.secondary.step-button.next","css,div.bellows--is-open  button.js--next");
     public static final cselector BDPCoptions = new cselector("css,div.tabcontent.tabopen > div > div > div.gwt-pc-option-content-panel > div > div.gwt-option-values-panel > div > div > div > div > img","css,div.bellows--is-open > div.bellows__content-wrapper > div > div.js-configure-fabric__fabric-swatches > div.c-swatch-msg-container > div > div > ul > li img");
     public static final cselector BDremovePrevSelectionModal = new cselector("css,.gwt-DialogBox.ok-cancel-dlog.remove-prev-selection-conf-dialog","css,section.pinny.c-sheet.c--dialog.pinny--is-open");
@@ -294,7 +294,7 @@ public class PDPSelectors {
     public static final cselector BDPDP_PCaddToWLGRBtnEnabled = new cselector("css,button.js-add-to-wishlist.js-add");
     public static final cselector BDAddToCart_PDP_PC = new cselector("css,div.t-pdp__actions> button.js-add-to-cart.js--add");
 	public static final cselector BDaddToCartModal = new cselector("css,.gwt-DialogBox.ok-cancel-dlog.gwt_addtocart_div");
-    public static final cselector BDPDP_PCtopPrice = new cselector("css,.gwt-product-detail-top-price","css,.js-price.c--large");
+    public static final cselector BDPDP_PCtopPrice = new cselector("css,div.gwt-price-panel","css,.js-price.c--large");
     public static final cselector BDPDP_PCbottomPrice = new cselector("css,.gwt-right-bottom-product-options .gwt-price-panel","css,.js-custom-design-conteiner .js-price.c--large");
     public static final cselector BD_size_option = new cselector("css,#gwt-option-panel > div.enabled.gwt-product-option-panel-listbox > div.gwt-product-option-panel-listbox-container > div > select > option:nth-child(2)"); 
     
