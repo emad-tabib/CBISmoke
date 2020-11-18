@@ -40,6 +40,7 @@ public class PDPValidation extends SelTestCase {
 		}
 
 		PDP_selectSwatches.selectSwatches(bundle, ProductID);
+		Thread.sleep(2000);
 		String bottomPrice = PDP.getBottomPrice(bundle, ProductID);
 		sassert().assertTrue(!bottomPrice.equals("$0.00"),
 				"Bottom price is not updated correctly, Current price: " + bottomPrice);

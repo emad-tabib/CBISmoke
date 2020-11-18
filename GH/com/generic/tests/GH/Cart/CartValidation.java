@@ -3,6 +3,7 @@ package com.generic.tests.GH.Cart;
 import java.util.List;
 import com.generic.page.Cart;
 import com.generic.page.CheckOut;
+import com.generic.setup.Common;
 import com.generic.setup.SelTestCase;
 import com.generic.page.PDP.*;
 
@@ -13,7 +14,9 @@ public class CartValidation extends SelTestCase {
 
 		if (PDP.bundleProduct())
 		PDP.clickBundleItems();
-
+		if(isMobile()) {
+			Common.refreshBrowser();
+			}
 		PDP_cart.addProductsToCart();
 		Thread.sleep(3000);
      	if(!isMobile()) {PDP_cart.clickAddToCartCloseBtn();}
@@ -22,10 +25,10 @@ public class CartValidation extends SelTestCase {
 
 	public static void cartValidation() throws Exception {
 		//Search for products and add them to cart
-		addProductToCart("red");		
+		addProductToCart("Belts");		
 		Thread.sleep(3000);
 		if(isMobile()) {
-		addProductToCart("blue");
+		addProductToCart("Eyewear");
 		}
 		else {
 			addProductToCart("tables");
@@ -68,7 +71,7 @@ public class CartValidation extends SelTestCase {
 		
 		//Moving item
 		Cart.clickMoveToWishListBtnForSavedItem();
-
+		 /**
 	    Thread.sleep(3000);
 	    String WLName = PDP_WL.getWishListName();
 	    if(isMobile()) {
@@ -83,14 +86,14 @@ public class CartValidation extends SelTestCase {
 			sassert().assertTrue(PDP_WL.validateCreatedWLisSelectedByDefault(WLName), "created wish list is not selected by default");
 			PDP_WL.clickOnCreateNewWLConfirmationBtn();
 	    }
-	    
+	    **/
 		Thread.sleep(3000);
 		//Save total again 
 		String totalPriceAfterMove = Cart.getTotalPrice();
 		
 		//Compare total values
 		sassert().assertTrue(!totalPriceBeforeMove.equals(totalPriceAfterMove), "Move item to wish list validation has some problems");
-		
+		/**
 		if(isMobile()){
 			Thread.sleep(5000);
 			Cart.navigatetoWishList();
@@ -98,14 +101,14 @@ public class CartValidation extends SelTestCase {
 		}else {
 			Cart.validateAddedToWLModalIsDisplayed();
 			Cart.clickOnViewListBtn();
-		}
+		}**/
 		Thread.sleep(2000);
-		sassert().assertTrue(Cart.verifySavedItemToWL(), "Saved list validation has some problems");
+		sassert().assertTrue(Cart.verifySavedList(), "Saved list validation has some problems");
 		
 		Thread.sleep(2000);
 		Cart.moveItemsToCartFromWishlist();
 		
-		Cart.clickOnCheckout();
+		//Cart.clickOnCheckout();
 		Thread.sleep(2000);
 		//Deletion and total before and after
 		String totalPriceBeforeDelete = Cart.getTotalPrice();

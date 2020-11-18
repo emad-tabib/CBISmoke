@@ -4,13 +4,14 @@ import java.net.URI;
 import java.util.List;
 import com.generic.page.Cart;
 import com.generic.page.CheckOut;
+import com.generic.setup.Common;
 import com.generic.setup.SelTestCase;
 import com.generic.page.PDP.*;
 
 public class CartValidation extends SelTestCase {
 
-	public static void addProductToCart() throws Exception {
-		PDP.NavigateToPDP();
+	public static void addProductToCart(String item) throws Exception {
+		PDP.NavigateToPDP(item);
 
 		if (PDP.bundleProduct())
 			PDP.clickBundleItems();
@@ -24,12 +25,12 @@ public class CartValidation extends SelTestCase {
 
 	public static void cartValidation() throws Exception {
 		// Search for products and add them to cart
-		addProductToCart();
+		addProductToCart("Blue");
 
-		URI url = new URI(getURL());
-		getDriver().get("https://" + url.getHost());
+		//URI url = new URI(getURL());
+		//getDriver().get("https://" + url.getHost());
 
-		addProductToCart();
+		addProductToCart("Black");
 
 		// Navigate to cart by URL
 		CheckOut.navigatetoCart();

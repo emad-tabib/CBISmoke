@@ -86,14 +86,14 @@ public class CartValidation extends SelTestCase {
 
 		// Deletion and total before and after
 		String totalPriceBeforeDelete = Cart.getTotalPrice();
-
+		Thread.sleep(2000);
 		Cart.clickRemoveBtnForSavedItem();
 
 		Thread.sleep(8000);
 
 		String totalPriceAfterDelete = Cart.getTotalPrice();
 		sassert().assertTrue(!totalPriceBeforeDelete.equals(totalPriceAfterDelete),
-				"Remove item validation has some problems: totalPriceBeforeDelete = " + totalPriceBeforeDelete + "totalPriceAfterDelete = " + totalPriceAfterDelete );
+				"Remove item validation has some problems: totalPriceBeforeDelete = " + totalPriceBeforeDelete + " totalPriceAfterDelete = " + totalPriceAfterDelete );
 
 	}
 
