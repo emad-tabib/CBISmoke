@@ -124,6 +124,7 @@ public class HomePage extends SelTestCase {
 			boolean isDisplayed;
 			logs.debug("Validate if YMAL carousels exist");
 			if (isBD()) {
+				Thread.sleep(3000);
 				isDisplayed = SelectorUtil.isDisplayed(HomePageSelectors.YMALCarouselsBD.get());
 			}
 			else if(isFGGR()) {
@@ -389,9 +390,9 @@ public class HomePage extends SelTestCase {
 	public static void clickOnMiniCartCloseBtn() throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			logs.debug("Clicking on Mini Cart clsoe icon");
+			logs.debug("Clicking on Mini Cart close icon");
 			if(isBD()){
-		logs.debug("Clicking on Mini Cart clsoe icon");
+		logs.debug("Clicking on Mini Cart close icon");
 		SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.miniCartCloseBD.get());
 		}
 		else if(isGH() || isRY()) {
@@ -421,7 +422,9 @@ public class HomePage extends SelTestCase {
 			boolean isNotDisplayed;
 			String subStrArr = HomePageSelectors.miniCartText.get();
 			logs.debug("Validate if mini cart is closed");
+			logs.debug("subStrArr" + subStrArr);
 			isNotDisplayed = SelectorUtil.isNotDisplayed(subStrArr);
+			logs.debug("isNotDisplayed : " + isNotDisplayed);
 			getCurrentFunctionName(false);
 			return isNotDisplayed;
 		} catch (NoSuchElementException e) {
@@ -1096,6 +1099,34 @@ public class HomePage extends SelTestCase {
 					}.getClass().getEnclosingMethod().getName()));
 			throw e;
 		}
+	}
+
+	public static boolean validateProductAdded() throws Exception {
+
+		try {
+			getCurrentFunctionName(true);
+			boolean isAdded ;
+			logs.debug("Validate Product added to cart .");
+			
+			SelectorUtil.initializeSelectorsAndDoActions(HomePageSelectors.productsNumber.get());
+			
+			String numberOfProducts = SelectorUtil.textValue.get();
+			logs.debug("The number Of Products in cart is:" + numberOfProducts);
+			
+			if (Integer.parseInt(numberOfProducts) > 0 )
+				isAdded = true;
+			else 
+				isAdded = false;
+			getCurrentFunctionName(false);
+			return isAdded;
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(
+					ExceptionMsg.PageFunctionFailed + "Text in mini cart selector is not found by selelnium ",
+					new Object() {
+					}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+		
 	}
 	
 

@@ -13,7 +13,7 @@ public class HomePageValidation extends SelTestCase {
 				searchHint = "type keyword or item #";
 		sassert().assertTrue(HomePage.validateSearchFieldPlaceHolderText(searchHint),
 				"Search field place holder validation has some problems");
-		if(!isiPad()) {
+		if(isMobile()) {
 		HomePage.searchIconExitClick();
 		sassert().assertTrue(HomePage.validateSearchIconFieldClosed(),
 				"Search icon field closed validation has some problems");

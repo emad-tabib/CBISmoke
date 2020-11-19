@@ -12,8 +12,8 @@ public class MenuValidation extends SelTestCase {
 
 		boolean validation = false;
 		// Check if the device is mobile/tablet or desktop .
-		boolean isMobile = isMobile() || isiPad();
-		if (!isMobile) {
+		//boolean isMobile = isMobile() || isiPad();
+		if (!isMobile()) {
 			// Validate the desktop menu.
 			validation = validateDesktop();
 		} else {
