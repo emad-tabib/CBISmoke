@@ -237,17 +237,17 @@ public class Registration extends SelTestCase {
 			Thread.sleep(1500);
 			if (!"".equals(email))
 				typeEmailAddress(email);
-			
+			Thread.sleep(1500);
 			if (!"".equals(confEmail))
 				typeconfEmailAddress(confEmail);
-
+			Thread.sleep(1000);
 			if (!"".equals(password))
 				typePassword(password);
-
+			Thread.sleep(1000);
 			if (!"".equals(confPassword))
 				typeConfirmPassword(confPassword);
 
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 
 			clickRegisterButton();
 
