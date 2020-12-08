@@ -143,7 +143,7 @@ public class PDPSelectors {
 	public static final cselector GHOfferControlClose = new cselector("fcopt-offer-35642-content","fcopt-offer-35745-content");
 	public static final cselector RYOfferControlClose = new cselector("fcopt-offer-100287-content","fcopt-offer-94688-content");
 	
-	public static final cselector FGGRSwatchesOptions = new cselector("css,.gwt-product-content-panel>.gwt-product-right-content-panel>#gwt-option-panel>div","css,.c-product-options>div>div" );
+	public static final cselector FGGRSwatchesOptions = new cselector("css,.gwt-product-content-panel>.gwt-product-right-content-panel>#gwt-option-panel>div","css,.c-product-options>div>div.c-product-option__item-container" );
 	public static final cselector FGGRSwatchesOptionsList = new cselector("css,.gwt-product-content-panel>.gwt-product-right-content-panel>#gwt-option-panel>div>.gwt-product-option-panel-listbox-container>div>select", "css,.c-product-options__container>select");
 	public static final cselector FGGRSwatchesOptionsSwatchBox = new cselector("css,.gwt-product-content-panel>.gwt-product-right-content-panel>#gwt-option-panel>div>div>div.gwt-selection-chip-picker>img", "css,.c-product-option-items__item-normal");
 
@@ -197,8 +197,8 @@ public class PDPSelectors {
 	public static final cselector BDaddToWLGRBtnEnabledSC = new cselector("css,button.add-to-gift-registry-button","css,.t-product-details__wishlist-button");
 	public static final cselector BDaddToWLGRBtnEnabledCSMobile = new cselector("css,button.add-to-gift-registry-button","css,.t-product-details__wishlist-button-comshop");
 	public static final cselector BDaddToWLGRBtnEnabledBundleMobile = new cselector("css,.t-product-details__wishlist-button");
-
-	public static final cselector BDListBox = new cselector("css,select.gwt-ListBox","css,.c-product-options__content.u-border-brand-color.u-border-radius");
+																//select.gwt-ListBox
+	public static final cselector BDListBox = new cselector("css,.gwt-product-option-panel > div","css,.c-product-options__content.u-border-brand-color.u-border-radius");
 	public static final cselector BDtopPriceSingle = new cselector("css,div.gwt-product-top-price-and-number > div > div","css,.t-product-details-heading__prod-number");
 	public static final cselector BDtopPriceBundle = new cselector("css,div.gwt-product-top-price-and-number > div > div","css,.t-product-details .t-product-details-heading__price .t-product-new-price");
 	public static final cselector BDnumberOfBundleItems = new cselector("css,.gwt-product-detail-products-container>.gwt-product-detail-widget","css,div.u-margin-bottom > .t-product-details-heading__price.t-product-details__price>div");	

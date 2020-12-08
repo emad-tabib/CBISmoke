@@ -24,7 +24,7 @@ public class HomePageBase extends SelTestCase {
 	// possible scenarios
 	public static final String Logo = "Logo validation";
 	public static final String miniCart = "Mini cart validation";
-	public static final String search = "Search validation";
+	public static final String search = "search validation";
 	public static final String espots = "espots validation";
 	public static final String YMALCarousels = "YMAL Carousels Verification";
 	public static final String menu = "menu";

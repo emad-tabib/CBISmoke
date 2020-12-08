@@ -20,11 +20,11 @@ public class GlobalVariables extends SelTestCase {
 	}
 
 	public class randomPLP {
-	public static final String FG = "/indoor-decor/indoor-area-rugs/?";
+	public static final String FG = "/indoor-decor/indoor-decor-accessories/trays-boxes/?";
 	public static final String GR = "/indoor-decor/indoor-lighting/?";
 	public static final String GH = "/womens-fashion/tops-tees/";
 	public static final String RY = "/store/plus-size-dresses/?";
-	public static final String BD = "/lighting/all-lighting/?";
+	public static final String BD = "/lighting/indoor-lighting/ceiling-flush-mount-lighting/?";
 
 }
 

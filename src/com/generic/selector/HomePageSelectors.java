@@ -27,10 +27,10 @@ public class HomePageSelectors
 	public static final cselector globalFooter =  new cselector("css,div.footerInner","css,footer > div.c-custom-accordion"); 
 	// adding this
 	public static final cselector YMALCarousels = new cselector("body gray-disabled-arrows" ,"css,#gwt_recommendations_home_1 > div > div > div > div.body > div > div","css,#home_rr_PWA > div > div > div > div > div > div");
-	public static final cselector YMALCarouselsFG = new cselector("body gray-disabled-arrows" ,"css,#gwt_recommendations_home_1 > div > div > div > div.body > div > div","css,#home_rr");
+	public static final cselector YMALCarouselsFG = new cselector("css,#crl8-homepage-carousel > div > div > div > div > div > div");
 	
 	// adding this
-	public static final cselector YMALCarouselsBD = new cselector("css,#crl8-homepage-carousel > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > div > div.sc-1pao5yo-0.cQIUaE > div");
+	public static final cselector YMALCarouselsBD = new cselector("css,#crl8-homepage-carousel > div > div > div > div > div > div");
 	public static final cselector logo = new cselector("css,#logo1 a.logo-anchor","css,.t-header__logo");
 	public static final cselector GRlogo = new cselector("css,#logo1 a.logo-anchor","css,.t-header__logo");
 	public static final cselector RYaccountMenu = new cselector ("css,.gwt-MenuItem > a#accountMenu","css,div.m-accordion-navigation__content-my-account");
@@ -42,32 +42,32 @@ public class HomePageSelectors
 	public static final cselector GHlogo = new cselector("css,#logoGH > a","t-header__logo");
 	public static final cselector RYLogoLinkMobile = new cselector("css,","css,.t-header__logo .pw-header-bar__title a");
 
-	
+	public static final cselector productsNumber = new cselector("css,#gwt_minicart_div > table > tbody > tr > td:nth-child(2) > div > span.cartText","css,div.pw-header-bar__actions.t-header-bar__cart > button > div > div > span:nth-child(1) > span:nth-child(1)");
 	public static final cselector miniCartBtn = new cselector("css,#gwt_minicart_div>table>tbody>tr>td>div","css,#cartAnchor","css,.pw-header-bar__actions.t-header-bar__cart > button");
-	public static final cselector miniCartText = new cselector("css,.empty-cart-sign-in-container > .gwt-HTML.inst-copy","css,.m-mini-cart__empty-content.u-text-align-center>h2");
+	public static final cselector miniCartText = new cselector("css,.empty-cart-sign-in-container > .gwt-HTML.inst-copy","css, div.cart-empty-text.u-text-align-center");
 	// adding this
-	public static final cselector miniCartTextBD = new cselector("css,.empty-cart-sign-in-container > .gwt-HTML.inst-copy","css,#pw-sheet-0 > div.pw-sheet__wrapper > div > div.pw-sheet__content > div > div > div > div > div");
-	public static final cselector miniCartClose = new cselector("css,button.pw-button.c-icon-label-button");
-	public static final cselector miniCartCloseFG = new cselector("css,button.pw-button.c-icon-label-button","css,button.pw-button");
+	public static final cselector miniCartTextBD = new cselector("css,.empty-cart-sign-in-container > .gwt-HTML.inst-copy","css,div.cart-empty-text.u-text-align-center");
+	public static final cselector miniCartClose = new cselector("css,#pwa-shop-nav-button > button");
+	public static final cselector miniCartCloseFG = new cselector("css,button.pw-button.c-icon-label-button","css,.t-header__menu-icon button.pw-button");
 	//#pwa-shop-nav-button
 	// adding this
 	public static final cselector miniCartCloseBD = new cselector("css,button.pw-button.c-icon-label-button");
 	public static final cselector miniCartProductContainer = new cselector("css,.mini-cart-items-container","css,.pw-header-bar__actions .pw-badge");
-	public static final cselector GHminiCartText = new cselector("css,.empty-cart-sign-in-container > .gwt-HTML.inst-copy","css,.m-mini-cart__empty-content.u-text-align-center div.m-mini-cart__empty-header");
+	public static final cselector GHminiCartText = new cselector("css,.empty-cart-sign-in-container > .gwt-HTML.inst-copy","css,div.cart-empty-text.u-text-align-center");
 	public static final cselector GHminiCartClose = new cselector("css,#headerBox > div.t-header__bar > div > div:nth-child(1) > div.pw-header-bar__actions.t-header-bar__cart.u-margin-end-6");
 	public static final cselector RYminiCartText = new cselector("css,.empty-cart-sign-in-container > .gwt-HTML.inst-copy","css, div.cart-empty-text");
 	public static final cselector RYminiCartProductContainer = new cselector("css,mini-cart-items-container","css,div.pw-list.items-container");
 	public static final cselector miniCartCheckoutBtn = new cselector("css,.mini-cart-product-panel-btn","pw-button pw--primary u-width-full");		
 	public static final cselector RYminiCartCheckoutBtn = new cselector("css,.mini-cart-product-panel-btn","css,div.c-checkout-buttons__checkout > button");		
 	public static final cselector searchIconOpenRY = new cselector("","css,div.t-header__search-button > button");
-	public static final cselector searchIconOpen = new cselector("css,#uNavTop >.searchboxAsButton","css,div#searchBox","css,.t-header__search");
+	public static final cselector searchIconOpen = new cselector("css,div#searchBox","css,.t-header__search");
 	public static final cselector searchIconClose = new cselector("css,#search-popup > .search-popup-close-icon","css,.left-container>.leftSideNav>button","css,.c-search-action  > div> button.pw-button");
-	public static final cselector searchIconField = new cselector("css,#searchBox>#headerBox","css,#search-0");
+	public static final cselector searchIconField = new cselector("css,#searchBox>#headerBox","css,.pw-search__input");
 	// adding this
 	public static final cselector BDsearchIconField = new cselector("css,#pw-sheet-4 > div.pw-sheet__wrapper > div > div.pw-sheet__content > div > div > div.u-flexbox.u-justify-between.u-padding-lg.u-bg-color-neutral-10 > div > div.pw-search__inner > form > div > div.pw-search__field");
 	public static final String moduleHeroImg = "css,#homepage-head div.row div.genericESpot div.module-hero div.col-xs-12 div.wrapper a img.img.img-responsive";
 	public static final String FGmoduleHeroImg = "css,div:nth-child(1) > div > div > div.module-hero.full-width > div.col-xs-12 > div > a > img";
-	public static final String GRmoduleHeroImg = "css,div.col-xs-12.col-sm-8 > div.wrapper > a > img";
+	public static final String GRmoduleHeroImg = "css,div.col-xs-12 > div.wrapper > a > img";
 	// adding this
 	public static final String moduleHeroImgBD = "css,#main-link > img";
 	// adding this
@@ -75,7 +75,7 @@ public class HomePageSelectors
 	public static final cselector carusals =new cselector( "css,.tilePanel>div>div>a>img","css,.genericESpot>div>div>div>.pw-scroller>div>.pw-scroller__content>.pw-scroller__item>article>a>div>div>div>div>div img");
 	// adding this
 	public static final cselector carusalsBD =new cselector( "css,#module6 > div > div.row.gutter-4.masonry-blocks");
-	public static final cselector espots = new cselector("css,.genericESpot>div>div>div>a>img","css,.pw-responsive-html>div>#mainContent>div>div>div>.genericESpot>div>.col-xs-12>div>a>img");
+	public static final cselector espots = new cselector("css,.genericESpot>div>div>div>a>img","css,.genericESpot  > .module-alpha  >  div.col-xs-12 > div.wrapper > a > img");
 	public static final cselector FGespots = new cselector("css,.genericESpot>div>div>div>a>img","css,.genericESpot");
 	//adding this
 	
@@ -83,11 +83,11 @@ public class HomePageSelectors
 
 	//public static final cselector espotsBD = new cselector("css,.genericESpot>div>div>div>a>img","css,div.container-fluid > div > div > a  img");
 	public static final cselector espotsBD = new cselector("css,.genericESpot>div>div>div>a>img");
-	public static final cselector GHespots = new cselector("css,div.genericESpot section>div>div>div>a>img","css,#mobify-homepage > div");
+	public static final cselector GHespots = new cselector("css,div.genericESpot section>div>div>div>a>img","css,#home_page_section > section> .container .col-sm-12");
 	public static final cselector RYespots = new cselector("css,div.genericESpot section>div>div>div>a>img","css,div.container-fluid > div > div.col-sm-12 > a > img");
 	public static final String HomePageSearchbutton = "toggle-mobile-menu";
 	//public static final cselector miniCartMobd = new cselector("css,#cartAnchor","css,.pw-header-bar__actions.t-header-bar__cart > button");
-	public static final cselector mainHomeCarousels = new cselector("body gray-disabled-arrows","css,#gwt_recommendations_home_1 > div > div > div > div.body","css,#home_rr_PWA > div > div > div");
+	public static final cselector mainHomeCarousels = new cselector("body gray-disabled-arrows","css,#gwt_recommendations_home_1 > div > div > div > div.body","css,#home_rr");
 	public static final String header = "header-container";
 	public static final String body_topNavLinks = "css,#main-navigation-large>.container>.nav-links";
 	public static final String body_categorySlider = "page-section category-slider";
@@ -110,7 +110,7 @@ public class HomePageSelectors
 	// adding this
 	public static final cselector menuItemsBDforiPad = new cselector("css,#gwt-uid-11");
 	public static final cselector menuItemsGH = new cselector("css,#css-top-navigation #flyout>.menuItem>a","css,.nav .dropdown >a", "css,.pw-accordion__icon");
-	public static final cselector selectedMenuHeader = new cselector("", "css,#gwt-top-navigation .active>.gwt-nav-item-has-submenu.opened>.gwt-HTML", "css,.m-navigation__fades-in .pw-header-bar .c-sheet__title");
+	public static final cselector selectedMenuHeader = new cselector("", "css,#gwt-top-navigation .active>.gwt-nav-item-has-submenu.opened>.gwt-HTML", "css,.pw-header-bar .c-sheet__title");
 	public static final cselector selectedMenuHeaderFG = new cselector("", "css,td.menuPopupMiddleCenter > div > div > table > tbody > tr:nth-child(2) > td > div", "css,.m-navigation__fades-in .pw-header-bar .c-sheet__title");
 
 	// adding this

@@ -5,19 +5,25 @@ import com.generic.setup.Common;
 import com.generic.setup.SelTestCase;
 
 public class HomePageValidation extends SelTestCase {
-	public static final String searchHint = "Search - Keyword or Item #";
-
+	
 	public static void validateSearch() throws Exception {
-		if(isMobile())
+		String searchHint = "Search Frontgate";
+		
+		if(isMobile()) {
 			Common.refreshBrowser();
+			searchHint = "Search - Keyword or Item #";
+		}
+
 		HomePage.searchIconClick();
 		sassert().assertTrue(HomePage.validateSearchIconFieldOpend(),
 				"Search icon field opened validation has some problems");
 		sassert().assertTrue(HomePage.validateSearchFieldPlaceHolderText(searchHint),
 				"Search field place holder validation has some problems");
-		HomePage.searchIconExitClick();
-		sassert().assertTrue(HomePage.validateSearchIconFieldClosed(),
-				"Search icon field colsed validation has some problems");
+		if(isMobile()) {
+			HomePage.searchIconExitClick();
+			sassert().assertTrue(HomePage.validateSearchIconFieldClosed(),
+				"Search icon field closed validation has some problems");
+			}
 	}
 
 	public static void validateCaroselAndEspot() throws Exception {

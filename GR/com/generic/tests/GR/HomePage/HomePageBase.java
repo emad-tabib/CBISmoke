@@ -20,12 +20,13 @@ public class HomePageBase extends SelTestCase {
 	// possible scenarios
 	public static final String Logo = "Logo validation";
 	public static final String miniCart = "Mini cart validation";
-	public static final String search = "Search validation";
+	public static final String search = "search validation";
 	public static final String espots = "espots validation";
 	public static final String YMALCarousels = "YMAL Carousels Verification";
 	public static final String menu = "menu";
 	public static final String AccountMenu = "Account menu validation";
 	public static final String GlobalFooter = "Global footer validation";
+	public static final String MainHomeCarousels = "Main Home Carousels Verification";
 
 	// used sheet in test
 	public static final String testDataSheet = SheetVariables.HPRegressionsheet;
@@ -74,6 +75,9 @@ public class HomePageBase extends SelTestCase {
 			} else if (proprties.contains(search)) {
 				HomePageValidation.validateSearch();
 			
+			} else if (proprties.equals(menu)) {
+					sassert().assertTrue(MenuValidation.validate(), "Menu validation has some problems");
+			
 			} else if (proprties.contains(AccountMenu)) {
 				sassert().assertTrue(AccountMenuValidation.validate(), "My Account menu validation has some problems");
 			
@@ -82,6 +86,9 @@ public class HomePageBase extends SelTestCase {
 			
 			} else if (proprties.contains(YMALCarousels)) {
 				YMALCarouselsVerification.validate();
+			
+			} else if (proprties.contains(MainHomeCarousels)) {
+				MainHomeCarouselsVerification.validate();
 			
 			} else {
 				Testlogs.get().debug("please check proprties provided in excel sheet");

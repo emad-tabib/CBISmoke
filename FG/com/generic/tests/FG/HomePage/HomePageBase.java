@@ -12,6 +12,7 @@ import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
 import com.generic.setup.SheetVariables;
 import com.generic.tests.FG.HomePage.LogoValidation;
+import com.generic.tests.GR.HomePage.MainHomeCarouselsVerification;
 import com.generic.util.SASLogger;
 import com.generic.util.dataProviderUtils;
 
@@ -20,13 +21,14 @@ public class HomePageBase extends SelTestCase {
 	// possible scenarios
 	public static final String Logo = "Logo validation";
 	public static final String miniCart = "Mini cart validation";
-	public static final String search = "Search validation";
+	public static final String search = "search validation";
 	public static final String espots = "espots validation";
 	public static final String YMALCarousels = "YMAL Carousels Verification";
 	public static final String menu = "menu";
 	public static final String AccountMenu = "Account menu validation";
 	public static final String GlobalFooter = "Global footer validation";
-
+	public static final String MainHomeCarousels = "Main Home Carousels Verification";
+	
 	// Used sheet in test
 	public static final String testDataSheet = SheetVariables.HPRegressionsheet;
 
@@ -82,8 +84,11 @@ public class HomePageBase extends SelTestCase {
 				sassert().assertTrue(GlobalFooterValidation.validate(), "Global footer validation has some problems");
 			} else if (proprties.contains(YMALCarousels)) {
 				YMALCarouselsVerification.validate();
+			} else if (proprties.contains(MainHomeCarousels)) {
+				MainHomeCarouselsVerification.validate();
 			} else {
 				Testlogs.get().debug("please check proprties provided in excel sheet");
+				Common.testSkipped(CaseDescription);;
 			}
 
 			sassert().assertAll();

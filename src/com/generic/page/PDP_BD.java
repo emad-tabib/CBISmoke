@@ -56,7 +56,12 @@ public class PDP_BD extends SelTestCase {
 				else
 					noOptions = PDP_selectSwatches.getSwatchContainersdivClass(0).contains("no-options");
 				
+				logs.debug("noOptions: "+noOptions);
 				
+				if(noOptions) 
+					isPriceShownInOption = !noOptions;	
+				else {
+
 				int numberOfSwatchContainers = PDP_selectSwatches.getNumberofSwatchContainers();
 
 				for (int i = 0; i < numberOfSwatchContainers; i++) {
@@ -68,8 +73,9 @@ public class PDP_BD extends SelTestCase {
 					else if (PDP_selectSwatches.getSwatchContainersdivClass(i).contains("list"))
 						PDP_selectSwatches.selectNthListBoxFirstValue(i + 1);
 
+					}
+					isPriceShownInOption = !noOptions;
 				}
-				isPriceShownInOption = !noOptions;
 				//PDP_selectSwatches.FGGRselectSwatchesSingle();
 			}
 			getCurrentFunctionName(false);
