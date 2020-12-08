@@ -22,7 +22,7 @@ public class HomePageValidation extends SelTestCase {
 		if(isMobile()) {
 			HomePage.searchIconExitClick();
 			sassert().assertTrue(HomePage.validateSearchIconFieldClosed(),
-				"Search icon field colsed validation has some problems");
+				"Search icon field closed validation has some problems");
 			}
 	}
 
