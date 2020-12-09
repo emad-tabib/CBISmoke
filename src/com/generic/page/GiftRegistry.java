@@ -172,6 +172,7 @@ public class GiftRegistry extends SelTestCase {
 			}
 
 			if (isBD()) {
+				Thread.sleep(1500);
 				SelectorUtil.initializeSelectorsAndDoActions(GiftRegistrySelectors.beginAddingItemsButtonBD.get());
 			} else {
 				SelectorUtil.initializeSelectorsAndDoActions(GiftRegistrySelectors.beginAddingItemsButton.get());
@@ -489,8 +490,8 @@ public class GiftRegistry extends SelTestCase {
 
 			Thread.sleep(1500);
 			SelectorUtil.waitGWTLoadedEventPWA();
-
-			
+			//The Steps are commented because the issue "the product is not added directly to GR " didn't happen
+			/**	
 			if(isGH() && isMobile()) {
 			PDP_selectSwatches.selectSwatches();
 			SelectorUtil.initializeSelectorsAndDoActions(GiftRegistrySelectors.GHaddtoGR.get());
@@ -505,7 +506,7 @@ public class GiftRegistry extends SelTestCase {
 			PDP_selectSwatches.selectSwatches();
 			SelectorUtil.initializeSelectorsAndDoActions(GiftRegistrySelectors.saveToGR.get());
 			SelectorUtil.initializeSelectorsAndDoActions(GiftRegistrySelectors.FGadditemtoGR.get());	
-			}
+			}**/
 			// Validate product added to gift registry modal.
 			validateAddToGRModal();
 			if (isGH())
