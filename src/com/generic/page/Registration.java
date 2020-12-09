@@ -116,14 +116,23 @@ public class Registration extends SelTestCase {
 			
 			if(isGH()|| isRY()) {
 				if(isMobile()) {
-					List <WebElement> fields = SelectorUtil.getAllElements(RegistrationSelectors.emailAddressGH.get());
-					SelectorUtil.writeToFieldPWA(fields.get(RYGHEmailAddressIndex),address);
+					String emailText = SelectorUtil.getElement(RegistrationSelectors.emailAddressGH.get()).getAttribute("value");
+					logs.debug("Email field text : " + emailText);
+					if(emailText.isEmpty()) {
+						List <WebElement> fields = SelectorUtil.getAllElements(RegistrationSelectors.emailAddressGH.get());
+						SelectorUtil.writeToFieldPWA(fields.get(RYGHEmailAddressIndex),address);
+					}
 				}
 				else
+					
 				SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.emailAddressGH.get(), address);
 			}
-			else
-			SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.emailAddress.get(), address);
+			else {
+				String emailText = SelectorUtil.getElement(RegistrationSelectors.emailAddress.get()).getAttribute("value");
+				logs.debug("Email field text : " + emailText);
+				if(emailText.isEmpty()) 
+					SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.emailAddress.get(), address);
+			}
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
 			logs.debug(MessageFormat.format(
@@ -234,20 +243,17 @@ public class Registration extends SelTestCase {
 			throws Exception {
 		try {
 			getCurrentFunctionName(true);
+			for(int i = 1 ; i < 3 ; i++) {
 			Thread.sleep(1500);
 			if (!"".equals(email))
 				typeEmailAddress(email);
-			Thread.sleep(1500);
 			if (!"".equals(confEmail))
 				typeconfEmailAddress(confEmail);
-			Thread.sleep(1000);
+			}
 			if (!"".equals(password))
 				typePassword(password);
-			Thread.sleep(1000);
 			if (!"".equals(confPassword))
 				typeConfirmPassword(confPassword);
-
-			Thread.sleep(2000);
 
 			clickRegisterButton();
 
@@ -352,10 +358,11 @@ public class Registration extends SelTestCase {
 					SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.confirmEmailAddress.get(),
 							email);
 			} else if (isGR() || isFG() || isRY() ||isBD()) {
-				SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.confirmEmailAddress.get(), email);
-
+				String confirmEmailText = SelectorUtil.getElement(RegistrationSelectors.confirmEmailAddress.get()).getAttribute("value");
+				logs.debug("Confirm Email field text : " + confirmEmailText);
+				if(confirmEmailText.isEmpty()) 
+					SelectorUtil.initializeSelectorsAndDoActions(RegistrationSelectors.confirmEmailAddress.get(), email);
 			}
-
 			logs.debug("Data is" + email);
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
